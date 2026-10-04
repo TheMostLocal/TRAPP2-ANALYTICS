@@ -54,13 +54,13 @@ jobs:
       # master.json AND data/history/*.json straight from disk (no HTTP),
       # which is what powers technicals + non-equity grading.
       - uses: actions/checkout@v4
-        with: { repository: GoodGlobeLLC/TRAPP2, path: books/TRAPP2 }
+        with: { repository: "${{ github.repository_owner }}/TRAPP2", path: books/TRAPP2 }
       - uses: actions/checkout@v4
-        with: { repository: GoodGlobeLLC/TRAPP2-1, path: books/TRAPP2-1 }
+        with: { repository: "${{ github.repository_owner }}/TRAPP2-1", path: books/TRAPP2-1 }
       - uses: actions/checkout@v4
-        with: { repository: GoodGlobeLLC/TRAPP2-2, path: books/TRAPP2-2 }
+        with: { repository: "${{ github.repository_owner }}/TRAPP2-2", path: books/TRAPP2-2 }
       - uses: actions/checkout@v4
-        with: { repository: GoodGlobeLLC/TRAPP2-3, path: books/TRAPP2-3 }
+        with: { repository: "${{ github.repository_owner }}/TRAPP2-3", path: books/TRAPP2-3 }
 
       - uses: actions/setup-python@v5
         with:

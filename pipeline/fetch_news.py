@@ -34,11 +34,18 @@ from pathlib import Path
 
 import yfinance as yf
 
+# Repo owner — resolved at runtime so the pipeline follows the repos to any
+# GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
+# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+_GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
+             or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
+             or "GoodGlobeLLC").strip()
+
 REPOS = [
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-1/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-2/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-3/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-2/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-3/main/data/master.json",
 ]
 OUT = Path(__file__).resolve().parent.parent / "data" / "news" / "latest.json"
 PER_TICKER = 4

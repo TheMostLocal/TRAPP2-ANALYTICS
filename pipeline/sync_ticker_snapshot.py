@@ -29,18 +29,27 @@ import sys
 import urllib.request
 import urllib.error
 
+# Repo owner — resolved at runtime so the pipeline follows the repos to any
+# GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
+# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+_GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
+             or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
+             or "GoodGlobeLLC").strip()
+
 # ---- config ---------------------------------------------------------------
-RAW = "https://raw.githubusercontent.com/GoodGlobeLLC"
+RAW = f"https://raw.githubusercontent.com/{_GH_OWNER}"
 MASTER_SOURCES = [
     (f"{RAW}/TRAPP2/main/data/master.json", "TRAPP2"),
     (f"{RAW}/TRAPP2-2/main/data/master.json", "TRAPP2-2"),
     (f"{RAW}/TRAPP2-1/main/data/master.json", "TRAPP2-1"),  # non-equities; 404 is fine
+    (f"{RAW}/TRAPP2-3/main/data/master.json", "TRAPP2-3"),  # ~200 equities not in TRAPP2/-2
 ]
 GRADES_URL = f"{RAW}/TRAPP2-ANALYTICS/main/data/research_grades.json"
 SIGNALS_URL = f"{RAW}/TRAPP2/main/data/signals.json"
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE", "")
+SERVICE_KEY = (os.environ.get("SUPABASE_SERVICE_ROLE")
+               or os.environ.get("SUPABASE_SERVICE_KEY") or "").strip()  # accept both names
 TABLE = "ticker_snapshot"
 BATCH = 200  # rows per upsert request
 

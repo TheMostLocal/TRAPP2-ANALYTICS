@@ -1,0 +1,35 @@
+name: Push analytics → Supabase
+
+# Pushes the analytics backend into the TRAPP2-ANALYTICS Supabase project:
+#   research_grades · regime_snapshots · regime_timeline · analytics_kv (macro).
+# research_grades is read from this repo's checkout; regime + macro are fetched
+# live from TRAPP2-1 (the canonical source), so no extra checkouts are needed.
+
+on:
+  push:
+    paths: [ 'data/research_grades.json' ]
+  schedule:
+    - cron: '20 * * * *'        # hourly at :20 (≥ daily, so regime pushes daily)
+  workflow_dispatch:
+
+concurrency:
+  group: analytics-supabase
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Push to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+          # Authenticates the macro-series auto-discovery call (api.github.com),
+          # so it never trips the shared-runner unauthenticated rate limit.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 pipeline/sync_analytics_to_supabase.py

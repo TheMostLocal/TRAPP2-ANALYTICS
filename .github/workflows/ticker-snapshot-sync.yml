@@ -1,0 +1,47 @@
+name: ticker-snapshot-sync
+
+# Projects the latest GitHub data (prices + grades + financials + signals) into
+# the flat `ticker_snapshot` table in Supabase, so the app/brain/bot can screen
+# fast with SQL. GitHub stays the source of truth; this is a read projection.
+#
+# Put this file in TRAPP2-ANALYTICS/.github/workflows/ (the natural home, since
+# grades already live there) along with pipeline/sync_ticker_snapshot.py.
+#
+# Requires two repo secrets (you already have these set in your repos):
+#   SUPABASE_URL            https://xxxx.supabase.co  (the project holding the table)
+#   SUPABASE_SERVICE_ROLE   the service-role key for that project
+
+on:
+  schedule:
+    - cron: "30 * * * *"      # hourly at :30 (after the grade/price pipelines settle)
+  workflow_dispatch: {}        # manual "Run workflow" button
+  push:
+    branches: [main]
+    paths:
+      - "data/research_grades.json"   # re-sync when grades refresh
+      - "data/master.json"
+
+# Don't pile up overlapping runs.
+concurrency:
+  group: ticker-snapshot-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Sync ticker_snapshot to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 pipeline/sync_ticker_snapshot.py

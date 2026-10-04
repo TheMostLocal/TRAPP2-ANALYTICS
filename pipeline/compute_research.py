@@ -27,12 +27,19 @@ from pathlib import Path
 # is missing (e.g. running locally).
 import math
 
+# Repo owner — resolved at runtime so the pipeline follows the repos to any
+# GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
+# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+_GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
+             or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
+             or "GoodGlobeLLC").strip()
+
 BOOKS = ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3"]
 REPOS = [
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-1/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-2/main/data/master.json",
-    "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-3/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-2/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-3/main/data/master.json",
 ]
 OUT = Path(__file__).resolve().parent.parent / "data" / "research_grades.json"
 

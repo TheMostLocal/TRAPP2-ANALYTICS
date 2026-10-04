@@ -33,6 +33,13 @@ import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
 
+# Repo owner — resolved at runtime so the pipeline follows the repos to any
+# GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
+# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+_GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
+             or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
+             or "GoodGlobeLLC").strip()
+
 # ------------------------------------------------------------------ config ---
 URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
 KEY = (os.environ.get("SUPABASE_SERVICE_ROLE")
@@ -42,8 +49,8 @@ KEY = (os.environ.get("SUPABASE_SERVICE_ROLE")
 
 # TRAPP2-1 is the canonical home for BOTH regime and macro (matches the app's
 # CANONICAL_REGIME_BASE / resolveMacroBase).
-RAW_T1   = "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-1/main/data"
-RAW_ANA  = "https://raw.githubusercontent.com/GoodGlobeLLC/TRAPP2-ANALYTICS/main/data"
+RAW_T1   = f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data"
+RAW_ANA  = f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-ANALYTICS/main/data"
 GRADES_LOCAL = "data/research_grades.json"   # freshest copy (this repo's checkout)
 
 # FRED series carried in TRAPP2-1/data/macro (+ quad). Auto-discovered at runtime
@@ -246,7 +253,7 @@ def push_regime_timeline(hist):
 
 # ----------------------------------------------------------- 4. macro/kv -----
 def _discover_macro():
-    api = "https://api.github.com/repos/GoodGlobeLLC/TRAPP2-1/contents/data/macro"
+    api = f"https://api.github.com/repos/{_GH_OWNER}/TRAPP2-1/contents/data/macro"
     hdr = {"User-Agent": "valuatio-analytics-sync", "Accept": "application/vnd.github+json"}
     tok = os.environ.get("GITHUB_TOKEN")
     if tok:

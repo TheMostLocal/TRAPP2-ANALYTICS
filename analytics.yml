@@ -1,0 +1,95 @@
+# ============================================================
+#  >>> DESTINATION: GoodGlobeLLC/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/anayltics.yml
+#  >>> FULL PATH:   GoodGlobeLLC/TRAPP2-ANALYTICS/.github/workflows/anayltics.yml
+#
+#  Edit/paste directly on GitHub here:
+#  https://github.com/GoodGlobeLLC/TRAPP2-ANALYTICS/edit/main/.github/workflows/anayltics.yml
+#
+#  WHAT CHANGED IN THIS FILE:
+#    Push logic changed from `git pull --rebase -X ours` to `git fetch` +
+#    `git merge -X ours` (cleaner, never leaves unmerged files). NOTE:
+#    filename keeps the existing 'anayltics' spelling so it overwrites
+#    the live file rather than creating a duplicate.
+# ============================================================
+
+# .github/workflows/analytics.yml  →  goes in the NEW TRAPP2-ANALYTICS repo
+#
+# The analytics backend: computes research grades (the Research tab's 23
+# metrics, percentile ranks, and letter grades) across ALL THREE books, and
+# pulls the news corpus — so the frontend's job shifts to comparing, verifying,
+# and flagging discrepancies instead of computing and fetching everything.
+#
+# Scheduled AFTER the data repos' nightly refreshes (which start 00:30 UTC), so
+# it computes on tonight's data, not yesterday's.
+#
+# REPO SETUP: create repo TRAPP2-ANALYTICS, add:
+#   pipeline/compute_research.py
+#   pipeline/fetch_news.py
+#   requirements.txt        (contents: yfinance)
+#   .github/workflows/analytics.yml   (this file)
+name: Analytics refresh
+
+on:
+  schedule:
+    - cron: '0 3 * * *'        # 03:00 UTC — after the 00:30 nightly chains
+    - cron: '30 14 * * 1-5'    # 14:30 UTC weekdays — midday news top-up
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analytics
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      # Check out all three data books locally — compute_research v2 reads
+      # master.json AND data/history/*.json straight from disk (no HTTP),
+      # which is what powers technicals + non-equity grading.
+      - uses: actions/checkout@v4
+        with: { repository: GoodGlobeLLC/TRAPP2, path: books/TRAPP2 }
+      - uses: actions/checkout@v4
+        with: { repository: GoodGlobeLLC/TRAPP2-1, path: books/TRAPP2-1 }
+      - uses: actions/checkout@v4
+        with: { repository: GoodGlobeLLC/TRAPP2-2, path: books/TRAPP2-2 }
+      - uses: actions/checkout@v4
+        with: { repository: GoodGlobeLLC/TRAPP2-3, path: books/TRAPP2-3 }
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Compute research grades (cross-book)
+        run: python pipeline/compute_research.py
+
+      - name: Pull news corpus
+        # Best-effort — a Yahoo hiccup shouldn't block the grades commit.
+        run: python pipeline/fetch_news.py || echo "news step had errors but continuing"
+
+      - name: Commit & push
+        run: |
+          git config user.name "valuatio-analytics"
+          git config user.email "actions@github.com"
+          rm -rf books
+          git add -A data/
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -m "analytics: $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Conflict-proof push (fetch + merge -X ours, latest run wins). Avoids
+          # the rebase-conflict / unmerged-files failure on regenerated JSON.
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main 2>/dev/null || git push; then echo "Pushed (attempt $i)"; break; fi
+            git fetch origin "${GITHUB_REF_NAME:-main}" || git fetch origin main
+            git merge -X ours --no-edit "origin/${GITHUB_REF_NAME:-main}" 2>/dev/null || git merge -X ours --no-edit origin/main 2>/dev/null || git merge --abort 2>/dev/null || true
+            sleep $((i * 2))
+          done

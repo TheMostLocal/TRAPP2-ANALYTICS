@@ -36,10 +36,10 @@ import yfinance as yf
 
 # Repo owner — resolved at runtime so the pipeline follows the repos to any
 # GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
-# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+# VALUATIO_OWNER (repo variable/env) overrides; TheMostLocal is the fallback.
 _GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
              or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
-             or "GoodGlobeLLC").strip()
+             or "TheMostLocal").strip()
 
 REPOS = [
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2/main/data/master.json",
@@ -141,11 +141,16 @@ def main():
 
     items, have_urls = [], set()
     confident_n = 0
+    errors, first_err, empty = 0, None, 0
     for i, t in enumerate(tickers, 1):
         try:
             raw = yf.Ticker(t).news or []
-        except Exception:
+        except Exception as e:
             raw = []
+            errors += 1
+            first_err = first_err or f"{t}: {type(e).__name__}: {str(e)[:160]}"
+        if not raw:
+            empty += 1
         for n in raw[:PER_TICKER]:
             c = n.get("content") or n
             url = (c.get("canonicalUrl") or {}).get("url") or c.get("link") or n.get("link")
@@ -181,6 +186,15 @@ def main():
         if len(items) >= GLOBAL_CAP:
             print("  global cap reached")
             break
+
+    print(f"  fetch stats: {len(tickers)} tickers · {errors} raised · {empty} returned no news")
+    if not items:
+        # Never overwrite a good corpus with an empty one. A zero-article run is
+        # a source failure (Yahoo throttling/blocking the runner, or a yfinance
+        # API change), not "no news" - keep yesterday's file and say so.
+        print(f"::error::news: 0 articles from {len(tickers)} tickers ({errors} raised"
+              + (f"; first: {first_err}" if first_err else "") + ") - latest.json left unchanged")
+        return 1
 
     items.sort(key=lambda a: a.get("datetime") or "", reverse=True)
     OUT.parent.mkdir(parents=True, exist_ok=True)

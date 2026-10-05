@@ -35,17 +35,63 @@ from datetime import datetime, timezone, timedelta
 
 # Repo owner — resolved at runtime so the pipeline follows the repos to any
 # GitHub account. Actions sets GITHUB_REPOSITORY_OWNER automatically;
-# VALUATIO_OWNER (repo variable/env) overrides; legacy owner is the fallback.
+# VALUATIO_OWNER (repo variable/env) overrides; TheMostLocal is the fallback.
 _GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
              or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
-             or "GoodGlobeLLC").strip()
+             or "TheMostLocal").strip()
 
 # ------------------------------------------------------------------ config ---
-URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-KEY = (os.environ.get("SUPABASE_SERVICE_ROLE")
-       or os.environ.get("SUPABASE_SERVICE_KEY")
-       or os.environ.get("SUPABASE_KEY")
-       or os.environ.get("SUPABASE_ANON_KEY") or "")
+# ---- Supabase credentials (same block in every Valuatio sync script) --------
+# Picks whichever configured key is actually a SERVICE key (legacy JWT with
+# role=service_role, or a new sb_secret_ key), so a wrong value in ONE of the
+# two secret names can't silently downgrade writes to anon. Never prints keys.
+import base64 as _sb_b64, json as _sb_json, os as _sb_os, re as _sb_re
+def _sb_claims(k):
+    try:
+        seg = k.split(".")[1]; seg += "=" * (-len(seg) % 4)
+        return _sb_json.loads(_sb_b64.urlsafe_b64decode(seg))
+    except Exception:
+        return {}
+def _sb_kind(k):
+    k = (k or "").strip()
+    if not k: return "missing"
+    if k.startswith("sb_secret_"): return "secret"
+    if k.startswith("sb_publishable_"): return "publishable"
+    if k.count(".") == 2: return _sb_claims(k).get("role") or "jwt(no role)"
+    return "unrecognized"
+def _sb_url():
+    u = (_sb_os.environ.get("SUPABASE_URL") or "").strip().rstrip("/")
+    return _sb_re.sub(r"/rest/v1$", "", u)
+def _sb_pick_key():
+    names = ("SUPABASE_SERVICE_ROLE", "SUPABASE_SERVICE_KEY", "SUPABASE_KEY", "SUPABASE_ANON_KEY")
+    vals = [(n, (_sb_os.environ.get(n) or "").strip()) for n in names]
+    have = [(n, v) for n, v in vals if v]
+    good = [(n, v) for n, v in have if _sb_kind(v) in ("service_role", "secret")]
+    name, key = (good or have or [(None, "")])[0]
+    print("[supabase] " + (", ".join(f"{n}={_sb_kind(v)}" for n, v in have) or "no keys set")
+          + f" -> using {name or 'none'}")
+    if key and _sb_kind(key) not in ("service_role", "secret"):
+        print(f"::warning::{name} is a '{_sb_kind(key)}' key, not service_role/secret - "
+              "service-only tables (ticker_snapshot, regime_timeline, bot_equity) will reject writes")
+    distinct = {v for n, v in have if n in names[:2]}
+    if len(distinct) > 1:
+        print("::warning::SUPABASE_SERVICE_ROLE and SUPABASE_SERVICE_KEY differ - set both to the same service key")
+    ref = _sb_claims(key).get("ref") if key.count(".") == 2 else None
+    m = _sb_re.match(r"https://([a-z0-9]+)\.supabase\.co$", _sb_url())
+    if ref and m and ref != m.group(1):
+        print(f"::error::key belongs to Supabase project '{ref}' but SUPABASE_URL points at '{m.group(1)}' (keys from the other project?)")
+    return key
+def _sb_finite(obj):
+    if isinstance(obj, float):
+        return obj if obj == obj and obj not in (float("inf"), float("-inf")) else None
+    if isinstance(obj, dict):
+        return {k: _sb_finite(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_sb_finite(v) for v in obj]
+    return obj
+# -----------------------------------------------------------------------------
+URL = _sb_url()
+KEY = _sb_pick_key()
 
 # TRAPP2-1 is the canonical home for BOTH regime and macro (matches the app's
 # CANONICAL_REGIME_BASE / resolveMacroBase).
@@ -115,7 +161,7 @@ def _req(method, path, body=None, headers=None):
     h = {"apikey": KEY, "Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
     if headers:
         h.update(headers)
-    data = json.dumps(body).encode() if body is not None else None
+    data = json.dumps(_sb_finite(body), allow_nan=False).encode() if body is not None else None
     req = urllib.request.Request(URL + path, data=data, headers=h, method=method)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
@@ -134,6 +180,9 @@ def fetch_json(url):
         return None
 
 
+FAILED = []   # tables with a rejected chunk -> non-zero exit (no more silent green runs)
+
+
 def push(table, rows, conflict):
     """Chunked upsert. Returns rows accepted."""
     if not rows:
@@ -147,7 +196,8 @@ def push(table, rows, conflict):
         if st in (200, 201, 204):
             sent += len(chunk)
         else:
-            print(f"  {table}: chunk {i} -> HTTP {st}: {body[:240]}")
+            print(f"::error::{table}: chunk {i} -> HTTP {st}: {body[:240]}")
+            FAILED.append(table)
     print(f"  {table}: upserted {sent}/{len(rows)}")
     return sent
 
@@ -338,21 +388,24 @@ def main():
     try:
         total += push_research_grades()
     except Exception as e:
-        print(f"  grades: ERROR {e}")
+        print(f"::error::grades: ERROR {e}"); FAILED.append("grades")
     cur, hist = (None, [])
     try:
         cur, hist = _load_regime()
         total += push_regime(cur, hist)
     except Exception as e:
-        print(f"  regime_snapshots: ERROR {e}")
+        print(f"::error::regime_snapshots: ERROR {e}"); FAILED.append("regime_snapshots")
     try:
         total += push_regime_timeline(hist)
     except Exception as e:
-        print(f"  regime_timeline: ERROR {e}")
+        print(f"::error::regime_timeline: ERROR {e}"); FAILED.append("regime_timeline")
     try:
         total += push_macro()
     except Exception as e:
-        print(f"  analytics_kv/macro: ERROR {e}")
+        print(f"::error::analytics_kv/macro: ERROR {e}"); FAILED.append("analytics_kv/macro")
+    if FAILED:
+        print(f"X analytics sync: {total} row(s) upserted, FAILED tables: {sorted(set(FAILED))}")
+        return 1
     print(f"OK analytics sync complete — {total} row(s) upserted across all tables")
     return 0
 

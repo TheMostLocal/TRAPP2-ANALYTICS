@@ -73,6 +73,12 @@ jobs:
       - name: Compute research grades (cross-book)
         run: python pipeline/compute_research.py
 
+      # Human grades (XTRAPP, 3-month TTL) outrank computed grades. The machine
+      # grade is kept in _machine; bot + Supabase ticker_snapshot read the result.
+      - name: Apply human grades (XTRAPP)
+        run: python pipeline/human_corrections.py grades
+        continue-on-error: true
+
       - name: Pull news corpus
         # Best-effort — a Yahoo hiccup shouldn't block the grades commit.
         run: python pipeline/fetch_news.py || echo "news step had errors but continuing"

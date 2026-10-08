@@ -1,0 +1,218 @@
+{
+ "asOf": "2026-10-07",
+ "engine": "patterns-v1",
+ "liveStart": "2026-10-07",
+ "baselineFwd20Pct": 1.088,
+ "templates": {
+  "minervini": {
+   "label": "Minervini Trend Template",
+   "direction": "bullish",
+   "kind": "template",
+   "backtest": {
+    "n": 12094,
+    "byStatus": {
+     "success": 5874,
+     "failure": 5997,
+     "open": 223
+    },
+    "judged": 11871,
+    "successRate": 49.5,
+    "successCI95": [
+     48.6,
+     50.4
+    ],
+    "avgReturnPct": 4.47,
+    "avgFwd20Pct": 1.51,
+    "edgeVsBaselinePct": 0.42
+   },
+   "live": {
+    "n": 1,
+    "byStatus": {
+     "open": 1
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null
+   }
+  },
+  "hs_top": {
+   "label": "Head & Shoulders (top)",
+   "direction": "bearish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 2170,
+    "byStatus": {
+     "expired": 404,
+     "timeout": 884,
+     "success": 326,
+     "failure": 342,
+     "confirmed": 15,
+     "invalidated": 189,
+     "open": 10
+    },
+    "judged": 1552,
+    "successRate": 21.0,
+    "successCI95": [
+     19.1,
+     23.1
+    ],
+    "avgReturnPct": -3.84,
+    "avgFwd20Pct": -4.2,
+    "confirmRate": 72.5,
+    "identificationSuccessRate": 25.9,
+    "identCI95": [
+     23.5,
+     28.3
+    ],
+    "edgeVsBaselinePct": -3.11
+   },
+   "live": {
+    "n": 1,
+    "byStatus": {
+     "open": 1
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": null,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
+   }
+  },
+  "hs_bottom": {
+   "label": "Inverse Head & Shoulders",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 1985,
+    "byStatus": {
+     "timeout": 719,
+     "invalidated": 236,
+     "expired": 365,
+     "success": 422,
+     "failure": 219,
+     "confirmed": 21,
+     "open": 3
+    },
+    "judged": 1360,
+    "successRate": 31.0,
+    "successCI95": [
+     28.6,
+     33.5
+    ],
+    "avgReturnPct": 2.41,
+    "avgFwd20Pct": 1.24,
+    "confirmRate": 69.7,
+    "identificationSuccessRate": 34.0,
+    "identCI95": [
+     31.4,
+     36.7
+    ],
+    "edgeVsBaselinePct": 0.15
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "double_top": {
+   "label": "Double Top",
+   "direction": "bearish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 11350,
+    "byStatus": {
+     "timeout": 2157,
+     "failure": 1906,
+     "success": 2517,
+     "expired": 1616,
+     "invalidated": 3028,
+     "open": 51,
+     "confirmed": 75
+    },
+    "judged": 6580,
+    "successRate": 38.3,
+    "successCI95": [
+     37.1,
+     39.4
+    ],
+    "avgReturnPct": -3.68,
+    "avgFwd20Pct": -2.87,
+    "confirmRate": 58.9,
+    "identificationSuccessRate": 27.8,
+    "identCI95": [
+     26.8,
+     28.7
+    ],
+    "edgeVsBaselinePct": -1.78
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "double_bottom": {
+   "label": "Double Bottom",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 12598,
+    "byStatus": {
+     "success": 3362,
+     "failure": 1679,
+     "timeout": 1986,
+     "expired": 2005,
+     "invalidated": 3485,
+     "confirmed": 51,
+     "open": 30
+    },
+    "judged": 7027,
+    "successRate": 47.8,
+    "successCI95": [
+     46.7,
+     49.0
+    ],
+    "avgReturnPct": 1.76,
+    "avgFwd20Pct": 1.49,
+    "confirmRate": 56.3,
+    "identificationSuccessRate": 31.9,
+    "identCI95": [
+     31.0,
+     32.8
+    ],
+    "edgeVsBaselinePct": 0.4
+   },
+   "live": {
+    "n": 1,
+    "byStatus": {
+     "open": 1
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": null,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
+   }
+  }
+ }
+}

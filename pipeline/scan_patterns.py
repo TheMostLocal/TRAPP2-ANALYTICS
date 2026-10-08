@@ -45,7 +45,7 @@ BOOKS = [p for p in (os.environ.get("PATTERNS_BOOKS") or "").split(",") if p] or
 MIN_BARS = 300
 SIGNAL_WINDOW = 10          # bars: a detection this recent is an active signal
 RECORD_CRITERIA_BARS = 504  # keep full rule detail on records from the last ~2 years
-PATTERN_KEYS = ("hs_top", "hs_bottom", "double_top", "double_bottom")
+PATTERN_KEYS = pe.PATTERN_KEYS
 
 
 def log(*a):
@@ -89,10 +89,12 @@ def load_universe():
 
 
 def load_series(info, t):
+    """-> (dates, closes, volumes|None). Volumes are None when the series has
+    no real volume (FX, most indices) - volume rules then simply can't pass."""
     data = read_json(Path(info["dir"]) / "data" / "history" / f"{t}.json")
     if not isinstance(data, list):
-        return None, None
-    d, c = [], []
+        return None, None, None
+    d, c, vol = [], [], []
     for bar in data:
         v = bar.get("close")
         try:
@@ -102,7 +104,15 @@ def load_series(info, t):
         if v > 0 and math.isfinite(v) and bar.get("date"):
             d.append(str(bar["date"])[:10])
             c.append(v)
-    return (d, c) if len(c) >= MIN_BARS else (None, None)
+            try:
+                x = float(bar.get("volume") or 0)
+            except (TypeError, ValueError):
+                x = 0.0
+            vol.append(x if math.isfinite(x) and x > 0 else 0.0)
+    if len(c) < MIN_BARS:
+        return None, None, None
+    has_vol = sum(1 for x in vol[-260:] if x > 0) >= 200
+    return d, c, (vol if has_vol else None)
 
 
 def rs_percentiles(series, equities, calendar):
@@ -191,11 +201,12 @@ def main():
     started = datetime.now(timezone.utc)
     uni = load_universe()
     log(f"universe {len(uni)} tickers across {len(BOOKS)} books")
-    series = {}
+    series, volumes = {}, {}
     for t, info in uni.items():
-        d, c = load_series(info, t)
+        d, c, vol = load_series(info, t)
         if c:
             series[t] = (d, c)
+            volumes[t] = vol
     if "SPY" not in series:
         log("::error::no SPY history - cannot judge templates vs the market")
         return 1
@@ -217,7 +228,9 @@ def main():
     for t, (d, c) in series.items():
         info = uni[t]
         piv = pe.zigzag(c)
-        dets = pe.detect_patterns(c, piv)
+        vol = volumes.get(t)
+        ctx = pe._ctx(c, vol)
+        dets = pe.detect_patterns(c, piv, v=vol, ctx=ctx)
         rs_t = rs.get(t)
         ev = pe.minervini_series(c, rs_t)
         spy_idx = lambda k, d=d: spy_at.get(d[k]) if 0 <= k < len(d) else None
@@ -251,7 +264,7 @@ def main():
             cur["mv"] = {"s": e["score"], "of": e["of"], "p": _bits(e["criteria"]), "v": e["values"]}
         cands = {}
         for k in PATTERN_KEYS:
-            cand = pe.latest_candidate(c, piv, k)
+            cand = pe.latest_candidate(c, piv, k, v=vol, ctx=ctx)
             if cand:
                 ii = cand.get("identIdx")
                 cands[k] = {"pv": [[d[p["i"]], _r(p["price"], 6), p["type"]] for p in cand["pivots"]],

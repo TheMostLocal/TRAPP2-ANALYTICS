@@ -77,4 +77,73 @@ check('RP <= 70 caps the score at 9/10', max(e['score'] for e in ev_low if e) ==
 st = pe.summarize([dict(template='hs_top', status=s, returnPct=r, fwd20Pct=r) for s, r in [('success',10),('failure',-5),('invalidated',-3),('expired',None),('success',8)]], baseline_fwd20=1.0)
 check(f"summary: success 2/3 judged, ident 2/5, Wilson CI present ({st['successRate']}, {st['identificationSuccessRate']}, {st['successCI95']})",
       st['successRate'] == 66.7 and st['identificationSuccessRate'] == 40.0 and st['successCI95'][0] is not None)
+
+# ------------------------------------------------------------- v2 patterns ----
+def vol_series(n, base=1000.0, segs=()):
+    v = [base] * n
+    for a, b, f in segs:
+        for k in range(a, min(b, n)):
+            v[k] = base * f
+    return v
+
+def last_of(c, key, v=None):
+    d = [x for x in pe.detect_patterns(c, templates=(key,), v=v)]
+    return d[-1] if d else None
+
+# VCP: stage-2 run-up, then 3 contractions 20% -> 11% -> 6%, volume drying up, breakout
+vcp_pts = [(0,50),(250,100),(25,80),(25,99),(20,88),(20,98),(15,92),(15,99),(30,120)]
+c = path(vcp_pts, noise=0.0015, seed=11)
+n0 = 250
+v = vol_series(len(c), segs=((n0, n0+50, 1.6), (n0+50, n0+90, 1.0), (n0+90, n0+120, 0.6)))
+d = last_of(c, 'vcp', v)
+check(f"VCP identified with 3 contractions -> {d and d['status']} ({d and len(d['pivots'])} pivots)", d and d['status'] == 'success' and len(d['pivots']) == 6)
+check('VCP without volume data is never identified (volume rule fails)', last_of(c, 'vcp', None) is None)
+
+# Cup & handle
+ch = [(0,60),(80,100),(30,80),(30,75),(30,80),(30,99),(10,93),(15,100),(30,130)]
+c = path(ch, noise=0.0015, seed=12); d = last_of(c, 'cup_handle')
+check(f"Cup & handle -> {d and d['status']} (target {d and d.get('target')})", d and d['status'] == 'success' and d['target'] > 115)
+
+# Bull flag / bear flag
+bf = [(0,55),(15,50),(10,60),(8,56),(10,61),(20,75)]   # flag pullback must exceed the zigzag threshold (~5.5% here)
+c = path(bf, noise=0.001, seed=13); d = last_of(c, 'bull_flag')
+check(f"Bull flag -> {d and d['status']}", d and d['status'] == 'success')
+brf = [(0,45),(15,50),(10,40),(8,43),(10,39),(20,28)]
+c = path(brf, noise=0.001, seed=14); d = last_of(c, 'bear_flag')
+check(f"Bear flag -> {d and d['status']}", d and d['status'] == 'success')
+
+# Ascending / descending triangle
+at = [(0,70),(60,100),(15,88),(15,100.5),(12,94),(12,101.5),(30,120)]
+c = path(at, noise=0.001, seed=15); d = last_of(c, 'asc_triangle')
+check(f"Ascending triangle -> {d and d['status']}", d and d['status'] == 'success')
+dtri = [(0,130),(60,100),(15,112),(15,99.5),(12,106),(12,98.5),(30,80)]
+c = path(dtri, noise=0.001, seed=16); d = last_of(c, 'desc_triangle')
+check(f"Descending triangle -> {d and d['status']}", d and d['status'] == 'success')
+
+# 52-week breakout on volume (and the same chart WITHOUT the volume surge)
+bo = [(0,60),(150,100),(40,85),(90,96),(5,102),(40,125)]
+c = path(bo, noise=0.001, seed=17)
+i_bo = next(i for i in range(253, len(c)) if c[i] > max(c[i-252:i]))
+v = vol_series(len(c), segs=((i_bo, i_bo+1, 3.0),))
+d = [x for x in pe.detect_patterns(c, templates=('breakout_52w',), v=v)]
+check(f"52-week breakout on 3x volume identified + confirmed same bar -> {d and d[0]['status']}", d and d[0]['identIdx'] == i_bo and d[0]['confirmIdx'] == i_bo and d[0]['status'] == 'success')
+check('same breakout on normal volume is NOT identified', not pe.detect_patterns(c, templates=('breakout_52w',), v=vol_series(len(c))))
+
+# manual-review candidates + rule names line up with every template
+c = path(vcp_pts, noise=0.0015, seed=11); v = vol_series(len(c))
+piv = pe.zigzag(c)
+cand = pe.latest_candidate(c, piv, 'vcp', v=v)
+check(f"VCP candidate lists every rule even when invalid ({cand and cand['passes']}/{cand and cand['of']})", cand and cand['of'] == 8 and not cand['valid'])
+names = pe.rule_names()
+ok_names = all(len(names[k]) == len((pe.latest_candidate(c, piv, k, v=v) or {'criteria': names[k]})['criteria']) for k in pe.PATTERN_KEYS)
+check(f"rule_names covers all {len(names)} templates and matches candidate rule counts", set(names) == set(pe.TEMPLATES) and ok_names)
+
+# no lookahead for the v2 templates too
+c = path(ch, noise=0.0015, seed=12); d = last_of(c, 'cup_handle'); i = d['identIdx']
+check('cup & handle: no lookahead (found at ident bar, not one bar earlier)',
+      any(x['identIdx'] == i for x in pe.detect_patterns(c[:i+1], templates=('cup_handle',))) and
+      not any(x['identIdx'] == i for x in pe.detect_patterns(c[:i], templates=('cup_handle',))))
+c = path(bo, noise=0.001, seed=17); v = vol_series(len(c), segs=((i_bo, i_bo+1, 3.0),))
+check('52w breakout: no lookahead (needs only bars up to the breakout close)',
+      any(x['identIdx'] == i_bo for x in pe.detect_patterns(c[:i_bo+1], templates=('breakout_52w',), v=v[:i_bo+1])))
 print(f'\n{ok} passed, {fail} failed')

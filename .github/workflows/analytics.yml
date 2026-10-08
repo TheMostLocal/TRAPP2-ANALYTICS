@@ -79,6 +79,16 @@ jobs:
         run: python pipeline/human_corrections.py grades
         continue-on-error: true
 
+      # Technical templates & chart patterns (WIP, patterns-v1): Minervini trend
+      # template, head & shoulders (top / inverse), double top / bottom over every
+      # ticker's full history from the books checked out above - no lookahead,
+      # each identification judged by what happened next. Writes
+      # data/patterns/ (current, signals, stats, records/, append-only live ledger).
+      - name: Scan patterns & templates
+        run: python pipeline/scan_patterns.py
+        continue-on-error: true
+        timeout-minutes: 20
+
       - name: Pull news corpus
         # Best-effort — a Yahoo hiccup shouldn't block the grades commit.
         run: python pipeline/fetch_news.py || echo "news step had errors but continuing"

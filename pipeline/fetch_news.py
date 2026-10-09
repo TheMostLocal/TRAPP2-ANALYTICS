@@ -23,13 +23,25 @@ Now an article keeps its fetched ticker ONLY when we're confident it's about it:
   3. a distinctive company-name token (e.g. "Nvidia", "Tesla") appears.
 Otherwise the ticker is left BLANK ("") and the frontend routes the article to
 the review queue for a human to assign — no more silent NVDA defaulting.
+
+FALLBACK (z87): if yfinance comes back (nearly) empty - Yahoo throttling or
+blocking the Actions runner, or an API change - the run falls back to keyless
+RSS: Google News search feeds for (a) the topics the crypto/futures research
+layer reads (bitcoin, crude oil, grains, metals, rates ...) and (b) the largest
+RSS_TICKERS names in the universe. Same attribution rules; topic items carry
+`topic` and a blank ticker. Every item records `via` (yfinance | google-news-rss).
 """
 import json
+import os
 import re
 import sys
 import time
+import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
+from html import unescape
 from pathlib import Path
 
 import yfinance as yf
@@ -51,6 +63,24 @@ OUT = Path(__file__).resolve().parent.parent / "data" / "news" / "latest.json"
 PER_TICKER = 4
 GLOBAL_CAP = 2500
 SLEEP = 0.12
+# RSS fallback (see module docstring)
+RSS_FALLBACK = (os.environ.get("NEWS_RSS_FALLBACK") or "1") not in ("0", "false", "no")
+RSS_MIN_ITEMS = 100          # fewer yfinance items than this = treat the source as failed
+RSS_TICKERS = int(os.environ.get("NEWS_RSS_TICKERS") or 150)
+RSS_PER_FEED = 6
+RSS_SLEEP = 0.4
+GN_URL = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
+RSS_TOPICS = {   # alt_research groups -> search queries (its keyword matching does the rest)
+    "crypto": ["bitcoin", "ethereum crypto"],
+    "energy": ["crude oil OPEC", "natural gas prices"],
+    "grains": ["corn wheat soybeans USDA"],
+    "softs": ["coffee cocoa sugar prices"],
+    "precious": ["gold price"],
+    "base": ["copper price"],
+    "rates": ["treasury yields Fed"],
+    "livestock": ["cattle hog prices"],
+    "markets": ["stock market today"],
+}
 
 # Common corporate-suffix / filler tokens that aren't distinctive enough to
 # attribute an article to a company on their own.
@@ -78,7 +108,8 @@ def _name_tokens(name):
 
 
 def load_universe():
-    """Return (ordered_tickers, {ticker: [name_tokens]})."""
+    """Return (ordered_tickers, {ticker: [name_tokens]}); market caps are kept in
+    MCAPS so the RSS fallback can pick the largest names."""
     tickers, seen, names = [], set(), {}
     for url in REPOS:
         try:
@@ -97,7 +128,88 @@ def load_universe():
             seen.add(t)
             tickers.append(t)
             names[t] = _name_tokens(row.get("name") or row.get("Name") or "")
+            try:
+                MCAPS[t] = float(row.get("marketcap") or 0)
+            except (TypeError, ValueError):
+                MCAPS[t] = 0.0
+            ASSET[t] = str(row.get("asset_class") or "")
+            CCY[t] = str(row.get("currency") or "USD").upper()
     return tickers, names
+
+
+MCAPS, ASSET, CCY = {}, {}, {}
+
+
+def _strip_html(x):
+    return re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", " ", x or ""))).strip()
+
+
+def fetch_rss(url, timeout=20):
+    """-> [{url, headline, summary, source, datetime}] from an RSS 2.0 feed."""
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ValuatioAnalytics news fallback)"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        root = ET.fromstring(r.read())
+    out = []
+    for it in root.iter("item"):
+        title = (it.findtext("title") or "").strip()
+        link = (it.findtext("link") or "").strip()
+        if not title or not link:
+            continue
+        src_el = it.find("source")
+        source = (src_el.text or "").strip() if src_el is not None and src_el.text else ""
+        # Google News titles end with " - Publisher"
+        if source and title.endswith(" - " + source):
+            title = title[: -len(" - " + source)]
+        ts = it.findtext("pubDate")
+        try:
+            ts = parsedate_to_datetime(ts).astimezone(timezone.utc).isoformat(timespec="seconds") if ts else None
+        except Exception:
+            ts = None
+        out.append({"url": link, "headline": title, "summary": _strip_html(it.findtext("description"))[:400],
+                    "source": source or "Google News", "datetime": ts})
+    return out
+
+
+def rss_fallback(tickers, names, have_urls):
+    """Keyless RSS when yfinance failed. -> (items, stats)"""
+    items, stats = [], {"topicFeeds": 0, "tickerFeeds": 0, "feedErrors": 0, "firstError": None}
+
+    def pull(url):
+        try:
+            got = fetch_rss(url)
+        except Exception as e:
+            stats["feedErrors"] += 1
+            stats["firstError"] = stats["firstError"] or f"{type(e).__name__}: {str(e)[:120]}"
+            got = []
+        time.sleep(RSS_SLEEP)
+        return got
+
+    for topic, queries in RSS_TOPICS.items():
+        for q in queries:
+            stats["topicFeeds"] += 1
+            for a in pull(GN_URL.format(q=urllib.parse.quote(q)))[:RSS_PER_FEED]:
+                if a["url"] in have_urls:
+                    continue
+                have_urls.add(a["url"])
+                items.append(dict(a, ticker="", topic=topic, via="google-news-rss",
+                                  _fetchedByTicker=False, _tickerConfident=False, _suggestedTicker=""))
+    # Largest US-listed equities (market caps are in LOCAL currency, so foreign
+    # listings in yen/won would otherwise crowd the list; the feed is US-English).
+    ranked = sorted((t for t in tickers if ASSET.get(t, "").lower() in ("equity", "")
+                     and CCY.get(t, "USD") == "USD"),
+                    key=lambda t: -MCAPS.get(t, 0))[:RSS_TICKERS]
+    for t in ranked:
+        stats["tickerFeeds"] += 1
+        tok = (names.get(t) or [None])[0]
+        q = f'"{t}" stock' + (f' OR "{tok.title()}"' if tok else "")
+        for a in pull(GN_URL.format(q=urllib.parse.quote(q)))[:PER_TICKER]:
+            if a["url"] in have_urls:
+                continue
+            have_urls.add(a["url"])
+            confident = _is_about(t, names.get(t), f"{a['headline']} {a['summary']}", set())
+            items.append(dict(a, ticker=t if confident else "", via="google-news-rss",
+                              _fetchedByTicker=True, _tickerConfident=confident, _suggestedTicker=t))
+    return items, stats
 
 
 def _related_tickers(c, n):
@@ -167,6 +279,7 @@ def main():
             if isinstance(ts, (int, float)):
                 ts = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat(timespec="seconds")
             items.append({
+                "via": "yfinance",
                 "url": url, "headline": title, "summary": summary,
                 # Confident → keep the ticker. Not confident → BLANK so the
                 # frontend sends it to review instead of mis-attributing it.
@@ -188,6 +301,14 @@ def main():
             break
 
     print(f"  fetch stats: {len(tickers)} tickers · {errors} raised · {empty} returned no news")
+    if RSS_FALLBACK and len(items) < RSS_MIN_ITEMS:
+        print(f"  yfinance gave {len(items)} items (< {RSS_MIN_ITEMS}) - falling back to keyless RSS"
+              + (f"; first yfinance error: {first_err}" if first_err else ""))
+        extra, rs = rss_fallback(tickers, names, have_urls)
+        items += extra
+        confident_n += sum(1 for a in extra if a.get("_tickerConfident"))
+        print(f"  rss fallback: {len(extra)} items from {rs['topicFeeds']} topic + {rs['tickerFeeds']} ticker feeds"
+              f" · {rs['feedErrors']} feed errors" + (f" (first: {rs['firstError']})" if rs['firstError'] else ""))
     if not items:
         # Never overwrite a good corpus with an empty one. A zero-article run is
         # a source failure (Yahoo throttling/blocking the runner, or a yfinance
@@ -203,7 +324,11 @@ def main():
         "count": len(items), "items": items,
     }, separators=(",", ":")))
     blank = len(items) - confident_n
-    print(f"✓ news/latest.json: {len(items)} articles · {confident_n} confidently tagged · {blank} → review (blank ticker)")
+    via = {}
+    for a in items:
+        via[a.get("via", "?")] = via.get(a.get("via", "?"), 0) + 1
+    print(f"✓ news/latest.json: {len(items)} articles · {confident_n} confidently tagged · {blank} → review (blank ticker)"
+          f" · by source {via}")
     return 0
 
 

@@ -166,6 +166,54 @@ def _r(x, nd=4):
     return round(x, nd) if isinstance(x, (int, float)) and math.isfinite(x) else None
 
 
+def market_regimes(spy_d, spy_c, vix=None):
+    """Per SPY date: trend regime from SPY vs its 200-day SMA (up = above and the
+    SMA rising over 22 bars, down = below and falling, else mixed) and volatility
+    regime from ^VIX (calm < 20 <= stressed). No lookahead: each date uses only
+    data up to that date. -> {date: (trend, vol)}"""
+    s200 = pe.sma_series(spy_c, 200)
+    vix_at = dict(zip(*vix)) if vix else {}
+    out, last_vix = {}, None
+    for i, dt in enumerate(spy_d):
+        if dt in vix_at:
+            last_vix = vix_at[dt]
+        tr = None
+        if s200[i] is not None and i >= 22 and s200[i - 22] is not None:
+            up, rising = spy_c[i] > s200[i], s200[i] > s200[i - 22]
+            tr = "up" if (up and rising) else "down" if (not up and not rising) else "mixed"
+        vo = None if last_vix is None else ("calm" if last_vix < 20 else "stressed")
+        out[dt] = (tr, vo)
+    return out
+
+
+def regime_at(regimes, keys, dt):
+    """Regime on `dt`, or on the last SPY date before it (foreign calendars)."""
+    import bisect
+    if dt in regimes:
+        return regimes[dt]
+    i = bisect.bisect_right(keys, dt) - 1
+    return regimes[keys[i]] if i >= 0 else (None, None)
+
+
+def regime_baselines(series, tickers, regimes, keys):
+    """Unconditional 20-bar forward return per trend regime (every 5th bar) -
+    each regime's own yardstick, so a pattern's edge is measured inside the
+    market it happened in."""
+    acc = {}
+    for t in tickers:
+        d, c = series[t]
+        for i in range(0, len(c) - pe.FWD_BARS, 5):
+            tr = regime_at(regimes, keys, d[i])[0]
+            if tr:
+                a = acc.setdefault(tr, [0.0, 0])
+                a[0] += c[i + pe.FWD_BARS] / c[i] - 1
+                a[1] += 1
+    return {k: round(v[0] / v[1] * 100, 3) for k, v in acc.items() if v[1]}
+
+
+MIN_REGIME_N = 50   # judged identifications needed before a regime split is reported as usable
+
+
 def dated(det, d):
     """One identification -> compact dated record. Every recorded pattern passed
     ALL of its rules (that's what made it an identification), so the per-rule
@@ -218,6 +266,13 @@ def main():
     rs = rs_percentiles(series, equities, spy_d)
     base = baseline_fwd20(series, list(series))
     log(f"RS ranked {len(equities)} equities · baseline 20-bar forward return {base}%")
+    vix = series.get("^VIX")
+    regimes = market_regimes(spy_d, spy_c, vix)
+    rkeys = sorted(regimes)
+    regime_now = regimes[spy_d[-1]]
+    rbase = regime_baselines(series, list(series), regimes, rkeys)
+    log(f"market regime now: trend {regime_now[0]} · volatility {regime_now[1]} · "
+        f"20-bar baselines by trend regime {rbase}")
 
     ledger = read_json(OUT / "ledger_live.json", None) or {}
     meta = ledger.get("meta") or {}
@@ -237,6 +292,9 @@ def main():
         dets += pe.minervini_signals(c, ev, spy_idx)
         recs = [dated(x, d) for x in dets]
         for x, r in zip(dets, recs):
+            tr, vo = regime_at(regimes, rkeys, r["id"]) if r["id"] else (None, None)
+            x["regimeTrend"], x["regimeVol"] = tr, vo
+            r["rg"] = f"{tr or '?'}/{vo or '?'}"
             bucket = "live" if (r["id"] or "") >= live_start else "backtest"
             all_dets[r["tp"]][bucket].append(x)          # stats run on the full-precision dict
             if bucket == "live":
@@ -287,14 +345,41 @@ def main():
     for k, b in all_dets.items():
         dirn = -1 if pe.TEMPLATES[k]["direction"] == "bearish" else 1
         bl = (dirn * base) if base is not None else None
+        by_regime = {"trend": {}, "vol": {}, "joint": {}}
+        bt = b["backtest"]
+        for tr in ("up", "mixed", "down"):
+            sub = [x for x in bt if x.get("regimeTrend") == tr]
+            if sub:
+                rb = rbase.get(tr)
+                sm = pe.summarize(sub, dirn * rb if rb is not None else None)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_regime["trend"][tr] = sm
+            for vo in ("calm", "stressed"):
+                sub2 = [x for x in sub if x.get("regimeVol") == vo]
+                if sub2:
+                    rb = rbase.get(tr)
+                    sm = pe.summarize(sub2, dirn * rb if rb is not None else None)
+                    sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                    by_regime["joint"][f"{tr}/{vo}"] = sm
+        for vo in ("calm", "stressed"):
+            sub = [x for x in bt if x.get("regimeVol") == vo]
+            if sub:
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_regime["vol"][vo] = sm
         stats[k] = {**pe.TEMPLATES[k],
-                    "backtest": pe.summarize(b["backtest"], bl) if b["backtest"] else {"n": 0},
-                    "live": pe.summarize(b["live"], bl) if b["live"] else {"n": 0}}
+                    "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
+                    "live": pe.summarize(b["live"], bl) if b["live"] else {"n": 0},
+                    "byRegime": by_regime}
     # attach each template's record to its active signals
     for s in signals:
         bt = stats[s["template"]]["backtest"]
         s["track"] = {"successRate": bt.get("successRate"), "ci95": bt.get("successCI95"), "n": bt.get("judged"),
                       "edgeVsBaselinePct": bt.get("edgeVsBaselinePct")}
+        rg = (stats[s["template"]].get("byRegime") or {}).get("trend", {}).get(regime_now[0] or "")
+        if rg and rg.get("usable"):
+            s["trackNow"] = {"regime": regime_now[0], "successRate": rg.get("successRate"),
+                             "n": rg.get("judged"), "edgeVsBaselinePct": rg.get("edgeVsBaselinePct")}
     signals.sort(key=lambda s: (s.get("confirmDate") or s["identDate"] or ""), reverse=True)
 
     meta.update({"liveStart": live_start, "engine": pe.ENGINE_VERSION, "updated": as_of})
@@ -304,7 +389,9 @@ def main():
                                                 "minerviniFwd": pe.MINERVINI_FWD},
                                       "ruleNames": pe.rule_names(), "tickers": current})
     write_json(OUT / "stats.json", {"asOf": as_of, "engine": pe.ENGINE_VERSION, "liveStart": live_start,
-                                    "baselineFwd20Pct": base, "templates": stats}, compact=False)
+                                    "baselineFwd20Pct": base, "baselineByTrendRegime": rbase,
+                                    "regimeNow": {"trend": regime_now[0], "vol": regime_now[1]},
+                                    "minRegimeN": MIN_REGIME_N, "templates": stats}, compact=False)
     write_json(OUT / "signals.json", {"asOf": as_of, "window": SIGNAL_WINDOW, "signals": signals}, compact=False)
     secs = (datetime.now(timezone.utc) - started).total_seconds()
     n_bt = sum(len(b["backtest"]) for b in all_dets.values())
@@ -314,8 +401,11 @@ def main():
     for k, st in stats.items():
         b = st["backtest"]
         if b.get("n"):
+            tr = st.get("byRegime", {}).get("trend", {})
+            by = " · ".join(f"{r} {tr[r].get('successRate')}%/{tr[r].get('edgeVsBaselinePct')}"
+                            for r in ("up", "mixed", "down") if r in tr)
             log(f"  {k:14s} n={b['n']:5d} judged={b['judged']:5d} success={b.get('successRate')}% "
-                f"CI{b.get('successCI95')} avgRet={b.get('avgReturnPct')}% edge={b.get('edgeVsBaselinePct')}")
+                f"CI{b.get('successCI95')} avgRet={b.get('avgReturnPct')}% edge={b.get('edgeVsBaselinePct')} | by trend: {by}")
     return 0
 
 

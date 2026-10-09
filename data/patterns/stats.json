@@ -1,8 +1,8 @@
 {
- "asOf": "2026-10-07",
- "engine": "patterns-v1",
+ "asOf": "2026-10-08",
+ "engine": "patterns-v2",
  "liveStart": "2026-10-07",
- "baselineFwd20Pct": 1.088,
+ "baselineFwd20Pct": 1.087,
  "templates": {
   "minervini": {
    "label": "Minervini Trend Template",
@@ -11,11 +11,11 @@
    "backtest": {
     "n": 12094,
     "byStatus": {
-     "success": 5874,
-     "failure": 5997,
-     "open": 223
+     "success": 5877,
+     "failure": 5998,
+     "open": 219
     },
-    "judged": 11871,
+    "judged": 11875,
     "successRate": 49.5,
     "successCI95": [
      48.6,
@@ -26,9 +26,9 @@
     "edgeVsBaselinePct": 0.42
    },
    "live": {
-    "n": 1,
+    "n": 8,
     "byStatus": {
-     "open": 1
+     "open": 8
     },
     "judged": 0,
     "successRate": null,
@@ -62,19 +62,19 @@
      23.1
     ],
     "avgReturnPct": -3.84,
-    "avgFwd20Pct": -4.2,
+    "avgFwd20Pct": -4.19,
     "confirmRate": 72.5,
     "identificationSuccessRate": 25.9,
     "identCI95": [
      23.5,
      28.3
     ],
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -3.1
    },
    "live": {
     "n": 1,
     "byStatus": {
-     "open": 1
+     "confirmed": 1
     },
     "judged": 0,
     "successRate": null,
@@ -84,7 +84,7 @@
     ],
     "avgReturnPct": null,
     "avgFwd20Pct": null,
-    "confirmRate": null,
+    "confirmRate": 100.0,
     "identificationSuccessRate": null,
     "identCI95": [
      null,
@@ -124,7 +124,24 @@
     "edgeVsBaselinePct": 0.15
    },
    "live": {
-    "n": 0
+    "n": 1,
+    "byStatus": {
+     "open": 1
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": null,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
    }
   },
   "double_top": {
@@ -139,8 +156,8 @@
      "success": 2517,
      "expired": 1616,
      "invalidated": 3028,
-     "open": 51,
-     "confirmed": 75
+     "open": 48,
+     "confirmed": 78
     },
     "judged": 6580,
     "successRate": 38.3,
@@ -149,17 +166,34 @@
      39.4
     ],
     "avgReturnPct": -3.68,
-    "avgFwd20Pct": -2.87,
+    "avgFwd20Pct": -2.86,
     "confirmRate": 58.9,
     "identificationSuccessRate": 27.8,
     "identCI95": [
      26.8,
      28.7
     ],
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    },
    "live": {
-    "n": 0
+    "n": 3,
+    "byStatus": {
+     "open": 3
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": null,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
    }
   },
   "double_bottom": {
@@ -167,31 +201,186 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 12598,
+    "n": 12599,
     "byStatus": {
-     "success": 3362,
-     "failure": 1679,
-     "timeout": 1986,
+     "success": 3364,
+     "failure": 1680,
+     "timeout": 1987,
      "expired": 2005,
-     "invalidated": 3485,
-     "confirmed": 51,
-     "open": 30
+     "invalidated": 3488,
+     "confirmed": 48,
+     "open": 27
     },
-    "judged": 7027,
+    "judged": 7031,
     "successRate": 47.8,
     "successCI95": [
      46.7,
      49.0
     ],
     "avgReturnPct": 1.76,
-    "avgFwd20Pct": 1.49,
+    "avgFwd20Pct": 1.48,
     "confirmRate": 56.3,
     "identificationSuccessRate": 31.9,
     "identCI95": [
      31.0,
      32.8
     ],
-    "edgeVsBaselinePct": 0.4
+    "edgeVsBaselinePct": 0.39
+   },
+   "live": {
+    "n": 8,
+    "byStatus": {
+     "open": 8
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": null,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
+   }
+  },
+  "vcp": {
+   "label": "Volatility Contraction (VCP)",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 1034,
+    "byStatus": {
+     "success": 195,
+     "invalidated": 166,
+     "timeout": 408,
+     "failure": 220,
+     "expired": 36,
+     "confirmed": 9
+    },
+    "judged": 823,
+    "successRate": 23.7,
+    "successCI95": [
+     20.9,
+     26.7
+    ],
+    "avgReturnPct": 2.49,
+    "avgFwd20Pct": 1.0,
+    "confirmRate": 80.5,
+    "identificationSuccessRate": 31.6,
+    "identCI95": [
+     28.1,
+     35.4
+    ],
+    "edgeVsBaselinePct": -0.09
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "cup_handle": {
+   "label": "Cup & Handle",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 270,
+    "byStatus": {
+     "invalidated": 52,
+     "failure": 75,
+     "success": 41,
+     "timeout": 94,
+     "expired": 7,
+     "confirmed": 1
+    },
+    "judged": 210,
+    "successRate": 19.5,
+    "successCI95": [
+     14.7,
+     25.4
+    ],
+    "avgReturnPct": 2.51,
+    "avgFwd20Pct": 1.19,
+    "confirmRate": 78.1,
+    "identificationSuccessRate": 23.4,
+    "identCI95": [
+     17.8,
+     30.2
+    ],
+    "edgeVsBaselinePct": 0.1
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "bull_flag": {
+   "label": "Bull Flag",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 1523,
+    "byStatus": {
+     "expired": 15,
+     "success": 382,
+     "failure": 461,
+     "invalidated": 351,
+     "timeout": 297,
+     "confirmed": 15,
+     "open": 2
+    },
+    "judged": 1140,
+    "successRate": 33.5,
+    "successCI95": [
+     30.8,
+     36.3
+    ],
+    "avgReturnPct": 5.34,
+    "avgFwd20Pct": 5.06,
+    "confirmRate": 75.9,
+    "identificationSuccessRate": 31.6,
+    "identCI95": [
+     29.0,
+     34.3
+    ],
+    "edgeVsBaselinePct": 3.97
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "bear_flag": {
+   "label": "Bear Flag",
+   "direction": "bearish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 3909,
+    "byStatus": {
+     "failure": 1477,
+     "invalidated": 835,
+     "timeout": 1138,
+     "success": 347,
+     "confirmed": 57,
+     "expired": 50,
+     "open": 5
+    },
+    "judged": 2962,
+    "successRate": 11.7,
+    "successCI95": [
+     10.6,
+     12.9
+    ],
+    "avgReturnPct": -5.46,
+    "avgFwd20Pct": -2.95,
+    "confirmRate": 77.3,
+    "identificationSuccessRate": 12.8,
+    "identCI95": [
+     11.6,
+     14.1
+    ],
+    "edgeVsBaselinePct": -1.86
    },
    "live": {
     "n": 1,
@@ -212,6 +401,126 @@
      null,
      null
     ]
+   }
+  },
+  "asc_triangle": {
+   "label": "Ascending Triangle",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 2202,
+    "byStatus": {
+     "invalidated": 476,
+     "timeout": 684,
+     "expired": 96,
+     "success": 513,
+     "failure": 422,
+     "open": 2,
+     "confirmed": 9
+    },
+    "judged": 1619,
+    "successRate": 31.7,
+    "successCI95": [
+     29.5,
+     34.0
+    ],
+    "avgReturnPct": 2.71,
+    "avgFwd20Pct": 2.55,
+    "confirmRate": 74.0,
+    "identificationSuccessRate": 34.0,
+    "identCI95": [
+     31.7,
+     36.5
+    ],
+    "edgeVsBaselinePct": 1.46
+   },
+   "live": {
+    "n": 0
+   }
+  },
+  "desc_triangle": {
+   "label": "Descending Triangle",
+   "direction": "bearish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 2192,
+    "byStatus": {
+     "failure": 688,
+     "invalidated": 434,
+     "timeout": 556,
+     "expired": 83,
+     "success": 409,
+     "confirmed": 21,
+     "open": 1
+    },
+    "judged": 1653,
+    "successRate": 24.7,
+    "successCI95": [
+     22.7,
+     26.9
+    ],
+    "avgReturnPct": -2.16,
+    "avgFwd20Pct": -1.19,
+    "confirmRate": 76.4,
+    "identificationSuccessRate": 25.3,
+    "identCI95": [
+     23.3,
+     27.5
+    ],
+    "edgeVsBaselinePct": -0.1
+   },
+   "live": {
+    "n": 2,
+    "byStatus": {
+     "confirmed": 1,
+     "open": 1
+    },
+    "judged": 0,
+    "successRate": null,
+    "successCI95": [
+     null,
+     null
+    ],
+    "avgReturnPct": null,
+    "avgFwd20Pct": null,
+    "confirmRate": 100.0,
+    "identificationSuccessRate": null,
+    "identCI95": [
+     null,
+     null
+    ]
+   }
+  },
+  "breakout_52w": {
+   "label": "52-Week Breakout (volume)",
+   "direction": "bullish",
+   "kind": "pattern",
+   "backtest": {
+    "n": 4491,
+    "byStatus": {
+     "timeout": 1328,
+     "failure": 1918,
+     "success": 1220,
+     "confirmed": 25
+    },
+    "judged": 4466,
+    "successRate": 27.3,
+    "successCI95": [
+     26.0,
+     28.6
+    ],
+    "avgReturnPct": 2.67,
+    "avgFwd20Pct": 2.35,
+    "confirmRate": 100.0,
+    "identificationSuccessRate": 38.9,
+    "identCI95": [
+     37.2,
+     40.6
+    ],
+    "edgeVsBaselinePct": 1.26
+   },
+   "live": {
+    "n": 0
    }
   }
  }

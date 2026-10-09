@@ -1,7 +1,527 @@
 {
- "asOf": "2026-10-07",
+ "asOf": "2026-10-08",
  "window": 10,
  "signals": [
+  {
+   "ticker": "HIMX",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 15.41,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "INTU",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 255.07,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "EOG",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 148.51,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "OXY",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 47.94,
+   "track": {
+    "successRate": 31.0,
+    "ci95": [
+     28.6,
+     33.5
+    ],
+    "n": 1360,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "OXY",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 60.28,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "TRV",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 370.27,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "A",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 168.17,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "HOOD",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 124.72,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "^TA125.TA",
+   "template": "hs_top",
+   "direction": "bearish",
+   "identDate": "2026-10-07",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 3934.01,
+   "target": 3464.313684,
+   "stop": 4481.04,
+   "track": {
+    "successRate": 21.0,
+    "ci95": [
+     19.1,
+     23.1
+    ],
+    "n": 1552,
+    "edgeVsBaselinePct": -3.1
+   }
+  },
+  {
+   "ticker": "^TA125.TA",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-10-07",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 3934.01,
+   "target": 3402.52,
+   "stop": 4230.0498,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
+   }
+  },
+  {
+   "ticker": "BLOK",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 68.73,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "EWZ",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 42.59,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "OILD",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 32.22,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
+   }
+  },
+  {
+   "ticker": "AKAM",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 118.44,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
+   }
+  },
+  {
+   "ticker": "WAT",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 429.13,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "CAH",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 220.22,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "PPC",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 25.2,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "EDIT",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 2.51,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "ADV",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 25.34,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "BLNK",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-09-15",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 0.477,
+   "target": 0.413,
+   "stop": 0.612,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "EOSE",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-09-23",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 2.765,
+   "target": 1.755,
+   "stop": 4.35,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "EQT",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 48.56,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "HAIN",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 0.49,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.7,
+     49.0
+    ],
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "LUNR",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-30",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 13.7,
+   "target": 7.36,
+   "stop": 16.24,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
+   }
+  },
+  {
+   "ticker": "MAPS",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-09-08",
+   "confirmDate": "2026-10-08",
+   "status": "confirmed",
+   "entry": 0.33,
+   "target": 0.26,
+   "stop": 0.426,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6580,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "OVV",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 63.37,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11875,
+    "edgeVsBaselinePct": 0.42
+   }
+  },
   {
    "ticker": "^JN0U.JO",
    "template": "double_top",
@@ -19,27 +539,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
-   }
-  },
-  {
-   "ticker": "^TA125.TA",
-   "template": "hs_top",
-   "direction": "bearish",
-   "identDate": "2026-10-07",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 4481.04,
-   "track": {
-    "successRate": 21.0,
-    "ci95": [
-     19.1,
-     23.1
-    ],
-    "n": 1552,
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -58,7 +558,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -78,8 +578,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -98,8 +598,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -118,8 +618,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -139,7 +639,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "VELO",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-06",
+   "status": "confirmed",
+   "entry": 9.57,
+   "target": 3.48,
+   "stop": 11.52,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -158,8 +678,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -178,7 +698,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -198,7 +718,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -218,8 +738,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "^VIX9D",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-02",
+   "confirmDate": "2026-10-06",
+   "status": "confirmed",
+   "entry": 12.03,
+   "target": 6.86,
+   "stop": 14.39,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -238,8 +778,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "SH",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-06",
+   "status": "confirmed",
+   "entry": 31.74,
+   "target": 29.49,
+   "stop": 33.08,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
    }
   },
   {
@@ -258,8 +818,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -278,7 +838,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -298,7 +858,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -343,6 +903,46 @@
    }
   },
   {
+   "ticker": "TENB",
+   "template": "asc_triangle",
+   "direction": "bullish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-06",
+   "status": "confirmed",
+   "entry": 39.47,
+   "target": 46.19,
+   "stop": 33.49,
+   "track": {
+    "successRate": 31.7,
+    "ci95": [
+     29.5,
+     34.0
+    ],
+    "n": 1619,
+    "edgeVsBaselinePct": 1.46
+   }
+  },
+  {
+   "ticker": "IEP",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-06",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 7.15,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
+   }
+  },
+  {
    "ticker": "NEU",
    "template": "minervini",
    "direction": "bullish",
@@ -358,7 +958,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -378,7 +978,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -398,7 +998,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -418,8 +1018,48 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "^BVSP",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-05",
+   "status": "confirmed",
+   "entry": 206912.0,
+   "target": 248294.4,
+   "stop": 186220.8,
+   "track": {
+    "successRate": 27.3,
+    "ci95": [
+     26.0,
+     28.6
+    ],
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
+   }
+  },
+  {
+   "ticker": "EWZ",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-05",
+   "status": "confirmed",
+   "entry": 42.98,
+   "target": 51.576,
+   "stop": 38.682,
+   "track": {
+    "successRate": 27.3,
+    "ci95": [
+     26.0,
+     28.6
+    ],
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    }
   },
   {
@@ -438,7 +1078,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -458,8 +1098,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -478,8 +1118,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "PACB",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-10-05",
+   "confirmDate": "2026-10-05",
+   "status": "failure",
+   "entry": 2.87,
+   "target": 3.444,
+   "stop": 2.583,
+   "track": {
+    "successRate": 27.3,
+    "ci95": [
+     26.0,
+     28.6
+    ],
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    }
   },
   {
@@ -498,8 +1158,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -518,8 +1178,28 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "MSTU",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-10-05",
+   "confirmDate": null,
+   "status": "invalidated",
+   "entry": null,
+   "target": null,
+   "stop": 39.76,
+   "track": {
+    "successRate": 33.5,
+    "ci95": [
+     30.8,
+     36.3
+    ],
+    "n": 1140,
+    "edgeVsBaselinePct": 3.97
    }
   },
   {
@@ -558,8 +1238,28 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "PLCE",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-05",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 2.22,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -578,8 +1278,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -619,7 +1319,7 @@
      23.1
     ],
     "n": 1552,
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -3.1
    }
   },
   {
@@ -638,8 +1338,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "RIVN",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-09-28",
+   "confirmDate": "2026-10-02",
+   "status": "confirmed",
+   "entry": 14.3,
+   "target": 9.14,
+   "stop": 16.97,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
    }
   },
   {
@@ -658,8 +1378,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -679,7 +1399,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "BWET",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-09-29",
+   "confirmDate": "2026-10-02",
+   "status": "confirmed",
+   "entry": 873.0,
+   "target": 1387.62,
+   "stop": 657.64,
+   "track": {
+    "successRate": 33.5,
+    "ci95": [
+     30.8,
+     36.3
+    ],
+    "n": 1140,
+    "edgeVsBaselinePct": 3.97
    }
   },
   {
@@ -698,8 +1438,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -718,8 +1458,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -738,8 +1478,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -759,7 +1499,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -779,7 +1519,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -799,7 +1539,7 @@
      23.1
     ],
     "n": 1552,
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -3.1
    }
   },
   {
@@ -819,7 +1559,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -839,7 +1579,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "STEM",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-01",
+   "confirmDate": null,
+   "status": "invalidated",
+   "entry": null,
+   "target": null,
+   "stop": 4.67,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -859,7 +1619,7 @@
      23.1
     ],
     "n": 1552,
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -3.1
    }
   },
   {
@@ -878,8 +1638,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -899,7 +1659,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -919,7 +1679,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -938,7 +1698,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -959,7 +1719,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -979,7 +1739,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -998,8 +1758,28 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "PCRFF",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-09-30",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 26.0,
+   "track": {
+    "successRate": 33.5,
+    "ci95": [
+     30.8,
+     36.3
+    ],
+    "n": 1140,
+    "edgeVsBaselinePct": 3.97
    }
   },
   {
@@ -1019,7 +1799,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1038,8 +1818,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "CHPT",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-09-30",
+   "confirmDate": null,
+   "status": "invalidated",
+   "entry": null,
+   "target": null,
+   "stop": 8.74,
+   "track": {
+    "successRate": 33.5,
+    "ci95": [
+     30.8,
+     36.3
+    ],
+    "n": 1140,
+    "edgeVsBaselinePct": 3.97
    }
   },
   {
@@ -1059,7 +1859,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1078,8 +1878,28 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
+   }
+  },
+  {
+   "ticker": "NUWE",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-18",
+   "confirmDate": "2026-09-30",
+   "status": "confirmed",
+   "entry": 0.72,
+   "target": -0.42,
+   "stop": 1.09,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1098,7 +1918,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -1119,7 +1939,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1139,7 +1959,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1158,7 +1978,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -1178,7 +1998,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -1198,7 +2018,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -1219,7 +2039,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "SANA",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-28",
+   "confirmDate": "2026-09-29",
+   "status": "confirmed",
+   "entry": 2.91,
+   "target": 1.68,
+   "stop": 3.33,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1239,7 +2079,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1259,7 +2099,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "WMB",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-09-25",
+   "confirmDate": "2026-09-28",
+   "status": "confirmed",
+   "entry": 68.98,
+   "target": 62.16,
+   "stop": 75.83,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
    }
   },
   {
@@ -1278,8 +2138,28 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "AMC",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-09-28",
+   "confirmDate": "2026-09-28",
+   "status": "failure",
+   "entry": 3.29,
+   "target": 3.948,
+   "stop": 2.961,
+   "track": {
+    "successRate": 27.3,
+    "ci95": [
+     26.0,
+     28.6
+    ],
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    }
   },
   {
@@ -1298,8 +2178,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -1319,7 +2199,7 @@
      23.1
     ],
     "n": 1552,
-    "edgeVsBaselinePct": -3.11
+    "edgeVsBaselinePct": -3.1
    }
   },
   {
@@ -1339,7 +2219,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "REMX",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-11",
+   "confirmDate": "2026-09-28",
+   "status": "confirmed",
+   "entry": 64.47,
+   "target": 31.89,
+   "stop": 80.75,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1359,7 +2259,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1378,8 +2278,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -1399,7 +2299,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1418,8 +2318,28 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
+   }
+  },
+  {
+   "ticker": "XPON",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-25",
+   "confirmDate": "2026-09-28",
+   "status": "confirmed",
+   "entry": 4.44,
+   "target": 0.01,
+   "stop": 5.3,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1439,7 +2359,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1459,7 +2379,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1479,7 +2399,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1498,8 +2418,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -1519,7 +2439,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1539,7 +2459,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1559,7 +2479,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1579,7 +2499,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1619,7 +2539,27 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "META",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-09-24",
+   "confirmDate": "2026-09-24",
+   "status": "confirmed",
+   "entry": 777.59,
+   "target": 933.108,
+   "stop": 699.831,
+   "track": {
+    "successRate": 27.3,
+    "ci95": [
+     26.0,
+     28.6
+    ],
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    }
   },
   {
@@ -1639,7 +2579,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1658,7 +2598,7 @@
      48.6,
      50.4
     ],
-    "n": 11871,
+    "n": 11875,
     "edgeVsBaselinePct": 0.42
    }
   },
@@ -1678,8 +2618,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -1699,7 +2639,47 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "VALE",
+   "template": "desc_triangle",
+   "direction": "bearish",
+   "identDate": "2026-09-16",
+   "confirmDate": "2026-09-24",
+   "status": "confirmed",
+   "entry": 13.56,
+   "target": 9.44,
+   "stop": 15.73,
+   "track": {
+    "successRate": 24.7,
+    "ci95": [
+     22.7,
+     26.9
+    ],
+    "n": 1653,
+    "edgeVsBaselinePct": -0.1
+   }
+  },
+  {
+   "ticker": "SEDG",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-09-24",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 36.75,
+   "track": {
+    "successRate": 11.7,
+    "ci95": [
+     10.6,
+     12.9
+    ],
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1719,7 +2699,7 @@
      39.4
     ],
     "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -1738,8 +2718,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
@@ -1758,128 +2738,48 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   },
   {
-   "ticker": "ED",
-   "template": "double_top",
+   "ticker": "BYND",
+   "template": "bear_flag",
    "direction": "bearish",
-   "identDate": "2026-08-03",
-   "confirmDate": "2026-09-23",
+   "identDate": "2026-09-23",
+   "confirmDate": "2026-09-24",
    "status": "confirmed",
-   "entry": 102.61,
-   "target": 92.25,
-   "stop": 115.43,
+   "entry": 9.19,
+   "target": 5.21,
+   "stop": 11.92,
    "track": {
-    "successRate": 38.3,
+    "successRate": 11.7,
     "ci95": [
-     37.1,
-     39.4
+     10.6,
+     12.9
     ],
-    "n": 6580,
-    "edgeVsBaselinePct": -1.78
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
-   "ticker": "TXN",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-09-23",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 272.62,
-   "target": null,
-   "stop": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11871,
-    "edgeVsBaselinePct": 0.42
-   }
-  },
-  {
-   "ticker": "BIO",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-09-23",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 378.88,
-   "target": null,
-   "stop": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11871,
-    "edgeVsBaselinePct": 0.42
-   }
-  },
-  {
-   "ticker": "EOSE",
-   "template": "double_top",
+   "ticker": "NIVF",
+   "template": "bear_flag",
    "direction": "bearish",
    "identDate": "2026-09-23",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 4.35,
+   "confirmDate": "2026-09-24",
+   "status": "confirmed",
+   "entry": 0.541,
+   "target": -0.394,
+   "stop": 0.814,
    "track": {
-    "successRate": 38.3,
+    "successRate": 11.7,
     "ci95": [
-     37.1,
-     39.4
+     10.6,
+     12.9
     ],
-    "n": 6580,
-    "edgeVsBaselinePct": -1.78
-   }
-  },
-  {
-   "ticker": "KOSS",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-09-23",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 3.36,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.7,
-     49.0
-    ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
-   }
-  },
-  {
-   "ticker": "NAAS",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-09-23",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 3.02,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.7,
-     49.0
-    ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 2962,
+    "edgeVsBaselinePct": -1.86
    }
   },
   {
@@ -1898,8 +2798,8 @@
      46.7,
      49.0
     ],
-    "n": 7027,
-    "edgeVsBaselinePct": 0.4
+    "n": 7031,
+    "edgeVsBaselinePct": 0.39
    }
   }
  ]

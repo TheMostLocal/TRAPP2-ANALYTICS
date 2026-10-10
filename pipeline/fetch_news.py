@@ -60,6 +60,7 @@ REPOS = [
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-3/main/data/master.json",
 ]
 OUT = Path(__file__).resolve().parent.parent / "data" / "news" / "latest.json"
+XTRAPP_URL = f"https://raw.githubusercontent.com/{_GH_OWNER}/XTRAPP/main/data/xtrapp_data.json"
 PER_TICKER = 4
 GLOBAL_CAP = 2500
 SLEEP = 0.12
@@ -279,6 +280,59 @@ def _is_about(ticker, name_toks, text, related):
         return True
     return any(_name_hit(tok, text) for tok in (name_toks or []))
 
+def apply_xtrapp_fixes(items):
+    """XTRAPP is the system override (z90): every human article fix made in the
+    app's Review / news editor is applied to the pipeline corpus, so the
+    backend (bot research, analytics) sees the same truth the app shows.
+      bad      -> article dropped
+      fixed / confirmed -> ticker + tickers from the fix
+      noticker -> general news (blank ticker, no tickers)
+      headline / summary / sentiment / impact overrides -> applied
+    Keyed like the app: url, else id, else "TICKER:headline".
+    -> (items, stats)"""
+    stats = {"loaded": 0, "dropped": 0, "retagged": 0, "untagged": 0, "edited": 0, "error": None}
+    try:
+        req = urllib.request.Request(XTRAPP_URL, headers={"User-Agent": "ValuatioAnalytics/xtrapp"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            x = json.loads(r.read().decode("utf-8"))
+        fixes = x.get("articleFixes") or {}
+    except Exception as e:
+        stats["error"] = f"{type(e).__name__}: {str(e)[:100]}"
+        return items, stats
+    stats["loaded"] = len(fixes)
+    if not fixes:
+        return items, stats
+    out = []
+    for a in items:
+        key = a.get("url") or a.get("id") or f"{a.get('ticker', '')}:{a.get('headline', '')}"
+        f = fixes.get(key)
+        if not isinstance(f, dict):
+            out.append(a)
+            continue
+        v = f.get("verdict")
+        if v == "bad":
+            stats["dropped"] += 1
+            continue
+        if v in ("fixed", "confirmed") and isinstance(f.get("tickers"), list) and f["tickers"]:
+            a["ticker"] = str(f["tickers"][0]).upper()
+            a["tickers"] = [str(t).upper() for t in f["tickers"]]
+            a["_tickerConfident"] = True
+            stats["retagged"] += 1
+        elif v == "noticker":
+            a["ticker"], a["tickers"], a["_noTicker"], a["_tickerConfident"] = "", [], True, False
+            stats["untagged"] += 1
+        edited = False
+        for src, dst in (("fixHeadline", "headline"), ("fixSummary", "summary"), ("sentiment", "sentiment"), ("impact", "impact")):
+            if f.get(src):
+                a[dst] = f[src]
+                edited = True
+        if edited:
+            stats["edited"] += 1
+        a["humanFixed"] = True
+        out.append(a)
+    return out, stats
+
+
 def main():
     tickers, names = load_universe()
     print(f"Pulling news for {len(tickers)} tickers …")
@@ -349,6 +403,9 @@ def main():
               + (f"; first: {first_err}" if first_err else "") + ") - latest.json left unchanged")
         return 1
 
+    items, xs = apply_xtrapp_fixes(items)
+    print(f"  XTRAPP article fixes: {xs['loaded']} on file · {xs['retagged']} retagged · {xs['untagged']} general news"
+          f" · {xs['dropped']} dropped as bad · {xs['edited']} text edits" + (f" · read failed: {xs['error']}" if xs['error'] else ""))
     items.sort(key=lambda a: a.get("datetime") or "", reverse=True)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({

@@ -232,20 +232,52 @@ def _related_tickers(c, n):
     return out
 
 
+# Symbols that are also everyday words: only count them in explicit forms
+# ("$IT", "(IT)", "NYSE: IT"), never as a bare word ("it", "IT department").
+_WORD_SYMBOLS = {
+    "A", "AI", "ALL", "ANY", "ARE", "BE", "BIG", "CAN", "CAR", "CASH", "CAT", "EAT", "FOR", "FUN", "GO", "HAS",
+    "HIGH", "IT", "KEY", "LIFE", "LOW", "MAN", "NEW", "NOW", "ON", "ONE", "OPEN", "OUT", "PEAK", "PLAY", "REAL",
+    "RUN", "SAVE", "SEE", "SO", "TEAM", "TOP", "TRUE", "TWO", "UP", "WELL", "WIN", "YOU",
+}
+# "price target", "target price", "raises target" ... are analyst language, not Target Corp.
+_FIN_PHRASE = re.compile(
+    r"\b(?:price|stock|share|analyst|earnings|revenue|sales|profit|margin|inflation|growth|return|upside|downside|"
+    r"valuation|raise[sd]?|cut[s]?|lower(?:s|ed)?|boost(?:s|ed)?)\s+targets?\b|\btargets?\s+(?:price|prices|of|range|"
+    r"for|at|to|on|above|below)\b|\btarget(?:ed|ing)\b", re.I)
+
+
+def _symbol_hit(ticker, text):
+    """Ticker mentioned explicitly ($X, (X), exchange prefix) or, for ordinary
+    symbols, as an UPPERCASE standalone word in the original text (z88: the old
+    test upper-cased the text first, so "it" counted as Gartner's IT)."""
+    t = re.escape(ticker)
+    if re.search(r"(?:\$|\(|(?:NYSE|NASDAQ|NYSEARCA|AMEX|OTC)\s*:\s*)" + t + r"(?![A-Za-z0-9])", text):
+        return True
+    if ticker in _WORD_SYMBOLS or len(ticker) < 3:
+        return False
+    return re.search(r"(?<![A-Za-z0-9$])" + t + r"(?![A-Za-z0-9])", text) is not None
+
+
+def _name_hit(tok, text):
+    """Company-name token, whole word, Capitalized or ALL-CAPS as a name would be
+    written (z88: was case-insensitive, so "price target" tagged Target Corp)."""
+    for m in re.finditer(r"(?<![A-Za-z0-9])" + re.escape(tok) + r"(?![A-Za-z0-9])", text, re.I):
+        w = m.group(0)
+        if not w[0].isupper():
+            continue                      # "apple pie", "a target"
+        if tok == "TARGET" and _FIN_PHRASE.search(text[max(0, m.start() - 30): m.end() + 30]):
+            continue
+        return True
+    return False
+
+
 def _is_about(ticker, name_toks, text, related):
     """True if we're confident the article is about `ticker`."""
     if related:
         return ticker in related          # explicit association wins
-    U = text.upper()
-    # Standalone symbol mention (word-boundary so "AI" doesn't match "SAID").
-    if re.search(r"(?<![A-Z])" + re.escape(ticker) + r"(?![A-Z])", U):
+    if _symbol_hit(ticker, text):
         return True
-    # Distinctive company-name token mention.
-    for tok in (name_toks or []):
-        if re.search(r"(?<![A-Z])" + re.escape(tok) + r"(?![A-Z])", U):
-            return True
-    return False
-
+    return any(_name_hit(tok, text) for tok in (name_toks or []))
 
 def main():
     tickers, names = load_universe()

@@ -16,16 +16,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -44,13 +44,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -68,16 +68,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -91,18 +91,18 @@
    "target": 32.565,
    "stop": 51.45,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -117,19 +117,45 @@
    "target": null,
    "stop": 300.25,
    "track": {
-    "successRate": 19.6,
+    "successRate": 19.5,
     "ci95": [
-     14.8,
-     25.5
+     14.7,
+     25.4
     ],
-    "n": 209,
-    "edgeVsBaselinePct": 0.23
+    "n": 210,
+    "edgeVsBaselinePct": 0.19
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 21.5,
-    "n": 172,
-    "edgeVsBaselinePct": 0.54
+    "successRate": 21.4,
+    "n": 173,
+    "edgeVsBaselinePct": 0.48
+   }
+  },
+  {
+   "ticker": "RB=F",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-09",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 3.587,
+   "track": {
+    "successRate": 38.2,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6581,
+    "edgeVsBaselinePct": -1.77
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.3,
+    "n": 4198,
+    "edgeVsBaselinePct": -2.33
    }
   },
   {
@@ -148,13 +174,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -174,13 +200,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -221,18 +247,18 @@
    "target": 85.905,
    "stop": 124.59,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -252,14 +278,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -278,13 +304,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -304,13 +330,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -330,13 +356,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -356,13 +382,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -377,12 +403,12 @@
    "target": 19.667217,
    "stop": 11.6,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -408,13 +434,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -434,13 +460,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -455,18 +481,18 @@
    "target": null,
    "stop": 3.32,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -481,18 +507,18 @@
    "target": null,
    "stop": 15.41,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -512,13 +538,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -538,14 +564,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -559,12 +585,12 @@
    "target": null,
    "stop": 47.94,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -590,14 +616,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -616,14 +642,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -642,14 +668,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -663,18 +689,18 @@
    "target": null,
    "stop": 124.72,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -691,16 +717,16 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.0,
+     19.1,
      23.1
     ],
-    "n": 1551,
+    "n": 1552,
     "edgeVsBaselinePct": -3.1
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.8,
-    "n": 1049,
+    "successRate": 19.9,
+    "n": 1050,
     "edgeVsBaselinePct": -3.64
    }
   },
@@ -720,14 +746,14 @@
      22.7,
      26.9
     ],
-    "n": 1653,
+    "n": 1654,
     "edgeVsBaselinePct": -0.1
    },
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1007,
-    "edgeVsBaselinePct": 0.29
+    "n": 1008,
+    "edgeVsBaselinePct": 0.28
    }
   },
   {
@@ -741,18 +767,18 @@
    "target": null,
    "stop": 68.73,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -772,14 +798,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -798,13 +824,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -819,18 +845,18 @@
    "target": null,
    "stop": 1.5718,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -850,14 +876,14 @@
      22.7,
      26.9
     ],
-    "n": 1653,
+    "n": 1654,
     "edgeVsBaselinePct": -0.1
    },
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1007,
-    "edgeVsBaselinePct": 0.29
+    "n": 1008,
+    "edgeVsBaselinePct": 0.28
    }
   },
   {
@@ -876,14 +902,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -902,13 +928,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -928,13 +954,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -954,13 +980,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -980,13 +1006,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1001,18 +1027,18 @@
    "target": 0.413,
    "stop": 0.612,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -1027,18 +1053,18 @@
    "target": 1.755,
    "stop": 4.35,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -1058,13 +1084,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1084,13 +1110,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1110,13 +1136,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -1131,18 +1157,18 @@
    "target": 0.26,
    "stop": 0.426,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -1162,14 +1188,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1183,18 +1209,18 @@
    "target": 5405.7346,
    "stop": 7547.4102,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -1214,14 +1240,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1240,13 +1266,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1266,13 +1292,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1292,13 +1318,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1313,18 +1339,18 @@
    "target": 0.4435,
    "stop": 0.599,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -1344,13 +1370,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -1370,13 +1396,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1396,14 +1422,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1422,14 +1448,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1448,14 +1474,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1474,13 +1500,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -1500,14 +1526,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1526,14 +1552,14 @@
      22.7,
      26.9
     ],
-    "n": 1653,
+    "n": 1654,
     "edgeVsBaselinePct": -0.1
    },
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1007,
-    "edgeVsBaselinePct": 0.29
+    "n": 1008,
+    "edgeVsBaselinePct": 0.28
    }
   },
   {
@@ -1552,13 +1578,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1578,14 +1604,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1604,14 +1630,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1625,12 +1651,12 @@
    "target": 873.422051,
    "stop": 561.14,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -1651,12 +1677,12 @@
    "target": 45.992,
    "stop": 30.11,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -1708,14 +1734,40 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
+   }
+  },
+  {
+   "ticker": "PEMX",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-06",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 88.747,
+   "target": null,
+   "stop": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.8,
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1734,14 +1786,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1760,14 +1812,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1784,16 +1836,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -1810,16 +1862,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -1838,14 +1890,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1864,13 +1916,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1890,14 +1942,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -1914,16 +1966,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -1942,13 +1994,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1968,13 +2020,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -1991,10 +2043,10 @@
    "track": {
     "successRate": 33.5,
     "ci95": [
-     30.9,
+     30.8,
      36.3
     ],
-    "n": 1139,
+    "n": 1140,
     "edgeVsBaselinePct": 3.98
    },
    "trackNow": {
@@ -2020,13 +2072,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2041,12 +2093,12 @@
    "target": 18.95037,
    "stop": 11.64,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -2069,16 +2121,16 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.0,
+     19.1,
      23.1
     ],
-    "n": 1551,
+    "n": 1552,
     "edgeVsBaselinePct": -3.1
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.8,
-    "n": 1049,
+    "successRate": 19.9,
+    "n": 1050,
     "edgeVsBaselinePct": -3.64
    }
   },
@@ -2098,14 +2150,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2124,14 +2176,14 @@
      22.7,
      26.9
     ],
-    "n": 1653,
+    "n": 1654,
     "edgeVsBaselinePct": -0.1
    },
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1007,
-    "edgeVsBaselinePct": 0.29
+    "n": 1008,
+    "edgeVsBaselinePct": 0.28
    }
   },
   {
@@ -2150,13 +2202,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2171,18 +2223,18 @@
    "target": 2595.5,
    "stop": 3243.0,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2199,10 +2251,10 @@
    "track": {
     "successRate": 33.5,
     "ci95": [
-     30.9,
+     30.8,
      36.3
     ],
-    "n": 1139,
+    "n": 1140,
     "edgeVsBaselinePct": 3.98
    },
    "trackNow": {
@@ -2228,13 +2280,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2254,13 +2306,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2280,13 +2332,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2301,18 +2353,18 @@
    "target": null,
    "stop": 111.25,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2327,18 +2379,18 @@
    "target": null,
    "stop": 426.79,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2355,16 +2407,16 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.0,
+     19.1,
      23.1
     ],
-    "n": 1551,
+    "n": 1552,
     "edgeVsBaselinePct": -3.1
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.8,
-    "n": 1049,
+    "successRate": 19.9,
+    "n": 1050,
     "edgeVsBaselinePct": -3.64
    }
   },
@@ -2379,18 +2431,18 @@
    "target": 0.5302,
    "stop": 0.5982,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2405,18 +2457,18 @@
    "target": 88.415,
    "stop": 143.58,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2436,13 +2488,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -2459,16 +2511,16 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.0,
+     19.1,
      23.1
     ],
-    "n": 1551,
+    "n": 1552,
     "edgeVsBaselinePct": -3.1
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.8,
-    "n": 1049,
+    "successRate": 19.9,
+    "n": 1050,
     "edgeVsBaselinePct": -3.64
    }
   },
@@ -2488,13 +2540,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2509,18 +2561,18 @@
    "target": 67.51,
    "stop": 84.6,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2535,18 +2587,18 @@
    "target": 51.095,
    "stop": 64.99,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2566,14 +2618,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2587,18 +2639,18 @@
    "target": null,
    "stop": 51.37,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2613,18 +2665,18 @@
    "target": null,
    "stop": 0.7255,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2644,13 +2696,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -2667,10 +2719,10 @@
    "track": {
     "successRate": 33.5,
     "ci95": [
-     30.9,
+     30.8,
      36.3
     ],
-    "n": 1139,
+    "n": 1140,
     "edgeVsBaselinePct": 3.98
    },
    "trackNow": {
@@ -2691,18 +2743,18 @@
    "target": 74.24,
    "stop": 98.19,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2722,14 +2774,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2745,10 +2797,10 @@
    "track": {
     "successRate": 33.5,
     "ci95": [
-     30.9,
+     30.8,
      36.3
     ],
-    "n": 1139,
+    "n": 1140,
     "edgeVsBaselinePct": 3.98
    },
    "trackNow": {
@@ -2769,18 +2821,18 @@
    "target": null,
    "stop": 271.77,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2800,14 +2852,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2826,13 +2878,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -2852,14 +2904,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2873,18 +2925,18 @@
    "target": 1559.965,
    "stop": 1758.85,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2899,18 +2951,18 @@
    "target": null,
    "stop": 72.595,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -2930,14 +2982,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2956,14 +3008,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -2982,14 +3034,14 @@
      48.6,
      50.4
     ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
+    "n": 11883,
+    "edgeVsBaselinePct": 0.42
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
+    "n": 9890,
+    "edgeVsBaselinePct": 0.47
    }
   },
   {
@@ -3003,45 +3055,19 @@
    "target": 2.285,
    "stop": 3.17,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
-   }
-  },
-  {
-   "ticker": "PEMX",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-09-29",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 86.94,
-   "target": null,
-   "stop": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11860,
-    "edgeVsBaselinePct": 0.43
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.8,
-    "n": 9869,
-    "edgeVsBaselinePct": 0.48
    }
   },
   {
@@ -3060,13 +3086,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -3081,18 +3107,18 @@
    "target": null,
    "stop": 310.0,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3107,18 +3133,18 @@
    "target": null,
    "stop": 68.93,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3138,14 +3164,14 @@
      22.7,
      26.9
     ],
-    "n": 1653,
+    "n": 1654,
     "edgeVsBaselinePct": -0.1
    },
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1007,
-    "edgeVsBaselinePct": 0.29
+    "n": 1008,
+    "edgeVsBaselinePct": 0.28
    }
   },
   {
@@ -3164,13 +3190,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -3188,16 +3214,16 @@
     "successRate": 27.3,
     "ci95": [
      26.0,
-     28.7
+     28.6
     ],
-    "n": 4463,
-    "edgeVsBaselinePct": 1.27
+    "n": 4466,
+    "edgeVsBaselinePct": 1.26
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.6,
-    "n": 3871,
-    "edgeVsBaselinePct": 1.54
+    "n": 3874,
+    "edgeVsBaselinePct": 1.53
    }
   },
   {
@@ -3216,13 +3242,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -3239,16 +3265,16 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.0,
+     19.1,
      23.1
     ],
-    "n": 1551,
+    "n": 1552,
     "edgeVsBaselinePct": -3.1
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.8,
-    "n": 1049,
+    "successRate": 19.9,
+    "n": 1050,
     "edgeVsBaselinePct": -3.64
    }
   },
@@ -3263,18 +3289,18 @@
    "target": 67934.47265,
    "stop": 79273.3281,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3294,13 +3320,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -3315,18 +3341,18 @@
    "target": 49.435,
    "stop": 84.12,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3346,13 +3372,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -3367,18 +3393,18 @@
    "target": null,
    "stop": 12.87,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3398,13 +3424,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -3424,13 +3450,13 @@
      10.6,
      12.9
     ],
-    "n": 2960,
+    "n": 2963,
     "edgeVsBaselinePct": -1.82
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1517,
+    "n": 1518,
     "edgeVsBaselinePct": -0.5
    }
   },
@@ -3445,18 +3471,18 @@
    "target": 25.48,
    "stop": 38.52,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3471,18 +3497,18 @@
    "target": null,
    "stop": 97.51,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3497,18 +3523,18 @@
    "target": null,
    "stop": 30.02,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3528,13 +3554,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   },
@@ -3549,18 +3575,18 @@
    "target": null,
    "stop": 83.94,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3575,18 +3601,18 @@
    "target": null,
    "stop": 88.09,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3601,18 +3627,18 @@
    "target": 13.325,
    "stop": 26.51,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3627,18 +3653,18 @@
    "target": null,
    "stop": 38.15,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3653,12 +3679,12 @@
    "target": 1.326666,
    "stop": 0.96,
    "track": {
-    "successRate": 31.1,
+    "successRate": 31.0,
     "ci95": [
      28.6,
-     33.6
+     33.5
     ],
-    "n": 1359,
+    "n": 1360,
     "edgeVsBaselinePct": 0.15
    },
    "trackNow": {
@@ -3679,18 +3705,18 @@
    "target": null,
    "stop": 42.0,
    "track": {
-    "successRate": 38.3,
+    "successRate": 38.2,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6572,
+    "n": 6581,
     "edgeVsBaselinePct": -1.77
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4192,
+    "n": 4198,
     "edgeVsBaselinePct": -2.33
    }
   },
@@ -3710,13 +3736,13 @@
      46.7,
      49.0
     ],
-    "n": 7028,
+    "n": 7033,
     "edgeVsBaselinePct": 0.39
    },
    "trackNow": {
     "regime": "up",
     "successRate": 49.1,
-    "n": 4686,
+    "n": 4691,
     "edgeVsBaselinePct": 0.57
    }
   }

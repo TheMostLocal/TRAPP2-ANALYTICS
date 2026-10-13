@@ -4,7 +4,7 @@
  "liveStart": "2026-10-07",
  "baselineFwd20Pct": 1.086,
  "baselineByTrendRegime": {
-  "mixed": 0.929,
+  "mixed": 0.93,
   "up": 0.986,
   "down": 1.483
  },
@@ -19,19 +19,19 @@
    "direction": "bullish",
    "kind": "template",
    "backtest": {
-    "n": 12070,
+    "n": 12048,
     "byStatus": {
-     "success": 5874,
-     "failure": 5991,
-     "open": 205
+     "success": 5869,
+     "failure": 5975,
+     "open": 204
     },
-    "judged": 11865,
-    "successRate": 49.5,
+    "judged": 11844,
+    "successRate": 49.6,
     "successCI95": [
-     48.6,
-     50.4
+     48.7,
+     50.5
     ],
-    "avgReturnPct": 4.47,
+    "avgReturnPct": 4.48,
     "avgFwd20Pct": 1.52,
     "edgeVsBaselinePct": 0.43
    },
@@ -52,38 +52,38 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 10079,
+      "n": 10056,
       "byStatus": {
-       "success": 4922,
-       "failure": 4952,
-       "open": 205
+       "success": 4916,
+       "failure": 4936,
+       "open": 204
       },
-      "judged": 9874,
-      "successRate": 49.8,
+      "judged": 9852,
+      "successRate": 49.9,
       "successCI95": [
        48.9,
-       50.8
+       50.9
       ],
-      "avgReturnPct": 4.05,
-      "avgFwd20Pct": 1.46,
-      "edgeVsBaselinePct": 0.47,
+      "avgReturnPct": 4.06,
+      "avgFwd20Pct": 1.47,
+      "edgeVsBaselinePct": 0.48,
       "usable": true
      },
      "mixed": {
-      "n": 1101,
+      "n": 1102,
       "byStatus": {
-       "success": 552,
+       "success": 553,
        "failure": 549
       },
-      "judged": 1101,
-      "successRate": 50.1,
+      "judged": 1102,
+      "successRate": 50.2,
       "successCI95": [
        47.2,
        53.1
       ],
       "avgReturnPct": 8.84,
-      "avgFwd20Pct": 1.44,
-      "edgeVsBaselinePct": 0.51,
+      "avgFwd20Pct": 1.42,
+      "edgeVsBaselinePct": 0.49,
       "usable": true
      },
      "down": {
@@ -106,77 +106,77 @@
     },
     "vol": {
      "calm": {
-      "n": 8925,
+      "n": 8909,
       "byStatus": {
-       "success": 4307,
-       "failure": 4415,
-       "open": 203
+       "success": 4299,
+       "failure": 4408,
+       "open": 202
       },
-      "judged": 8722,
+      "judged": 8707,
       "successRate": 49.4,
       "successCI95": [
        48.3,
        50.4
       ],
-      "avgReturnPct": 3.16,
-      "avgFwd20Pct": 1.03,
-      "edgeVsBaselinePct": -0.06,
+      "avgReturnPct": 3.15,
+      "avgFwd20Pct": 1.02,
+      "edgeVsBaselinePct": -0.07,
       "usable": true
      },
      "stressed": {
-      "n": 3145,
+      "n": 3139,
       "byStatus": {
-       "success": 1567,
-       "failure": 1576,
+       "success": 1570,
+       "failure": 1567,
        "open": 2
       },
-      "judged": 3143,
-      "successRate": 49.9,
+      "judged": 3137,
+      "successRate": 50.0,
       "successCI95": [
-       48.1,
-       51.6
+       48.3,
+       51.8
       ],
-      "avgReturnPct": 8.11,
-      "avgFwd20Pct": 2.9,
-      "edgeVsBaselinePct": 1.81,
+      "avgReturnPct": 8.17,
+      "avgFwd20Pct": 2.93,
+      "edgeVsBaselinePct": 1.84,
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 8338,
+      "n": 8322,
       "byStatus": {
-       "success": 4029,
-       "failure": 4106,
-       "open": 203
+       "success": 4021,
+       "failure": 4099,
+       "open": 202
       },
-      "judged": 8135,
+      "judged": 8120,
       "successRate": 49.5,
       "successCI95": [
        48.4,
        50.6
       ],
-      "avgReturnPct": 2.84,
-      "avgFwd20Pct": 1.09,
-      "edgeVsBaselinePct": 0.1,
+      "avgReturnPct": 2.83,
+      "avgFwd20Pct": 1.08,
+      "edgeVsBaselinePct": 0.09,
       "usable": true
      },
      "up/stressed": {
-      "n": 1741,
+      "n": 1734,
       "byStatus": {
-       "success": 893,
-       "failure": 846,
+       "success": 895,
+       "failure": 837,
        "open": 2
       },
-      "judged": 1739,
-      "successRate": 51.4,
+      "judged": 1732,
+      "successRate": 51.7,
       "successCI95": [
-       49.0,
-       53.7
+       49.3,
+       54.0
       ],
-      "avgReturnPct": 9.71,
-      "avgFwd20Pct": 3.26,
-      "edgeVsBaselinePct": 2.27,
+      "avgReturnPct": 9.82,
+      "avgFwd20Pct": 3.33,
+      "edgeVsBaselinePct": 2.34,
       "usable": true
      },
      "mixed/calm": {
@@ -191,26 +191,26 @@
        44.2,
        53.5
       ],
-      "avgReturnPct": 10.83,
-      "avgFwd20Pct": 0.68,
-      "edgeVsBaselinePct": -0.25,
+      "avgReturnPct": 10.82,
+      "avgFwd20Pct": 0.67,
+      "edgeVsBaselinePct": -0.26,
       "usable": true
      },
      "mixed/stressed": {
-      "n": 665,
+      "n": 666,
       "byStatus": {
-       "success": 339,
+       "success": 340,
        "failure": 326
       },
-      "judged": 665,
-      "successRate": 51.0,
+      "judged": 666,
+      "successRate": 51.1,
       "successCI95": [
-       47.2,
+       47.3,
        54.8
       ],
       "avgReturnPct": 7.54,
-      "avgFwd20Pct": 1.94,
-      "edgeVsBaselinePct": 1.01,
+      "avgFwd20Pct": 1.92,
+      "edgeVsBaselinePct": 0.99,
       "usable": true
      },
      "down/calm": {
@@ -255,31 +255,31 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 2168,
+    "n": 2166,
     "byStatus": {
      "expired": 405,
-     "timeout": 885,
+     "timeout": 883,
      "success": 325,
      "failure": 342,
      "confirmed": 14,
      "invalidated": 188,
      "open": 9
     },
-    "judged": 1552,
-    "successRate": 20.9,
+    "judged": 1550,
+    "successRate": 21.0,
     "successCI95": [
      19.0,
-     23.0
+     23.1
     ],
-    "avgReturnPct": -3.84,
-    "avgFwd20Pct": -4.19,
+    "avgReturnPct": -3.83,
+    "avgFwd20Pct": -4.2,
     "confirmRate": 72.5,
     "identificationSuccessRate": 25.8,
     "identCI95": [
      23.5,
      28.3
     ],
-    "edgeVsBaselinePct": -3.1
+    "edgeVsBaselinePct": -3.11
    },
    "live": {
     "n": 1,
@@ -304,57 +304,57 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 1499,
+      "n": 1498,
       "byStatus": {
        "expired": 284,
-       "timeout": 633,
+       "timeout": 632,
        "success": 208,
        "failure": 209,
        "confirmed": 14,
        "invalidated": 142,
        "open": 9
       },
-      "judged": 1050,
+      "judged": 1049,
       "successRate": 19.8,
       "successCI95": [
        17.5,
        22.3
       ],
       "avgReturnPct": -3.36,
-      "avgFwd20Pct": -4.63,
+      "avgFwd20Pct": -4.64,
       "confirmRate": 71.4,
       "identificationSuccessRate": 24.7,
       "identCI95": [
        21.9,
        27.7
       ],
-      "edgeVsBaselinePct": -3.64,
+      "edgeVsBaselinePct": -3.65,
       "usable": true
      },
      "mixed": {
-      "n": 313,
+      "n": 312,
       "byStatus": {
-       "timeout": 130,
+       "timeout": 129,
        "failure": 62,
        "success": 53,
        "expired": 56,
        "invalidated": 12
       },
-      "judged": 245,
-      "successRate": 21.6,
+      "judged": 244,
+      "successRate": 21.7,
       "successCI95": [
-       16.9,
-       27.2
+       17.0,
+       27.3
       ],
-      "avgReturnPct": -5.95,
-      "avgFwd20Pct": -4.87,
-      "confirmRate": 78.3,
+      "avgReturnPct": -5.93,
+      "avgFwd20Pct": -4.89,
+      "confirmRate": 78.2,
       "identificationSuccessRate": 29.0,
       "identCI95": [
        22.9,
        35.9
       ],
-      "edgeVsBaselinePct": -3.94,
+      "edgeVsBaselinePct": -3.96,
       "usable": true
      },
      "down": {
@@ -414,29 +414,29 @@
       "usable": true
      },
      "stressed": {
-      "n": 1010,
+      "n": 1008,
       "byStatus": {
-       "timeout": 397,
+       "timeout": 395,
        "success": 162,
        "expired": 174,
        "failure": 178,
        "invalidated": 99
       },
-      "judged": 737,
+      "judged": 735,
       "successRate": 22.0,
       "successCI95": [
-       19.1,
-       25.1
+       19.2,
+       25.2
       ],
       "avgReturnPct": -4.97,
-      "avgFwd20Pct": -2.84,
-      "confirmRate": 73.0,
+      "avgFwd20Pct": -2.85,
+      "confirmRate": 72.9,
       "identificationSuccessRate": 26.4,
       "identCI95": [
        23.1,
        30.1
       ],
-      "edgeVsBaselinePct": -1.75,
+      "edgeVsBaselinePct": -1.76,
       "usable": true
      }
     },
@@ -470,29 +470,29 @@
       "usable": true
      },
      "up/stressed": {
-      "n": 398,
+      "n": 397,
       "byStatus": {
-       "timeout": 167,
+       "timeout": 166,
        "success": 50,
        "expired": 64,
        "failure": 57,
        "invalidated": 60
       },
-      "judged": 274,
-      "successRate": 18.2,
+      "judged": 273,
+      "successRate": 18.3,
       "successCI95": [
-       14.1,
+       14.2,
        23.3
       ],
-      "avgReturnPct": -5.29,
-      "avgFwd20Pct": -1.95,
+      "avgReturnPct": -5.3,
+      "avgFwd20Pct": -1.97,
       "confirmRate": 68.8,
       "identificationSuccessRate": 21.6,
       "identCI95": [
        16.8,
        27.4
       ],
-      "edgeVsBaselinePct": -0.96,
+      "edgeVsBaselinePct": -0.98,
       "usable": true
      },
      "mixed/calm": {
@@ -522,29 +522,29 @@
       "usable": false
      },
      "mixed/stressed": {
-      "n": 278,
+      "n": 277,
       "byStatus": {
-       "timeout": 114,
+       "timeout": 113,
        "failure": 57,
        "success": 50,
        "expired": 48,
        "invalidated": 9
       },
-      "judged": 221,
-      "successRate": 22.6,
+      "judged": 220,
+      "successRate": 22.7,
       "successCI95": [
-       17.6,
-       28.6
+       17.7,
+       28.7
       ],
-      "avgReturnPct": -6.41,
-      "avgFwd20Pct": -5.62,
-      "confirmRate": 79.5,
+      "avgReturnPct": -6.39,
+      "avgFwd20Pct": -5.64,
+      "confirmRate": 79.4,
       "identificationSuccessRate": 30.5,
       "identCI95": [
        24.0,
        37.9
       ],
-      "edgeVsBaselinePct": -4.69,
+      "edgeVsBaselinePct": -4.71,
       "usable": true
      },
      "down/calm": {
@@ -607,31 +607,31 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 1984,
+    "n": 1980,
     "byStatus": {
-     "timeout": 718,
-     "invalidated": 236,
+     "timeout": 715,
+     "invalidated": 235,
      "expired": 365,
      "success": 422,
      "failure": 220,
      "confirmed": 21,
      "open": 2
     },
-    "judged": 1360,
-    "successRate": 31.0,
+    "judged": 1357,
+    "successRate": 31.1,
     "successCI95": [
-     28.6,
-     33.5
+     28.7,
+     33.6
     ],
     "avgReturnPct": 2.4,
-    "avgFwd20Pct": 1.24,
+    "avgFwd20Pct": 1.26,
     "confirmRate": 69.7,
     "identificationSuccessRate": 34.0,
     "identCI95": [
      31.4,
-     36.6
+     36.7
     ],
-    "edgeVsBaselinePct": 0.15
+    "edgeVsBaselinePct": 0.17
    },
    "live": {
     "n": 1,
@@ -656,9 +656,9 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 1262,
+      "n": 1261,
       "byStatus": {
-       "timeout": 446,
+       "timeout": 445,
        "invalidated": 139,
        "expired": 239,
        "success": 283,
@@ -666,7 +666,7 @@
        "failure": 132,
        "open": 2
       },
-      "judged": 861,
+      "judged": 860,
       "successRate": 32.9,
       "successCI95": [
        29.8,
@@ -684,9 +684,9 @@
       "usable": true
      },
      "mixed": {
-      "n": 260,
+      "n": 259,
       "byStatus": {
-       "invalidated": 36,
+       "invalidated": 35,
        "success": 37,
        "failure": 21,
        "timeout": 114,
@@ -700,103 +700,103 @@
       ],
       "avgReturnPct": 3.76,
       "avgFwd20Pct": 1.75,
-      "confirmRate": 66.2,
-      "identificationSuccessRate": 25.3,
+      "confirmRate": 66.4,
+      "identificationSuccessRate": 25.5,
       "identCI95": [
-       19.0,
-       33.0
+       19.1,
+       33.2
       ],
       "edgeVsBaselinePct": 0.82,
       "usable": true
      },
      "down": {
-      "n": 453,
+      "n": 451,
       "byStatus": {
-       "timeout": 157,
+       "timeout": 155,
        "expired": 72,
        "success": 98,
        "failure": 66,
        "invalidated": 60
       },
-      "judged": 321,
-      "successRate": 30.5,
+      "judged": 319,
+      "successRate": 30.7,
       "successCI95": [
-       25.7,
-       35.8
+       25.9,
+       36.0
       ],
       "avgReturnPct": 1.88,
-      "avgFwd20Pct": 1.37,
-      "confirmRate": 70.9,
+      "avgFwd20Pct": 1.42,
+      "confirmRate": 70.7,
       "identificationSuccessRate": 33.1,
       "identCI95": [
        28.0,
        38.7
       ],
-      "edgeVsBaselinePct": -0.11,
+      "edgeVsBaselinePct": -0.06,
       "usable": true
      }
     },
     "vol": {
      "calm": {
-      "n": 1218,
+      "n": 1216,
       "byStatus": {
-       "timeout": 436,
-       "invalidated": 149,
+       "timeout": 435,
+       "invalidated": 148,
        "expired": 235,
        "success": 248,
        "confirmed": 21,
        "failure": 127,
        "open": 2
       },
-      "judged": 811,
+      "judged": 810,
       "successRate": 30.6,
       "successCI95": [
        27.5,
-       33.8
+       33.9
       ],
-      "avgReturnPct": 2.04,
-      "avgFwd20Pct": 0.64,
-      "confirmRate": 68.4,
+      "avgReturnPct": 2.05,
+      "avgFwd20Pct": 0.65,
+      "confirmRate": 68.5,
       "identificationSuccessRate": 32.7,
       "identCI95": [
-       29.4,
+       29.5,
        36.1
       ],
-      "edgeVsBaselinePct": -0.45,
+      "edgeVsBaselinePct": -0.44,
       "usable": true
      },
      "stressed": {
-      "n": 766,
+      "n": 764,
       "byStatus": {
-       "timeout": 282,
+       "timeout": 280,
        "expired": 130,
        "success": 174,
        "failure": 93,
        "invalidated": 87
       },
-      "judged": 549,
-      "successRate": 31.7,
+      "judged": 547,
+      "successRate": 31.8,
       "successCI95": [
-       27.9,
-       35.7
+       28.0,
+       35.8
       ],
       "avgReturnPct": 2.93,
-      "avgFwd20Pct": 2.14,
-      "confirmRate": 71.7,
+      "avgFwd20Pct": 2.17,
+      "confirmRate": 71.6,
       "identificationSuccessRate": 36.0,
       "identCI95": [
        31.8,
        40.3
       ],
-      "edgeVsBaselinePct": 1.05,
+      "edgeVsBaselinePct": 1.08,
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 1068,
+      "n": 1067,
       "byStatus": {
-       "timeout": 374,
+       "timeout": 373,
        "invalidated": 123,
        "expired": 205,
        "success": 229,
@@ -804,11 +804,11 @@
        "failure": 114,
        "open": 2
       },
-      "judged": 717,
-      "successRate": 31.9,
+      "judged": 716,
+      "successRate": 32.0,
       "successCI95": [
-       28.6,
-       35.4
+       28.7,
+       35.5
       ],
       "avgReturnPct": 2.01,
       "avgFwd20Pct": 0.97,
@@ -848,9 +848,9 @@
       "usable": true
      },
      "mixed/calm": {
-      "n": 110,
+      "n": 109,
       "byStatus": {
-       "invalidated": 21,
+       "invalidated": 20,
        "success": 10,
        "timeout": 49,
        "expired": 24,
@@ -864,11 +864,11 @@
       ],
       "avgReturnPct": 3.87,
       "avgFwd20Pct": -1.26,
-      "confirmRate": 59.1,
-      "identificationSuccessRate": 16.4,
+      "confirmRate": 59.6,
+      "identificationSuccessRate": 16.7,
       "identCI95": [
-       9.2,
-       27.6
+       9.3,
+       28.0
       ],
       "edgeVsBaselinePct": -2.19,
       "usable": true
@@ -926,29 +926,29 @@
       "usable": false
      },
      "down/stressed": {
-      "n": 422,
+      "n": 420,
       "byStatus": {
-       "timeout": 145,
+       "timeout": 143,
        "expired": 68,
        "success": 93,
        "failure": 60,
        "invalidated": 56
       },
-      "judged": 298,
-      "successRate": 31.2,
+      "judged": 296,
+      "successRate": 31.4,
       "successCI95": [
-       26.2,
-       36.7
+       26.4,
+       36.9
       ],
-      "avgReturnPct": 2.3,
-      "avgFwd20Pct": 1.83,
-      "confirmRate": 70.6,
+      "avgReturnPct": 2.31,
+      "avgFwd20Pct": 1.89,
+      "confirmRate": 70.5,
       "identificationSuccessRate": 33.6,
       "identCI95": [
        28.3,
        39.3
       ],
-      "edgeVsBaselinePct": 0.35,
+      "edgeVsBaselinePct": 0.41,
       "usable": true
      }
     }
@@ -959,18 +959,18 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 11339,
+    "n": 11319,
     "byStatus": {
-     "timeout": 2154,
-     "failure": 1905,
-     "success": 2514,
-     "expired": 1616,
-     "invalidated": 3029,
+     "timeout": 2149,
+     "failure": 1900,
+     "success": 2509,
+     "expired": 1615,
+     "invalidated": 3025,
      "open": 42,
      "confirmed": 79
     },
-    "judged": 6573,
-    "successRate": 38.2,
+    "judged": 6558,
+    "successRate": 38.3,
     "successCI95": [
      37.1,
      39.4
@@ -1009,195 +1009,195 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 7512,
+      "n": 7500,
       "byStatus": {
-       "timeout": 1380,
-       "failure": 1165,
-       "success": 1648,
-       "expired": 1172,
-       "invalidated": 2026,
+       "timeout": 1375,
+       "failure": 1164,
+       "success": 1646,
+       "expired": 1171,
+       "invalidated": 2023,
        "open": 42,
        "confirmed": 79
       },
-      "judged": 4193,
+      "judged": 4185,
       "successRate": 39.3,
       "successCI95": [
-       37.8,
+       37.9,
        40.8
       ],
       "avgReturnPct": -3.91,
-      "avgFwd20Pct": -3.32,
+      "avgFwd20Pct": -3.33,
       "confirmRate": 57.2,
       "identificationSuccessRate": 27.4,
       "identCI95": [
        26.3,
        28.6
       ],
-      "edgeVsBaselinePct": -2.33,
+      "edgeVsBaselinePct": -2.34,
       "usable": true
      },
      "mixed": {
-      "n": 1525,
+      "n": 1522,
       "byStatus": {
        "expired": 194,
-       "failure": 267,
-       "success": 359,
+       "failure": 265,
+       "success": 358,
        "timeout": 322,
        "invalidated": 383
       },
-      "judged": 948,
+      "judged": 945,
       "successRate": 37.9,
       "successCI95": [
        34.8,
        41.0
       ],
       "avgReturnPct": -2.37,
-      "avgFwd20Pct": -2.74,
-      "confirmRate": 62.2,
+      "avgFwd20Pct": -2.72,
+      "confirmRate": 62.1,
       "identificationSuccessRate": 29.8,
       "identCI95": [
        27.3,
        32.5
       ],
-      "edgeVsBaselinePct": -1.81,
+      "edgeVsBaselinePct": -1.79,
       "usable": true
      },
      "down": {
-      "n": 2175,
+      "n": 2170,
       "byStatus": {
        "timeout": 433,
-       "failure": 437,
+       "failure": 435,
        "expired": 234,
-       "invalidated": 587,
-       "success": 484
+       "invalidated": 586,
+       "success": 482
       },
-      "judged": 1354,
+      "judged": 1350,
       "successRate": 35.7,
       "successCI95": [
        33.2,
        38.3
       ],
-      "avgReturnPct": -3.91,
-      "avgFwd20Pct": -1.58,
-      "confirmRate": 62.3,
-      "identificationSuccessRate": 27.8,
+      "avgReturnPct": -3.93,
+      "avgFwd20Pct": -1.56,
+      "confirmRate": 62.2,
+      "identificationSuccessRate": 27.7,
       "identCI95": [
        25.7,
        29.9
       ],
-      "edgeVsBaselinePct": -0.1,
+      "edgeVsBaselinePct": -0.08,
       "usable": true
      }
     },
     "vol": {
      "calm": {
-      "n": 5936,
+      "n": 5926,
       "byStatus": {
-       "timeout": 1107,
-       "failure": 931,
-       "success": 1349,
-       "expired": 961,
-       "invalidated": 1467,
+       "timeout": 1104,
+       "failure": 930,
+       "success": 1347,
+       "expired": 960,
+       "invalidated": 1464,
        "open": 42,
        "confirmed": 79
       },
-      "judged": 3387,
+      "judged": 3381,
       "successRate": 39.8,
       "successCI95": [
        38.2,
        41.5
       ],
-      "avgReturnPct": -4.16,
-      "avgFwd20Pct": -4.01,
+      "avgReturnPct": -4.17,
+      "avgFwd20Pct": -4.02,
       "confirmRate": 58.8,
       "identificationSuccessRate": 28.7,
       "identCI95": [
        27.4,
        30.0
       ],
-      "edgeVsBaselinePct": -2.92,
+      "edgeVsBaselinePct": -2.93,
       "usable": true
      },
      "stressed": {
-      "n": 5403,
+      "n": 5393,
       "byStatus": {
-       "timeout": 1047,
-       "failure": 974,
-       "invalidated": 1562,
-       "success": 1165,
+       "timeout": 1045,
+       "failure": 970,
+       "invalidated": 1561,
+       "success": 1162,
        "expired": 655
       },
-      "judged": 3186,
+      "judged": 3177,
       "successRate": 36.6,
       "successCI95": [
        34.9,
        38.3
       ],
-      "avgReturnPct": -3.2,
-      "avgFwd20Pct": -1.62,
-      "confirmRate": 59.0,
+      "avgReturnPct": -3.21,
+      "avgFwd20Pct": -1.61,
+      "confirmRate": 58.9,
       "identificationSuccessRate": 26.7,
       "identCI95": [
-       25.5,
+       25.4,
        28.1
       ],
-      "edgeVsBaselinePct": -0.53,
+      "edgeVsBaselinePct": -0.52,
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 5375,
+      "n": 5365,
       "byStatus": {
-       "timeout": 989,
-       "failure": 843,
-       "success": 1217,
-       "expired": 872,
-       "invalidated": 1333,
+       "timeout": 986,
+       "failure": 842,
+       "success": 1215,
+       "expired": 871,
+       "invalidated": 1330,
        "open": 42,
        "confirmed": 79
       },
-      "judged": 3049,
+      "judged": 3043,
       "successRate": 39.9,
       "successCI95": [
        38.2,
        41.7
       ],
-      "avgReturnPct": -4.62,
-      "avgFwd20Pct": -4.44,
+      "avgReturnPct": -4.63,
+      "avgFwd20Pct": -4.46,
       "confirmRate": 58.7,
       "identificationSuccessRate": 28.5,
       "identCI95": [
        27.2,
        29.9
       ],
-      "edgeVsBaselinePct": -3.45,
+      "edgeVsBaselinePct": -3.47,
       "usable": true
      },
      "up/stressed": {
-      "n": 2137,
+      "n": 2135,
       "byStatus": {
        "failure": 322,
        "invalidated": 693,
        "success": 431,
-       "timeout": 391,
+       "timeout": 389,
        "expired": 300
       },
-      "judged": 1144,
+      "judged": 1142,
       "successRate": 37.7,
       "successCI95": [
-       34.9,
-       40.5
+       35.0,
+       40.6
       ],
-      "avgReturnPct": -2.01,
-      "avgFwd20Pct": -0.29,
+      "avgReturnPct": -1.99,
+      "avgFwd20Pct": -0.28,
       "confirmRate": 53.5,
       "identificationSuccessRate": 24.7,
       "identCI95": [
        22.7,
        26.8
       ],
-      "edgeVsBaselinePct": 0.7,
+      "edgeVsBaselinePct": 0.71,
       "usable": true
      },
      "mixed/calm": {
@@ -1227,29 +1227,29 @@
       "usable": true
      },
      "mixed/stressed": {
-      "n": 1201,
+      "n": 1198,
       "byStatus": {
-       "failure": 223,
-       "success": 287,
+       "failure": 221,
+       "success": 286,
        "timeout": 249,
        "expired": 133,
        "invalidated": 309
       },
-      "judged": 759,
+      "judged": 756,
       "successRate": 37.8,
       "successCI95": [
        34.4,
        41.3
       ],
       "avgReturnPct": -2.88,
-      "avgFwd20Pct": -3.1,
-      "confirmRate": 63.2,
+      "avgFwd20Pct": -3.08,
+      "confirmRate": 63.1,
       "identificationSuccessRate": 30.1,
       "identCI95": [
        27.3,
        33.1
       ],
-      "edgeVsBaselinePct": -2.17,
+      "edgeVsBaselinePct": -2.15,
       "usable": true
      },
      "down/calm": {
@@ -1279,29 +1279,29 @@
       "usable": true
      },
      "down/stressed": {
-      "n": 2065,
+      "n": 2060,
       "byStatus": {
        "timeout": 407,
-       "failure": 429,
+       "failure": 427,
        "expired": 222,
-       "invalidated": 560,
-       "success": 447
+       "invalidated": 559,
+       "success": 445
       },
-      "judged": 1283,
+      "judged": 1279,
       "successRate": 34.8,
       "successCI95": [
-       32.3,
-       37.5
+       32.2,
+       37.4
       ],
-      "avgReturnPct": -4.47,
-      "avgFwd20Pct": -1.95,
+      "avgReturnPct": -4.49,
+      "avgFwd20Pct": -1.93,
       "confirmRate": 62.1,
-      "identificationSuccessRate": 27.0,
+      "identificationSuccessRate": 26.9,
       "identCI95": [
-       24.9,
+       24.8,
        29.1
       ],
-      "edgeVsBaselinePct": -0.47,
+      "edgeVsBaselinePct": -0.45,
       "usable": true
      }
     }
@@ -1312,17 +1312,17 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 12587,
+    "n": 12566,
     "byStatus": {
-     "success": 3362,
-     "failure": 1683,
-     "timeout": 1985,
-     "expired": 2002,
-     "invalidated": 3487,
+     "success": 3355,
+     "failure": 1681,
+     "timeout": 1979,
+     "expired": 1998,
+     "invalidated": 3485,
      "confirmed": 45,
      "open": 23
     },
-    "judged": 7030,
+    "judged": 7015,
     "successRate": 47.8,
     "successCI95": [
      46.7,
@@ -1362,108 +1362,108 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 8390,
+      "n": 8375,
       "byStatus": {
-       "success": 2299,
-       "failure": 1121,
-       "timeout": 1268,
-       "expired": 1348,
-       "invalidated": 2286,
+       "success": 2294,
+       "failure": 1119,
+       "timeout": 1264,
+       "expired": 1346,
+       "invalidated": 2284,
        "confirmed": 45,
        "open": 23
       },
-      "judged": 4688,
+      "judged": 4677,
       "successRate": 49.0,
       "successCI95": [
        47.6,
        50.5
       ],
-      "avgReturnPct": 1.62,
-      "avgFwd20Pct": 1.56,
-      "confirmRate": 56.6,
+      "avgReturnPct": 1.63,
+      "avgFwd20Pct": 1.55,
+      "confirmRate": 56.5,
       "identificationSuccessRate": 32.6,
       "identCI95": [
        31.5,
        33.7
       ],
-      "edgeVsBaselinePct": 0.57,
+      "edgeVsBaselinePct": 0.56,
       "usable": true
      },
      "mixed": {
-      "n": 1454,
+      "n": 1452,
       "byStatus": {
-       "success": 377,
+       "success": 376,
        "failure": 193,
-       "expired": 211,
+       "expired": 210,
        "timeout": 217,
        "invalidated": 456
       },
-      "judged": 787,
-      "successRate": 47.9,
+      "judged": 786,
+      "successRate": 47.8,
       "successCI95": [
        44.4,
-       51.4
+       51.3
       ],
-      "avgReturnPct": 2.3,
-      "avgFwd20Pct": 1.61,
+      "avgReturnPct": 2.29,
+      "avgFwd20Pct": 1.6,
       "confirmRate": 54.1,
-      "identificationSuccessRate": 30.5,
+      "identificationSuccessRate": 30.4,
       "identCI95": [
-       28.0,
+       27.9,
        33.1
       ],
-      "edgeVsBaselinePct": 0.68,
+      "edgeVsBaselinePct": 0.67,
       "usable": true
      },
      "down": {
-      "n": 2607,
+      "n": 2603,
       "byStatus": {
-       "success": 623,
+       "success": 622,
        "failure": 356,
-       "timeout": 485,
+       "timeout": 483,
        "invalidated": 721,
-       "expired": 422
+       "expired": 421
       },
-      "judged": 1464,
+      "judged": 1461,
       "successRate": 42.6,
       "successCI95": [
-       40.0,
+       40.1,
        45.1
       ],
       "avgReturnPct": 1.66,
-      "avgFwd20Pct": 1.05,
-      "confirmRate": 56.2,
-      "identificationSuccessRate": 29.4,
+      "avgFwd20Pct": 1.06,
+      "confirmRate": 56.1,
+      "identificationSuccessRate": 29.3,
       "identCI95": [
-       27.5,
+       27.4,
        31.3
       ],
-      "edgeVsBaselinePct": -0.43,
+      "edgeVsBaselinePct": -0.42,
       "usable": true
      }
     },
     "vol": {
      "calm": {
-      "n": 7837,
+      "n": 7825,
       "byStatus": {
-       "success": 2041,
-       "failure": 1089,
-       "timeout": 1218,
-       "expired": 1247,
-       "invalidated": 2174,
+       "success": 2038,
+       "failure": 1087,
+       "timeout": 1213,
+       "expired": 1246,
+       "invalidated": 2173,
        "confirmed": 45,
        "open": 23
       },
-      "judged": 4348,
-      "successRate": 46.9,
+      "judged": 4338,
+      "successRate": 47.0,
       "successCI95": [
        45.5,
-       48.4
+       48.5
       ],
-      "avgReturnPct": 0.92,
+      "avgReturnPct": 0.93,
       "avgFwd20Pct": 0.81,
       "confirmRate": 56.2,
-      "identificationSuccessRate": 31.2,
+      "identificationSuccessRate": 31.1,
       "identCI95": [
        30.0,
        32.3
@@ -1472,24 +1472,24 @@
       "usable": true
      },
      "stressed": {
-      "n": 4750,
+      "n": 4741,
       "byStatus": {
-       "success": 1321,
+       "success": 1317,
        "failure": 594,
-       "expired": 755,
-       "timeout": 767,
-       "invalidated": 1313
+       "expired": 752,
+       "timeout": 766,
+       "invalidated": 1312
       },
-      "judged": 2682,
-      "successRate": 49.3,
+      "judged": 2677,
+      "successRate": 49.2,
       "successCI95": [
-       47.4,
+       47.3,
        51.1
       ],
-      "avgReturnPct": 3.09,
+      "avgReturnPct": 3.08,
       "avgFwd20Pct": 2.56,
       "confirmRate": 56.5,
-      "identificationSuccessRate": 33.2,
+      "identificationSuccessRate": 33.1,
       "identCI95": [
        31.7,
        34.6
@@ -1500,23 +1500,23 @@
     },
     "joint": {
      "up/calm": {
-      "n": 6911,
+      "n": 6900,
       "byStatus": {
-       "success": 1820,
-       "failure": 967,
-       "timeout": 1068,
-       "expired": 1118,
-       "invalidated": 1870,
+       "success": 1817,
+       "failure": 965,
+       "timeout": 1064,
+       "expired": 1117,
+       "invalidated": 1869,
        "confirmed": 45,
        "open": 23
       },
-      "judged": 3855,
+      "judged": 3846,
       "successRate": 47.2,
       "successCI95": [
-       45.6,
+       45.7,
        48.8
       ],
-      "avgReturnPct": 0.95,
+      "avgReturnPct": 0.96,
       "avgFwd20Pct": 0.87,
       "confirmRate": 56.6,
       "identificationSuccessRate": 31.5,
@@ -1528,29 +1528,29 @@
       "usable": true
      },
      "up/stressed": {
-      "n": 1479,
+      "n": 1475,
       "byStatus": {
-       "expired": 230,
-       "success": 479,
+       "expired": 229,
+       "success": 477,
        "timeout": 200,
        "failure": 154,
-       "invalidated": 416
+       "invalidated": 415
       },
-      "judged": 833,
-      "successRate": 57.5,
+      "judged": 831,
+      "successRate": 57.4,
       "successCI95": [
-       54.1,
-       60.8
+       54.0,
+       60.7
       ],
-      "avgReturnPct": 4.75,
-      "avgFwd20Pct": 4.76,
+      "avgReturnPct": 4.71,
+      "avgFwd20Pct": 4.73,
       "confirmRate": 56.3,
-      "identificationSuccessRate": 37.5,
+      "identificationSuccessRate": 37.4,
       "identCI95": [
        34.8,
        40.1
       ],
-      "edgeVsBaselinePct": 3.77,
+      "edgeVsBaselinePct": 3.74,
       "usable": true
      },
      "mixed/calm": {
@@ -1580,81 +1580,81 @@
       "usable": true
      },
      "mixed/stressed": {
-      "n": 974,
+      "n": 972,
       "byStatus": {
        "failure": 135,
-       "success": 283,
+       "success": 282,
        "timeout": 152,
-       "expired": 132,
+       "expired": 131,
        "invalidated": 272
       },
-      "judged": 570,
+      "judged": 569,
       "successRate": 49.6,
       "successCI95": [
-       45.6,
+       45.5,
        53.7
       ],
-      "avgReturnPct": 3.11,
+      "avgReturnPct": 3.1,
       "avgFwd20Pct": 2.52,
       "confirmRate": 58.5,
       "identificationSuccessRate": 34.4,
       "identCI95": [
-       31.3,
+       31.2,
        37.7
       ],
       "edgeVsBaselinePct": 1.59,
       "usable": true
      },
      "down/calm": {
-      "n": 310,
+      "n": 309,
       "byStatus": {
        "invalidated": 96,
        "failure": 51,
        "success": 64,
-       "timeout": 70,
+       "timeout": 69,
        "expired": 29
       },
-      "judged": 185,
-      "successRate": 34.6,
+      "judged": 184,
+      "successRate": 34.8,
       "successCI95": [
-       28.1,
-       41.7
+       28.3,
+       41.9
       ],
-      "avgReturnPct": -0.73,
-      "avgFwd20Pct": 0.42,
-      "confirmRate": 59.7,
+      "avgReturnPct": -0.69,
+      "avgFwd20Pct": 0.41,
+      "confirmRate": 59.5,
       "identificationSuccessRate": 26.7,
       "identCI95": [
        21.5,
        32.6
       ],
-      "edgeVsBaselinePct": -1.06,
+      "edgeVsBaselinePct": -1.07,
       "usable": true
      },
      "down/stressed": {
-      "n": 2297,
+      "n": 2294,
       "byStatus": {
-       "success": 559,
+       "success": 558,
        "failure": 305,
-       "timeout": 415,
+       "timeout": 414,
        "invalidated": 625,
-       "expired": 393
+       "expired": 392
       },
-      "judged": 1279,
+      "judged": 1277,
       "successRate": 43.7,
       "successCI95": [
        41.0,
        46.4
       ],
       "avgReturnPct": 2.0,
-      "avgFwd20Pct": 1.15,
+      "avgFwd20Pct": 1.16,
       "confirmRate": 55.7,
       "identificationSuccessRate": 29.7,
       "identCI95": [
        27.7,
        31.8
       ],
-      "edgeVsBaselinePct": -0.33,
+      "edgeVsBaselinePct": -0.32,
       "usable": true
      }
     }
@@ -1665,30 +1665,30 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 1032,
+    "n": 1030,
     "byStatus": {
      "success": 195,
-     "invalidated": 166,
-     "timeout": 408,
+     "invalidated": 165,
+     "timeout": 407,
      "failure": 218,
      "expired": 36,
      "confirmed": 9
     },
-    "judged": 821,
+    "judged": 820,
     "successRate": 23.8,
     "successCI95": [
      21.0,
      26.8
     ],
     "avgReturnPct": 2.53,
-    "avgFwd20Pct": 1.01,
-    "confirmRate": 80.4,
-    "identificationSuccessRate": 31.7,
+    "avgFwd20Pct": 1.02,
+    "confirmRate": 80.5,
+    "identificationSuccessRate": 31.8,
     "identCI95": [
      28.2,
      35.5
     ],
-    "edgeVsBaselinePct": -0.08
+    "edgeVsBaselinePct": -0.07
    },
    "live": {
     "n": 1,
@@ -1713,30 +1713,30 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 909,
+      "n": 908,
       "byStatus": {
        "success": 182,
        "invalidated": 150,
-       "timeout": 355,
+       "timeout": 354,
        "failure": 178,
        "expired": 35,
        "confirmed": 9
       },
-      "judged": 715,
+      "judged": 714,
       "successRate": 25.5,
       "successCI95": [
        22.4,
        28.8
       ],
       "avgReturnPct": 2.88,
-      "avgFwd20Pct": 1.18,
+      "avgFwd20Pct": 1.19,
       "confirmRate": 79.6,
       "identificationSuccessRate": 33.4,
       "identCI95": [
        29.6,
        37.5
       ],
-      "edgeVsBaselinePct": 0.19,
+      "edgeVsBaselinePct": 0.2,
       "usable": true
      },
      "mixed": {
@@ -1766,11 +1766,11 @@
       "usable": true
      },
      "down": {
-      "n": 51,
+      "n": 50,
       "byStatus": {
        "timeout": 22,
        "failure": 19,
-       "invalidated": 6,
+       "invalidated": 5,
        "success": 4
       },
       "judged": 45,
@@ -1781,11 +1781,11 @@
       ],
       "avgReturnPct": -0.74,
       "avgFwd20Pct": 0.06,
-      "confirmRate": 88.2,
-      "identificationSuccessRate": 13.8,
+      "confirmRate": 90.0,
+      "identificationSuccessRate": 14.3,
       "identCI95": [
-       5.5,
-       30.6
+       5.7,
+       31.5
       ],
       "edgeVsBaselinePct": -1.42,
       "usable": false
@@ -1793,39 +1793,39 @@
     },
     "vol": {
      "calm": {
-      "n": 841,
+      "n": 840,
       "byStatus": {
        "success": 164,
        "invalidated": 142,
        "failure": 173,
-       "timeout": 320,
+       "timeout": 319,
        "expired": 33,
        "confirmed": 9
       },
-      "judged": 657,
+      "judged": 656,
       "successRate": 25.0,
       "successCI95": [
        21.8,
-       28.4
+       28.5
       ],
       "avgReturnPct": 2.58,
-      "avgFwd20Pct": 0.93,
+      "avgFwd20Pct": 0.94,
       "confirmRate": 79.2,
       "identificationSuccessRate": 32.0,
       "identCI95": [
        28.1,
        36.2
       ],
-      "edgeVsBaselinePct": -0.16,
+      "edgeVsBaselinePct": -0.15,
       "usable": true
      },
      "stressed": {
-      "n": 191,
+      "n": 190,
       "byStatus": {
        "success": 31,
        "timeout": 88,
        "failure": 45,
-       "invalidated": 24,
+       "invalidated": 23,
        "expired": 3
       },
       "judged": 164,
@@ -1836,11 +1836,11 @@
       ],
       "avgReturnPct": 2.31,
       "avgFwd20Pct": 1.34,
-      "confirmRate": 85.9,
-      "identificationSuccessRate": 30.1,
+      "confirmRate": 86.3,
+      "identificationSuccessRate": 30.4,
       "identCI95": [
-       22.1,
-       39.5
+       22.3,
+       39.9
       ],
       "edgeVsBaselinePct": 0.25,
       "usable": true
@@ -1848,30 +1848,30 @@
     },
     "joint": {
      "up/calm": {
-      "n": 810,
+      "n": 809,
       "byStatus": {
        "success": 161,
        "invalidated": 135,
        "failure": 161,
-       "timeout": 311,
+       "timeout": 310,
        "expired": 33,
        "confirmed": 9
       },
-      "judged": 633,
-      "successRate": 25.4,
+      "judged": 632,
+      "successRate": 25.5,
       "successCI95": [
        22.2,
        29.0
       ],
       "avgReturnPct": 2.71,
-      "avgFwd20Pct": 1.01,
-      "confirmRate": 79.3,
+      "avgFwd20Pct": 1.02,
+      "confirmRate": 79.2,
       "identificationSuccessRate": 32.9,
       "identCI95": [
        28.8,
        37.1
       ],
-      "edgeVsBaselinePct": 0.02,
+      "edgeVsBaselinePct": 0.03,
       "usable": true
      },
      "up/stressed": {
@@ -1977,11 +1977,11 @@
       "usable": false
      },
      "down/stressed": {
-      "n": 45,
+      "n": 44,
       "byStatus": {
        "timeout": 21,
        "failure": 16,
-       "invalidated": 5,
+       "invalidated": 4,
        "success": 3
       },
       "judged": 40,
@@ -1992,11 +1992,11 @@
       ],
       "avgReturnPct": -1.0,
       "avgFwd20Pct": 0.32,
-      "confirmRate": 88.9,
-      "identificationSuccessRate": 12.5,
+      "confirmRate": 90.9,
+      "identificationSuccessRate": 13.0,
       "identCI95": [
-       4.3,
-       31.0
+       4.5,
+       32.1
       ],
       "edgeVsBaselinePct": -1.16,
       "usable": false
@@ -2325,31 +2325,31 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 1522,
+    "n": 1521,
     "byStatus": {
      "expired": 15,
      "success": 382,
      "failure": 461,
      "invalidated": 352,
-     "timeout": 297,
+     "timeout": 296,
      "confirmed": 14,
      "open": 1
     },
-    "judged": 1140,
+    "judged": 1139,
     "successRate": 33.5,
     "successCI95": [
-     30.8,
+     30.9,
      36.3
     ],
     "avgReturnPct": 5.34,
-    "avgFwd20Pct": 5.07,
+    "avgFwd20Pct": 5.05,
     "confirmRate": 75.9,
     "identificationSuccessRate": 31.6,
     "identCI95": [
      29.0,
      34.2
     ],
-    "edgeVsBaselinePct": 3.98
+    "edgeVsBaselinePct": 3.96
    },
    "live": {
     "n": 0
@@ -2357,31 +2357,31 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 931,
+      "n": 930,
       "byStatus": {
        "expired": 12,
        "failure": 282,
        "success": 226,
        "invalidated": 219,
-       "timeout": 177,
+       "timeout": 176,
        "confirmed": 14,
        "open": 1
       },
-      "judged": 685,
+      "judged": 684,
       "successRate": 33.0,
       "successCI95": [
        29.6,
-       36.6
+       36.7
       ],
-      "avgReturnPct": 4.8,
-      "avgFwd20Pct": 4.7,
-      "confirmRate": 75.2,
+      "avgReturnPct": 4.79,
+      "avgFwd20Pct": 4.66,
+      "confirmRate": 75.1,
       "identificationSuccessRate": 30.6,
       "identCI95": [
        27.4,
        34.0
       ],
-      "edgeVsBaselinePct": 3.71,
+      "edgeVsBaselinePct": 3.67,
       "usable": true
      },
      "mixed": {
@@ -2438,31 +2438,31 @@
     },
     "vol": {
      "calm": {
-      "n": 786,
+      "n": 785,
       "byStatus": {
        "expired": 12,
        "failure": 250,
        "success": 179,
        "invalidated": 196,
-       "timeout": 134,
+       "timeout": 133,
        "confirmed": 14,
        "open": 1
       },
-      "judged": 563,
-      "successRate": 31.8,
+      "judged": 562,
+      "successRate": 31.9,
       "successCI95": [
        28.1,
        35.8
       ],
-      "avgReturnPct": 3.05,
-      "avgFwd20Pct": 2.76,
+      "avgReturnPct": 3.04,
+      "avgFwd20Pct": 2.72,
       "confirmRate": 73.5,
       "identificationSuccessRate": 28.1,
       "identCI95": [
        24.7,
        31.7
       ],
-      "edgeVsBaselinePct": 1.67,
+      "edgeVsBaselinePct": 1.63,
       "usable": true
      },
      "stressed": {
@@ -2494,31 +2494,31 @@
     },
     "joint": {
      "up/calm": {
-      "n": 682,
+      "n": 681,
       "byStatus": {
        "expired": 10,
        "failure": 217,
        "success": 155,
        "invalidated": 172,
-       "timeout": 113,
+       "timeout": 112,
        "confirmed": 14,
        "open": 1
       },
-      "judged": 485,
+      "judged": 484,
       "successRate": 32.0,
       "successCI95": [
        28.0,
-       36.2
+       36.3
       ],
-      "avgReturnPct": 3.14,
-      "avgFwd20Pct": 2.99,
-      "confirmRate": 73.3,
+      "avgReturnPct": 3.13,
+      "avgFwd20Pct": 2.94,
+      "confirmRate": 73.2,
       "identificationSuccessRate": 28.0,
       "identCI95": [
        24.4,
        31.9
       ],
-      "edgeVsBaselinePct": 2.0,
+      "edgeVsBaselinePct": 1.95,
       "usable": true
      },
      "up/stressed": {
@@ -2656,26 +2656,26 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 3906,
+    "n": 3904,
     "byStatus": {
      "failure": 1476,
-     "invalidated": 835,
-     "timeout": 1139,
+     "invalidated": 834,
+     "timeout": 1138,
      "success": 348,
      "confirmed": 55,
      "expired": 50,
      "open": 3
     },
-    "judged": 2963,
+    "judged": 2962,
     "successRate": 11.7,
     "successCI95": [
      10.6,
      13.0
     ],
-    "avgReturnPct": -5.44,
+    "avgReturnPct": -5.45,
     "avgFwd20Pct": -2.91,
     "confirmRate": 77.3,
-    "identificationSuccessRate": 12.8,
+    "identificationSuccessRate": 12.9,
     "identCI95": [
      11.6,
      14.2
@@ -2759,29 +2759,29 @@
       "usable": true
      },
      "down": {
-      "n": 1302,
+      "n": 1300,
       "byStatus": {
-       "invalidated": 368,
+       "invalidated": 367,
        "failure": 489,
-       "timeout": 322,
+       "timeout": 321,
        "success": 104,
        "expired": 19
       },
-      "judged": 915,
+      "judged": 914,
       "successRate": 11.4,
       "successCI95": [
        9.5,
        13.6
       ],
-      "avgReturnPct": -7.22,
-      "avgFwd20Pct": -3.24,
+      "avgReturnPct": -7.25,
+      "avgFwd20Pct": -3.25,
       "confirmRate": 70.3,
       "identificationSuccessRate": 10.6,
       "identCI95": [
        8.8,
        12.7
       ],
-      "edgeVsBaselinePct": -1.76,
+      "edgeVsBaselinePct": -1.77,
       "usable": true
      }
     },
@@ -2815,21 +2815,21 @@
       "usable": true
      },
      "stressed": {
-      "n": 2339,
+      "n": 2337,
       "byStatus": {
-       "invalidated": 575,
+       "invalidated": 574,
        "failure": 936,
-       "timeout": 621,
+       "timeout": 620,
        "success": 181,
        "expired": 26
       },
-      "judged": 1738,
+      "judged": 1737,
       "successRate": 10.4,
       "successCI95": [
        9.1,
        11.9
       ],
-      "avgReturnPct": -7.71,
+      "avgReturnPct": -7.72,
       "avgFwd20Pct": -3.88,
       "confirmRate": 74.3,
       "identificationSuccessRate": 10.5,
@@ -2974,29 +2974,29 @@
       "usable": false
      },
      "down/stressed": {
-      "n": 1272,
+      "n": 1270,
       "byStatus": {
-       "invalidated": 360,
+       "invalidated": 359,
        "failure": 477,
-       "timeout": 314,
+       "timeout": 313,
        "success": 103,
        "expired": 18
       },
-      "judged": 894,
+      "judged": 893,
       "successRate": 11.5,
       "successCI95": [
        9.6,
        13.8
       ],
-      "avgReturnPct": -7.17,
-      "avgFwd20Pct": -3.21,
+      "avgReturnPct": -7.2,
+      "avgFwd20Pct": -3.22,
       "confirmRate": 70.3,
       "identificationSuccessRate": 10.8,
       "identCI95": [
-       8.9,
+       9.0,
        12.9
       ],
-      "edgeVsBaselinePct": -1.73,
+      "edgeVsBaselinePct": -1.74,
       "usable": true
      }
     }
@@ -3007,28 +3007,28 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 2200,
+    "n": 2198,
     "byStatus": {
-     "invalidated": 475,
+     "invalidated": 474,
      "timeout": 685,
      "expired": 96,
      "success": 513,
-     "failure": 422,
+     "failure": 421,
      "confirmed": 8,
      "open": 1
     },
-    "judged": 1620,
+    "judged": 1619,
     "successRate": 31.7,
     "successCI95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "avgReturnPct": 2.71,
+    "avgReturnPct": 2.72,
     "avgFwd20Pct": 2.55,
-    "confirmRate": 74.0,
+    "confirmRate": 74.1,
     "identificationSuccessRate": 34.1,
     "identCI95": [
-     31.7,
+     31.8,
      36.5
     ],
     "edgeVsBaselinePct": 1.46
@@ -3056,9 +3056,9 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 1726,
+      "n": 1725,
       "byStatus": {
-       "invalidated": 359,
+       "invalidated": 358,
        "timeout": 540,
        "expired": 70,
        "success": 425,
@@ -3074,7 +3074,7 @@
       ],
       "avgReturnPct": 2.95,
       "avgFwd20Pct": 2.75,
-      "confirmRate": 75.1,
+      "confirmRate": 75.2,
       "identificationSuccessRate": 36.1,
       "identCI95": [
        33.4,
@@ -3110,37 +3110,37 @@
       "usable": true
      },
      "down": {
-      "n": 252,
+      "n": 251,
       "byStatus": {
-       "failure": 63,
+       "failure": 62,
        "timeout": 59,
        "success": 49,
        "invalidated": 71,
        "expired": 10
       },
-      "judged": 171,
-      "successRate": 28.7,
+      "judged": 170,
+      "successRate": 28.8,
       "successCI95": [
-       22.4,
-       35.8
+       22.5,
+       36.0
       ],
-      "avgReturnPct": 1.05,
-      "avgFwd20Pct": 1.55,
-      "confirmRate": 67.9,
-      "identificationSuccessRate": 25.4,
+      "avgReturnPct": 1.14,
+      "avgFwd20Pct": 1.56,
+      "confirmRate": 67.7,
+      "identificationSuccessRate": 25.5,
       "identCI95": [
-       19.8,
-       32.0
+       19.9,
+       32.1
       ],
-      "edgeVsBaselinePct": 0.07,
+      "edgeVsBaselinePct": 0.08,
       "usable": true
      }
     },
     "vol": {
      "calm": {
-      "n": 1606,
+      "n": 1605,
       "byStatus": {
-       "invalidated": 347,
+       "invalidated": 346,
        "timeout": 485,
        "expired": 80,
        "success": 376,
@@ -3160,43 +3160,43 @@
       "identificationSuccessRate": 33.8,
       "identCI95": [
        31.1,
-       36.6
+       36.7
       ],
       "edgeVsBaselinePct": 0.8,
       "usable": true
      },
      "stressed": {
-      "n": 594,
+      "n": 593,
       "byStatus": {
        "success": 137,
-       "failure": 113,
+       "failure": 112,
        "timeout": 200,
        "invalidated": 128,
        "expired": 16
       },
-      "judged": 450,
-      "successRate": 30.4,
+      "judged": 449,
+      "successRate": 30.5,
       "successCI95": [
        26.4,
-       34.8
+       34.9
       ],
-      "avgReturnPct": 3.45,
-      "avgFwd20Pct": 4.29,
-      "confirmRate": 75.8,
-      "identificationSuccessRate": 34.8,
+      "avgReturnPct": 3.49,
+      "avgFwd20Pct": 4.3,
+      "confirmRate": 75.7,
+      "identificationSuccessRate": 34.9,
       "identCI95": [
-       30.2,
-       39.6
+       30.3,
+       39.7
       ],
-      "edgeVsBaselinePct": 3.2,
+      "edgeVsBaselinePct": 3.21,
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 1465,
+      "n": 1464,
       "byStatus": {
-       "invalidated": 314,
+       "invalidated": 313,
        "timeout": 442,
        "expired": 66,
        "success": 349,
@@ -3212,8 +3212,8 @@
       ],
       "avgReturnPct": 2.43,
       "avgFwd20Pct": 1.89,
-      "confirmRate": 74.0,
-      "identificationSuccessRate": 34.4,
+      "confirmRate": 74.1,
+      "identificationSuccessRate": 34.5,
       "identCI95": [
        31.6,
        37.4
@@ -3326,29 +3326,29 @@
       "usable": false
      },
      "down/stressed": {
-      "n": 219,
+      "n": 218,
       "byStatus": {
-       "failure": 53,
+       "failure": 52,
        "success": 41,
        "invalidated": 62,
        "timeout": 54,
        "expired": 9
       },
-      "judged": 148,
-      "successRate": 27.7,
+      "judged": 147,
+      "successRate": 27.9,
       "successCI95": [
-       21.1,
-       35.4
+       21.3,
+       35.6
       ],
-      "avgReturnPct": 1.1,
-      "avgFwd20Pct": 1.59,
-      "confirmRate": 67.6,
-      "identificationSuccessRate": 24.8,
+      "avgReturnPct": 1.21,
+      "avgFwd20Pct": 1.6,
+      "confirmRate": 67.4,
+      "identificationSuccessRate": 25.0,
       "identCI95": [
-       18.9,
-       32.0
+       19.0,
+       32.1
       ],
-      "edgeVsBaselinePct": 0.11,
+      "edgeVsBaselinePct": 0.12,
       "usable": true
      }
     }
@@ -3359,31 +3359,31 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 2191,
+    "n": 2188,
     "byStatus": {
      "failure": 687,
-     "invalidated": 434,
-     "timeout": 557,
+     "invalidated": 433,
+     "timeout": 556,
      "expired": 83,
-     "success": 409,
+     "success": 408,
      "confirmed": 20,
      "open": 1
     },
-    "judged": 1653,
+    "judged": 1651,
     "successRate": 24.7,
     "successCI95": [
      22.7,
      26.9
     ],
-    "avgReturnPct": -2.15,
-    "avgFwd20Pct": -1.19,
+    "avgReturnPct": -2.16,
+    "avgFwd20Pct": -1.2,
     "confirmRate": 76.4,
-    "identificationSuccessRate": 25.4,
+    "identificationSuccessRate": 25.3,
     "identCI95": [
      23.3,
      27.5
     ],
-    "edgeVsBaselinePct": -0.1
+    "edgeVsBaselinePct": -0.11
    },
    "live": {
     "n": 2,
@@ -3408,10 +3408,10 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 1396,
+      "n": 1395,
       "byStatus": {
        "failure": 399,
-       "invalidated": 301,
+       "invalidated": 300,
        "timeout": 358,
        "expired": 67,
        "success": 250,
@@ -3426,39 +3426,39 @@
       ],
       "avgReturnPct": -1.61,
       "avgFwd20Pct": -0.7,
-      "confirmRate": 73.6,
+      "confirmRate": 73.7,
       "identificationSuccessRate": 24.6,
       "identCI95": [
-       22.0,
+       22.1,
        27.3
       ],
       "edgeVsBaselinePct": 0.29,
       "usable": true
      },
      "mixed": {
-      "n": 353,
+      "n": 351,
       "byStatus": {
        "invalidated": 54,
        "failure": 136,
-       "timeout": 88,
-       "success": 66,
+       "timeout": 87,
+       "success": 65,
        "expired": 9
       },
-      "judged": 290,
-      "successRate": 22.8,
+      "judged": 288,
+      "successRate": 22.6,
       "successCI95": [
-       18.3,
-       27.9
+       18.1,
+       27.7
       ],
-      "avgReturnPct": -3.57,
-      "avgFwd20Pct": -3.61,
-      "confirmRate": 82.2,
-      "identificationSuccessRate": 24.9,
+      "avgReturnPct": -3.65,
+      "avgFwd20Pct": -3.72,
+      "confirmRate": 82.1,
+      "identificationSuccessRate": 24.6,
       "identCI95": [
-       20.1,
-       30.4
+       19.8,
+       30.2
       ],
-      "edgeVsBaselinePct": -2.68,
+      "edgeVsBaselinePct": -2.79,
       "usable": true
      },
      "down": {
@@ -3518,30 +3518,30 @@
       "usable": true
      },
      "stressed": {
-      "n": 1039,
+      "n": 1036,
       "byStatus": {
-       "timeout": 256,
-       "invalidated": 197,
+       "timeout": 255,
+       "invalidated": 196,
        "failure": 358,
        "expired": 22,
-       "success": 204,
+       "success": 203,
        "confirmed": 2
       },
-      "judged": 818,
+      "judged": 816,
       "successRate": 24.9,
       "successCI95": [
-       22.1,
+       22.0,
        28.0
       ],
-      "avgReturnPct": -2.91,
-      "avgFwd20Pct": -1.74,
-      "confirmRate": 78.9,
+      "avgReturnPct": -2.94,
+      "avgFwd20Pct": -1.78,
+      "confirmRate": 79.0,
       "identificationSuccessRate": 26.1,
       "identCI95": [
-       23.2,
+       23.1,
        29.3
       ],
-      "edgeVsBaselinePct": -0.65,
+      "edgeVsBaselinePct": -0.69,
       "usable": true
      }
     },
@@ -3575,10 +3575,10 @@
       "usable": true
      },
      "up/stressed": {
-      "n": 321,
+      "n": 320,
       "byStatus": {
        "timeout": 78,
-       "invalidated": 81,
+       "invalidated": 80,
        "expired": 10,
        "success": 55,
        "failure": 95,
@@ -3592,11 +3592,11 @@
       ],
       "avgReturnPct": -2.65,
       "avgFwd20Pct": -0.93,
-      "confirmRate": 71.7,
-      "identificationSuccessRate": 22.8,
+      "confirmRate": 71.9,
+      "identificationSuccessRate": 22.9,
       "identCI95": [
-       18.0,
-       28.5
+       18.1,
+       28.6
       ],
       "edgeVsBaselinePct": 0.06,
       "usable": true
@@ -3628,29 +3628,29 @@
       "usable": false
      },
      "mixed/stressed": {
-      "n": 309,
+      "n": 307,
       "byStatus": {
        "invalidated": 44,
        "failure": 122,
-       "success": 62,
-       "timeout": 75,
+       "success": 61,
+       "timeout": 74,
        "expired": 6
       },
-      "judged": 259,
-      "successRate": 23.9,
+      "judged": 257,
+      "successRate": 23.7,
       "successCI95": [
-       19.1,
-       29.5
+       18.9,
+       29.3
       ],
-      "avgReturnPct": -3.43,
-      "avgFwd20Pct": -3.85,
-      "confirmRate": 83.8,
-      "identificationSuccessRate": 26.5,
+      "avgReturnPct": -3.52,
+      "avgFwd20Pct": -3.97,
+      "confirmRate": 83.7,
+      "identificationSuccessRate": 26.2,
       "identCI95": [
-       21.3,
-       32.5
+       21.0,
+       32.2
       ],
-      "edgeVsBaselinePct": -2.92,
+      "edgeVsBaselinePct": -3.04,
       "usable": true
      },
      "down/calm": {
@@ -3713,28 +3713,28 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 4487,
+    "n": 4477,
     "byStatus": {
-     "timeout": 1328,
-     "failure": 1916,
-     "success": 1220,
-     "confirmed": 23
+     "timeout": 1327,
+     "failure": 1912,
+     "success": 1216,
+     "confirmed": 22
     },
-    "judged": 4464,
+    "judged": 4455,
     "successRate": 27.3,
     "successCI95": [
      26.0,
-     28.7
+     28.6
     ],
     "avgReturnPct": 2.67,
-    "avgFwd20Pct": 2.36,
+    "avgFwd20Pct": 2.35,
     "confirmRate": 100.0,
     "identificationSuccessRate": 38.9,
     "identCI95": [
      37.2,
      40.6
     ],
-    "edgeVsBaselinePct": 1.27
+    "edgeVsBaselinePct": 1.26
    },
    "live": {
     "n": 2,
@@ -3759,14 +3759,14 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 3895,
+      "n": 3886,
       "byStatus": {
-       "timeout": 1164,
-       "failure": 1640,
-       "success": 1068,
-       "confirmed": 23
+       "timeout": 1163,
+       "failure": 1636,
+       "success": 1065,
+       "confirmed": 22
       },
-      "judged": 3872,
+      "judged": 3864,
       "successRate": 27.6,
       "successCI95": [
        26.2,
@@ -3784,27 +3784,27 @@
       "usable": true
      },
      "mixed": {
-      "n": 326,
+      "n": 325,
       "byStatus": {
        "timeout": 87,
        "failure": 137,
-       "success": 102
+       "success": 101
       },
-      "judged": 326,
-      "successRate": 31.3,
+      "judged": 325,
+      "successRate": 31.1,
       "successCI95": [
-       26.5,
-       36.5
+       26.3,
+       36.3
       ],
-      "avgReturnPct": 3.45,
-      "avgFwd20Pct": 3.2,
+      "avgReturnPct": 3.42,
+      "avgFwd20Pct": 3.19,
       "confirmRate": 100.0,
-      "identificationSuccessRate": 42.7,
+      "identificationSuccessRate": 42.4,
       "identCI95": [
-       36.6,
-       49.0
+       36.3,
+       48.8
       ],
-      "edgeVsBaselinePct": 2.27,
+      "edgeVsBaselinePct": 2.26,
       "usable": true
      },
      "down": {
@@ -3834,103 +3834,103 @@
     },
     "vol": {
      "calm": {
-      "n": 3352,
+      "n": 3344,
       "byStatus": {
-       "timeout": 1042,
-       "failure": 1428,
-       "success": 859,
-       "confirmed": 23
+       "timeout": 1041,
+       "failure": 1424,
+       "success": 857,
+       "confirmed": 22
       },
-      "judged": 3329,
+      "judged": 3322,
       "successRate": 25.8,
       "successCI95": [
        24.3,
        27.3
       ],
-      "avgReturnPct": 2.41,
-      "avgFwd20Pct": 2.03,
+      "avgReturnPct": 2.42,
+      "avgFwd20Pct": 2.04,
       "confirmRate": 100.0,
       "identificationSuccessRate": 37.6,
       "identCI95": [
        35.6,
        39.6
       ],
-      "edgeVsBaselinePct": 0.94,
+      "edgeVsBaselinePct": 0.95,
       "usable": true
      },
      "stressed": {
-      "n": 1135,
+      "n": 1133,
       "byStatus": {
        "timeout": 286,
-       "success": 361,
+       "success": 359,
        "failure": 488
       },
-      "judged": 1135,
-      "successRate": 31.8,
+      "judged": 1133,
+      "successRate": 31.7,
       "successCI95": [
-       29.2,
-       34.6
+       29.0,
+       34.5
       ],
-      "avgReturnPct": 3.45,
-      "avgFwd20Pct": 3.31,
+      "avgReturnPct": 3.42,
+      "avgFwd20Pct": 3.29,
       "confirmRate": 100.0,
-      "identificationSuccessRate": 42.5,
+      "identificationSuccessRate": 42.4,
       "identCI95": [
-       39.2,
-       45.9
+       39.1,
+       45.7
       ],
-      "edgeVsBaselinePct": 2.22,
+      "edgeVsBaselinePct": 2.2,
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 3152,
+      "n": 3144,
       "byStatus": {
-       "timeout": 972,
-       "failure": 1344,
-       "success": 813,
-       "confirmed": 23
+       "timeout": 971,
+       "failure": 1340,
+       "success": 811,
+       "confirmed": 22
       },
-      "judged": 3129,
+      "judged": 3122,
       "successRate": 26.0,
       "successCI95": [
        24.5,
        27.5
       ],
-      "avgReturnPct": 2.45,
-      "avgFwd20Pct": 2.11,
+      "avgReturnPct": 2.46,
+      "avgFwd20Pct": 2.12,
       "confirmRate": 100.0,
       "identificationSuccessRate": 37.7,
       "identCI95": [
        35.7,
        39.8
       ],
-      "edgeVsBaselinePct": 1.12,
+      "edgeVsBaselinePct": 1.13,
       "usable": true
      },
      "up/stressed": {
-      "n": 743,
+      "n": 742,
       "byStatus": {
        "timeout": 192,
-       "success": 255,
+       "success": 254,
        "failure": 296
       },
-      "judged": 743,
-      "successRate": 34.3,
+      "judged": 742,
+      "successRate": 34.2,
       "successCI95": [
-       31.0,
-       37.8
+       30.9,
+       37.7
       ],
-      "avgReturnPct": 4.31,
-      "avgFwd20Pct": 4.27,
+      "avgReturnPct": 4.28,
+      "avgFwd20Pct": 4.25,
       "confirmRate": 100.0,
-      "identificationSuccessRate": 46.3,
+      "identificationSuccessRate": 46.2,
       "identCI95": [
-       42.2,
-       50.5
+       42.1,
+       50.4
       ],
-      "edgeVsBaselinePct": 3.28,
+      "edgeVsBaselinePct": 3.26,
       "usable": true
      },
      "mixed/calm": {
@@ -3958,25 +3958,25 @@
       "usable": true
      },
      "mixed/stressed": {
-      "n": 171,
+      "n": 170,
       "byStatus": {
        "failure": 77,
-       "success": 65,
+       "success": 64,
        "timeout": 29
       },
-      "judged": 171,
-      "successRate": 38.0,
+      "judged": 170,
+      "successRate": 37.6,
       "successCI95": [
-       31.1,
-       45.5
+       30.7,
+       45.1
       ],
-      "avgReturnPct": 4.3,
+      "avgReturnPct": 4.26,
       "avgFwd20Pct": 4.98,
       "confirmRate": 100.0,
-      "identificationSuccessRate": 45.8,
+      "identificationSuccessRate": 45.4,
       "identCI95": [
-       37.8,
-       54.0
+       37.4,
+       53.6
       ],
       "edgeVsBaselinePct": 4.05,
       "usable": true

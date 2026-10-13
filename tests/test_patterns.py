@@ -1,6 +1,4 @@
-"""Synthetic tests for pipeline/patterns_engine.py - run: python tests/test_patterns.py"""
-import sys, random, math
-import os
+import sys, os, random, math
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'pipeline'))
 import patterns_engine as pe
 
@@ -146,4 +144,42 @@ check('cup & handle: no lookahead (found at ident bar, not one bar earlier)',
 c = path(bo, noise=0.001, seed=17); v = vol_series(len(c), segs=((i_bo, i_bo+1, 3.0),))
 check('52w breakout: no lookahead (needs only bars up to the breakout close)',
       any(x['identIdx'] == i_bo for x in pe.detect_patterns(c[:i_bo+1], templates=('breakout_52w',), v=v[:i_bo+1])))
+
+# ---------------- patterns-v3 (z103) ----------------
+# Flat base: 300-bar uptrend (so the 200-day rises), +30% run into the base, a
+# 45-bar sideways base ~9% deep (high set early), close near the top; then a volume breakout.
+FB = [(0, 60), (230, 100), (40, 130), (20, 118), (20, 126), (5, 127)]
+c = path(FB, noise=0.002, seed=21)
+i_id = len(c) - 1
+fb = [x for x in pe.detect_patterns(c, templates=('flat_base',)) if x['identIdx'] >= i_id - 30]
+check(f'flat base identified at the pivot ({len(fb)})', len(fb) >= 1)
+c2 = c + path([(0, c[-1]), (8, 150)], noise=0.001, seed=22)[1:]
+pre = [x for x in pe.detect_patterns(c2, templates=('flat_base',)) if x['identIdx'] >= i_id - 30 and x.get('confirmIdx') is not None]
+cj = pre[0]['confirmIdx'] if pre else len(c) + 1
+v2 = vol_series(len(c2), segs=((cj, cj + 1, 2.5),))          # 2.5x volume on the breakout bar
+fb2 = [x for x in pe.detect_patterns(c2, templates=('flat_base',), v=v2) if x['identIdx'] >= i_id - 30]
+f0 = fb2[0] if fb2 else {}
+check(f"  breaks out above the base high -> confirmed/success (status={f0.get('status')})", f0.get('status') in ('confirmed', 'success'))
+check(f"  breakout volume recorded (ratio={f0.get('breakoutVolRatio')}, volConfirmed={f0.get('volConfirmed')})", f0.get('volConfirmed') is True)
+check('  no lookahead: identification needs only bars up to it', any(x['identIdx'] == f0.get('identIdx') for x in pe.detect_patterns(c2[:f0.get('identIdx', 0) + 1], templates=('flat_base',))))
+deep = path([(0, 60), (230, 100), (40, 130), (20, 100), (25, 127)], noise=0.002, seed=23)
+check('  a 23%-deep base is NOT a flat base', not [x for x in pe.detect_patterns(deep, templates=('flat_base',)) if x['identIdx'] >= len(deep) - 30])
+
+# High tight flag: +100% in ~30 bars, then a 15-bar flag holding ~12% below the high.
+HT = [(0, 20), (120, 22), (30, 44), (8, 39), (7, 42)]
+c = path(HT, noise=0.002, seed=31)
+ht = [x for x in pe.detect_patterns(c, templates=('high_tight_flag',)) if x['identIdx'] >= len(c) - 10]
+check(f'high tight flag identified ({len(ht)})', len(ht) >= 1)
+h0 = ht[0] if ht else {}
+check(f"  target = pole high + half the pole (target={h0.get('target')})", h0.get('target') is None or abs(h0['target'] - (h0['neckline'][0][1] + h0['height'])) < 1e-6)
+slow = path([(0, 20), (120, 22), (90, 44), (8, 39), (7, 42)], noise=0.002, seed=32)
+check('  a +100% move over 90 bars is NOT a high tight flag', not [x for x in pe.detect_patterns(slow, templates=('high_tight_flag',)) if x['identIdx'] >= len(slow) - 10])
+
+# Volume on every confirmed pattern
+c = path(HS + [(30, 112), (40, 80)])
+v = vol_series(len(c))
+hs = [x for x in pe.detect_patterns(c, templates=('hs_top',), v=v) if x.get('confirmIdx') is not None]
+check(f"every confirmed pattern carries breakoutVolRatio (H&S: {hs[-1].get('breakoutVolRatio') if hs else None})", hs and all('breakoutVolRatio' in x for x in hs))
+cand = pe.latest_candidate(path(FB, seed=21), None, 'flat_base')
+check(f"latest_candidate gives a flat-base checklist ({cand and cand['passes']}/{cand and cand['of']})", cand and cand['of'] == 7)
 print(f'\n{ok} passed, {fail} failed')

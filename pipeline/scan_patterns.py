@@ -222,7 +222,8 @@ def dated(det, d):
     en entry · tg target · sp stop · rt returnPct (direction-adjusted, at exit) ·
     f20 20-bar forward % after the signal · mfe/mae best/worst excursion % ·
     pv pivots [[date, price, H|L]] · nk neckline [[date, price], [date, price]] ·
-    sc/of Minervini score · ex Minervini 63-day excess vs SPY %."""
+    sc/of Minervini score · ex Minervini 63-day excess vs SPY % ·
+    vr breakout-bar volume / 50-bar average (z103)."""
     di = lambda i: d[i] if i is not None and 0 <= i < len(d) else None
     out = {"tp": det["template"], "id": di(det.get("identIdx")), "st": det.get("status")}
     for src, dst in (("confirmIdx", "cd"), ("exitIdx", "xd")):
@@ -230,7 +231,8 @@ def dated(det, d):
             out[dst] = di(det[src])
     for src, dst, nd in (("entry", "en", 6), ("target", "tg", 6), ("stop", "sp", 6), ("returnPct", "rt", 2),
                          ("fwd20Pct", "f20", 2), ("mfePct", "mfe", 2), ("maePct", "mae", 2),
-                         ("excessPct", "ex", 2), ("score", "sc", 0), ("of", "of", 0)):
+                         ("excessPct", "ex", 2), ("score", "sc", 0), ("of", "of", 0),
+                         ("breakoutVolRatio", "vr", 2)):          # z103: breakout volume / 50-bar avg
         v = det.get(src)
         if v is not None:
             out[dst] = _r(v, nd) if nd else v
@@ -312,7 +314,8 @@ def main():
             if n_since <= SIGNAL_WINDOW or conf_since <= SIGNAL_WINDOW:
                 signals.append(dict(ticker=t, template=r["tp"], direction=x["direction"],
                                     identDate=r["id"], confirmDate=r.get("cd"), status=r["st"],
-                                    entry=r.get("en"), target=r.get("tg"), stop=r.get("sp")))
+                                    entry=r.get("en"), target=r.get("tg"), stop=r.get("sp"),
+                                    volConfirmed=x.get("volConfirmed"), volRatio=x.get("breakoutVolRatio")))
         # --- today's manual-review state ---
         # Compact: rule NAMES live once in current.json["ruleNames"]; per ticker
         # only pass-bits ("1101...") and the measured values travel.
@@ -367,10 +370,19 @@ def main():
                 sm = pe.summarize(sub, bl)
                 sm["usable"] = sm["judged"] >= MIN_REGIME_N
                 by_regime["vol"][vo] = sm
+        # z103: does breakout volume matter? confirmed patterns split by the
+        # confirmation bar's volume vs its 50-bar average (>= pe.VOL_CONFIRM).
+        by_volume = {}
+        for label, want in (("confirmed", True), ("unconfirmed", False)):
+            sub = [x for x in bt if x.get("volConfirmed") is want]
+            if sub:
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_volume[label] = sm
         stats[k] = {**pe.TEMPLATES[k],
                     "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
                     "live": pe.summarize(b["live"], bl) if b["live"] else {"n": 0},
-                    "byRegime": by_regime}
+                    "byRegime": by_regime, "byVolume": by_volume, "volConfirmAt": pe.VOL_CONFIRM}
     # attach each template's record to its active signals
     for s in signals:
         bt = stats[s["template"]]["backtest"]

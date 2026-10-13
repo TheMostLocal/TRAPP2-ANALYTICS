@@ -55,7 +55,7 @@ Pattern lifecycle (hs_*, double_*)
 """
 import math
 
-ENGINE_VERSION = "patterns-v2"
+ENGINE_VERSION = "patterns-v3"
 CONFIRM_BARS = 40
 OUTCOME_BARS = 60
 MINERVINI_FWD = 63
@@ -74,9 +74,17 @@ TEMPLATES = {
     "asc_triangle":  {"label": "Ascending Triangle", "direction": "bullish", "kind": "pattern"},
     "desc_triangle": {"label": "Descending Triangle", "direction": "bearish", "kind": "pattern"},
     "breakout_52w":  {"label": "52-Week Breakout (volume)", "direction": "bullish", "kind": "pattern"},
+    # z103 (patterns-v3)
+    "flat_base":     {"label": "Flat Base", "direction": "bullish", "kind": "pattern"},
+    "high_tight_flag": {"label": "High Tight Flag", "direction": "bullish", "kind": "pattern"},
 }
+# Breakout volume: confirmation bar volume / 50-bar average. >= VOL_CONFIRM counts
+# as a volume-confirmed breakout (O'Neil's +40%). Recorded on EVERY confirmed
+# pattern and split in the stats, so the record shows whether volume matters.
+VOL_CONFIRM = 1.4
 PATTERN_KEYS = ("hs_top", "hs_bottom", "double_top", "double_bottom", "vcp", "cup_handle",
-                "bull_flag", "bear_flag", "asc_triangle", "desc_triangle", "breakout_52w")
+                "bull_flag", "bear_flag", "asc_triangle", "desc_triangle", "breakout_52w",
+                "flat_base", "high_tight_flag")
 
 
 # ------------------------------------------------------------- indicators ----
@@ -413,6 +421,202 @@ def _ctx(c, v=None):
     return {"v": v, "s50": sma_series(c, 50), "s200": sma_series(c, 200)}
 
 
+def vol_ratio(v, j, n=50):
+    """Volume on bar j / mean of the n bars before it (None without volume)."""
+    if not v or j is None or j < n or j >= len(v):
+        return None
+    base = [x for x in v[j - n:j] if x]
+    if len(base) < n // 2 or not v[j]:
+        return None
+    m = sum(base) / len(base)
+    return round(v[j] / m, 2) if m > 0 else None
+
+
+def _with_volume(det, v):
+    r = vol_ratio(v, det.get("confirmIdx"))
+    if r is not None:
+        det["breakoutVolRatio"] = r
+        det["volConfirmed"] = r >= VOL_CONFIRM
+    return det
+
+
+def _roll_max_min(c, L):
+    """Rolling max / min of the L bars ending at each index (None before L-1). O(n)."""
+    from collections import deque
+    n = len(c)
+    mx, mn = [None] * n, [None] * n
+    dq_mx, dq_mn = deque(), deque()
+    for i, x in enumerate(c):
+        while dq_mx and c[dq_mx[-1]] <= x:
+            dq_mx.pop()
+        dq_mx.append(i)
+        while dq_mn and c[dq_mn[-1]] >= x:
+            dq_mn.pop()
+        dq_mn.append(i)
+        if dq_mx[0] <= i - L:
+            dq_mx.popleft()
+        if dq_mn[0] <= i - L:
+            dq_mn.popleft()
+        if i >= L - 1:
+            mx[i], mn[i] = dq_mx[0], dq_mn[0]          # indices
+    return mx, mn
+
+
+FLAT_LENS = (65, 55, 45, 35, 25)       # longest valid base wins
+
+
+def _flat_eval(c, i, L, roll, pre_lo, s200):
+    """Flat-base checklist for the L-bar base ending on bar i (bars <= i only)."""
+    imx, imn = roll[0][i], roll[1][i]
+    if imx is None:
+        return None
+    hi, lo = c[imx], c[imn]
+    start = i - L + 1
+    pl = pre_lo[start - 1] if start - 1 >= 0 else None
+    if pl is None:
+        return None
+    depth = (hi - lo) / hi if hi else 9
+    advance = c[start] / c[pl] - 1
+    up200 = s200[i] is not None and i >= 20 and s200[i - 20] is not None and c[i] > s200[i] > s200[i - 20]
+    crit = [
+        _crit("Base 25-65 bars", True, L, "25-65"),
+        _crit("Depth 5-15% (a real, shallow consolidation)", 0.05 <= depth <= 0.15, round(depth, 3), "0.05-0.15"),
+        _crit("Base high set in the first half (sideways since)", imx - start <= L // 2, imx - start, f"<= {L // 2}"),
+        _crit("Not broken out yet (close below the base high)", c[i] < hi, round(c[i] / hi, 3), "< 1.00"),
+        _crit("Advance >= 20% into the base", advance >= 0.20, round(advance, 3), ">= 0.20"),
+        _crit("Close within 5% of the base high", c[i] >= 0.95 * hi, round(c[i] / hi, 3), ">= 0.95"),
+        _crit("Above a rising 200-day", up200),
+    ]
+    piv = [{"i": start, "price": c[start], "type": "B"}, {"i": imn, "price": lo, "type": "L"},
+           {"i": imx, "price": hi, "type": "H"}, {"i": i, "price": c[i], "type": "P"}]
+    return crit, {"hi": hi, "lo": lo, "start": start, "pivots": piv}
+
+
+def detect_flat_bases(c, v=None, ctx=None):
+    """O'Neil flat base, identified on bar i using bars <= i only:
+      * a sideways base of 25-65 bars (5-13 weeks), 5-15% deep, whose high was set
+        in its first half (price has gone sideways since) and hasn't broken out yet
+      * an advance of >= 20% INTO the base (base start vs the low of the 60 bars before)
+      * close within 5% of the base high (at the pivot), above a rising 200-day
+    Neckline = the base high (flat); stop/extreme = the base low;
+    measured move = the base depth. One identification per base (>= 20 bars apart)."""
+    ctx = ctx or _ctx(c, v)
+    rolls = {L: _roll_max_min(c, L) for L in FLAT_LENS}
+    pre_lo = _roll_max_min(c, 60)[1]
+    found, last = [], -10**9
+    for i in range(260, len(c)):
+        if i - last < 20:
+            continue
+        for L in FLAT_LENS:
+            imx, imn = rolls[L][0][i], rolls[L][1][i]
+            if imx is None:
+                continue
+            hi, lo = c[imx], c[imn]
+            # cheap numeric prefilter before building the checklist
+            if hi <= 0 or not (0.05 <= (hi - lo) / hi <= 0.15) or c[i] < 0.95 * hi or c[i] >= hi or imx - (i - L + 1) > L // 2:
+                continue
+            ev = _flat_eval(c, i, L, rolls[L], pre_lo, ctx["s200"])
+            if not ev or not all(x["pass"] for x in ev[0]):
+                continue
+            crit, g = ev
+            res = _resolve(c, i, 1, (lambda x, hi=g["hi"]: hi), g["lo"], g["hi"] - g["lo"])
+            det = {"template": "flat_base", "identIdx": i, "direction": "bullish", "pivots": g["pivots"],
+                   "neckline": [[g["start"], g["hi"]], [i, g["hi"]]], "height": round(g["hi"] - g["lo"], 6),
+                   "criteria": crit, **res}
+            found.append(_with_volume(det, v))
+            # one call per base: wait until this one has resolved (breakout,
+            # invalidation or expiry) before looking for the next
+            last = max(i, det.get("confirmIdx") or det.get("exitIdx") or (i + CONFIRM_BARS)) + 1 - 20
+            break
+    return found
+
+
+HTF_FLAGS = (10, 15, 20, 25)
+
+
+def _htf_eval(c, i, F):
+    """High-tight-flag checklist for an F-bar flag ending on bar i (bars <= i only)."""
+    s = i - F
+    if s - 40 < 0:
+        return None
+    hi_i = max(range(s - 5, s + 1), key=lambda k: c[k])
+    hi = c[hi_i]
+    if hi_i <= s - 40:
+        return None
+    lo_i = min(range(s - 40, hi_i), key=lambda k: c[k])
+    lo = c[lo_i]
+    flag = c[s:i + 1]
+    gain = hi / lo - 1 if lo else 0
+    fl_lo = min(flag)
+    crit = [
+        _crit("Pole >= +90% in <= 40 bars", gain >= 0.90, round(gain, 3), ">= 0.90"),
+        _crit("Flag 10-25 bars", True, F, "10-25"),
+        _crit("Flag holds within 25% of the high", fl_lo >= 0.75 * hi, round(fl_lo / hi, 3), ">= 0.75"),
+        _crit("No new high in the flag (<= +2%)", max(flag) <= 1.02 * hi, round(max(flag) / hi, 3), "<= 1.02"),
+        _crit("Close within 15% of the high", c[i] >= 0.85 * hi, round(c[i] / hi, 3), ">= 0.85"),
+    ]
+    piv = [{"i": lo_i, "price": lo, "type": "L"}, {"i": hi_i, "price": hi, "type": "H"}, {"i": i, "price": c[i], "type": "P"}]
+    return crit, {"hi": hi, "lo": lo, "hi_i": hi_i, "fl_lo": fl_lo, "pivots": piv}
+
+
+def detect_high_tight_flags(c, v=None, ctx=None):
+    """High tight flag (O'Neil), identified on bar i using bars <= i only:
+      * pole: price up >= 90% within the 40 bars before the flag starts
+      * flag: 10-25 bars that hold within 25% of the pole high, no new high
+        (<= 2% above it) and close back within 15% of the high
+    Neckline = the pole high; stop = the flag low; measured move = HALF the
+    pole (a full-pole target on a +90% move isn't a realistic test)."""
+    found, last = [], -10**9
+    for i in range(60, len(c)):
+        if i - last < 20:
+            continue
+        for F in HTF_FLAGS:
+            ev = _htf_eval(c, i, F)
+            if not ev or not all(x["pass"] for x in ev[0]):
+                continue
+            crit, g = ev
+            res = _resolve(c, i, 1, (lambda x, hi=g["hi"]: hi), g["fl_lo"], 0.5 * (g["hi"] - g["lo"]))
+            det = {"template": "high_tight_flag", "identIdx": i, "direction": "bullish", "pivots": g["pivots"],
+                   "neckline": [[g["hi_i"], g["hi"]], [i, g["hi"]]], "height": round(0.5 * (g["hi"] - g["lo"]), 6),
+                   "criteria": crit, **res}
+            found.append(_with_volume(det, v))
+            # one call per base: wait until this one has resolved (breakout,
+            # invalidation or expiry) before looking for the next
+            last = max(i, det.get("confirmIdx") or det.get("exitIdx") or (i + CONFIRM_BARS)) + 1 - 20
+            break
+    return found
+
+
+def _rolling_candidate(c, key, ctx):
+    """Checklist for the newest bar (manual review), best-scoring window."""
+    i = len(c) - 1
+    best = None
+    if key == "flat_base":
+        if len(c) < 130:
+            return None
+        pre_lo = _roll_max_min(c, 60)[1]
+        for L in FLAT_LENS:
+            ev = _flat_eval(c, i, L, _roll_max_min(c, L), pre_lo, ctx["s200"])
+            if ev:
+                crit, g = ev
+                cand = {"template": key, "pivots": g["pivots"], "neckline": [[g["start"], g["hi"]], [i, g["hi"]]],
+                        "criteria": crit, "passes": sum(x["pass"] for x in crit), "of": len(crit),
+                        "valid": all(x["pass"] for x in crit), "identIdx": i}
+                if best is None or cand["passes"] > best["passes"]:
+                    best = cand
+    else:
+        for F in HTF_FLAGS:
+            ev = _htf_eval(c, i, F)
+            if ev:
+                crit, g = ev
+                cand = {"template": key, "pivots": g["pivots"], "neckline": [[g["hi_i"], g["hi"]], [i, g["hi"]]],
+                        "criteria": crit, "passes": sum(x["pass"] for x in crit), "of": len(crit),
+                        "valid": all(x["pass"] for x in crit), "identIdx": i}
+                if best is None or cand["passes"] > best["passes"]:
+                    best = cand
+    return best
+
+
 def detect_patterns(c, pivots=None, templates=PATTERN_KEYS, v=None, ctx=None):
     """All historical + current identifications. Each is knowable on its
     `identIdx` bar; resolution uses only later bars."""
@@ -422,7 +626,13 @@ def detect_patterns(c, pivots=None, templates=PATTERN_KEYS, v=None, ctx=None):
     types = "".join(p["type"] for p in pivots)
     for key in templates:
         if key == "breakout_52w":
-            found += detect_breakouts(c, v, ctx)
+            found += [_with_volume(d, v) for d in detect_breakouts(c, v, ctx)]
+            continue
+        if key == "flat_base":
+            found += detect_flat_bases(c, v, ctx)
+            continue
+        if key == "high_tight_flag":
+            found += detect_high_tight_flags(c, v, ctx)
             continue
         shapes, fn, bearish = SPECS[key]
         taken = set()
@@ -446,9 +656,9 @@ def detect_patterns(c, pivots=None, templates=PATTERN_KEYS, v=None, ctx=None):
                 if extreme is None:
                     extreme = (max if bearish else min)(p["price"] for p in win)
                 res = _resolve(c, ident, direction, neck, extreme, geo["height"])
-                found.append({"template": key, "identIdx": ident, "direction": "bearish" if bearish else "bullish",
+                found.append(_with_volume({"template": key, "identIdx": ident, "direction": "bearish" if bearish else "bullish",
                               "pivots": [{"i": p["i"], "price": p["price"], "type": p["type"]} for p in win],
-                              "neckline": geo["neckline"], "height": geo["height"], "criteria": crit, **res})
+                              "neckline": geo["neckline"], "height": geo["height"], "criteria": crit, **res}, v))
     found.sort(key=lambda d: d["identIdx"])
     return found
 
@@ -546,6 +756,8 @@ def latest_candidate(c, pivots, key, v=None, ctx=None):
         return {"template": key, "pivots": [{"i": prior_i, "price": c[prior_i], "type": "H"}, {"i": i, "price": c[i], "type": "B"}],
                 "neckline": [[prior_i, hi], [i, hi]], "criteria": crit, "passes": sum(x["pass"] for x in crit),
                 "of": len(crit), "valid": all(x["pass"] for x in crit), "identIdx": i}
+    if key in ("flat_base", "high_tight_flag"):
+        return _rolling_candidate(c, key, ctx)
     shapes, fn, bearish = SPECS[key]
     types = "".join(p["type"] for p in pivots)
     best = None
@@ -663,6 +875,9 @@ def rule_names():
     s = _breakout_series(c, v)
     out["breakout_52w"] = [[x["rule"], x["need"]] for x in breakout_eval(c, v, 599, *s)]
     out["minervini"] = [[x["rule"], None] for x in minervini_series([100.0 + i * 0.1 for i in range(300)], [90] * 300)[-1]["criteria"]]
+    fe = _flat_eval(c, 599, 25, _roll_max_min(c, 25), _roll_max_min(c, 60)[1], ctx["s200"])
+    out["flat_base"] = [[x["rule"], x["need"]] for x in fe[0]]
+    out["high_tight_flag"] = [[x["rule"], x["need"]] for x in _htf_eval(c, 599, 10)[0]]
     RULE_NAMES = out
     return out
 

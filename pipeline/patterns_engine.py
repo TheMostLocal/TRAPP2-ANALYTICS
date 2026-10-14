@@ -1,925 +1,473 @@
 #!/usr/bin/env python3
 """
-patterns_engine.py - technical templates & chart patterns with a falsifiable
-track record. Pure functions over a daily close series; no I/O.
+scan_patterns.py - run every technical template / chart pattern over every ticker
+in the four books, judge each identification by what happened next, and keep a
+permanent record.
 
-Every template states its rules up front, detects WITHOUT LOOKAHEAD (a pattern
-is only "identified" on the bar where all of its pivots were knowable), and is
-then judged by what price actually did afterwards. The scanner logs every
-identification and its outcome, so each template earns (or loses) its
-credibility statistically - per ticker and across the universe.
+Reads  books/<BOOK>/data/master.json + books/<BOOK>/data/history/*.json
+       (checked out by analytics.yml; override with PATTERNS_BOOKS=dir1,dir2,...)
+Writes data/patterns/
+  current.json       today's state per ticker: Minervini checklist (score + values)
+                     and, per pattern template, the latest candidate with every
+                     rule's pass/fail - for MANUAL review, whether or not it passes
+  signals.json       identifications/confirmations in the last 10 bars, each with
+                     its template's statistical track record
+  stats.json         per template: backtest record (all history before the live
+                     start) and live record (since), success rates + 95% CI,
+                     average returns, edge vs the unconditional baseline
+  records/<T>.json   every identification for one ticker (pivots, neckline, entry,
+                     target, stop, outcome) + that ticker's per-template stats.
+                     Only rewritten when the record changes.
+  ledger_live.json   APPEND-ONLY live ledger: identifications made after the live
+                     start are never re-derived or deleted; their status only moves
+                     forward (identified -> confirmed -> success/failure/...), each
+                     transition dated. This is the record that can't be retrofitted.
 
-Data note: the books store DAILY CLOSES (no intraday high/low), so pivots and
-breaks are close-based. That is stricter than wick-based charting (a pattern
-must hold on closing prices), and the rules below are written for it.
-
-Templates
----------
-  minervini      Minervini Trend Template - 10 criteria (RS >= 70, price above
-                 the 50/150/200-day SMAs, SMAs stacked, 200-day rising, >= 30%
-                 above the 52-week low, within 25% of the 52-week high).
-                 Signal: a FRESH 10/10 (score was < 10 for the previous 10 bars).
-                 Judged on the 63-day (3-month) return vs SPY.
-  hs_top         Head & Shoulders top (bearish reversal)
-  hs_bottom      Inverse Head & Shoulders (bullish reversal)
-  double_top     Double top (bearish reversal)
-  double_bottom  Double bottom (bullish reversal)
-  --- v2 ---
-  vcp            Volatility Contraction Pattern (Minervini): 2-3 pullbacks, each
-                 shallower, rising lows, volume drying up, inside a stage-2 trend
-  cup_handle     Cup & Handle (O'Neil): rounded 12-40% cup, rims level, shallow
-                 handle in the upper half of the cup
-  bull_flag      Bull flag: >=15% pole in <=30 bars, shallow (<=50%) pullback
-  bear_flag      Bear flag: >=15% drop in <=30 bars, weak (<=50%) rebound
-  asc_triangle   Ascending triangle: flat resistance, rising lows
-  desc_triangle  Descending triangle: flat support, falling highs
-  breakout_52w   52-week closing high out of a >=10% base on >=1.5x volume
-                 (identified = confirmed on the breakout close)
-
-Targets: H&S / doubles / triangles / cup & handle use the classic measured move
-(pattern height projected from the breakout level); flags project the pole;
-VCP and 52-week breakouts use 2R (twice the distance to the stop).
-
-Pattern lifecycle (hs_*, double_*)
-----------------------------------
-  identified  the last pivot is confirmed and every rule passes
-  confirmed   close beyond the neckline within CONFIRM_BARS of identification
-  invalidated price closes beyond the pattern's extreme first (the opposite
-              breakout) - the pattern was MISIDENTIFIED: unsuccessful
-  expired     neither within CONFIRM_BARS - never confirmed: unsuccessful
-  success     after confirmation, the measured-move target is reached before
-              the stop (pattern extreme) and within OUTCOME_BARS
-  failure     after confirmation, the stop is hit first: unsuccessful
-  timeout     after confirmation, neither within OUTCOME_BARS (return recorded)
-  open        not enough bars yet to judge (live)
+Backtest identifications are re-derived every run from the same rules (no
+lookahead - see patterns_engine), so improving a rule re-scores history
+honestly; the live ledger keeps what was actually called at the time.
 """
+import json
 import math
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
 
-ENGINE_VERSION = "patterns-v3"
-CONFIRM_BARS = 40
-OUTCOME_BARS = 60
-MINERVINI_FWD = 63
-FWD_BARS = 20            # standard forward-return horizon reported for every signal
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import patterns_engine as pe  # noqa: E402
 
-TEMPLATES = {
-    "minervini":     {"label": "Minervini Trend Template", "direction": "bullish", "kind": "template"},
-    "hs_top":        {"label": "Head & Shoulders (top)", "direction": "bearish", "kind": "pattern"},
-    "hs_bottom":     {"label": "Inverse Head & Shoulders", "direction": "bullish", "kind": "pattern"},
-    "double_top":    {"label": "Double Top", "direction": "bearish", "kind": "pattern"},
-    "double_bottom": {"label": "Double Bottom", "direction": "bullish", "kind": "pattern"},
-    "vcp":           {"label": "Volatility Contraction (VCP)", "direction": "bullish", "kind": "pattern"},
-    "cup_handle":    {"label": "Cup & Handle", "direction": "bullish", "kind": "pattern"},
-    "bull_flag":     {"label": "Bull Flag", "direction": "bullish", "kind": "pattern"},
-    "bear_flag":     {"label": "Bear Flag", "direction": "bearish", "kind": "pattern"},
-    "asc_triangle":  {"label": "Ascending Triangle", "direction": "bullish", "kind": "pattern"},
-    "desc_triangle": {"label": "Descending Triangle", "direction": "bearish", "kind": "pattern"},
-    "breakout_52w":  {"label": "52-Week Breakout (volume)", "direction": "bullish", "kind": "pattern"},
-    # z103 (patterns-v3)
-    "flat_base":     {"label": "Flat Base", "direction": "bullish", "kind": "pattern"},
-    "high_tight_flag": {"label": "High Tight Flag", "direction": "bullish", "kind": "pattern"},
-}
-# Breakout volume: confirmation bar volume / 50-bar average. >= VOL_CONFIRM counts
-# as a volume-confirmed breakout (O'Neil's +40%). Recorded on EVERY confirmed
-# pattern and split in the stats, so the record shows whether volume matters.
-VOL_CONFIRM = 1.4
-PATTERN_KEYS = ("hs_top", "hs_bottom", "double_top", "double_bottom", "vcp", "cup_handle",
-                "bull_flag", "bear_flag", "asc_triangle", "desc_triangle", "breakout_52w",
-                "flat_base", "high_tight_flag")
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "data" / "patterns"
+REC = OUT / "records"
+BOOKS = [p for p in (os.environ.get("PATTERNS_BOOKS") or "").split(",") if p] or \
+        ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3"]
+MIN_BARS = 300
+SIGNAL_WINDOW = 10          # bars: a detection this recent is an active signal
+RECORD_CRITERIA_BARS = 504  # keep full rule detail on records from the last ~2 years
+PATTERN_KEYS = pe.PATTERN_KEYS
 
 
-# ------------------------------------------------------------- indicators ----
-def sma_series(c, n):
-    out = [None] * len(c)
-    s = 0.0
-    for i, v in enumerate(c):
-        s += v
-        if i >= n:
-            s -= c[i - n]
-        if i >= n - 1:
-            out[i] = s / n
-    return out
+def log(*a):
+    print("[patterns]", *a, flush=True)
 
 
-def rolling_sd_returns(c, n=100):
-    """sd of daily returns over the trailing n bars, known at each bar."""
-    out = [None] * len(c)
-    rets = [0.0] + [(c[i] / c[i - 1] - 1) if c[i - 1] else 0.0 for i in range(1, len(c))]
-    s = s2 = 0.0
-    for i in range(1, len(c)):
-        r = rets[i]
-        s += r
-        s2 += r * r
-        if i > n:
-            o = rets[i - n]
-            s -= o
-            s2 -= o * o
-        k = min(i, n)
-        if k >= 20:
-            var = max(0.0, (s2 - s * s / k) / (k - 1))
-            out[i] = math.sqrt(var)
-    return out
+def read_json(p, default=None):
+    try:
+        return json.loads(Path(p).read_text())
+    except Exception:
+        return default
 
 
-def zigzag_threshold(sd):
-    """Reversal size that counts as a swing: 2 sd x sqrt(5 days), 3%..12%."""
-    if sd is None:
-        return 0.05
-    return max(0.03, min(0.12, 2.0 * sd * math.sqrt(5)))
+def finite(o):
+    if isinstance(o, float):
+        return o if math.isfinite(o) else None
+    if isinstance(o, dict):
+        return {k: finite(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [finite(v) for v in o]
+    return o
 
 
-def zigzag(c):
-    """Swing pivots with NO lookahead. Each pivot carries `confirm` = the bar on
-    which the reversal from it first reached the threshold - the earliest bar a
-    trader could have known it was a pivot.
-    -> [{"i", "price", "type": "H"|"L", "confirm"}]"""
-    if len(c) < 30:
-        return []
-    sd = rolling_sd_returns(c)
-    pivots = []
-    trend = 0                  # +1 tracking a high, -1 tracking a low, 0 unknown
-    ext_i = 0
-    hi_i, lo_i = 0, 0
-    for j in range(1, len(c)):
-        thr = zigzag_threshold(sd[j])
-        if trend == 0:
-            if c[j] > c[hi_i]:
-                hi_i = j
-            if c[j] < c[lo_i]:
-                lo_i = j
-            if c[hi_i] >= c[lo_i] * (1 + thr) and hi_i > lo_i:
-                pivots.append({"i": lo_i, "price": c[lo_i], "type": "L", "confirm": j})
-                trend, ext_i = 1, hi_i
-            elif c[lo_i] <= c[hi_i] * (1 - thr) and lo_i > hi_i:
-                pivots.append({"i": hi_i, "price": c[hi_i], "type": "H", "confirm": j})
-                trend, ext_i = -1, lo_i
+def write_json(p, obj, compact=True):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    txt = json.dumps(finite(obj), separators=(",", ":") if compact else None,
+                     indent=None if compact else 1, allow_nan=False)
+    p.write_text(txt)
+
+
+def load_universe():
+    uni = {}
+    for b in BOOKS:
+        rows = read_json(Path(b) / "data" / "master.json", []) or []
+        book = Path(b).name
+        for r in rows:
+            t = (r.get("ticker") or "").upper()
+            if t and t not in uni:
+                uni[t] = {"book": book, "dir": b, "assetClass": r.get("asset_class"), "name": r.get("name")}
+    return uni
+
+
+def load_series(info, t):
+    """-> (dates, closes, volumes|None). Volumes are None when the series has
+    no real volume (FX, most indices) - volume rules then simply can't pass."""
+    data = read_json(Path(info["dir"]) / "data" / "history" / f"{t}.json")
+    if not isinstance(data, list):
+        return None, None, None
+    d, c, vol = [], [], []
+    for bar in data:
+        v = bar.get("close")
+        try:
+            v = float(v)
+        except (TypeError, ValueError):
             continue
-        if trend == 1:
-            if c[j] >= c[ext_i]:
-                ext_i = j
-            elif c[j] <= c[ext_i] * (1 - thr):
-                pivots.append({"i": ext_i, "price": c[ext_i], "type": "H", "confirm": j})
-                trend, ext_i = -1, j
-        else:
-            if c[j] <= c[ext_i]:
-                ext_i = j
-            elif c[j] >= c[ext_i] * (1 + thr):
-                pivots.append({"i": ext_i, "price": c[ext_i], "type": "L", "confirm": j})
-                trend, ext_i = 1, j
-    return pivots
+        if v > 0 and math.isfinite(v) and bar.get("date"):
+            d.append(str(bar["date"])[:10])
+            c.append(v)
+            try:
+                x = float(bar.get("volume") or 0)
+            except (TypeError, ValueError):
+                x = 0.0
+            vol.append(x if math.isfinite(x) and x > 0 else 0.0)
+    if len(c) < MIN_BARS:
+        return None, None, None
+    has_vol = sum(1 for x in vol[-260:] if x > 0) >= 200
+    return d, c, (vol if has_vol else None)
 
 
-def _line(p1, p2, x):
-    (x1, y1), (x2, y2) = p1, p2
-    if x2 == x1:
-        return y1
-    return y1 + (y2 - y1) * (x - x1) / (x2 - x1)
-
-
-# ------------------------------------------------------- pattern rules ----
-def _crit(name, ok, value=None, need=None):
-    return {"rule": name, "pass": bool(ok), "value": value, "need": need}
-
-
-def hs_rules(c, piv, bearish=True):
-    """Rules for a 5-pivot window [LS, T1, H, T2, RS]. For the inverse pattern the
-    same rules run on the mirrored series (bearish=False)."""
-    s = 1 if bearish else -1
-    LS, T1, H, T2, RS = piv
-    v = lambda p: s * p["price"]                     # mirrored price for inverse
-    neck_at = lambda x: _line((T1["i"], v(T1)), (T2["i"], v(T2)), x)
-    height = v(H) - neck_at(H["i"])
-    pre_lo = min(v({"price": x}) for x in c[max(0, LS["i"] - 60):LS["i"] + 1])
-    left = H["i"] - LS["i"]
-    right = RS["i"] - H["i"]
-    span = RS["i"] - LS["i"]
-    crit = [
-        _crit("Prior trend into the pattern", v(LS) >= pre_lo + 0.5 * max(height, 1e-9),
-              round(v(LS) - pre_lo, 4), ">= 0.5x pattern height"),
-        _crit("Head beyond both shoulders", v(H) > v(LS) + 0.15 * height and v(H) > v(RS) + 0.15 * height,
-              round(min(v(H) - v(LS), v(H) - v(RS)) / height, 3) if height > 0 else None, ">= 0.15x height"),
-        _crit("Shoulders level (price symmetry)", height > 0 and abs(v(LS) - v(RS)) <= 0.35 * height,
-              round(abs(v(LS) - v(RS)) / height, 3) if height > 0 else None, "<= 0.35x height"),
-        _crit("Time symmetry", right > 0 and 0.4 <= left / right <= 2.5,
-              round(left / right, 2) if right else None, "left/right 0.4-2.5"),
-        _crit("Neckline not too skewed", height > 0 and abs(v(T2) - v(T1)) <= 0.35 * height,
-              round(abs(v(T2) - v(T1)) / height, 3) if height > 0 else None, "<= 0.35x height"),
-        _crit("Shoulders clear of the neckline", height > 0 and v(LS) - neck_at(LS["i"]) >= 0.25 * height
-              and v(RS) - neck_at(RS["i"]) >= 0.25 * height, None, ">= 0.25x height"),
-        _crit("Duration 15-250 bars", 15 <= span <= 250, span, "15-250"),
-    ]
-    geo = {"neckline": [[T1["i"], T1["price"]], [T2["i"], T2["price"]]], "height": round(height, 6)}
-    return crit, geo
-
-
-def double_rules(c, piv, bearish=True):
-    """Rules for a 3-pivot window [P1, T, P2] (tops: H,L,H; bottoms: L,H,L)."""
-    s = 1 if bearish else -1
-    P1, T, P2 = piv
-    v = lambda p: s * p["price"]
-    height = (v(P1) + v(P2)) / 2 - v(T)
-    pre_lo = min(s * x for x in c[max(0, P1["i"] - 60):P1["i"] + 1])
-    sep = P2["i"] - P1["i"]
-    crit = [
-        _crit("Prior trend into the pattern", v(P1) >= pre_lo + 0.5 * max(height, 1e-9),
-              round(v(P1) - pre_lo, 4), ">= 0.5x pattern height"),
-        _crit("Peaks level", height > 0 and abs(v(P1) - v(P2)) <= 0.20 * height,
-              round(abs(v(P1) - v(P2)) / height, 3) if height > 0 else None, "<= 0.20x height"),
-        _crit("Meaningful depth", height > 0 and height / abs(P1["price"]) >= 0.04,
-              round(height / abs(P1["price"]), 3) if P1["price"] else None, ">= 4% of price"),
-        _crit("Separation 10-150 bars", 10 <= sep <= 150, sep, "10-150"),
-    ]
-    geo = {"neckline": [[T["i"], T["price"]], [P2["i"], T["price"]]], "height": round(height, 6)}
-    return crit, geo
-
-
-def _pre_extreme(c, i, s, bars=60):
-    """Lowest mirrored close in the `bars` before pivot i (trend into a pattern)."""
-    return min(s * x for x in c[max(0, i - bars):i + 1])
-
-
-def vcp_rules(c, piv, bearish=False, ctx=None):
-    """[H1, L1, H2, L2 (, H3, L3)] - 2 or 3 contractions."""
-    ctx = ctx or {}
-    vol = ctx.get("v")
-    s50, s200 = ctx.get("s50") or [], ctx.get("s200") or []
-    hs, ls = piv[0::2], piv[1::2]
-    depths = [(h["price"] - l["price"]) / h["price"] for h, l in zip(hs, ls)]
-    h1 = hs[0]["price"]
-    i0 = hs[0]["i"]
-    stage2 = (i0 < len(s200) and s200[i0] is not None and s50[i0] is not None
-              and c[i0] > s200[i0] and s50[i0] > s200[i0])
-    shrinking = all(depths[k + 1] <= 0.8 * depths[k] for k in range(len(depths) - 1))
-    rising = all(ls[k + 1]["price"] > ls[k]["price"] for k in range(len(ls) - 1))
-    level = all(0.85 * h1 <= h["price"] <= 1.05 * h1 for h in hs)
-    span = ls[-1]["i"] - hs[0]["i"]
-    dry = None
-    if vol:
-        def avg(a, b):
-            xs = [x for x in vol[a:b + 1] if x]
-            return sum(xs) / len(xs) if xs else None
-        first, last = avg(hs[0]["i"], ls[0]["i"]), avg(hs[-1]["i"], ls[-1]["i"])
-        dry = (last / first) if first and last else None
-    crit = [
-        _crit("Stage-2 uptrend (price > SMA200, SMA50 > SMA200)", stage2),
-        _crit("First pullback 8-40%", 0.08 <= depths[0] <= 0.40, round(depths[0], 3), "0.08-0.40"),
-        _crit("Each pullback <= 0.8x the previous", shrinking, [round(d, 3) for d in depths], "shrinking"),
-        _crit("Final contraction <= 12%", depths[-1] <= 0.12, round(depths[-1], 3), "<= 0.12"),
-        _crit("Rising lows", rising),
-        _crit("Highs hold the pivot zone (0.85-1.05x first high)", level),
-        _crit("Base 15-250 bars", 15 <= span <= 250, span, "15-250"),
-        _crit("Volume dries up (last <= 0.8x first contraction)", dry is not None and dry <= 0.8,
-              round(dry, 2) if dry is not None else None, "<= 0.8 (needs volume)"),
-    ]
-    pivot = hs[-1]["price"]
-    geo = {"neckline": [[hs[-1]["i"], pivot], [ls[-1]["i"], pivot]], "extreme": ls[-1]["price"],
-           "height": round(2 * (pivot - ls[-1]["price"]), 6)}
-    return crit, geo
-
-
-def cup_handle_rules(c, piv, bearish=False, ctx=None):
-    """[left rim H, cup low L, right rim H, handle low L]."""
-    HL, LC, HR, LH = piv
-    depth = (HL["price"] - LC["price"]) / HL["price"]
-    cup = HR["i"] - HL["i"]
-    seg = c[HL["i"]:HR["i"] + 1]
-    floor = LC["price"] + (HL["price"] - LC["price"]) / 3
-    rounded = sum(1 for x in seg if x <= floor) / max(1, len(seg))
-    hdepth = (HR["price"] - LH["price"]) / HR["price"]
-    pre = min(c[max(0, HL["i"] - 120):HL["i"] + 1])
-    crit = [
-        _crit("Prior uptrend >= 20% into the left rim", HL["price"] >= 1.20 * pre,
-              round(HL["price"] / pre - 1, 3) if pre else None, ">= 0.20"),
-        _crit("Cup depth 12-40%", 0.12 <= depth <= 0.40, round(depth, 3), "0.12-0.40"),
-        _crit("Cup length 30-300 bars", 30 <= cup <= 300, cup, "30-300"),
-        _crit("Rims level (right 0.90-1.05x left)", 0.90 * HL["price"] <= HR["price"] <= 1.05 * HL["price"],
-              round(HR["price"] / HL["price"], 3), "0.90-1.05"),
-        _crit("Rounded bottom (>= 20% of the cup in its lower third)", rounded >= 0.20, round(rounded, 2), ">= 0.20"),
-        _crit("Handle <= 15% and <= half the cup depth", hdepth <= 0.15 and hdepth <= 0.5 * depth,
-              round(hdepth, 3), "<= min(0.15, 0.5x cup)"),
-        _crit("Handle in the upper half of the cup", LH["price"] >= LC["price"] + 0.5 * (HR["price"] - LC["price"])),
-        _crit("Handle 3-50 bars", 3 <= LH["i"] - HR["i"] <= 50, LH["i"] - HR["i"], "3-50"),
-    ]
-    geo = {"neckline": [[HR["i"], HR["price"]], [LH["i"], HR["price"]]], "extreme": LH["price"],
-           "height": round(HR["price"] - LC["price"], 6)}
-    return crit, geo
-
-
-def flag_rules(c, piv, bearish=False, ctx=None):
-    """Bull: [L0, H1, L1] (pole up, flag down). Bear: [H0, L1, H1] mirrored."""
-    s = 1 if not bearish else -1
-    A, B, C = piv
-    v = lambda p: s * p["price"]
-    pole = abs(B["price"] / A["price"] - 1)
-    retr = (v(B) - v(C)) / (v(B) - v(A)) if v(B) != v(A) else 9
-    crit = [
-        _crit("Pole >= 15%", pole >= 0.15, round(pole, 3), ">= 0.15"),
-        _crit("Pole fast (<= 30 bars)", B["i"] - A["i"] <= 30, B["i"] - A["i"], "<= 30"),
-        _crit("Flag retraces <= 50% of the pole", 0 < retr <= 0.5, round(retr, 3), "<= 0.50"),
-        _crit("Flag 3-30 bars", 3 <= C["i"] - B["i"] <= 30, C["i"] - B["i"], "3-30"),
-    ]
-    geo = {"neckline": [[B["i"], B["price"]], [C["i"], B["price"]]], "extreme": C["price"],
-           "height": round(abs(B["price"] - A["price"]), 6)}
-    return crit, geo
-
-
-def triangle_rules(c, piv, bearish=False, ctx=None):
-    """Ascending: [H1, L1, H2, L2] flat top, rising lows. Descending (bearish):
-    [L1, H1, L2, H2] mirrored (flat bottom, falling highs)."""
-    s = 1 if not bearish else -1
-    P1, T1, P2, T2 = piv
-    v = lambda p: s * p["price"]
-    top = max(v(P1), v(P2))
-    height = top - v(T1)
-    pre = _pre_extreme(c, P1["i"], s)
-    crit = [
-        _crit("Prior trend into the pattern", v(P1) >= pre + 0.5 * max(height, 1e-9)),
-        _crit("Flat edge (within 3%)", abs(P2["price"] - P1["price"]) <= 0.03 * abs(P1["price"]),
-              round(abs(P2["price"] / P1["price"] - 1), 3), "<= 0.03"),
-        _crit("Converging side (>= 0.25x height)", height > 0 and v(T2) - v(T1) >= 0.25 * height,
-              round((v(T2) - v(T1)) / height, 3) if height > 0 else None, ">= 0.25"),
-        _crit("Height >= 5% of price", height / abs(top) >= 0.05 if top else False,
-              round(height / abs(top), 3) if top else None, ">= 0.05"),
-        _crit("Duration 15-150 bars", 15 <= T2["i"] - P1["i"] <= 150, T2["i"] - P1["i"], "15-150"),
-    ]
-    level = s * top
-    geo = {"neckline": [[P1["i"], level], [T2["i"], level]], "extreme": T2["price"], "height": round(height, 6)}
-    return crit, geo
-
-
-# shape (pivot types), rules, bearish
-SPECS = {
-    "hs_top":        (("HLHLH",), hs_rules, True),
-    "hs_bottom":     (("LHLHL",), hs_rules, False),
-    "double_top":    (("HLH",), double_rules, True),
-    "double_bottom": (("LHL",), double_rules, False),
-    "vcp":           (("HLHLHL", "HLHL"), vcp_rules, False),     # longest valid wins
-    "cup_handle":    (("HLHL",), cup_handle_rules, False),
-    "bull_flag":     (("LHL",), flag_rules, False),
-    "bear_flag":     (("HLH",), flag_rules, True),
-    "asc_triangle":  (("HLHL",), triangle_rules, False),
-    "desc_triangle": (("LHLH",), triangle_rules, True),
-}
-
-
-def _rules(key, c, win, ctx):
-    shapes, fn, bearish = SPECS[key]
-    if fn in (hs_rules, double_rules):
-        return fn(c, win, bearish)
-    return fn(c, win, bearish, ctx)
-
-
-def _resolve(c, start, direction, neck_fn, extreme, height):
-    """Confirmation + outcome, scanning ONLY bars after identification.
-    direction: -1 bearish (break DOWN through neckline), +1 bullish."""
-    n = len(c)
-    out = {"status": "open", "confirmIdx": None, "exitIdx": None, "target": None, "stop": extreme}
-    conf = None
-    for j in range(start + 1, min(n, start + 1 + CONFIRM_BARS)):
-        if direction < 0 and c[j] > extreme or direction > 0 and c[j] < extreme:
-            out.update(status="invalidated", exitIdx=j)
-            return out
-        if direction < 0 and c[j] < neck_fn(j) or direction > 0 and c[j] > neck_fn(j):
-            conf = j
-            break
-    if conf is None:
-        if start + CONFIRM_BARS < n:
-            out["status"] = "expired"
-        return out
-    out.update(_outcome(c, conf, direction, neck_fn(conf) + direction * height, extreme))
-    return out
-
-
-def _outcome(c, conf, direction, target, stop):
-    """After confirmation on bar `conf`: target before stop within OUTCOME_BARS."""
-    n = len(c)
-    entry = c[conf]
-    out = {"status": "confirmed", "confirmIdx": conf, "entry": entry, "target": round(target, 6),
-           "stop": stop, "exitIdx": None}
-    extreme = stop
-    mfe = mae = 0.0
-    for j in range(conf + 1, min(n, conf + 1 + OUTCOME_BARS)):
-        r = direction * (c[j] / entry - 1)
-        mfe, mae = max(mfe, r), min(mae, r)
-        if direction < 0 and c[j] <= target or direction > 0 and c[j] >= target:
-            out.update(status="success", exitIdx=j)
-            break
-        if direction < 0 and c[j] > extreme or direction > 0 and c[j] < extreme:
-            out.update(status="failure", exitIdx=j)
-            break
-    else:
-        if conf + OUTCOME_BARS < n:
-            out.update(status="timeout", exitIdx=conf + OUTCOME_BARS)
-    if out["exitIdx"] is not None:
-        out["returnPct"] = round(direction * (c[out["exitIdx"]] / entry - 1) * 100, 2)
-    out["mfePct"], out["maePct"] = round(mfe * 100, 2), round(mae * 100, 2)
-    if conf + FWD_BARS < n:
-        out["fwd20Pct"] = round(direction * (c[conf + FWD_BARS] / entry - 1) * 100, 2)
-    return out
-
-
-def _ctx(c, v=None):
-    return {"v": v, "s50": sma_series(c, 50), "s200": sma_series(c, 200)}
-
-
-def vol_ratio(v, j, n=50):
-    """Volume on bar j / mean of the n bars before it (None without volume)."""
-    if not v or j is None or j < n or j >= len(v):
-        return None
-    base = [x for x in v[j - n:j] if x]
-    if len(base) < n // 2 or not v[j]:
-        return None
-    m = sum(base) / len(base)
-    return round(v[j] / m, 2) if m > 0 else None
-
-
-def _with_volume(det, v):
-    r = vol_ratio(v, det.get("confirmIdx"))
-    if r is not None:
-        det["breakoutVolRatio"] = r
-        det["volConfirmed"] = r >= VOL_CONFIRM
-    return det
-
-
-def _roll_max_min(c, L):
-    """Rolling max / min of the L bars ending at each index (None before L-1). O(n)."""
-    from collections import deque
-    n = len(c)
-    mx, mn = [None] * n, [None] * n
-    dq_mx, dq_mn = deque(), deque()
-    for i, x in enumerate(c):
-        while dq_mx and c[dq_mx[-1]] <= x:
-            dq_mx.pop()
-        dq_mx.append(i)
-        while dq_mn and c[dq_mn[-1]] >= x:
-            dq_mn.pop()
-        dq_mn.append(i)
-        if dq_mx[0] <= i - L:
-            dq_mx.popleft()
-        if dq_mn[0] <= i - L:
-            dq_mn.popleft()
-        if i >= L - 1:
-            mx[i], mn[i] = dq_mx[0], dq_mn[0]          # indices
-    return mx, mn
-
-
-FLAT_LENS = (65, 55, 45, 35, 25)       # longest valid base wins
-
-
-def _flat_eval(c, i, L, roll, pre_lo, s200):
-    """Flat-base checklist for the L-bar base ending on bar i (bars <= i only)."""
-    imx, imn = roll[0][i], roll[1][i]
-    if imx is None:
-        return None
-    hi, lo = c[imx], c[imn]
-    start = i - L + 1
-    pl = pre_lo[start - 1] if start - 1 >= 0 else None
-    if pl is None:
-        return None
-    depth = (hi - lo) / hi if hi else 9
-    advance = c[start] / c[pl] - 1
-    up200 = s200[i] is not None and i >= 20 and s200[i - 20] is not None and c[i] > s200[i] > s200[i - 20]
-    crit = [
-        _crit("Base 25-65 bars", True, L, "25-65"),
-        _crit("Depth 5-15% (a real, shallow consolidation)", 0.05 <= depth <= 0.15, round(depth, 3), "0.05-0.15"),
-        _crit("Base high set in the first half (sideways since)", imx - start <= L // 2, imx - start, f"<= {L // 2}"),
-        _crit("Not broken out yet (close below the base high)", c[i] < hi, round(c[i] / hi, 3), "< 1.00"),
-        _crit("Advance >= 20% into the base", advance >= 0.20, round(advance, 3), ">= 0.20"),
-        _crit("Close within 5% of the base high", c[i] >= 0.95 * hi, round(c[i] / hi, 3), ">= 0.95"),
-        _crit("Above a rising 200-day", up200),
-    ]
-    piv = [{"i": start, "price": c[start], "type": "B"}, {"i": imn, "price": lo, "type": "L"},
-           {"i": imx, "price": hi, "type": "H"}, {"i": i, "price": c[i], "type": "P"}]
-    return crit, {"hi": hi, "lo": lo, "start": start, "pivots": piv}
-
-
-def detect_flat_bases(c, v=None, ctx=None):
-    """O'Neil flat base, identified on bar i using bars <= i only:
-      * a sideways base of 25-65 bars (5-13 weeks), 5-15% deep, whose high was set
-        in its first half (price has gone sideways since) and hasn't broken out yet
-      * an advance of >= 20% INTO the base (base start vs the low of the 60 bars before)
-      * close within 5% of the base high (at the pivot), above a rising 200-day
-    Neckline = the base high (flat); stop/extreme = the base low;
-    measured move = the base depth. One identification per base (>= 20 bars apart)."""
-    ctx = ctx or _ctx(c, v)
-    rolls = {L: _roll_max_min(c, L) for L in FLAT_LENS}
-    pre_lo = _roll_max_min(c, 60)[1]
-    found, last = [], -10**9
-    for i in range(260, len(c)):
-        if i - last < 20:
-            continue
-        for L in FLAT_LENS:
-            imx, imn = rolls[L][0][i], rolls[L][1][i]
-            if imx is None:
+def rs_percentiles(series, equities, calendar):
+    """Cross-sectional RS percentile (0-99) on every 5th calendar date, forward-
+    filled per ticker. Equities only (that's what RS ranks)."""
+    sample = calendar[::5]
+    pos = {}
+    for t in equities:
+        d, _ = series[t]
+        pos[t] = {x: i for i, x in enumerate(d)}
+    by_date = {}
+    for dt in sample:
+        vals = []
+        for t in equities:
+            i = pos[t].get(dt)
+            if i is None:
                 continue
-            hi, lo = c[imx], c[imn]
-            # cheap numeric prefilter before building the checklist
-            if hi <= 0 or not (0.05 <= (hi - lo) / hi <= 0.15) or c[i] < 0.95 * hi or c[i] >= hi or imx - (i - L + 1) > L // 2:
-                continue
-            ev = _flat_eval(c, i, L, rolls[L], pre_lo, ctx["s200"])
-            if not ev or not all(x["pass"] for x in ev[0]):
-                continue
-            crit, g = ev
-            res = _resolve(c, i, 1, (lambda x, hi=g["hi"]: hi), g["lo"], g["hi"] - g["lo"])
-            det = {"template": "flat_base", "identIdx": i, "direction": "bullish", "pivots": g["pivots"],
-                   "neckline": [[g["start"], g["hi"]], [i, g["hi"]]], "height": round(g["hi"] - g["lo"], 6),
-                   "criteria": crit, **res}
-            found.append(_with_volume(det, v))
-            # one call per base: wait until this one has resolved (breakout,
-            # invalidation or expiry) before looking for the next
-            last = max(i, det.get("confirmIdx") or det.get("exitIdx") or (i + CONFIRM_BARS)) + 1 - 20
-            break
-    return found
-
-
-HTF_FLAGS = (10, 15, 20, 25)
-
-
-def _htf_eval(c, i, F):
-    """High-tight-flag checklist for an F-bar flag ending on bar i (bars <= i only)."""
-    s = i - F
-    if s - 40 < 0:
-        return None
-    hi_i = max(range(s - 5, s + 1), key=lambda k: c[k])
-    hi = c[hi_i]
-    if hi_i <= s - 40:
-        return None
-    lo_i = min(range(s - 40, hi_i), key=lambda k: c[k])
-    lo = c[lo_i]
-    flag = c[s:i + 1]
-    gain = hi / lo - 1 if lo else 0
-    fl_lo = min(flag)
-    crit = [
-        _crit("Pole >= +90% in <= 40 bars", gain >= 0.90, round(gain, 3), ">= 0.90"),
-        _crit("Flag 10-25 bars", True, F, "10-25"),
-        _crit("Flag holds within 25% of the high", fl_lo >= 0.75 * hi, round(fl_lo / hi, 3), ">= 0.75"),
-        _crit("No new high in the flag (<= +2%)", max(flag) <= 1.02 * hi, round(max(flag) / hi, 3), "<= 1.02"),
-        _crit("Close within 15% of the high", c[i] >= 0.85 * hi, round(c[i] / hi, 3), ">= 0.85"),
-    ]
-    piv = [{"i": lo_i, "price": lo, "type": "L"}, {"i": hi_i, "price": hi, "type": "H"}, {"i": i, "price": c[i], "type": "P"}]
-    return crit, {"hi": hi, "lo": lo, "hi_i": hi_i, "fl_lo": fl_lo, "pivots": piv}
-
-
-def detect_high_tight_flags(c, v=None, ctx=None):
-    """High tight flag (O'Neil), identified on bar i using bars <= i only:
-      * pole: price up >= 90% within the 40 bars before the flag starts
-      * flag: 10-25 bars that hold within 25% of the pole high, no new high
-        (<= 2% above it) and close back within 15% of the high
-    Neckline = the pole high; stop = the flag low; measured move = HALF the
-    pole (a full-pole target on a +90% move isn't a realistic test)."""
-    found, last = [], -10**9
-    for i in range(60, len(c)):
-        if i - last < 20:
-            continue
-        for F in HTF_FLAGS:
-            ev = _htf_eval(c, i, F)
-            if not ev or not all(x["pass"] for x in ev[0]):
-                continue
-            crit, g = ev
-            res = _resolve(c, i, 1, (lambda x, hi=g["hi"]: hi), g["fl_lo"], 0.5 * (g["hi"] - g["lo"]))
-            det = {"template": "high_tight_flag", "identIdx": i, "direction": "bullish", "pivots": g["pivots"],
-                   "neckline": [[g["hi_i"], g["hi"]], [i, g["hi"]]], "height": round(0.5 * (g["hi"] - g["lo"]), 6),
-                   "criteria": crit, **res}
-            found.append(_with_volume(det, v))
-            # one call per base: wait until this one has resolved (breakout,
-            # invalidation or expiry) before looking for the next
-            last = max(i, det.get("confirmIdx") or det.get("exitIdx") or (i + CONFIRM_BARS)) + 1 - 20
-            break
-    return found
-
-
-def _rolling_candidate(c, key, ctx):
-    """Checklist for the newest bar (manual review), best-scoring window."""
-    i = len(c) - 1
-    best = None
-    if key == "flat_base":
-        if len(c) < 130:
-            return None
-        pre_lo = _roll_max_min(c, 60)[1]
-        for L in FLAT_LENS:
-            ev = _flat_eval(c, i, L, _roll_max_min(c, L), pre_lo, ctx["s200"])
-            if ev:
-                crit, g = ev
-                cand = {"template": key, "pivots": g["pivots"], "neckline": [[g["start"], g["hi"]], [i, g["hi"]]],
-                        "criteria": crit, "passes": sum(x["pass"] for x in crit), "of": len(crit),
-                        "valid": all(x["pass"] for x in crit), "identIdx": i}
-                if best is None or cand["passes"] > best["passes"]:
-                    best = cand
-    else:
-        for F in HTF_FLAGS:
-            ev = _htf_eval(c, i, F)
-            if ev:
-                crit, g = ev
-                cand = {"template": key, "pivots": g["pivots"], "neckline": [[g["hi_i"], g["hi"]], [i, g["hi"]]],
-                        "criteria": crit, "passes": sum(x["pass"] for x in crit), "of": len(crit),
-                        "valid": all(x["pass"] for x in crit), "identIdx": i}
-                if best is None or cand["passes"] > best["passes"]:
-                    best = cand
-    return best
-
-
-def detect_patterns(c, pivots=None, templates=PATTERN_KEYS, v=None, ctx=None):
-    """All historical + current identifications. Each is knowable on its
-    `identIdx` bar; resolution uses only later bars."""
-    pivots = pivots if pivots is not None else zigzag(c)
-    ctx = ctx or _ctx(c, v)
-    found = []
-    types = "".join(p["type"] for p in pivots)
-    for key in templates:
-        if key == "breakout_52w":
-            found += [_with_volume(d, v) for d in detect_breakouts(c, v, ctx)]
-            continue
-        if key == "flat_base":
-            found += detect_flat_bases(c, v, ctx)
-            continue
-        if key == "high_tight_flag":
-            found += detect_high_tight_flags(c, v, ctx)
-            continue
-        shapes, fn, bearish = SPECS[key]
-        taken = set()
-        for shape in shapes:                       # longer shapes first (VCP)
-            k = len(shape)
-            for a in range(0, len(pivots) - k + 1):
-                if types[a:a + k] != shape:
-                    continue
-                win = pivots[a:a + k]
-                ident = win[-1]["confirm"]
-                if ident in taken:
-                    continue
-                crit, geo = _rules(key, c, win, ctx)
-                if not all(x["pass"] for x in crit):
-                    continue
-                taken.add(ident)
-                direction = -1 if bearish else 1
-                (x1, y1), (x2, y2) = geo["neckline"]
-                neck = (lambda x, x1=x1, y1=y1, x2=x2, y2=y2: _line((x1, y1), (x2, y2), x))
-                extreme = geo.get("extreme")
-                if extreme is None:
-                    extreme = (max if bearish else min)(p["price"] for p in win)
-                res = _resolve(c, ident, direction, neck, extreme, geo["height"])
-                found.append(_with_volume({"template": key, "identIdx": ident, "direction": "bearish" if bearish else "bullish",
-                              "pivots": [{"i": p["i"], "price": p["price"], "type": p["type"]} for p in win],
-                              "neckline": geo["neckline"], "height": geo["height"], "criteria": crit, **res}, v))
-    found.sort(key=lambda d: d["identIdx"])
-    return found
-
-
-def _rolling(c, n, fn):
-    """Rolling max/min of the n bars BEFORE i (exclusive), O(len) via deque."""
-    from collections import deque
-    out = [None] * len(c)
-    dq = deque()
-    better = (lambda a, b: a >= b) if fn is max else (lambda a, b: a <= b)
-    for i in range(len(c)):
-        while dq and dq[0] < i - n:
-            dq.popleft()
-        if i >= n:
-            out[i] = c[dq[0]]
-        while dq and better(c[i], c[dq[-1]]):
-            dq.pop()
-        dq.append(i)
-    return out
-
-
-def breakout_eval(c, v, i, hi252, lo60, vavg50, hi_prev20):
-    """Rules for a 52-week breakout on bar i (lists every rule, pass or fail)."""
-    prior_hi = hi252[i]
-    vr = (v[i] / vavg50[i]) if (v and v[i] and vavg50[i]) else None
-    base = (1 - lo60[i] / prior_hi) if (prior_hi and lo60[i]) else None
-    crit = [
-        _crit("New 52-week closing high", prior_hi is not None and c[i] > prior_hi,
-              round(c[i] / prior_hi - 1, 4) if prior_hi else None, "> 0"),
-        _crit("Fresh (no 52-week high in the prior 20 bars)", not _made_high_recently(c, i, hi252)),
-        _crit("Out of a base (>= 10% pullback in the last 60 bars)", base is not None and base >= 0.10,
-              round(base, 3) if base is not None else None, ">= 0.10"),
-        _crit("Volume >= 1.5x the 50-day average", vr is not None and vr >= 1.5,
-              round(vr, 2) if vr is not None else None, ">= 1.5 (needs volume)"),
-    ]
-    return crit
-
-
-def _made_high_recently(c, i, hi252, bars=20):
-    for k in range(max(253, i - bars), i):
-        if hi252[k] is not None and c[k] > hi252[k]:
-            return True
-    return False
-
-
-def _breakout_series(c, v):
-    hi252 = _rolling(c, 252, max)
-    lo60 = _rolling(c, 60, min)
-    hi_prev20 = _rolling(c, 20, max)
-    vavg50 = [None] * len(c)              # mean volume of the 50 bars BEFORE i
-    if v:
-        pre = [0.0]
-        for x in v:
-            pre.append(pre[-1] + (x or 0))
-        for i in range(50, len(c)):
-            m = (pre[i] - pre[i - 50]) / 50
-            vavg50[i] = m if m > 0 else None
-    return hi252, lo60, vavg50, hi_prev20
-
-
-def detect_breakouts(c, v, ctx=None):
-    if not v or len(c) < 260:
-        return []
-    hi252, lo60, vavg50, hi_prev20 = _breakout_series(c, v)
-    found = []
-    for i in range(253, len(c)):
-        if hi252[i] is None or c[i] <= hi252[i]:
-            continue
-        crit = breakout_eval(c, v, i, hi252, lo60, vavg50, hi_prev20)
-        if not all(x["pass"] for x in crit):
-            continue
-        low10 = min(c[i - 10:i])
-        stop = max(low10, 0.90 * c[i])
-        res = _outcome(c, i, 1, c[i] + 2 * (c[i] - stop), stop)
-        prior_i = max(range(i - 252, i), key=lambda k: c[k])
-        found.append({"template": "breakout_52w", "identIdx": i, "direction": "bullish",
-                      "pivots": [{"i": prior_i, "price": c[prior_i], "type": "H"}, {"i": i, "price": c[i], "type": "B"}],
-                      "neckline": [[prior_i, hi252[i]], [i, hi252[i]]], "height": round(c[i] - stop, 6),
-                      "criteria": crit, **res})
-    return found
-
-
-def latest_candidate(c, pivots, key, v=None, ctx=None):
-    """The most recent setup of the right shape, with every rule's pass/fail -
-    shown even when it isn't a valid pattern (manual review)."""
-    ctx = ctx or _ctx(c, v)
-    if key == "breakout_52w":
-        if not v or len(c) < 260:
-            return None
-        series = _breakout_series(c, v)
-        i = len(c) - 1
-        crit = breakout_eval(c, v, i, *series)
-        hi = series[0][i]
-        prior_i = max(range(i - 252, i), key=lambda k: c[k])
-        return {"template": key, "pivots": [{"i": prior_i, "price": c[prior_i], "type": "H"}, {"i": i, "price": c[i], "type": "B"}],
-                "neckline": [[prior_i, hi], [i, hi]], "criteria": crit, "passes": sum(x["pass"] for x in crit),
-                "of": len(crit), "valid": all(x["pass"] for x in crit), "identIdx": i}
-    if key in ("flat_base", "high_tight_flag"):
-        return _rolling_candidate(c, key, ctx)
-    shapes, fn, bearish = SPECS[key]
-    types = "".join(p["type"] for p in pivots)
-    best = None
-    for shape in shapes:
-        k = len(shape)
-        for a in range(len(pivots) - k, -1, -1):
-            if types[a:a + k] == shape:
-                win = pivots[a:a + k]
-                crit, geo = _rules(key, c, win, ctx)
-                cand = {"template": key, "pivots": [{"i": p["i"], "price": p["price"], "type": p["type"]} for p in win],
-                        "neckline": geo["neckline"], "criteria": crit, "passes": sum(x["pass"] for x in crit),
-                        "of": len(crit), "valid": all(x["pass"] for x in crit), "identIdx": win[-1]["confirm"]}
-                if best is None or cand["identIdx"] > best["identIdx"] or (cand["valid"] and not best["valid"]
-                                                                         and cand["identIdx"] == best["identIdx"]):
-                    best = cand
-                break
-    return best
-
-
-# ------------------------------------------------------- Minervini TT ----
-def rs_raw(c, i):
-    """IBD-style weighted 12-month performance (40% latest quarter)."""
-    if i < 252 or not c[i - 252]:
-        return None
-    q = lambda a, b: c[i - a] / c[i - b] - 1 if c[i - b] else 0.0
-    return 0.4 * q(0, 63) + 0.2 * q(63, 126) + 0.2 * q(126, 189) + 0.2 * q(189, 252)
-
-
-def minervini_series(c, rs_pct=None):
-    """Per-bar Minervini evaluation. rs_pct: per-bar RS percentile (0-99) or None.
-    -> list of None | {"score", "of", "criteria"}"""
-    s50, s150, s200 = sma_series(c, 50), sma_series(c, 150), sma_series(c, 200)
-    out = [None] * len(c)
-    for i in range(len(c)):
-        if i < 252 or s200[i] is None or s200[i - 22] is None:
-            continue
-        win = c[i - 251:i + 1]
-        hi52, lo52 = max(win), min(win)
-        p = c[i]
-        rp = rs_pct[i] if rs_pct else None
-        checks = [
-            ("RP > 70", rp is not None and rp > 70),
-            ("Price > SMA 50", p > s50[i]), ("Price > SMA 150", p > s150[i]), ("Price > SMA 200", p > s200[i]),
-            ("SMA 50 > SMA 150", s50[i] > s150[i]), ("SMA 50 > SMA 200", s50[i] > s200[i]),
-            ("SMA 150 > SMA 200", s150[i] > s200[i]),
-            ("Price 30% > 52W Low", p >= lo52 * 1.30), ("Price w/in 25% of 52W High", p >= hi52 * 0.75),
-            ("SMA 200 Rising", s200[i] > s200[i - 22]),
-        ]
-        out[i] = {"score": sum(1 for _, ok in checks if ok), "of": len(checks),
-                  "criteria": [{"rule": n, "pass": bool(ok)} for n, ok in checks],
-                  "values": {"RP": rp, "vs52wHighPct": round((p / hi52 - 1) * 100, 1),
-                             "vs52wLowPct": round((p / lo52 - 1) * 100, 1),
-                             "sma50": round(s50[i], 4), "sma150": round(s150[i], 4), "sma200": round(s200[i], 4)}}
-    return out
-
-
-def minervini_signals(c, ev, spy_by_idx=None):
-    """Fresh 10/10 entries + their 63-day outcome vs SPY (success = beat SPY)."""
-    sigs = []
-    n = len(c)
-    for i in range(len(c)):
-        e = ev[i]
-        if not e or e["score"] < e["of"]:
-            continue
-        prev = [ev[k]["score"] if ev[k] else 0 for k in range(max(0, i - 10), i)]
-        if not prev or max(prev) >= e["of"]:
-            continue
-        d = {"template": "minervini", "identIdx": i, "direction": "bullish", "entry": c[i],
-             "score": e["score"], "of": e["of"], "status": "open"}
-        if i + FWD_BARS < n:
-            d["fwd20Pct"] = round((c[i + FWD_BARS] / c[i] - 1) * 100, 2)
-        if i + MINERVINI_FWD < n:
-            r = c[i + MINERVINI_FWD] / c[i] - 1
-            d["returnPct"] = round(r * 100, 2)
-            spy_r = None
-            if spy_by_idx:
-                a, b = spy_by_idx(i), spy_by_idx(i + MINERVINI_FWD)
-                if a and b:
-                    spy_r = b / a - 1
-            d["excessPct"] = round((r - spy_r) * 100, 2) if spy_r is not None else None
-            beat = (r - spy_r) if spy_r is not None else r
-            d["status"] = "success" if beat > 0 else "failure"
-            d["exitIdx"] = i + MINERVINI_FWD
-        sigs.append(d)
-    return sigs
-
-
-RULE_NAMES = None
-
-
-def rule_names():
-    """Rule labels + thresholds in evaluation order, derived from the rule
-    functions themselves on a fixed synthetic series (so UI labels can't drift)."""
-    global RULE_NAMES
-    if RULE_NAMES:
-        return RULE_NAMES
-    c = [100.0 + i * 0.05 for i in range(600)]
-    v = [1000.0] * 600
-    ctx = _ctx(c, v)
-    P = lambda i, p, t: {"i": i, "price": p, "type": t, "confirm": i + 3}
-    wins = {
-        "hs_top": [P(300, 130, "H"), P(315, 115, "L"), P(335, 145, "H"), P(355, 116, "L"), P(370, 131, "H")],
-        "double_top": [P(300, 140, "H"), P(320, 120, "L"), P(340, 141, "H")],
-        "vcp": [P(300, 140, "H"), P(310, 120, "L"), P(320, 139, "H"), P(330, 128, "L")],
-        "cup_handle": [P(200, 140, "H"), P(260, 110, "L"), P(320, 138, "H"), P(330, 130, "L")],
-        "bull_flag": [P(300, 100, "L"), P(310, 125, "H"), P(318, 118, "L")],
-        "asc_triangle": [P(300, 140, "H"), P(310, 125, "L"), P(320, 141, "H"), P(330, 132, "L")],
-    }
+            r = pe.rs_raw(series[t][1], i)
+            if r is not None:
+                vals.append((r, t))
+        if len(vals) >= 20:
+            vals.sort()
+            m = len(vals) - 1
+            by_date[dt] = {t: round(k / m * 99, 1) for k, (_, t) in enumerate(vals)}
     out = {}
-    for key in SPECS:
-        base = {"hs_bottom": "hs_top", "double_bottom": "double_top", "bear_flag": "bull_flag",
-                "desc_triangle": "asc_triangle"}.get(key, key)
-        crit, _ = _rules(key, c, wins[base], ctx)
-        out[key] = [[x["rule"], x["need"]] for x in crit]
-    s = _breakout_series(c, v)
-    out["breakout_52w"] = [[x["rule"], x["need"]] for x in breakout_eval(c, v, 599, *s)]
-    out["minervini"] = [[x["rule"], None] for x in minervini_series([100.0 + i * 0.1 for i in range(300)], [90] * 300)[-1]["criteria"]]
-    fe = _flat_eval(c, 599, 25, _roll_max_min(c, 25), _roll_max_min(c, 60)[1], ctx["s200"])
-    out["flat_base"] = [[x["rule"], x["need"]] for x in fe[0]]
-    out["high_tight_flag"] = [[x["rule"], x["need"]] for x in _htf_eval(c, 599, 10)[0]]
-    RULE_NAMES = out
+    for t in equities:
+        d, _ = series[t]
+        arr, last = [None] * len(d), None
+        for i, dt in enumerate(d):
+            row = by_date.get(dt)
+            if row is not None and t in row:
+                last = row[t]
+            arr[i] = last
+        out[t] = arr
     return out
 
 
-# ----------------------------------------------------------- statistics ----
-def wilson(k, n, z=1.96):
-    if n == 0:
-        return None, None
-    p = k / n
-    den = 1 + z * z / n
-    centre = (p + z * z / (2 * n)) / den
-    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / den
-    return round(max(0.0, centre - half) * 100, 1), round(min(1.0, centre + half) * 100, 1)
+def baseline_fwd20(series, tickers):
+    """Unconditional mean 20-bar forward return (every 5th bar) - the bar a
+    pattern's post-signal return has to beat to have an edge."""
+    s = n = 0
+    for t in tickers:
+        c = series[t][1]
+        for i in range(0, len(c) - pe.FWD_BARS, 5):
+            s += c[i + pe.FWD_BARS] / c[i] - 1
+            n += 1
+    return round(s / n * 100, 3) if n else None
 
 
-def summarize(dets, baseline_fwd20=None):
-    """Aggregate stats for a list of detections of ONE template."""
-    by = {}
-    for d in dets:
-        by[d["status"]] = by.get(d["status"], 0) + 1
-    n = len(dets)
-    is_template = dets and dets[0]["template"] == "minervini"
-    if is_template:
-        judged = by.get("success", 0) + by.get("failure", 0)
-        wins = by.get("success", 0)
-    else:
-        judged = sum(by.get(s, 0) for s in ("success", "failure", "timeout"))
-        wins = by.get("success", 0)
-    rets = [d["returnPct"] for d in dets if d.get("returnPct") is not None and d["status"] != "open"]
-    f20 = [d["fwd20Pct"] for d in dets if d.get("fwd20Pct") is not None]
-    lo, hi = wilson(wins, judged)
-    out = {"n": n, "byStatus": by, "judged": judged, "successRate": round(wins / judged * 100, 1) if judged else None,
-           "successCI95": [lo, hi], "avgReturnPct": round(sum(rets) / len(rets), 2) if rets else None,
-           "avgFwd20Pct": round(sum(f20) / len(f20), 2) if f20 else None}
-    if not is_template:
-        conf = sum(by.get(s, 0) for s in ("confirmed", "success", "failure", "timeout"))
-        denom = conf + by.get("invalidated", 0) + by.get("expired", 0)
-        out["confirmRate"] = round(conf / denom * 100, 1) if denom else None
-        unsuccessful = by.get("invalidated", 0) + by.get("expired", 0) + by.get("failure", 0)
-        out["identificationSuccessRate"] = (round(wins / (wins + unsuccessful) * 100, 1)
-                                           if (wins + unsuccessful) else None)
-        out["identCI95"] = list(wilson(wins, wins + unsuccessful))
-    if baseline_fwd20 is not None and out["avgFwd20Pct"] is not None:
-        out["edgeVsBaselinePct"] = round(out["avgFwd20Pct"] - baseline_fwd20, 2)
+def _r(x, nd=4):
+    return round(x, nd) if isinstance(x, (int, float)) and math.isfinite(x) else None
+
+
+def market_regimes(spy_d, spy_c, vix=None):
+    """Per SPY date: trend regime from SPY vs its 200-day SMA (up = above and the
+    SMA rising over 22 bars, down = below and falling, else mixed) and volatility
+    regime from ^VIX (calm < 20 <= stressed). No lookahead: each date uses only
+    data up to that date. -> {date: (trend, vol)}"""
+    s200 = pe.sma_series(spy_c, 200)
+    vix_at = dict(zip(*vix)) if vix else {}
+    out, last_vix = {}, None
+    for i, dt in enumerate(spy_d):
+        if dt in vix_at:
+            last_vix = vix_at[dt]
+        tr = None
+        if s200[i] is not None and i >= 22 and s200[i - 22] is not None:
+            up, rising = spy_c[i] > s200[i], s200[i] > s200[i - 22]
+            tr = "up" if (up and rising) else "down" if (not up and not rising) else "mixed"
+        vo = None if last_vix is None else ("calm" if last_vix < 20 else "stressed")
+        out[dt] = (tr, vo)
     return out
+
+
+def regime_at(regimes, keys, dt):
+    """Regime on `dt`, or on the last SPY date before it (foreign calendars)."""
+    import bisect
+    if dt in regimes:
+        return regimes[dt]
+    i = bisect.bisect_right(keys, dt) - 1
+    return regimes[keys[i]] if i >= 0 else (None, None)
+
+
+def regime_baselines(series, tickers, regimes, keys):
+    """Unconditional 20-bar forward return per trend regime (every 5th bar) -
+    each regime's own yardstick, so a pattern's edge is measured inside the
+    market it happened in."""
+    acc = {}
+    for t in tickers:
+        d, c = series[t]
+        for i in range(0, len(c) - pe.FWD_BARS, 5):
+            tr = regime_at(regimes, keys, d[i])[0]
+            if tr:
+                a = acc.setdefault(tr, [0.0, 0])
+                a[0] += c[i + pe.FWD_BARS] / c[i] - 1
+                a[1] += 1
+    return {k: round(v[0] / v[1] * 100, 3) for k, v in acc.items() if v[1]}
+
+
+MIN_REGIME_N = 50
+
+
+def load_quad_history():
+    """z109 - official macro quad by month (TRAPP2-1 data/macro/quad_history_full.json),
+    shifted by its publication lag: a date is labelled with the quad that was KNOWN
+    then (the official quad knownLagMonths earlier), never the one revealed later.
+    -> (month 'YYYY-MM' -> quad known in that month, lag) or ({}, 0)."""
+    for b in BOOKS:
+        p = Path(b) / "data" / "macro" / "quad_history_full.json"
+        doc = read_json(p, None)
+        if isinstance(doc, dict) and doc.get("rows"):
+            lag = int(doc.get("knownLagMonths") or 3)
+            known = {}
+            for r in doc["rows"]:
+                y, m = int(r["date"][:4]), int(r["date"][5:7])
+                m2 = m + lag
+                y2, m2 = y + (m2 - 1) // 12, (m2 - 1) % 12 + 1
+                known[f"{y2:04d}-{m2:02d}"] = r["quad"]
+            return known, lag
+    return {}, 0   # judged identifications needed before a regime split is reported as usable
+
+
+def dated(det, d):
+    """One identification -> compact dated record. Every recorded pattern passed
+    ALL of its rules (that's what made it an identification), so the per-rule
+    detail isn't repeated here - `current.json` carries it for the live candidate.
+    Keys: tp template · id identDate · st status · cd confirmDate · xd exitDate ·
+    en entry · tg target · sp stop · rt returnPct (direction-adjusted, at exit) ·
+    f20 20-bar forward % after the signal · mfe/mae best/worst excursion % ·
+    pv pivots [[date, price, H|L]] · nk neckline [[date, price], [date, price]] ·
+    sc/of Minervini score · ex Minervini 63-day excess vs SPY % ·
+    vr breakout-bar volume / 50-bar average (z103)."""
+    di = lambda i: d[i] if i is not None and 0 <= i < len(d) else None
+    out = {"tp": det["template"], "id": di(det.get("identIdx")), "st": det.get("status")}
+    for src, dst in (("confirmIdx", "cd"), ("exitIdx", "xd")):
+        if det.get(src) is not None:
+            out[dst] = di(det[src])
+    for src, dst, nd in (("entry", "en", 6), ("target", "tg", 6), ("stop", "sp", 6), ("returnPct", "rt", 2),
+                         ("fwd20Pct", "f20", 2), ("mfePct", "mfe", 2), ("maePct", "mae", 2),
+                         ("excessPct", "ex", 2), ("score", "sc", 0), ("of", "of", 0),
+                         ("breakoutVolRatio", "vr", 2)):          # z103: breakout volume / 50-bar avg
+        v = det.get(src)
+        if v is not None:
+            out[dst] = _r(v, nd) if nd else v
+    if det.get("pivots"):
+        out["pv"] = [[di(p["i"]), _r(p["price"], 6), p["type"]] for p in det["pivots"]]
+    if det.get("neckline"):
+        out["nk"] = [[di(int(x)), _r(y, 6)] for x, y in det["neckline"]]
+    return out
+
+
+def _bits(crit):
+    return "".join("1" if x["pass"] else "0" for x in crit)
+
+
+def main():
+    started = datetime.now(timezone.utc)
+    uni = load_universe()
+    log(f"universe {len(uni)} tickers across {len(BOOKS)} books")
+    series, volumes = {}, {}
+    for t, info in uni.items():
+        d, c, vol = load_series(info, t)
+        if c:
+            series[t] = (d, c)
+            volumes[t] = vol
+    if "SPY" not in series:
+        log("::error::no SPY history - cannot judge templates vs the market")
+        return 1
+    log(f"{len(series)} tickers with >= {MIN_BARS} bars")
+    spy_d, spy_c = series["SPY"]
+    spy_at = dict(zip(spy_d, spy_c))
+    as_of = spy_d[-1]
+    equities = [t for t in series if str(uni[t].get("assetClass") or "").lower() == "equity"]
+    rs = rs_percentiles(series, equities, spy_d)
+    base = baseline_fwd20(series, list(series))
+    log(f"RS ranked {len(equities)} equities · baseline 20-bar forward return {base}%")
+    vix = series.get("^VIX")
+    regimes = market_regimes(spy_d, spy_c, vix)
+    rkeys = sorted(regimes)
+    regime_now = regimes[spy_d[-1]]
+    quad_known, quad_lag = load_quad_history()
+    quad_now = quad_known.get(spy_d[-1][:7])
+    log(f"macro quad history: {len(quad_known)} months (label = quad known {quad_lag} months later); known now: Q{quad_now}"
+        if quad_known else "macro quad history: none (TRAPP2-1 data/macro/quad_history_full.json not found) — no quad split")
+    rbase = regime_baselines(series, list(series), regimes, rkeys)
+    log(f"market regime now: trend {regime_now[0]} · volatility {regime_now[1]} · "
+        f"20-bar baselines by trend regime {rbase}")
+
+    ledger = read_json(OUT / "ledger_live.json", None) or {}
+    meta = ledger.get("meta") or {}
+    live_start = meta.get("liveStart") or as_of        # first run starts the live record
+    entries = ledger.get("entries") or {}
+
+    current, signals, all_dets = {}, [], {k: {"backtest": [], "live": []} for k in pe.TEMPLATES}
+    for t, (d, c) in series.items():
+        info = uni[t]
+        piv = pe.zigzag(c)
+        vol = volumes.get(t)
+        ctx = pe._ctx(c, vol)
+        dets = pe.detect_patterns(c, piv, v=vol, ctx=ctx)
+        rs_t = rs.get(t)
+        ev = pe.minervini_series(c, rs_t)
+        spy_idx = lambda k, d=d: spy_at.get(d[k]) if 0 <= k < len(d) else None
+        dets += pe.minervini_signals(c, ev, spy_idx)
+        recs = [dated(x, d) for x in dets]
+        for x, r in zip(dets, recs):
+            tr, vo = regime_at(regimes, rkeys, r["id"]) if r["id"] else (None, None)
+            x["regimeTrend"], x["regimeVol"] = tr, vo
+            x["quadKnown"] = quad_known.get((r["id"] or "")[:7]) if quad_known else None
+            r["rg"] = f"{tr or '?'}/{vo or '?'}"
+            bucket = "live" if (r["id"] or "") >= live_start else "backtest"
+            all_dets[r["tp"]][bucket].append(x)          # stats run on the full-precision dict
+            if bucket == "live":
+                key = f"{t}|{r['tp']}|{r['id']}"
+                old = entries.get(key)
+                if old is None:
+                    entries[key] = dict(r, ticker=t, firstSeen=as_of, history=[[as_of, r["st"]]])
+                elif old.get("st") != r["st"] and old.get("st") in ("open", "confirmed"):
+                    # status only moves forward; resolved entries are frozen
+                    keep = {k: old[k] for k in ("firstSeen", "history") if k in old}
+                    entries[key] = dict(r, ticker=t, **keep)
+                    entries[key]["history"] = (old.get("history") or []) + [[as_of, r["st"]]]
+            n_since = len(d) - 1 - x["identIdx"]
+            conf_since = (len(d) - 1 - x["confirmIdx"]) if x.get("confirmIdx") is not None else 10 ** 9
+            if (n_since <= SIGNAL_WINDOW or conf_since <= SIGNAL_WINDOW) and x.get("pivotScale") != "fine":   # z110: research-only
+                signals.append(dict(ticker=t, template=r["tp"], direction=x["direction"],
+                                    identDate=r["id"], confirmDate=r.get("cd"), status=r["st"],
+                                    entry=r.get("en"), target=r.get("tg"), stop=r.get("sp"),
+                                    volConfirmed=x.get("volConfirmed"), volRatio=x.get("breakoutVolRatio")))
+        # --- today's manual-review state ---
+        # Compact: rule NAMES live once in current.json["ruleNames"]; per ticker
+        # only pass-bits ("1101...") and the measured values travel.
+        cur = {"b": info["book"], "ac": info.get("assetClass"), "px": _r(c[-1], 6), "dt": d[-1]}
+        if ev[-1]:
+            e = ev[-1]
+            cur["mv"] = {"s": e["score"], "of": e["of"], "p": _bits(e["criteria"]), "v": e["values"]}
+        cands = {}
+        for k in PATTERN_KEYS:
+            cand = pe.latest_candidate(c, piv, k, v=vol, ctx=ctx)
+            if cand:
+                ii = cand.get("identIdx")
+                cands[k] = {"pv": [[d[p["i"]], _r(p["price"], 6), p["type"]] for p in cand["pivots"]],
+                            "nk": [[d[int(x)], _r(y, 6)] for x, y in cand["neckline"]],
+                            "p": _bits(cand["criteria"]), "val": [x["value"] for x in cand["criteria"]],
+                            "ok": cand["valid"], "id": d[ii] if ii is not None and ii < len(d) else None}
+        cur["cand"] = cands
+        current[t] = cur
+        # --- per-ticker record (only rewritten when it changes) ---
+        per = {k: pe.summarize([x for x in dets if x["template"] == k]) for k in pe.TEMPLATES
+               if any(x["template"] == k for x in dets)}
+        doc = {"ticker": t, "book": info["book"], "engine": pe.ENGINE_VERSION, "liveStart": live_start,
+               "detections": recs, "stats": per}
+        p = REC / f"{t.replace('/', '_')}.json"
+        old = read_json(p)
+        if old != json.loads(json.dumps(finite(doc))):
+            write_json(p, doc)
+
+    stats = {}
+    for k, b in all_dets.items():
+        dirn = -1 if pe.TEMPLATES[k]["direction"] == "bearish" else 1
+        bl = (dirn * base) if base is not None else None
+        by_regime = {"trend": {}, "vol": {}, "joint": {}}
+        # z110: fine-pivot VCP / cup calls are RESEARCH-ONLY. In the backtest they
+        # hit their (smaller) targets more often but don't beat the typical stock
+        # over 20 bars, so they stay out of the template's main record (what the
+        # UI and the bot trust) and are reported separately in byPivotScale.
+        bt_all = b["backtest"]
+        bt = [x for x in bt_all if x.get("pivotScale") != "fine"]
+        live_main = [x for x in b["live"] if x.get("pivotScale") != "fine"]
+        for tr in ("up", "mixed", "down"):
+            sub = [x for x in bt if x.get("regimeTrend") == tr]
+            if sub:
+                rb = rbase.get(tr)
+                sm = pe.summarize(sub, dirn * rb if rb is not None else None)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_regime["trend"][tr] = sm
+            for vo in ("calm", "stressed"):
+                sub2 = [x for x in sub if x.get("regimeVol") == vo]
+                if sub2:
+                    rb = rbase.get(tr)
+                    sm = pe.summarize(sub2, dirn * rb if rb is not None else None)
+                    sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                    by_regime["joint"][f"{tr}/{vo}"] = sm
+        for vo in ("calm", "stressed"):
+            sub = [x for x in bt if x.get("regimeVol") == vo]
+            if sub:
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_regime["vol"][vo] = sm
+        # z103: does breakout volume matter? confirmed patterns split by the
+        # confirmation bar's volume vs its 50-bar average (>= pe.VOL_CONFIRM).
+        by_volume = {}
+        for label, want in (("confirmed", True), ("unconfirmed", False)):
+            sub = [x for x in bt if x.get("volConfirmed") is want]
+            if sub:
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_volume[label] = sm
+        if quad_known:
+            by_regime["quad"] = {}
+            for q in (1, 2, 3, 4):
+                sub = [x for x in bt if x.get("quadKnown") == q]
+                if sub:
+                    sm = pe.summarize(sub, bl)
+                    sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                    by_regime["quad"][str(q)] = sm
+        # z110: VCP / cup & handle calls by pivot scale (base vs the finer second pass)
+        by_scale = {}
+        for sc in ("base", "fine"):
+            sub = [x for x in bt_all if x.get("pivotScale") == sc]
+            if sub and any(x.get("pivotScale") == "fine" for x in bt_all):
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_scale[sc] = sm
+        stats[k] = {**pe.TEMPLATES[k],
+                    "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
+                    "live": pe.summarize(live_main, bl) if live_main else {"n": 0},
+                    "byRegime": by_regime, "byVolume": by_volume, "volConfirmAt": pe.VOL_CONFIRM,
+                    **({"byPivotScale": by_scale} if by_scale else {})}
+    # attach each template's record to its active signals
+    for s in signals:
+        bt = stats[s["template"]]["backtest"]
+        s["track"] = {"successRate": bt.get("successRate"), "ci95": bt.get("successCI95"), "n": bt.get("judged"),
+                      "edgeVsBaselinePct": bt.get("edgeVsBaselinePct")}
+        rg = (stats[s["template"]].get("byRegime") or {}).get("trend", {}).get(regime_now[0] or "")
+        if rg and rg.get("usable"):
+            s["trackNow"] = {"regime": regime_now[0], "successRate": rg.get("successRate"),
+                             "n": rg.get("judged"), "edgeVsBaselinePct": rg.get("edgeVsBaselinePct")}
+    signals.sort(key=lambda s: (s.get("confirmDate") or s["identDate"] or ""), reverse=True)
+
+    meta.update({"liveStart": live_start, "engine": pe.ENGINE_VERSION, "updated": as_of})
+    write_json(OUT / "ledger_live.json", {"meta": meta, "entries": entries}, compact=False)
+    write_json(OUT / "current.json", {"asOf": as_of, "engine": pe.ENGINE_VERSION, "templates": pe.TEMPLATES,
+                                      "rules": {"confirmBars": pe.CONFIRM_BARS, "outcomeBars": pe.OUTCOME_BARS,
+                                                "minerviniFwd": pe.MINERVINI_FWD},
+                                      "ruleNames": pe.rule_names(), "tickers": current})
+    write_json(OUT / "stats.json", {"asOf": as_of, "engine": pe.ENGINE_VERSION, "liveStart": live_start,
+                                    "baselineFwd20Pct": base, "baselineByTrendRegime": rbase,
+                                    "regimeNow": {"trend": regime_now[0], "vol": regime_now[1], "quadKnown": quad_now, "quadLagMonths": quad_lag},
+                                    "minRegimeN": MIN_REGIME_N, "templates": stats}, compact=False)
+    write_json(OUT / "signals.json", {"asOf": as_of, "window": SIGNAL_WINDOW, "signals": signals}, compact=False)
+    secs = (datetime.now(timezone.utc) - started).total_seconds()
+    n_bt = sum(len(b["backtest"]) for b in all_dets.values())
+    n_lv = sum(len(b["live"]) for b in all_dets.values())
+    log(f"done in {secs:.0f}s · {n_bt} backtest + {n_lv} live identifications · {len(signals)} active signals · "
+        f"live ledger {len(entries)} entries since {live_start}")
+    for k, st in stats.items():
+        b = st["backtest"]
+        if b.get("n"):
+            tr = st.get("byRegime", {}).get("trend", {})
+            by = " · ".join(f"{r} {tr[r].get('successRate')}%/{tr[r].get('edgeVsBaselinePct')}"
+                            for r in ("up", "mixed", "down") if r in tr)
+            log(f"  {k:14s} n={b['n']:5d} judged={b['judged']:5d} success={b.get('successRate')}% "
+                f"CI{b.get('successCI95')} avgRet={b.get('avgReturnPct')}% edge={b.get('edgeVsBaselinePct')} | by trend: {by}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

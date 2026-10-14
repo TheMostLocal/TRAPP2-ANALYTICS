@@ -211,7 +211,27 @@ def regime_baselines(series, tickers, regimes, keys):
     return {k: round(v[0] / v[1] * 100, 3) for k, v in acc.items() if v[1]}
 
 
-MIN_REGIME_N = 50   # judged identifications needed before a regime split is reported as usable
+MIN_REGIME_N = 50
+
+
+def load_quad_history():
+    """z109 - official macro quad by month (TRAPP2-1 data/macro/quad_history_full.json),
+    shifted by its publication lag: a date is labelled with the quad that was KNOWN
+    then (the official quad knownLagMonths earlier), never the one revealed later.
+    -> (month 'YYYY-MM' -> quad known in that month, lag) or ({}, 0)."""
+    for b in BOOKS:
+        p = Path(b) / "data" / "macro" / "quad_history_full.json"
+        doc = read_json(p, None)
+        if isinstance(doc, dict) and doc.get("rows"):
+            lag = int(doc.get("knownLagMonths") or 3)
+            known = {}
+            for r in doc["rows"]:
+                y, m = int(r["date"][:4]), int(r["date"][5:7])
+                m2 = m + lag
+                y2, m2 = y + (m2 - 1) // 12, (m2 - 1) % 12 + 1
+                known[f"{y2:04d}-{m2:02d}"] = r["quad"]
+            return known, lag
+    return {}, 0   # judged identifications needed before a regime split is reported as usable
 
 
 def dated(det, d):
@@ -272,6 +292,10 @@ def main():
     regimes = market_regimes(spy_d, spy_c, vix)
     rkeys = sorted(regimes)
     regime_now = regimes[spy_d[-1]]
+    quad_known, quad_lag = load_quad_history()
+    quad_now = quad_known.get(spy_d[-1][:7])
+    log(f"macro quad history: {len(quad_known)} months (label = quad known {quad_lag} months later); known now: Q{quad_now}"
+        if quad_known else "macro quad history: none (TRAPP2-1 data/macro/quad_history_full.json not found) — no quad split")
     rbase = regime_baselines(series, list(series), regimes, rkeys)
     log(f"market regime now: trend {regime_now[0]} · volatility {regime_now[1]} · "
         f"20-bar baselines by trend regime {rbase}")
@@ -296,6 +320,7 @@ def main():
         for x, r in zip(dets, recs):
             tr, vo = regime_at(regimes, rkeys, r["id"]) if r["id"] else (None, None)
             x["regimeTrend"], x["regimeVol"] = tr, vo
+            x["quadKnown"] = quad_known.get((r["id"] or "")[:7]) if quad_known else None
             r["rg"] = f"{tr or '?'}/{vo or '?'}"
             bucket = "live" if (r["id"] or "") >= live_start else "backtest"
             all_dets[r["tp"]][bucket].append(x)          # stats run on the full-precision dict
@@ -379,6 +404,14 @@ def main():
                 sm = pe.summarize(sub, bl)
                 sm["usable"] = sm["judged"] >= MIN_REGIME_N
                 by_volume[label] = sm
+        if quad_known:
+            by_regime["quad"] = {}
+            for q in (1, 2, 3, 4):
+                sub = [x for x in bt if x.get("quadKnown") == q]
+                if sub:
+                    sm = pe.summarize(sub, bl)
+                    sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                    by_regime["quad"][str(q)] = sm
         stats[k] = {**pe.TEMPLATES[k],
                     "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
                     "live": pe.summarize(b["live"], bl) if b["live"] else {"n": 0},
@@ -402,7 +435,7 @@ def main():
                                       "ruleNames": pe.rule_names(), "tickers": current})
     write_json(OUT / "stats.json", {"asOf": as_of, "engine": pe.ENGINE_VERSION, "liveStart": live_start,
                                     "baselineFwd20Pct": base, "baselineByTrendRegime": rbase,
-                                    "regimeNow": {"trend": regime_now[0], "vol": regime_now[1]},
+                                    "regimeNow": {"trend": regime_now[0], "vol": regime_now[1], "quadKnown": quad_now, "quadLagMonths": quad_lag},
                                     "minRegimeN": MIN_REGIME_N, "templates": stats}, compact=False)
     write_json(OUT / "signals.json", {"asOf": as_of, "window": SIGNAL_WINDOW, "signals": signals}, compact=False)
     secs = (datetime.now(timezone.utc) - started).total_seconds()

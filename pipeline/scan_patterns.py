@@ -336,7 +336,7 @@ def main():
                     entries[key]["history"] = (old.get("history") or []) + [[as_of, r["st"]]]
             n_since = len(d) - 1 - x["identIdx"]
             conf_since = (len(d) - 1 - x["confirmIdx"]) if x.get("confirmIdx") is not None else 10 ** 9
-            if n_since <= SIGNAL_WINDOW or conf_since <= SIGNAL_WINDOW:
+            if (n_since <= SIGNAL_WINDOW or conf_since <= SIGNAL_WINDOW) and x.get("pivotScale") != "fine":   # z110: research-only
                 signals.append(dict(ticker=t, template=r["tp"], direction=x["direction"],
                                     identDate=r["id"], confirmDate=r.get("cd"), status=r["st"],
                                     entry=r.get("en"), target=r.get("tg"), stop=r.get("sp"),
@@ -374,7 +374,13 @@ def main():
         dirn = -1 if pe.TEMPLATES[k]["direction"] == "bearish" else 1
         bl = (dirn * base) if base is not None else None
         by_regime = {"trend": {}, "vol": {}, "joint": {}}
-        bt = b["backtest"]
+        # z110: fine-pivot VCP / cup calls are RESEARCH-ONLY. In the backtest they
+        # hit their (smaller) targets more often but don't beat the typical stock
+        # over 20 bars, so they stay out of the template's main record (what the
+        # UI and the bot trust) and are reported separately in byPivotScale.
+        bt_all = b["backtest"]
+        bt = [x for x in bt_all if x.get("pivotScale") != "fine"]
+        live_main = [x for x in b["live"] if x.get("pivotScale") != "fine"]
         for tr in ("up", "mixed", "down"):
             sub = [x for x in bt if x.get("regimeTrend") == tr]
             if sub:
@@ -412,10 +418,19 @@ def main():
                     sm = pe.summarize(sub, bl)
                     sm["usable"] = sm["judged"] >= MIN_REGIME_N
                     by_regime["quad"][str(q)] = sm
+        # z110: VCP / cup & handle calls by pivot scale (base vs the finer second pass)
+        by_scale = {}
+        for sc in ("base", "fine"):
+            sub = [x for x in bt_all if x.get("pivotScale") == sc]
+            if sub and any(x.get("pivotScale") == "fine" for x in bt_all):
+                sm = pe.summarize(sub, bl)
+                sm["usable"] = sm["judged"] >= MIN_REGIME_N
+                by_scale[sc] = sm
         stats[k] = {**pe.TEMPLATES[k],
                     "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
-                    "live": pe.summarize(b["live"], bl) if b["live"] else {"n": 0},
-                    "byRegime": by_regime, "byVolume": by_volume, "volConfirmAt": pe.VOL_CONFIRM}
+                    "live": pe.summarize(live_main, bl) if live_main else {"n": 0},
+                    "byRegime": by_regime, "byVolume": by_volume, "volConfirmAt": pe.VOL_CONFIRM,
+                    **({"byPivotScale": by_scale} if by_scale else {})}
     # attach each template's record to its active signals
     for s in signals:
         bt = stats[s["template"]]["backtest"]

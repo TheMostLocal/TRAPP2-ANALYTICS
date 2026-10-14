@@ -2,7 +2,7 @@
  "asOf": "2026-10-13",
  "engine": "patterns-v3",
  "liveStart": "2026-10-07",
- "baselineFwd20Pct": 1.081,
+ "baselineFwd20Pct": 1.08,
  "baselineByTrendRegime": {
   "mixed": 0.93,
   "up": 0.978,
@@ -36,9 +36,9 @@
     "edgeVsBaselinePct": 0.44
    },
    "live": {
-    "n": 22,
+    "n": 21,
     "byStatus": {
-     "open": 22
+     "open": 21
     },
     "judged": 0,
     "successRate": null,

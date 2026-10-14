@@ -647,34 +647,6 @@
    }
   },
   {
-   "ticker": "EBAY",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-13",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 116.41,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11851,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9859,
-    "edgeVsBaselinePct": 0.49
-   }
-  },
-  {
    "ticker": "EDIT",
    "template": "bear_flag",
    "direction": "bearish",

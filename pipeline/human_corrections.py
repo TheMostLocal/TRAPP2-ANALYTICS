@@ -236,6 +236,115 @@ def apply_to_grades(doc, human):
     return applied, rolled
 
 
+# ---------------------------------------------------------------- leadership ----
+# XTRAPP leadershipOverrides (written by the app's CEO / Management editors):
+#   people:  {slug: {name, assignedTickers, assignedRoleByTicker{T: role},
+#                    sourceFieldByTicker{T: executives|board|founders}, updatedAt}}
+#   removed: {TICKER: [names removed by the editor]}
+# The human edit is the system override (z99): removed names are dropped from the
+# pulled company facts, assigned people are added / their role corrected, and the
+# record is stamped so it's clear a human changed it. Applied to every company file
+# each run - company facts are only re-fetched every 30 days, so applying only at
+# fetch time would delay a correction by up to a month.
+LEAD_FIELDS = ("executives", "board", "founders")
+
+
+def leadership_overrides(xt=None):
+    xt = load_xtrapp() if xt is None else xt
+    lo = (xt or {}).get("leadershipOverrides") or {}
+    return lo if isinstance(lo, dict) else {}
+
+
+def _pname(p):
+    return (p.get("name") if isinstance(p, dict) else str(p or "")).strip()
+
+
+def apply_leadership(ticker, rec, lo):
+    """Mutates rec (a data/company/<T>.json record). -> number of changes."""
+    if not isinstance(rec, dict) or not lo:
+        return 0
+    T = str(ticker).upper()
+    n = 0
+    removed = {str(x).strip().lower() for x in ((lo.get("removed") or {}).get(T) or [])}
+    assigned = {_pname(p).lower() for p in (lo.get("people") or {}).values()
+                if isinstance(p, dict) and T in [str(x).upper() for x in (p.get("assignedTickers") or [])]}
+    # undo what a PREVIOUS run did for a human edit that has since been withdrawn:
+    # people it inserted are removed; pulled people whose role it corrected get
+    # their pulled role back
+    for f in LEAD_FIELDS:
+        lst = rec.get(f) or []
+        keep = []
+        for p in lst:
+            if isinstance(p, dict) and _pname(p).lower() not in assigned:
+                if p.get("_human"):
+                    n += 1
+                    continue
+                if "_pulledRole" in p:
+                    p["role"] = p.pop("_pulledRole")
+                    if p["role"] is None:
+                        p.pop("role")
+                    n += 1
+            keep.append(p)
+        rec[f] = keep
+    if removed:
+        for f in LEAD_FIELDS:
+            lst = rec.get(f) or []
+            keep = [p for p in lst if _pname(p).lower() not in removed]
+            n += len(lst) - len(keep)
+            rec[f] = keep
+    for person in (lo.get("people") or {}).values():
+        if not isinstance(person, dict) or T not in [str(x).upper() for x in (person.get("assignedTickers") or [])]:
+            continue
+        name = _pname(person)
+        if not name or name.lower() in removed:
+            continue
+        field = ((person.get("sourceFieldByTicker") or {}).get(T) or "executives")
+        field = field if field in LEAD_FIELDS else "executives"
+        role = (person.get("assignedRoleByTicker") or {}).get(T) or person.get("role") or None
+        lst = rec.setdefault(field, [])
+        hit = next((p for p in lst if isinstance(p, dict) and _pname(p).lower() == name.lower()), None)
+        if hit is None:
+            lst.insert(0, {k: v for k, v in {"name": name, "role": role, "_human": True}.items() if v is not None})
+            n += 1
+        elif role and hit.get("role") != role:
+            if "_pulledRole" not in hit:
+                hit["_pulledRole"] = hit.get("role")      # remember the pulled value so it can be restored
+            hit["role"] = role
+            n += 1
+    if n:
+        rec["_humanLeadership"] = {"changes": n, "appliedAt": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    return n
+
+
+def apply_leadership_to_dir(company_dir, tickers=None, xt=None):
+    """Apply XTRAPP leadership overrides to every affected company file on disk.
+    -> {ticker: changes}. Only tickers mentioned by an override are touched."""
+    lo = leadership_overrides(xt)
+    if not lo:
+        return {}
+    touched = {str(t).upper() for t in (lo.get("removed") or {})}
+    for person in (lo.get("people") or {}).values():
+        if isinstance(person, dict):
+            touched |= {str(t).upper() for t in (person.get("assignedTickers") or [])}
+    if tickers is not None:
+        touched &= {str(t).upper() for t in tickers}
+    out = {}
+    for T in sorted(touched):
+        p = Path(company_dir) / f"{T}.json"
+        if not p.exists():
+            continue
+        try:
+            rec = json.loads(p.read_text())
+        except Exception:
+            continue
+        rec.pop("_humanLeadership", None)
+        n = apply_leadership(T, rec, lo)
+        if n:
+            p.write_text(json.dumps(rec, indent=2))
+            out[T] = n
+    return out
+
+
 def main(argv):
     mode = (argv[1] if len(argv) > 1 else "master").lower()
     x = load_xtrapp()

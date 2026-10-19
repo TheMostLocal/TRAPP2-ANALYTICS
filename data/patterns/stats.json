@@ -4,7 +4,7 @@
  "liveStart": "2026-10-07",
  "baselineFwd20Pct": 1.077,
  "baselineByTrendRegime": {
-  "mixed": 0.929,
+  "mixed": 0.93,
   "up": 0.974,
   "down": 1.483
  },
@@ -21,19 +21,19 @@
    "direction": "bullish",
    "kind": "template",
    "backtest": {
-    "n": 12051,
+    "n": 12050,
     "byStatus": {
      "success": 5876,
-     "failure": 5994,
+     "failure": 5993,
      "open": 181
     },
-    "judged": 11870,
+    "judged": 11869,
     "successRate": 49.5,
     "successCI95": [
      48.6,
      50.4
     ],
-    "avgReturnPct": 4.46,
+    "avgReturnPct": 4.47,
     "avgFwd20Pct": 1.51,
     "edgeVsBaselinePct": 0.43
    },
@@ -54,13 +54,13 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 10059,
+      "n": 10058,
       "byStatus": {
        "success": 4923,
-       "failure": 4955,
+       "failure": 4954,
        "open": 181
       },
-      "judged": 9878,
+      "judged": 9877,
       "successRate": 49.8,
       "successCI95": [
        48.9,
@@ -108,13 +108,13 @@
     },
     "vol": {
      "calm": {
-      "n": 8912,
+      "n": 8911,
       "byStatus": {
        "success": 4306,
-       "failure": 4427,
+       "failure": 4426,
        "open": 179
       },
-      "judged": 8733,
+      "judged": 8732,
       "successRate": 49.3,
       "successCI95": [
        48.3,
@@ -146,14 +146,14 @@
     },
     "joint": {
      "up/calm": {
-      "n": 8325,
+      "n": 8324,
       "byStatus": {
        "success": 4028,
-       "failure": 4118,
+       "failure": 4117,
        "open": 179
       },
-      "judged": 8146,
-      "successRate": 49.4,
+      "judged": 8145,
+      "successRate": 49.5,
       "successCI95": [
        48.4,
        50.5
@@ -269,12 +269,12 @@
       "usable": true
      },
      "2": {
-      "n": 3127,
+      "n": 3126,
       "byStatus": {
-       "failure": 1533,
+       "failure": 1532,
        "success": 1594
       },
-      "judged": 3127,
+      "judged": 3126,
       "successRate": 51.0,
       "successCI95": [
        49.2,
@@ -331,17 +331,17 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 2165,
+    "n": 2166,
     "byStatus": {
      "expired": 406,
-     "timeout": 882,
+     "timeout": 883,
      "success": 326,
      "failure": 342,
      "confirmed": 14,
      "invalidated": 188,
      "open": 7
     },
-    "judged": 1550,
+    "judged": 1551,
     "successRate": 21.0,
     "successCI95": [
      19.1,
@@ -463,31 +463,31 @@
     },
     "vol": {
      "calm": {
-      "n": 1157,
+      "n": 1158,
       "byStatus": {
        "expired": 232,
-       "timeout": 487,
+       "timeout": 488,
        "success": 164,
        "failure": 164,
        "confirmed": 14,
        "invalidated": 89,
        "open": 7
       },
-      "judged": 815,
+      "judged": 816,
       "successRate": 20.1,
       "successCI95": [
        17.5,
        23.0
       ],
       "avgReturnPct": -2.74,
-      "avgFwd20Pct": -5.39,
+      "avgFwd20Pct": -5.38,
       "confirmRate": 72.1,
       "identificationSuccessRate": 25.3,
       "identCI95": [
        22.1,
        28.8
       ],
-      "edgeVsBaselinePct": -4.31,
+      "edgeVsBaselinePct": -4.3,
       "usable": true
      },
      "stressed": {
@@ -731,9 +731,9 @@
       "usable": true
      },
      "3": {
-      "n": 670,
+      "n": 671,
       "byStatus": {
-       "timeout": 266,
+       "timeout": 267,
        "success": 147,
        "failure": 89,
        "expired": 94,
@@ -741,13 +741,13 @@
        "invalidated": 54,
        "open": 7
       },
-      "judged": 502,
-      "successRate": 29.3,
+      "judged": 503,
+      "successRate": 29.2,
       "successCI95": [
-       25.5,
-       33.4
+       25.4,
+       33.3
       ],
-      "avgReturnPct": -1.16,
+      "avgReturnPct": -1.17,
       "avgFwd20Pct": -0.5,
       "confirmRate": 77.7,
       "identificationSuccessRate": 38.3,
@@ -789,18 +789,18 @@
    },
    "byVolume": {
     "confirmed": {
-     "n": 563,
+     "n": 564,
      "byStatus": {
-      "timeout": 353,
+      "timeout": 354,
       "success": 107,
       "failure": 100,
       "confirmed": 3
      },
-     "judged": 560,
+     "judged": 561,
      "successRate": 19.1,
      "successCI95": [
-      16.1,
-      22.6
+      16.0,
+      22.5
      ],
      "avgReturnPct": -5.02,
      "avgFwd20Pct": -1.74,
@@ -1387,10 +1387,10 @@
     "edgeVsBaselinePct": -1.77
    },
    "live": {
-    "n": 27,
+    "n": 26,
     "byStatus": {
      "confirmed": 13,
-     "open": 13,
+     "open": 12,
      "success": 1
     },
     "judged": 1,
@@ -1878,9 +1878,9 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 12565,
+    "n": 12566,
     "byStatus": {
-     "success": 3355,
+     "success": 3356,
      "failure": 1684,
      "timeout": 1983,
      "expired": 2000,
@@ -1888,15 +1888,15 @@
      "confirmed": 39,
      "open": 12
     },
-    "judged": 7022,
+    "judged": 7023,
     "successRate": 47.8,
     "successCI95": [
      46.6,
-     48.9
+     49.0
     ],
     "avgReturnPct": 1.74,
     "avgFwd20Pct": 1.48,
-    "confirmRate": 56.2,
+    "confirmRate": 56.3,
     "identificationSuccessRate": 31.9,
     "identCI95": [
      31.0,
@@ -2011,9 +2011,9 @@
     },
     "vol": {
      "calm": {
-      "n": 7824,
+      "n": 7825,
       "byStatus": {
-       "success": 2038,
+       "success": 2039,
        "failure": 1090,
        "timeout": 1217,
        "expired": 1248,
@@ -2021,7 +2021,7 @@
        "confirmed": 39,
        "open": 12
       },
-      "judged": 4345,
+      "judged": 4346,
       "successRate": 46.9,
       "successCI95": [
        45.4,
@@ -2280,21 +2280,21 @@
       "usable": true
      },
      "3": {
-      "n": 4096,
+      "n": 4097,
       "byStatus": {
        "failure": 647,
-       "success": 928,
+       "success": 929,
        "invalidated": 1292,
        "timeout": 596,
        "expired": 587,
        "confirmed": 36,
        "open": 10
       },
-      "judged": 2171,
-      "successRate": 42.7,
+      "judged": 2172,
+      "successRate": 42.8,
       "successCI95": [
        40.7,
-       44.8
+       44.9
       ],
       "avgReturnPct": 0.69,
       "avgFwd20Pct": 0.26,
@@ -2364,14 +2364,14 @@
      "usable": true
     },
     "unconfirmed": {
-     "n": 4248,
+     "n": 4249,
      "byStatus": {
-      "success": 1874,
+      "success": 1875,
       "timeout": 1302,
       "failure": 1052,
       "confirmed": 20
      },
-     "judged": 4228,
+     "judged": 4229,
      "successRate": 44.3,
      "successCI95": [
       42.8,
@@ -2380,7 +2380,7 @@
      "avgReturnPct": 1.62,
      "avgFwd20Pct": 1.3,
      "confirmRate": 100.0,
-     "identificationSuccessRate": 64.0,
+     "identificationSuccessRate": 64.1,
      "identCI95": [
       62.3,
       65.8
@@ -6015,12 +6015,12 @@
     "n": 15903,
     "byStatus": {
      "timeout": 1896,
-     "invalidated": 5318,
+     "invalidated": 5319,
      "success": 5158,
      "expired": 578,
      "failure": 2848,
      "confirmed": 82,
-     "open": 23
+     "open": 22
     },
     "judged": 9902,
     "successRate": 52.1,
@@ -6066,12 +6066,12 @@
       "n": 13677,
       "byStatus": {
        "timeout": 1605,
-       "invalidated": 4538,
+       "invalidated": 4539,
        "success": 4514,
        "expired": 492,
        "failure": 2423,
        "confirmed": 82,
-       "open": 23
+       "open": 22
       },
       "judged": 8542,
       "successRate": 52.8,
@@ -6148,12 +6148,12 @@
       "n": 11238,
       "byStatus": {
        "timeout": 1225,
-       "invalidated": 4059,
+       "invalidated": 4060,
        "success": 3386,
        "expired": 432,
        "failure": 2031,
        "confirmed": 82,
-       "open": 23
+       "open": 22
       },
       "judged": 6642,
       "successRate": 51.0,
@@ -6204,12 +6204,12 @@
       "n": 10611,
       "byStatus": {
        "timeout": 1147,
-       "invalidated": 3783,
+       "invalidated": 3784,
        "success": 3244,
        "expired": 401,
        "failure": 1931,
        "confirmed": 82,
-       "open": 23
+       "open": 22
       },
       "judged": 6322,
       "successRate": 51.3,
@@ -6444,12 +6444,12 @@
       "n": 3506,
       "byStatus": {
        "success": 1140,
-       "invalidated": 1128,
+       "invalidated": 1129,
        "timeout": 461,
        "expired": 125,
        "failure": 628,
        "confirmed": 14,
-       "open": 10
+       "open": 9
       },
       "judged": 2229,
       "successRate": 51.1,
@@ -6459,7 +6459,7 @@
       ],
       "avgReturnPct": 1.39,
       "avgFwd20Pct": 1.4,
-      "confirmRate": 64.2,
+      "confirmRate": 64.1,
       "identificationSuccessRate": 37.7,
       "identCI95": [
        36.0,

@@ -6107,34 +6107,6 @@
    }
   },
   {
-   "ticker": "XRP-USD",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 1.5718,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.4
-    ],
-    "n": 6571,
-    "edgeVsBaselinePct": -1.77
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.3,
-    "n": 4198,
-    "edgeVsBaselinePct": -2.34
-   }
-  },
-  {
    "ticker": "SHEL",
    "template": "flat_base",
    "direction": "bullish",
@@ -7784,34 +7756,6 @@
     "successRate": 43.3,
     "n": 676,
     "edgeVsBaselinePct": 2.63
-   }
-  },
-  {
-   "ticker": "BIGGQ",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-09-17",
-   "confirmDate": "2026-10-02",
-   "status": "success",
-   "entry": 0.0005,
-   "target": 0.0005,
-   "stop": 0.0001,
-   "volConfirmed": false,
-   "volRatio": 0.14,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7025,
-    "edgeVsBaselinePct": 0.39
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.0,
-    "n": 4687,
-    "edgeVsBaselinePct": 0.58
    }
   },
   {

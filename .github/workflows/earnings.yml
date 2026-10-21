@@ -1,0 +1,99 @@
+# ============================================================
+#  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/earnings.yml
+#
+#  z136 - EARNINGS. Index members (S&P 500, Nasdaq-100, Dow 30) -> every member's reports
+#  (Yahoo) -> the season table, bottom-up (Data & Research -> Earnings; each asset's own
+#  earnings on its Valuation page). Runs after the morning reports (0900 ET), after the
+#  after-close reports (1730 ET) and late (2100 ET). GitHub cron is UTC: each run is listed for
+#  EDT and EST and the gate keeps the one that lands on the Eastern time. Members refresh weekly
+#  (Monday's first run) or when missing.
+# ============================================================
+name: Earnings (members, reports, season)
+
+on:
+  schedule:
+    - cron: '0 13 * * 1-5'     # 0900 EDT
+    - cron: '0 14 * * 1-5'     # 0900 EST
+    - cron: '30 21 * * 1-5'    # 1730 EDT
+    - cron: '30 22 * * 1-5'    # 1730 EST
+    - cron: '0 1 * * 2-6'      # 2100 EDT (Mon-Fri ET = Tue-Sat UTC)
+    - cron: '0 2 * * 2-6'      # 2100 EST
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Re-read every member (EARNINGS_FULL)'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: analytics-earnings
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        name: Eastern-time gate
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          S="${{ github.event.schedule }}"
+          OFF=$(TZ=America/New_York date +%z); OFFH=$((10#${OFF:1:2}))
+          UM=$(echo "$S" | awk '{print $1}'); UH=$(echo "$S" | awk '{print $2}')
+          ETH=$(( (10#$UH - OFFH + 24) % 24 )); ETM=$(printf '%02d' "$UM")
+          case "${ETH}:${ETM}" in 9:00|17:30|21:00) RUN=true ;; *) RUN=false ;; esac
+          echo "schedule '$S' = ${ETH}:${ETM} ET today (UTC${OFF}) -> run=${RUN}"
+          echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
+  earnings:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+          pip install yfinance pandas openpyxl lxml html5lib
+
+      - name: Index members (weekly, or when missing)
+        run: |
+          if [ ! -f data/earnings/universe.json ] || { [ "$(TZ=America/New_York date +%u)" = "1" ] && [ "$(TZ=America/New_York date +%H)" -lt 12 ]; }; then
+            python pipeline/fetch_index_members.py
+          else echo "members: kept (refreshed on Mondays)"; fi
+        continue-on-error: true
+
+      - name: Members' reports (Yahoo)
+        env:
+          EARNINGS_FULL: ${{ github.event.inputs.full == 'true' && '1' || '' }}
+        run: python pipeline/fetch_earnings.py
+        continue-on-error: true
+        timeout-minutes: 35
+
+      - name: Season, bottom-up
+        run: python pipeline/build_earnings_season.py
+
+      - name: Commit & push (start from the latest main)
+        run: |
+          git config user.name "valuatio-earnings"
+          git config user.email "actions@github.com"
+          git add -A data/earnings
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -q -m "earnings: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
+          for k in 1 2 3 4 5; do
+            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
+            git fetch -q origin main
+            git merge -X ours origin/main --no-edit -q || true
+            sleep $((k * 3))
+          done
+          echo "::warning::push failed after 5 attempts"

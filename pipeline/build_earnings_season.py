@@ -122,7 +122,26 @@ def main():
         print(f"[season] {etf} {q['label']}: {total['reported']}/{total['members']} reported · beat {total['pctBeat']} · surprise {total['surprise']} · blended EPS {blended}")
     write(OUT / "season.json", season)
     write(OUT / "history.json", hist)
+    write_calendar()
     return 0
+
+
+def write_calendar():
+    """z138 - one small file the bot reads for catalysts: every ticker's next report and its record
+    (beat rate and average surprise over its last 8 reports). -> data/earnings/calendar.json"""
+    out = {}
+    for p in sorted(TICK.glob("*.json")):
+        doc = read(p) or {}
+        hist = [h for h in (doc.get("history") or []) if h.get("epsActual") is not None and h.get("epsEstimate") is not None][-8:]
+        nx = doc.get("next") or {}
+        beats = [h for h in hist if h["epsActual"] > h["epsEstimate"] + 1e-9]
+        sur = [num(h.get("surprisePct")) for h in hist if num(h.get("surprisePct")) is not None]
+        out[p.stem] = {"next": {"date": nx.get("date"), "time": nx.get("time"), "est": num(nx.get("epsEstimate"))} if nx.get("date") else None,
+                       "beatRate": round(len(beats) / len(hist), 3) if hist else None,
+                       "avgSurprise": round(sum(sur) / len(sur), 2) if sur else None, "n": len(hist),
+                       "last": hist[-1]["date"] if hist else None}
+    write(OUT / "calendar.json", {"asOf": now_iso(), "tickers": out})
+    print(f"[season] calendar: {len(out)} tickers")
 
 
 if __name__ == "__main__":

@@ -59,9 +59,32 @@ def stats(rows):
             "surprise": num_ / den if den else None}
 
 
+def book_prices():
+    """z140: {TICKER: (price USD, market cap USD)} from the four books' master.json - Yahoo's fast_info
+    returns nothing from GitHub's runners, which left every share count (and so the surprise and the
+    blended EPS) empty."""
+    import json
+    import urllib.request
+    out = {}
+    for b in ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3"):
+        try:
+            with urllib.request.urlopen(f"https://raw.githubusercontent.com/TheMostLocal/{b}/main/data/master.json", timeout=60) as r:
+                rows = json.loads(r.read().decode())
+            for x in rows if isinstance(rows, list) else (rows.get("rows") or []):
+                t = str(x.get("ticker") or "").upper()
+                p, c = num(x.get("price")), num(x.get("marketcap") or x.get("marketCap"))
+                if t and p and p > 0 and t not in out and str(x.get("currency") or "USD").upper() == "USD":
+                    out[t] = (p, c if c and c > 0 else None)
+        except Exception as e:
+            print(f"[season] {b} master unavailable ({e})")
+    return out
+
+
 def main():
     uni = read(OUT / "universe.json", {}) or {}
     q = season_quarter()
+    bp = book_prices()
+    print(f"[season] book prices for {len(bp)} tickers")
     today = date.today().isoformat()
     etfs = sorted(set(SECTOR_ETF.values()) | set(uni.get("indices", {}).keys()) | set(INDEX_LEVEL.values()))
     px = closes(etfs, q["end"][:8] + "01")
@@ -71,9 +94,11 @@ def main():
         rows, upcoming, results = [], [], []
         for m in ix.get("members") or []:
             doc = read(TICK / f"{m['ticker']}.json") or {}
-            price = num(doc.get("price"))
+            bpx = bp.get(m["ticker"]) or (None, None)
+            price = num(doc.get("price")) or bpx[0]
+            cap = num(doc.get("marketCap")) or bpx[1]
             w = num(m.get("weight"))
-            shares = (w / price) if (w and price) else ((num(doc.get("marketCap")) / price) if (doc.get("marketCap") and price) else None)
+            shares = (w / price) if (w and price) else ((cap / price) if (cap and price) else None)
             rep = next((h for h in reversed(doc.get("history") or []) if q["from"] <= (h.get("date") or "") <= q["to"]
                         and h.get("epsActual") is not None and h.get("epsEstimate") is not None), None)
             nxt = doc.get("next") or {}

@@ -41,21 +41,25 @@ def from_ssga(etf):
     df = raw.iloc[hdr + 1:].copy()
     df.columns = [str(x).strip() for x in raw.iloc[hdr].tolist()]
     out = []
+    scol = next((c for c in df.columns if "sector" in c.lower()), None)      # z140: "Sector" / "GICS Sector" / none
     for _, r in df.iterrows():
         t = yahoo_symbol(r.get("Ticker"))
         w = num(r.get("Weight"))
         if not t or t in ("-", "NAN", "CASH_USD") or w is None or w <= 0:
             continue
-        out.append({"ticker": t, "name": str(r.get("Name") or "").strip(), "sector": sector_of(r.get("Sector")), "weight": round(w / 100, 8)})
+        out.append({"ticker": t, "name": str(r.get("Name") or "").strip(), "sector": sector_of(r.get(scol)) if scol else None, "weight": round(w / 100, 8)})
     return out
 
 
 def from_wiki(etf):
     import pandas as pd
     tables = pd.read_html(io.BytesIO(get(WIKI[etf])))
+    log(f"{etf}: Wikipedia tables {[(len(t), [str(c)[:14] for c in t.columns][:4]) for t in tables][:8]}")
+    # z140: the components table = the one with a ticker column and the most rows
+    tables = sorted(tables, key=lambda t: -len(t))
     for tb in tables:
         cols = {str(c).strip().lower(): c for c in tb.columns}
-        tc = cols.get("symbol") or cols.get("ticker")
+        tc = cols.get("symbol") or cols.get("ticker") or next((c for k, c in cols.items() if "ticker" in k or "symbol" in k), None)
         if tc is None or len(tb) < (25 if etf == "DIA" else 90):
             continue
         sc = cols.get("gics sector") or cols.get("sector") or cols.get("industry")
@@ -87,7 +91,21 @@ def main():
             log(f"{etf}: {len(members)} members from {source}")
         else:
             log(f"{etf}: no members this run - keeping the previous list ({len((idx.get(etf) or {}).get('members') or [])})")
-    sp = {m["ticker"]: m.get("sector") for m in (idx.get("SPY") or {}).get("members") or []}
+    # z140: State Street's file can come without sectors - take the GICS sector from Wikipedia's
+    # S&P 500 list (the season table is by sector; without this every sector row read 0 / 0)
+    spm = (idx.get("SPY") or {}).get("members") or []
+    if spm and sum(1 for m in spm if m.get("sector")) < 0.9 * len(spm):
+        try:
+            wiki = {m["ticker"]: m.get("sector") for m in from_wiki("SPY") if m.get("sector")}
+            n = 0
+            for m in spm:
+                if not m.get("sector") and wiki.get(m["ticker"]):
+                    m["sector"] = wiki[m["ticker"]]
+                    n += 1
+            log(f"SPY: sectors filled from Wikipedia for {n} members ({sum(1 for m in spm if m.get('sector'))}/{len(spm)} now)")
+        except Exception as e:
+            log(f"SPY: sector fill failed ({e})")
+    sp = {m["ticker"]: m.get("sector") for m in spm}
     for etf in ("DIA", "QQQ"):
         for m in (idx.get(etf) or {}).get("members") or []:
             if not m.get("sector"):

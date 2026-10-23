@@ -1,0 +1,71 @@
+# ============================================================
+#  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/headcount.yml
+#
+#  z151 - HEADCOUNT. Every company's employee history (SEC filings, FMP via the key proxy, Wikidata,
+#  the quote pages' current count), revenue per employee, and the market's hiring breadth. Twice a week
+#  (Mondays and Thursdays 0640 ET) - headcounts move with quarterly / annual reports, and the FMP part
+#  rotates 150 companies a run. GitHub cron is UTC: listed for EDT and EST, the gate keeps 0640 ET.
+#  Optional repo variable SEC_USER_AGENT ("Name email") - SEC asks for a contact in the User-Agent.
+# ============================================================
+name: Headcount (employees, revenue per employee, hiring breadth)
+
+on:
+  schedule:
+    - cron: '40 10 * * 1,4'    # 0640 EDT Mon / Thu
+    - cron: '40 11 * * 1,4'    # 0640 EST Mon / Thu
+  workflow_dispatch:
+
+concurrency:
+  group: analytics-headcount
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        name: Eastern-time gate
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          S="${{ github.event.schedule }}"
+          OFF=$(TZ=America/New_York date +%z); OFFH=$((10#${OFF:1:2}))
+          UM=$(echo "$S" | awk '{print $1}'); UH=$(echo "$S" | awk '{print $2}')
+          ETH=$(( (10#$UH - OFFH + 24) % 24 )); ETM=$(printf '%02d' "$UM")
+          if [ "${ETH}:${ETM}" = "6:40" ]; then RUN=true; else RUN=false; fi
+          echo "schedule '$S' = ${ETH}:${ETM} ET today (UTC${OFF}) -> run=${RUN}"
+          echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
+  headcount:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Headcount
+        env:
+          KEY_PROXY: 'https://project-66nen.vercel.app/api/v'
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+        run: python pipeline/fetch_headcount.py
+      - name: Commit & push (start from the latest main)
+        run: |
+          git config user.name "valuatio-headcount"
+          git config user.email "actions@github.com"
+          git add -A data/headcount
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -q -m "headcount: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
+          for k in 1 2 3 4 5; do
+            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
+            git fetch -q origin main
+            git merge -X ours origin/main --no-edit -q || true
+            sleep $((k * 3))
+          done
+          echo "::warning::push failed after 5 attempts"

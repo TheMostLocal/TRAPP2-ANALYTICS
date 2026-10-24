@@ -6,7 +6,8 @@
 #  the quote pages' current count), revenue per employee, and the market's hiring breadth. Twice a week
 #  (Mondays and Thursdays 0640 ET) - headcounts move with quarterly / annual reports, and the FMP part
 #  rotates 150 companies a run. GitHub cron is UTC: listed for EDT and EST, the gate keeps 0640 ET.
-#  Optional repo variable SEC_USER_AGENT ("Name email") - SEC asks for a contact in the User-Agent.
+#  SEC_USER_AGENT ("Name email") - SEC asks for a contact in the User-Agent. Best kept as a repository
+#  SECRET (masked in the public Actions logs); a repository variable also works but prints in the logs.
 # ============================================================
 name: Headcount (employees, revenue per employee, hiring breadth)
 
@@ -53,7 +54,7 @@ jobs:
       - name: Headcount
         env:
           KEY_PROXY: 'https://project-66nen.vercel.app/api/v'
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}   # z153: secret first (masked in logs)
         run: python pipeline/fetch_headcount.py
       - name: Commit & push (start from the latest main)
         run: |

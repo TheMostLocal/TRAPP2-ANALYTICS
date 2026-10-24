@@ -16,6 +16,11 @@ on:
     - cron: '40 10 * * 1,4'    # 0640 EDT Mon / Thu
     - cron: '40 11 * * 1,4'    # 0640 EST Mon / Thu
   workflow_dispatch:
+    inputs:
+      tenk_docs:
+        description: 'Annual reports (10-K / 20-F) to read this run - 4000 backfills ~5 years for every company (~1 h)'
+        required: false
+        default: '600'
 
 concurrency:
   group: analytics-headcount
@@ -43,7 +48,7 @@ jobs:
     needs: gate
     if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 150
     permissions:
       contents: write
     steps:
@@ -54,6 +59,7 @@ jobs:
       - name: Headcount
         env:
           KEY_PROXY: 'https://project-66nen.vercel.app/api/v'
+          TENK_DOCS_PER_RUN: ${{ github.event.inputs.tenk_docs || '600' }}
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}   # z153: secret first (masked in logs)
         run: python pipeline/fetch_headcount.py
       - name: Commit & push (start from the latest main)

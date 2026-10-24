@@ -1,7 +1,567 @@
 {
- "asOf": "2026-10-22",
+ "asOf": "2026-10-23",
  "window": 10,
  "signals": [
+  {
+   "ticker": "GOOG",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-08-31",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 317.28,
+   "target": 263.9,
+   "stop": 375.35,
+   "volConfirmed": false,
+   "volRatio": 0.67,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.3,
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
+   }
+  },
+  {
+   "ticker": "CTM",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 0.64,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 11.9,
+    "ci95": [
+     10.7,
+     13.1
+    ],
+    "n": 2969,
+    "edgeVsBaselinePct": -1.75
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
+   }
+  },
+  {
+   "ticker": "SLB",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 53.06,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.8,
+    "n": 9895,
+    "edgeVsBaselinePct": 0.48
+   }
+  },
+  {
+   "ticker": "OXY",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-12",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 64.17,
+   "target": 72.1,
+   "stop": 54.94,
+   "volConfirmed": false,
+   "volRatio": 1.39,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "CEG",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-19",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 253.45,
+   "target": 208.315,
+   "stop": 300.4,
+   "volConfirmed": false,
+   "volRatio": 0.87,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.3,
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
+   }
+  },
+  {
+   "ticker": "EMR",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 161.59,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 49.5,
+    "ci95": [
+     48.6,
+     50.4
+    ],
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.8,
+    "n": 9895,
+    "edgeVsBaselinePct": 0.48
+   }
+  },
+  {
+   "ticker": "DVN",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 51.39,
+   "target": 56.62,
+   "stop": 46.04,
+   "volConfirmed": false,
+   "volRatio": 1.22,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "DVN",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-16",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 51.39,
+   "target": 62.420213,
+   "stop": 40.25,
+   "volConfirmed": false,
+   "volRatio": 1.22,
+   "track": {
+    "successRate": 30.9,
+    "ci95": [
+     28.5,
+     33.4
+    ],
+    "n": 1365,
+    "edgeVsBaselinePct": 0.17
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 32.6,
+    "n": 868,
+    "edgeVsBaselinePct": 0.11
+   }
+  },
+  {
+   "ticker": "DVN",
+   "template": "cup_handle",
+   "direction": "bullish",
+   "identDate": "2026-10-16",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 51.39,
+   "target": 62.41,
+   "stop": 46.04,
+   "volConfirmed": false,
+   "volRatio": 1.22,
+   "track": {
+    "successRate": 19.7,
+    "ci95": [
+     14.9,
+     25.6
+    ],
+    "n": 208,
+    "edgeVsBaselinePct": 0.28
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 21.5,
+    "n": 172,
+    "edgeVsBaselinePct": 0.57
+   }
+  },
+  {
+   "ticker": "DVN",
+   "template": "asc_triangle",
+   "direction": "bullish",
+   "identDate": "2026-10-16",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 51.39,
+   "target": 62.49,
+   "stop": 46.04,
+   "volConfirmed": false,
+   "volRatio": 1.22,
+   "track": {
+    "successRate": 31.7,
+    "ci95": [
+     29.5,
+     34.0
+    ],
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 33.0,
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
+   }
+  },
+  {
+   "ticker": "HAL",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 31.19,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.6,
+     48.9
+    ],
+    "n": 7020,
+    "edgeVsBaselinePct": 0.4
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
+   }
+  },
+  {
+   "ticker": "KBH",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 41.63,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.6,
+     48.9
+    ],
+    "n": 7020,
+    "edgeVsBaselinePct": 0.4
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
+   }
+  },
+  {
+   "ticker": "RVTY",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-21",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 158.77,
+   "target": 172.61,
+   "stop": 142.11,
+   "volConfirmed": false,
+   "volRatio": 0.59,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "PHM",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 109.35,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.6,
+     48.9
+    ],
+    "n": 7020,
+    "edgeVsBaselinePct": 0.4
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
+   }
+  },
+  {
+   "ticker": "AR",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-13",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 40.16,
+   "target": 46.315,
+   "stop": 33.22,
+   "volConfirmed": false,
+   "volRatio": 1.02,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.6,
+     48.9
+    ],
+    "n": 7020,
+    "edgeVsBaselinePct": 0.4
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
+   }
+  },
+  {
+   "ticker": "BCAB",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 1.23,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.8,
+    "ci95": [
+     46.6,
+     48.9
+    ],
+    "n": 7020,
+    "edgeVsBaselinePct": 0.4
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
+   }
+  },
+  {
+   "ticker": "DEO",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 83.97,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "HP",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-23",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 36.61,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "LNG",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-08",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 298.67,
+   "target": 316.71,
+   "stop": 267.29,
+   "volConfirmed": false,
+   "volRatio": 1.27,
+   "track": {
+    "successRate": 52.1,
+    "ci95": [
+     51.1,
+     53.1
+    ],
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8532,
+    "edgeVsBaselinePct": 0.15
+   }
+  },
+  {
+   "ticker": "PALI",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-19",
+   "confirmDate": "2026-10-23",
+   "status": "confirmed",
+   "entry": 1.33,
+   "target": 0.5,
+   "stop": 1.59,
+   "volConfirmed": false,
+   "volRatio": 0.43,
+   "track": {
+    "successRate": 11.9,
+    "ci95": [
+     10.7,
+     13.1
+    ],
+    "n": 2969,
+    "edgeVsBaselinePct": -1.75
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
+   }
+  },
   {
    "ticker": "PICK",
    "template": "double_top",
@@ -15,19 +575,19 @@
    "volConfirmed": false,
    "volRatio": 1.19,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -43,19 +603,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -76,14 +636,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -99,19 +659,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -133,13 +693,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -160,14 +720,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -188,14 +748,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -216,14 +776,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -244,14 +804,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -272,13 +832,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -300,14 +860,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -328,14 +888,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -356,13 +916,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -384,13 +944,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -412,13 +972,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -440,14 +1000,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -466,7 +1026,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -474,7 +1034,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -496,14 +1056,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -519,19 +1079,19 @@
    "volConfirmed": true,
    "volRatio": 1.52,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -553,13 +1113,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -580,14 +1140,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -636,14 +1196,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -664,14 +1224,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -687,19 +1247,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -720,13 +1280,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -743,19 +1303,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -773,17 +1333,17 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.1,
+     19.0,
      23.1
     ],
-    "n": 1552,
+    "n": 1551,
     "edgeVsBaselinePct": -3.12
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.9,
-    "n": 1051,
-    "edgeVsBaselinePct": -3.66
+    "successRate": 19.8,
+    "n": 1050,
+    "edgeVsBaselinePct": -3.67
    }
   },
   {
@@ -811,7 +1371,7 @@
     "regime": "up",
     "successRate": 43.3,
     "n": 676,
-    "edgeVsBaselinePct": 2.63
+    "edgeVsBaselinePct": 2.64
    }
   },
   {
@@ -827,19 +1387,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -855,19 +1415,19 @@
    "volConfirmed": false,
    "volRatio": 0.98,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -881,20 +1441,20 @@
    "target": 180.37,
    "stop": 143.35,
    "volConfirmed": false,
-   "volRatio": 0.83,
+   "volRatio": 0.84,
    "track": {
     "successRate": 52.1,
     "ci95": [
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -911,19 +1471,19 @@
    "volConfirmed": true,
    "volRatio": 1.75,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -944,14 +1504,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -972,13 +1532,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1000,14 +1560,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1028,13 +1588,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1056,13 +1616,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1084,13 +1644,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1112,14 +1672,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1140,14 +1700,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1168,14 +1728,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1196,14 +1756,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1224,13 +1784,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1252,13 +1812,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1280,13 +1840,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1305,17 +1865,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -1336,14 +1896,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1364,13 +1924,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1392,13 +1952,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -1420,13 +1980,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -1445,17 +2005,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -1464,26 +2024,26 @@
    "direction": "bearish",
    "identDate": "2026-10-12",
    "confirmDate": "2026-10-22",
-   "status": "confirmed",
+   "status": "failure",
    "entry": 1.23,
    "target": 0.12,
    "stop": 1.59,
    "volConfirmed": false,
    "volRatio": 0.08,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -1504,13 +2064,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1532,14 +2092,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1557,17 +2117,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -1588,14 +2148,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1611,19 +2171,19 @@
    "volConfirmed": false,
    "volRatio": 0.8,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -1641,17 +2201,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -1672,13 +2232,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -1700,14 +2260,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1728,14 +2288,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1756,13 +2316,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1784,13 +2344,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -1812,14 +2372,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1835,19 +2395,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -1868,42 +2428,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "RVTY",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-21",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 142.11,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1924,13 +2456,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -1952,14 +2484,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -1980,13 +2512,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2008,13 +2540,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2036,13 +2568,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2064,13 +2596,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2089,17 +2621,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -2120,13 +2652,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2148,14 +2680,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2176,14 +2708,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2204,14 +2736,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2232,14 +2764,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2260,14 +2792,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2283,19 +2815,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -2314,7 +2846,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -2322,7 +2854,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -2339,19 +2871,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -2370,16 +2902,16 @@
     "successRate": 33.5,
     "ci95": [
      30.8,
-     36.3
+     36.2
     ],
-    "n": 1141,
+    "n": 1142,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.9,
-    "n": 686,
-    "edgeVsBaselinePct": 3.56
+    "n": 687,
+    "edgeVsBaselinePct": 3.57
    }
   },
   {
@@ -2400,14 +2932,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2428,13 +2960,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2456,13 +2988,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2479,19 +3011,19 @@
    "volConfirmed": true,
    "volRatio": 1.65,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -2512,13 +3044,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2537,17 +3069,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -2568,13 +3100,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2593,17 +3125,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -2624,14 +3156,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2652,13 +3184,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2680,13 +3212,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2708,14 +3240,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2736,13 +3268,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2764,13 +3296,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -2789,45 +3321,17 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.1,
+     19.0,
      23.1
     ],
-    "n": 1552,
+    "n": 1551,
     "edgeVsBaselinePct": -3.12
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.9,
-    "n": 1051,
-    "edgeVsBaselinePct": -3.66
-   }
-  },
-  {
-   "ticker": "CEG",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-10-19",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 300.4,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.4
-    ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "successRate": 19.8,
+    "n": 1050,
+    "edgeVsBaselinePct": -3.67
    }
   },
   {
@@ -2848,13 +3352,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2876,13 +3380,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2904,13 +3408,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2932,14 +3436,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -2948,7 +3452,7 @@
    "direction": "bullish",
    "identDate": "2026-10-19",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 33.25,
@@ -2960,13 +3464,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -2988,13 +3492,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3016,13 +3520,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3039,47 +3543,19 @@
    "volConfirmed": false,
    "volRatio": 0.81,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
-   }
-  },
-  {
-   "ticker": "PALI",
-   "template": "bear_flag",
-   "direction": "bearish",
-   "identDate": "2026-10-19",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 1.59,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 11.8,
-    "ci95": [
-     10.7,
-     13.1
-    ],
-    "n": 2972,
-    "edgeVsBaselinePct": -1.75
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -3095,19 +3571,19 @@
    "volConfirmed": true,
    "volRatio": 24.88,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -3123,19 +3599,19 @@
    "volConfirmed": true,
    "volRatio": 1.88,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3156,14 +3632,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3184,14 +3660,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3212,13 +3688,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3241,13 +3717,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -3268,14 +3744,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3296,14 +3772,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3319,19 +3795,19 @@
    "volConfirmed": false,
    "volRatio": 1.36,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3347,103 +3823,19 @@
    "volConfirmed": true,
    "volRatio": 1.4,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
-   }
-  },
-  {
-   "ticker": "DVN",
-   "template": "hs_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-16",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 40.25,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.9,
-    "ci95": [
-     28.5,
-     33.4
-    ],
-    "n": 1365,
-    "edgeVsBaselinePct": 0.19
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 32.6,
-    "n": 868,
-    "edgeVsBaselinePct": 0.12
-   }
-  },
-  {
-   "ticker": "DVN",
-   "template": "cup_handle",
-   "direction": "bullish",
-   "identDate": "2026-10-16",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 46.04,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 19.6,
-    "ci95": [
-     14.8,
-     25.5
-    ],
-    "n": 209,
-    "edgeVsBaselinePct": 0.25
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 21.5,
-    "n": 172,
-    "edgeVsBaselinePct": 0.56
-   }
-  },
-  {
-   "ticker": "DVN",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-10-16",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 46.04,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 31.7,
-    "ci95": [
-     29.4,
-     34.0
-    ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3465,13 +3857,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -3489,17 +3881,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -3515,19 +3907,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3548,14 +3940,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3597,20 +3989,20 @@
    "target": 121.98,
    "stop": 95.52,
    "volConfirmed": false,
-   "volRatio": 1.02,
+   "volRatio": 1.01,
    "track": {
     "successRate": 52.1,
     "ci95": [
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3632,14 +4024,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3660,14 +4052,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3683,19 +4075,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3711,19 +4103,19 @@
    "volConfirmed": false,
    "volRatio": 1.27,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3744,13 +4136,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3767,19 +4159,19 @@
    "volConfirmed": false,
    "volRatio": 0.3,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3795,19 +4187,19 @@
    "volConfirmed": false,
    "volRatio": 1.04,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3828,14 +4220,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -3851,19 +4243,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3884,13 +4276,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -3910,16 +4302,16 @@
     "successRate": 33.5,
     "ci95": [
      30.8,
-     36.3
+     36.2
     ],
-    "n": 1141,
+    "n": 1142,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.9,
-    "n": 686,
-    "edgeVsBaselinePct": 3.56
+    "n": 687,
+    "edgeVsBaselinePct": 3.57
    }
   },
   {
@@ -3935,19 +4327,19 @@
    "volConfirmed": false,
    "volRatio": 1.09,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -3963,19 +4355,19 @@
    "volConfirmed": true,
    "volRatio": 3.33,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -3984,26 +4376,26 @@
    "direction": "bearish",
    "identDate": "2026-10-14",
    "confirmDate": "2026-10-16",
-   "status": "confirmed",
+   "status": "success",
    "entry": 2.96,
    "target": 2.5975,
    "stop": 3.465,
    "volConfirmed": false,
    "volRatio": 0.92,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -4024,13 +4416,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4047,19 +4439,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -4075,19 +4467,19 @@
    "volConfirmed": true,
    "volRatio": 1.46,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -4108,13 +4500,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4131,19 +4523,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -4164,13 +4556,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4192,13 +4584,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -4220,14 +4612,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -4248,13 +4640,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -4276,13 +4668,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -4304,13 +4696,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4327,19 +4719,19 @@
    "volConfirmed": false,
    "volRatio": 1.22,
    "track": {
-    "successRate": 19.6,
+    "successRate": 19.7,
     "ci95": [
-     14.8,
-     25.5
+     14.9,
+     25.6
     ],
-    "n": 209,
-    "edgeVsBaselinePct": 0.25
+    "n": 208,
+    "edgeVsBaselinePct": 0.28
    },
    "trackNow": {
     "regime": "up",
     "successRate": 21.5,
     "n": 172,
-    "edgeVsBaselinePct": 0.56
+    "edgeVsBaselinePct": 0.57
    }
   },
   {
@@ -4357,17 +4749,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -4383,19 +4775,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -4413,17 +4805,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -4439,19 +4831,19 @@
    "volConfirmed": true,
    "volRatio": 1.4,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -4470,7 +4862,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -4478,7 +4870,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -4500,14 +4892,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -4528,14 +4920,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -4556,13 +4948,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4581,17 +4973,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -4612,13 +5004,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -4640,13 +5032,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4668,14 +5060,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -4696,13 +5088,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4724,13 +5116,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4749,17 +5141,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -4777,17 +5169,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -4803,19 +5195,19 @@
    "volConfirmed": false,
    "volRatio": 1.19,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -4837,13 +5229,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -4864,13 +5256,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4892,14 +5284,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -4920,13 +5312,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4948,13 +5340,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -4974,16 +5366,16 @@
     "successRate": 33.5,
     "ci95": [
      30.8,
-     36.3
+     36.2
     ],
-    "n": 1141,
+    "n": 1142,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.9,
-    "n": 686,
-    "edgeVsBaselinePct": 3.56
+    "n": 687,
+    "edgeVsBaselinePct": 3.57
    }
   },
   {
@@ -5004,14 +5396,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -5027,19 +5419,19 @@
    "volConfirmed": true,
    "volRatio": 1.41,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -5055,19 +5447,19 @@
    "volConfirmed": false,
    "volRatio": 0.63,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -5088,14 +5480,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -5116,13 +5508,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5144,13 +5536,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5172,14 +5564,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -5197,17 +5589,17 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.1,
+     19.0,
      23.1
     ],
-    "n": 1552,
+    "n": 1551,
     "edgeVsBaselinePct": -3.12
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.9,
-    "n": 1051,
-    "edgeVsBaselinePct": -3.66
+    "successRate": 19.8,
+    "n": 1050,
+    "edgeVsBaselinePct": -3.67
    }
   },
   {
@@ -5223,19 +5615,19 @@
    "volConfirmed": false,
    "volRatio": 1.24,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -5254,7 +5646,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -5262,7 +5654,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -5279,19 +5671,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 19.6,
+    "successRate": 19.7,
     "ci95": [
-     14.8,
-     25.5
+     14.9,
+     25.6
     ],
-    "n": 209,
-    "edgeVsBaselinePct": 0.25
+    "n": 208,
+    "edgeVsBaselinePct": 0.28
    },
    "trackNow": {
     "regime": "up",
     "successRate": 21.5,
     "n": 172,
-    "edgeVsBaselinePct": 0.56
+    "edgeVsBaselinePct": 0.57
    }
   },
   {
@@ -5309,17 +5701,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -5340,13 +5732,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -5363,19 +5755,19 @@
    "volConfirmed": false,
    "volRatio": 1.33,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -5396,13 +5788,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5424,14 +5816,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -5452,13 +5844,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5475,19 +5867,19 @@
    "volConfirmed": false,
    "volRatio": 0.91,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -5508,13 +5900,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5536,13 +5928,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5561,17 +5953,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -5592,13 +5984,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -5620,14 +6012,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -5643,19 +6035,19 @@
    "volConfirmed": false,
    "volRatio": 1.15,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -5674,7 +6066,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -5682,7 +6074,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -5692,7 +6084,7 @@
    "direction": "bullish",
    "identDate": "2026-10-06",
    "confirmDate": "2026-10-14",
-   "status": "confirmed",
+   "status": "failure",
    "entry": 591000.0,
    "target": 643000.0,
    "stop": 511000.0,
@@ -5704,13 +6096,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5727,19 +6119,19 @@
    "volConfirmed": false,
    "volRatio": 0.93,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -5748,7 +6140,7 @@
    "direction": "bullish",
    "identDate": "2026-10-14",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 542.2,
@@ -5760,13 +6152,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5785,17 +6177,17 @@
    "track": {
     "successRate": 21.0,
     "ci95": [
-     19.1,
+     19.0,
      23.1
     ],
-    "n": 1552,
+    "n": 1551,
     "edgeVsBaselinePct": -3.12
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 19.9,
-    "n": 1051,
-    "edgeVsBaselinePct": -3.66
+    "successRate": 19.8,
+    "n": 1050,
+    "edgeVsBaselinePct": -3.67
    }
   },
   {
@@ -5816,13 +6208,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -5844,13 +6236,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5872,13 +6264,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -5895,19 +6287,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -5923,19 +6315,19 @@
    "volConfirmed": false,
    "volRatio": 0.99,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -5954,7 +6346,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -5962,7 +6354,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -5984,13 +6376,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6007,19 +6399,19 @@
    "volConfirmed": true,
    "volRatio": 1.96,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -6040,14 +6432,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6066,7 +6458,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -6074,7 +6466,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -6096,14 +6488,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6124,13 +6516,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6152,13 +6544,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6180,13 +6572,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -6208,13 +6600,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6236,13 +6628,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6264,13 +6656,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6292,13 +6684,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6320,13 +6712,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6348,14 +6740,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6404,13 +6796,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6432,13 +6824,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6455,19 +6847,19 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -6483,19 +6875,19 @@
    "volConfirmed": true,
    "volRatio": 2.05,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -6504,7 +6896,7 @@
    "direction": "bullish",
    "identDate": "2026-10-13",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 9.63,
@@ -6517,13 +6909,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -6544,13 +6936,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6572,13 +6964,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6600,13 +6992,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -6616,7 +7008,7 @@
    "direction": "bullish",
    "identDate": "2026-10-06",
    "confirmDate": "2026-10-13",
-   "status": "confirmed",
+   "status": "success",
    "entry": 48.53,
    "target": 50.82,
    "stop": 43.1,
@@ -6628,13 +7020,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -6656,42 +7048,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "AR",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-13",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 33.22,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6712,14 +7076,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6740,14 +7104,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6765,17 +7129,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -6796,13 +7160,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -6819,19 +7183,19 @@
    "volConfirmed": false,
    "volRatio": 0.89,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -6847,19 +7211,19 @@
    "volConfirmed": false,
    "volRatio": 0.81,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -6868,7 +7232,7 @@
    "direction": "bullish",
    "identDate": "2026-10-06",
    "confirmDate": "2026-10-12",
-   "status": "confirmed",
+   "status": "success",
    "entry": 172.15,
    "target": 180.34,
    "stop": 158.3,
@@ -6880,41 +7244,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "OXY",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-12",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 54.94,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -6936,14 +7272,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -6964,13 +7300,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -6992,13 +7328,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7020,13 +7356,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -7048,13 +7384,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7076,14 +7412,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7104,13 +7440,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7129,17 +7465,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -7158,7 +7494,7 @@
     "successRate": 24.7,
     "ci95": [
      22.7,
-     26.8
+     26.9
     ],
     "n": 1657,
     "edgeVsBaselinePct": -0.13
@@ -7166,7 +7502,7 @@
    "trackNow": {
     "regime": "up",
     "successRate": 24.8,
-    "n": 1013,
+    "n": 1015,
     "edgeVsBaselinePct": 0.27
    }
   },
@@ -7188,14 +7524,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7216,13 +7552,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7239,19 +7575,19 @@
    "volConfirmed": false,
    "volRatio": 1.11,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -7272,13 +7608,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7300,14 +7636,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7325,17 +7661,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -7356,13 +7692,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7381,17 +7717,17 @@
    "track": {
     "successRate": 27.2,
     "ci95": [
-     26.0,
+     25.9,
      28.6
     ],
-    "n": 4464,
-    "edgeVsBaselinePct": 1.28
+    "n": 4465,
+    "edgeVsBaselinePct": 1.27
    },
    "trackNow": {
     "regime": "up",
     "successRate": 27.5,
-    "n": 3873,
-    "edgeVsBaselinePct": 1.55
+    "n": 3874,
+    "edgeVsBaselinePct": 1.54
    }
   },
   {
@@ -7407,19 +7743,19 @@
    "volConfirmed": true,
    "volRatio": 4.7,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -7440,13 +7776,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7468,13 +7804,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7496,14 +7832,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7524,14 +7860,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7549,17 +7885,17 @@
    "track": {
     "successRate": 31.7,
     "ci95": [
-     29.4,
+     29.5,
      34.0
     ],
-    "n": 1620,
-    "edgeVsBaselinePct": 1.48
+    "n": 1619,
+    "edgeVsBaselinePct": 1.49
    },
    "trackNow": {
     "regime": "up",
     "successRate": 33.0,
-    "n": 1289,
-    "edgeVsBaselinePct": 1.78
+    "n": 1288,
+    "edgeVsBaselinePct": 1.79
    }
   },
   {
@@ -7575,19 +7911,19 @@
    "volConfirmed": false,
    "volRatio": 0.98,
    "track": {
-    "successRate": 38.2,
+    "successRate": 38.3,
     "ci95": [
      37.1,
      39.4
     ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
+    "n": 6576,
+    "edgeVsBaselinePct": -1.79
    },
    "trackNow": {
     "regime": "up",
     "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
+    "n": 4203,
+    "edgeVsBaselinePct": -2.35
    }
   },
   {
@@ -7608,13 +7944,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "n": 9887,
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   },
@@ -7636,13 +7972,13 @@
      48.6,
      50.4
     ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
+    "n": 11887,
+    "edgeVsBaselinePct": 0.43
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
+    "successRate": 49.8,
+    "n": 9895,
     "edgeVsBaselinePct": 0.48
    }
   },
@@ -7664,14 +8000,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7692,14 +8028,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7715,19 +8051,19 @@
    "volConfirmed": false,
    "volRatio": 0.82,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -7749,13 +8085,13 @@
      33.4
     ],
     "n": 1365,
-    "edgeVsBaselinePct": 0.19
+    "edgeVsBaselinePct": 0.17
    },
    "trackNow": {
     "regime": "up",
     "successRate": 32.6,
     "n": 868,
-    "edgeVsBaselinePct": 0.12
+    "edgeVsBaselinePct": 0.11
    }
   },
   {
@@ -7776,14 +8112,14 @@
      46.6,
      48.9
     ],
-    "n": 7030,
+    "n": 7020,
     "edgeVsBaselinePct": 0.4
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
+    "successRate": 49.0,
+    "n": 4684,
+    "edgeVsBaselinePct": 0.58
    }
   },
   {
@@ -7799,19 +8135,19 @@
    "volConfirmed": true,
    "volRatio": 9.34,
    "track": {
-    "successRate": 11.8,
+    "successRate": 11.9,
     "ci95": [
      10.7,
      13.1
     ],
-    "n": 2972,
+    "n": 2969,
     "edgeVsBaselinePct": -1.75
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
+    "successRate": 12.8,
+    "n": 1529,
+    "edgeVsBaselinePct": -0.38
    }
   },
   {
@@ -7832,797 +8168,13 @@
      51.1,
      53.1
     ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "INTU",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 255.07,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "EOG",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 148.51,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
     "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "PSX",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-05",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 281.6,
-   "target": 301.84,
-   "stop": 246.58,
-   "volConfirmed": false,
-   "volRatio": 0.81,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
+    "edgeVsBaselinePct": 0.0
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "OXY",
-   "template": "hs_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 47.94,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.9,
-    "ci95": [
-     28.5,
-     33.4
-    ],
-    "n": 1365,
-    "edgeVsBaselinePct": 0.19
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 32.6,
-    "n": 868,
-    "edgeVsBaselinePct": 0.12
-   }
-  },
-  {
-   "ticker": "OXY",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 60.28,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "PM",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-09-14",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 200.5,
-   "target": 217.81,
-   "stop": 182.53,
-   "volConfirmed": false,
-   "volRatio": 1.24,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "TRV",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 370.27,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "DVN",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 46.04,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "A",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 168.17,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "MCK",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-01",
-   "confirmDate": "2026-10-08",
-   "status": "success",
-   "entry": 930.25,
-   "target": 995.75,
-   "stop": 853.81,
-   "volConfirmed": false,
-   "volRatio": 0.77,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "^TA125.TA",
-   "template": "hs_top",
-   "direction": "bearish",
-   "identDate": "2026-10-07",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 3934.01,
-   "target": 3464.313684,
-   "stop": 4481.04,
-   "volConfirmed": false,
-   "volRatio": 1.38,
-   "track": {
-    "successRate": 21.0,
-    "ci95": [
-     19.1,
-     23.1
-    ],
-    "n": 1552,
-    "edgeVsBaselinePct": -3.12
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 19.9,
-    "n": 1051,
-    "edgeVsBaselinePct": -3.66
-   }
-  },
-  {
-   "ticker": "^TA125.TA",
-   "template": "desc_triangle",
-   "direction": "bearish",
-   "identDate": "2026-10-07",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 3934.01,
-   "target": 3402.52,
-   "stop": 4230.0498,
-   "volConfirmed": false,
-   "volRatio": 1.38,
-   "track": {
-    "successRate": 24.7,
-    "ci95": [
-     22.7,
-     26.8
-    ],
-    "n": 1657,
-    "edgeVsBaselinePct": -0.13
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 24.8,
-    "n": 1013,
-    "edgeVsBaselinePct": 0.27
-   }
-  },
-  {
-   "ticker": "EWZ",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 42.59,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "SHEL",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-06",
-   "confirmDate": "2026-10-08",
-   "status": "success",
-   "entry": 100.2,
-   "target": 105.57,
-   "stop": 92.33,
-   "volConfirmed": true,
-   "volRatio": 1.43,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "WAT",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 429.13,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "PPC",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 25.2,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "DELL",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 506.62,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "EDIT",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 2.51,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "ADV",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 25.34,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "BLNK",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-09-15",
-   "confirmDate": "2026-10-08",
-   "status": "success",
-   "entry": 0.477,
-   "target": 0.413,
-   "stop": 0.612,
-   "volConfirmed": true,
-   "volRatio": 2.47,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.4
-    ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
-   }
-  },
-  {
-   "ticker": "EOSE",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-09-23",
-   "confirmDate": "2026-10-08",
-   "status": "success",
-   "entry": 2.765,
-   "target": 1.755,
-   "stop": 4.35,
-   "volConfirmed": true,
-   "volRatio": 1.49,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.4
-    ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
-   }
-  },
-  {
-   "ticker": "EQT",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 48.56,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "HAIN",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 0.49,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.8,
-    "ci95": [
-     46.6,
-     48.9
-    ],
-    "n": 7030,
-    "edgeVsBaselinePct": 0.4
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.9,
-    "n": 4692,
-    "edgeVsBaselinePct": 0.57
-   }
-  },
-  {
-   "ticker": "LNG",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 267.29,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
-    "edgeVsBaselinePct": 0.15
-   }
-  },
-  {
-   "ticker": "LUNR",
-   "template": "bear_flag",
-   "direction": "bearish",
-   "identDate": "2026-09-30",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 13.7,
-   "target": 7.36,
-   "stop": 16.24,
-   "volConfirmed": false,
-   "volRatio": 1.06,
-   "track": {
-    "successRate": 11.8,
-    "ci95": [
-     10.7,
-     13.1
-    ],
-    "n": 2972,
-    "edgeVsBaselinePct": -1.75
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 12.7,
-    "n": 1530,
-    "edgeVsBaselinePct": -0.37
-   }
-  },
-  {
-   "ticker": "MAPS",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-09-08",
-   "confirmDate": "2026-10-08",
-   "status": "confirmed",
-   "entry": 0.33,
-   "target": 0.26,
-   "stop": 0.426,
-   "volConfirmed": true,
-   "volRatio": 1.61,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.4
-    ],
-    "n": 6578,
-    "edgeVsBaselinePct": -1.78
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.3,
-    "n": 4205,
-    "edgeVsBaselinePct": -2.34
-   }
-  },
-  {
-   "ticker": "OVV",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 63.37,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 49.5,
-    "ci95": [
-     48.6,
-     50.4
-    ],
-    "n": 11879,
-    "edgeVsBaselinePct": 0.44
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 49.9,
-    "n": 9887,
-    "edgeVsBaselinePct": 0.48
-   }
-  },
-  {
-   "ticker": "SB",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-08",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 8.14,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.1,
-    "ci95": [
-     51.1,
-     53.1
-    ],
-    "n": 9914,
-    "edgeVsBaselinePct": -0.0
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8554,
+    "n": 8532,
     "edgeVsBaselinePct": 0.15
    }
   }

@@ -31,7 +31,7 @@ from earnings_common import OUT as EOUT, num, now_iso, read, write
 OUT = EOUT.parent / "headcount"
 RAW = "https://raw.githubusercontent.com/TheMostLocal"
 BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3")
-SEC_UA = os.environ.get("SEC_USER_AGENT") or "Valuatio research (github.com/TheMostLocal) valuatio@users.noreply.github.com"
+SEC_UA = (os.environ.get("SEC_USER_AGENT") or "").strip()     # z152: SEC refuses requests without "Name email" - repo variable
 PROXY = (os.environ.get("KEY_PROXY") or "").strip()
 FMP_PER_RUN = int(os.environ.get("HEADCOUNT_FMP_PER_RUN", "150"))
 PRIORITY = {"filing": 4, "sec": 3, "wikidata": 2, "profile": 1}
@@ -45,6 +45,25 @@ def get_json(url, headers=None, timeout=60, data=None):
     req = urllib.request.Request(url, data=data, headers=dict({"User-Agent": "valuatio-headcount"}, **(headers or {})))
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode())
+
+
+def sparql(query, tries=5):
+    """z152: Wikidata's query service, by POST (big VALUES lists), honouring its rate limit - on a 429 it
+    waits what the server asks (Retry-After, else 65 s: during outages it allows 1 request a minute)."""
+    body = urllib.parse.urlencode({"query": query, "format": "json"}).encode()
+    for k in range(tries):
+        try:
+            return get_json("https://query.wikidata.org/sparql", data=body, timeout=120,
+                            headers={"User-Agent": "Valuatio headcount (github.com/TheMostLocal)", "Accept": "application/sparql-results+json",
+                                     "Content-Type": "application/x-www-form-urlencoded"})
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 503) and k < tries - 1:
+                wait = int(e.headers.get("Retry-After") or 65) if e.headers else 65
+                log(f"Wikidata {e.code} - waiting {min(wait, 120)} s (try {k + 2}/{tries})")
+                time.sleep(min(wait, 120))
+                continue
+            raise
+    return None
 
 
 def d(s):
@@ -83,14 +102,20 @@ def universe():
 
 # ---------------------------------------------------------------- SEC frames
 def sec_points(tickers):
-    """{T: [(date, employees, form)]} from dei:EntityNumberOfEmployees frames, every filer per period."""
+    """{T: [(date, employees, form)]} from dei:EntityNumberOfEmployees frames, every filer per period.
+    `tickers` = the universe dict (names used when the ticker map is refused)."""
     out = {}
+    if not SEC_UA or "@" not in SEC_UA:
+        log("SEC skipped - set the repo variable SEC_USER_AGENT to 'Your Name your@email.com' (SEC refuses anonymous requests)")
+        return out
+    by_cik, by_name = {}, {}
     try:
         cik_map = get_json("https://www.sec.gov/files/company_tickers.json", headers={"User-Agent": SEC_UA})
         by_cik = {int(v["cik_str"]): str(v["ticker"]).upper().replace(".", "-") for v in cik_map.values()}
     except Exception as e:
-        log(f"SEC ticker map unavailable ({e}) - SEC skipped")
-        return out
+        log(f"SEC ticker map unavailable ({e}) - matching the frames by company name instead")
+        from credit_name import norm
+        by_name = {norm(info.get("name")): t for t, info in tickers.items() if info.get("name")}
     cache = read(OUT / "_sec_frames.json", {}) or {}
     this_year = date.today().year
     periods = [f"CY{y}" for y in range(2012, this_year + 1)] + [f"CY{y}Q{q}I" for y in range(2012, this_year + 1) for q in (1, 2, 3, 4)]
@@ -104,14 +129,18 @@ def sec_points(tickers):
             for unit in ("pure", "employee", "Employee"):
                 try:
                     j = get_json(f"https://data.sec.gov/api/xbrl/frames/dei/EntityNumberOfEmployees/{unit}/{p}.json", headers={"User-Agent": SEC_UA})
-                    rows = [[r.get("cik"), r.get("end") or r.get("instant"), r.get("val"), r.get("form") or ""] for r in j.get("data") or []]
+                    rows = [[r.get("cik"), r.get("end") or r.get("instant"), r.get("val"), r.get("form") or "", r.get("entityName") or ""] for r in j.get("data") or []]
                     break
                 except Exception:
                     continue
             cache[p] = rows
             time.sleep(0.15)
-        for cik, end, val, form in rows:
+        for row in rows:
+            cik, end, val, form = row[:4]
             t = by_cik.get(int(cik or 0))
+            if not t and by_name and len(row) > 4:
+                from credit_name import norm
+                t = by_name.get(norm(row[4]))
             if t in tickers and val and end:
                 out.setdefault(t, []).append((str(end)[:10], int(val), form))
                 hits += 1
@@ -122,8 +151,9 @@ def sec_points(tickers):
 
 # ---------------------------------------------------------------- Wikidata
 def wikidata_points(tickers):
-    """{T: [(date, employees)]} - P1128 statements with their P585 point in time, via the QIDs the books'
-    company-facts files already carry."""
+    """{T: [(date, employees)]} - P1128 statements with their P585 point in time. QIDs from the books'
+    company-facts files, then a lookup by ticker (NYSE / NASDAQ listings) for every company still without
+    one; POST batches of 250 at Wikidata's pace."""
     qid = {}
     for t, info in tickers.items():
         b = info.get("book")
@@ -135,24 +165,40 @@ def wikidata_points(tickers):
                 qid[j["qid"]] = t
         except Exception:
             pass
+    have = set(qid.values())
+    missing = [t for t in tickers if t not in have]
+    for i in range(0, len(missing), 250):
+        vals = " ".join('"' + t.replace("-", ".") + '"' for t in missing[i:i + 250])
+        q = f"""SELECT ?item ?tk WHERE {{ VALUES ?tk {{ {vals} }} VALUES ?ex {{ wd:Q13677 wd:Q82059 }}
+          ?item p:P414 ?st . ?st ps:P414 ?ex ; pq:P249 ?tk . }}"""
+        try:
+            j = sparql(q)
+            for b in (j or {}).get("results", {}).get("bindings", []):
+                t = b["tk"]["value"].replace(".", "-")
+                item = b["item"]["value"].rsplit("/", 1)[-1]
+                if t in tickers and t not in have:
+                    qid[item] = t
+                    have.add(t)
+        except Exception as e:
+            log(f"Wikidata ticker lookup: {e}")
+        time.sleep(5)
     out = {}
     q = list(qid)
-    for i in range(0, len(q), 120):
-        vals = " ".join(f"wd:{x}" for x in q[i:i + 120])
-        sparql = f"""SELECT ?item ?emp ?when WHERE {{ VALUES ?item {{ {vals} }}
+    for i in range(0, len(q), 250):
+        vals = " ".join(f"wd:{x}" for x in q[i:i + 250])
+        query = f"""SELECT ?item ?emp ?when WHERE {{ VALUES ?item {{ {vals} }}
           ?item p:P1128 ?st . ?st ps:P1128 ?emp . OPTIONAL {{ ?st pq:P585 ?when }} }}"""
         try:
-            j = get_json("https://query.wikidata.org/sparql?format=json&query=" + urllib.parse.quote(sparql),
-                         headers={"User-Agent": "Valuatio headcount (github.com/TheMostLocal)", "Accept": "application/sparql-results+json"}, timeout=90)
-            for b in j["results"]["bindings"]:
+            j = sparql(query)
+            for b in (j or {}).get("results", {}).get("bindings", []):
                 item = b["item"]["value"].rsplit("/", 1)[-1]
                 when = (b.get("when") or {}).get("value", "")[:10]
                 emp = num(b["emp"]["value"])
                 if item in qid and when and emp and emp > 0:
                     out.setdefault(qid[item], []).append((when, int(emp)))
         except Exception as e:
-            log(f"Wikidata batch {i // 120 + 1}: {e}")
-        time.sleep(1.0)
+            log(f"Wikidata batch {i // 250 + 1}: {e}")
+        time.sleep(5)
     log(f"Wikidata: {sum(len(v) for v in out.values())} points for {len(out)} companies ({len(qid)} with a QID)")
     return out
 
@@ -297,13 +343,27 @@ def breadth(docs, uni):
             "note": "cutting ≤ −2 % YoY, growing ≥ +2 %; latest headcount within 15 months vs the point nearest a year earlier (±75 days)"}
 
 
+def latest_fy_end(fin):
+    """The fiscal-year end of the company's latest annual report (the books' income statements)."""
+    ds = [d(x.get("date")) for x in (fin or {}).get("income") or [] if d(x.get("date"))]
+    return max(ds) if ds else None
+
+
 def main():
     uni = universe()
     log(f"{len(uni)} companies")
     tick = set(uni)
+    fins = {}
+    for t, info in uni.items():
+        if info.get("book"):
+            try:
+                fins[t] = get_json(f"{RAW}/{info['book']}/main/data/financials/{urllib.parse.quote(t)}.json", timeout=30)
+            except Exception:
+                pass
+    log(f"financials for {len(fins)} companies")
     old = {t: (read(OUT / f"{t}.json") or {}) for t in tick}
     adds = {t: [] for t in tick}
-    for t, rows in sec_points(tick).items():
+    for t, rows in sec_points(uni).items():
         adds[t] += [{"date": dt, "employees": v, "source": "sec", "form": f} for dt, v, f in rows]
     for t, rows in wikidata_points(uni).items():
         adds[t] += [{"date": dt, "employees": v, "source": "wikidata"} for dt, v in rows]
@@ -311,36 +371,31 @@ def main():
     fmp = fmp_points(order)
     for t, rows in fmp.items():
         adds[t] += [{"date": dt, "employees": v, "source": "filing", "form": f} for dt, v, f in rows]
-    today = date.today().isoformat()
+    today = date.today()
     for t, info in uni.items():
         e = info.get("employees")
         if not (e and e > 0):
             continue
         e = int(e)
-        known = merge(old[t].get("points") or [], adds[t])
+        # z152: the quote page's count is the latest ANNUAL report's - date it at that fiscal-year end (from the
+        # books' income statements) so it lines up with the reported history; today only when unknown
+        fy = latest_fy_end(fins.get(t))
+        at = fy if (fy and (today - fy).days <= 550) else today
+        known = merge([p for p in old[t].get("points") or [] if p["source"] != "profile" or p.get("fy")], adds[t])
         reported = [p for p in known if p["source"] != "profile"]
-        prev = [p for p in known if p["source"] == "profile"]
-        # the quote page usually repeats the latest reported number - a snapshot is a new point only when it
-        # says something the reports don't (a different number from the latest report and the last snapshot)
         if reported and reported[-1]["employees"] == e:
-            continue
-        if prev and prev[-1]["employees"] == e:
-            continue
-        adds[t].append({"date": today, "employees": e, "source": "profile"})
+            continue                                         # the quote page repeats the latest report - nothing new
+        adds[t].append({"date": at.isoformat(), "employees": e, "source": "profile", "fy": at != today})
     docs = {}
     for t, info in uni.items():
-        pts = merge(old[t].get("points") or [], adds[t])
+        # z152: undated quote-page points from the first run are dropped - the dated one above replaces them
+        base = [p for p in old[t].get("points") or [] if p["source"] != "profile" or p.get("fy")]
+        pts = merge(base, adds[t])
         if not pts:
             continue
-        fin = None
-        if info.get("book") and len(pts) >= 1:
-            try:
-                fin = get_json(f"{RAW}/{info['book']}/main/data/financials/{urllib.parse.quote(t)}.json", timeout=30)
-            except Exception:
-                fin = None
         doc = {"ticker": t, "name": info.get("name"), "sector": info.get("sector"), "points": pts, "updatedAt": now_iso(),
                "fmpAt": now_iso() if t in fmp else old[t].get("fmpAt")}
-        doc["metrics"] = metrics(pts, fin, info)
+        doc["metrics"] = metrics(pts, fins.get(t), info)
         write(OUT / f"{t}.json", doc)
         docs[t] = doc
     index = {t: {"employees": doc["metrics"]["latest"]["employees"], "date": doc["metrics"]["latest"]["date"],
@@ -348,10 +403,12 @@ def main():
                  "cadence": doc["metrics"].get("cadence"), "rpe": (doc["metrics"].get("rpeNow") or {}).get("rpe"), "points": len(doc["points"])}
              for t, doc in docs.items() if doc.get("metrics")}
     write(OUT / "index.json", {"asOf": now_iso(), "tickers": index})
-    s = breadth(docs, uni)
-    write(OUT / "summary.json", s)
-    n = s.get("now") or {}
-    log(f"{len(docs)} companies with headcount · now: {n.get('pctCutting')} % cutting, {n.get('pctGrowing')} % growing, aggregate {n.get('aggregateYoY')} % YoY over {n.get('companies')}")
+    s_ = breadth(docs, uni)
+    write(OUT / "summary.json", s_)
+    n = s_.get("now") or {}
+    multi = sum(1 for doc in docs.values() if len(doc["points"]) > 1)
+    log(f"{len(docs)} companies with headcount ({multi} with a history) · now: {n.get('pctCutting')} % cutting, {n.get('pctGrowing')} % growing, "
+        f"aggregate {n.get('aggregateYoY')} % YoY over {n.get('companies')}")
     return 0
 
 

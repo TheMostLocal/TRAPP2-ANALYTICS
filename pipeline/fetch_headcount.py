@@ -73,6 +73,28 @@ def d(s):
         return None
 
 
+def clean_date(s):
+    """z154: an ISO date or None. Wikidata gives year- or month-precision times as "2023-00-00" /
+    "2023-06-00" (→ the year's / month's last day) and "unknown value" as a blank-node URL (→ dropped)."""
+    s = str(s or "").strip().lstrip("+")[:10]
+    if d(s):
+        return s
+    import calendar
+    import re
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", s)
+    if not m:
+        return None
+    y, mo, dd = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    if mo == 0:
+        mo, dd = 12, 31
+    elif dd == 0:
+        dd = calendar.monthrange(y, mo)[1]
+    try:
+        return date(y, mo, dd).isoformat()
+    except ValueError:
+        return None
+
+
 # ---------------------------------------------------------------- universe
 def universe():
     """{T: {name, sector, employees (profile), revenue (TTM), currency}} - S&P members + the books' US stocks."""
@@ -137,6 +159,7 @@ def sec_points(tickers):
             time.sleep(0.15)
         for row in rows:
             cik, end, val, form = row[:4]
+            end = clean_date(end)
             t = by_cik.get(int(cik or 0))
             if not t and by_name and len(row) > 4:
                 from credit_name import norm
@@ -192,7 +215,7 @@ def wikidata_points(tickers):
             j = sparql(query)
             for b in (j or {}).get("results", {}).get("bindings", []):
                 item = b["item"]["value"].rsplit("/", 1)[-1]
-                when = (b.get("when") or {}).get("value", "")[:10]
+                when = clean_date((b.get("when") or {}).get("value", ""))
                 emp = num(b["emp"]["value"])
                 if item in qid and when and emp and emp > 0:
                     out.setdefault(qid[item], []).append((when, int(emp)))
@@ -227,7 +250,7 @@ def fmp_points(order):
                 pass
             rows = None
         for r in rows or []:
-            dt = str(r.get("periodOfReport") or r.get("filingDate") or "")[:10]
+            dt = clean_date(r.get("periodOfReport") or r.get("filingDate"))
             v = num(r.get("employeeCount"))
             if dt and v and v > 0:
                 out.setdefault(t, []).append((dt, int(v), r.get("formType") or ""))
@@ -238,7 +261,15 @@ def fmp_points(order):
 
 # ---------------------------------------------------------------- merge + metrics
 def merge(existing, adds):
-    """Points by date; within 20 days of each other the better source wins."""
+    """Points by date; within 20 days of each other the better source wins. Points without a valid date
+    (z154: a Wikidata "unknown value" crashed the run) are dropped, from new data and from old files."""
+    def ok_(p):
+        cd = clean_date(p.get("date"))
+        if not cd or not p.get("employees") or p.get("source") not in PRIORITY:
+            return None
+        return dict(p, date=cd)
+    existing = [q for q in (ok_(p) for p in existing) if q]
+    adds = [q for q in (ok_(p) for p in adds) if q]
     pts = {p["date"]: p for p in existing}
     for p in adds:
         clash = [k for k in pts if abs((d(k) - d(p["date"])).days) <= 20]

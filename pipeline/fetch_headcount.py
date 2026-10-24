@@ -34,7 +34,8 @@ BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3")
 SEC_UA = (os.environ.get("SEC_USER_AGENT") or "").strip()     # z152: SEC refuses requests without "Name email" - repo variable
 PROXY = (os.environ.get("KEY_PROXY") or "").strip()
 FMP_PER_RUN = int(os.environ.get("HEADCOUNT_FMP_PER_RUN", "150"))
-PRIORITY = {"filing": 4, "sec": 3, "wikidata": 2, "profile": 1}
+TENK_DOCS = int(os.environ.get("TENK_DOCS_PER_RUN") or "600")      # z155: annual reports read per run (backfill: more)
+PRIORITY = {"filing": 4, "tenk": 4, "sec": 3, "wikidata": 2, "profile": 1}   # z155: tenk = the annual report's own sentence
 
 
 def log(*a):
@@ -226,6 +227,103 @@ def wikidata_points(tickers):
     return out
 
 
+# ---------------------------------------------------------------- annual reports (10-K / 20-F / 40-F)
+import html as _html
+import re as _re
+
+EMP_RX = _re.compile(
+    r"(?:had|have|has|employ(?:ed|s)?|employing|workforce\s+of|total\s+of|consisted\s+of|comprised\s+of)\s+"
+    r"(?:a\s+(?:total\s+of\s+|workforce\s+of\s+)?)?(?:approximately|about|roughly|over|more\s+than|nearly|around|some|in\s+excess\s+of)?\s*"
+    r"(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*(million|thousand)?\s+"
+    r"(?:full[\s-]+time(?:[\s-]+equivalent)?\s+|total\s+|global\s+|permanent\s+|active\s+|regular\s+)?"
+    r"(?:employees|associates|team\s+members|people|colleagues|workers|staff|personnel|crew\s+members)", _re.I)
+
+
+def employees_in_text(txt):
+    """The headcount an annual report states ("As of December 31, 2025, we had 78,865 employees",
+    "approximately 2.1 million associates"). Looks in the Human Capital / Employees section first."""
+    t = _re.sub(r"\s+", " ", txt)
+    starts = [m.start() for m in _re.finditer(r"human\s+capital|our\s+employees|employees\s+and\s+human|^\s*employees\b", t, _re.I)]
+    windows = [t[i:i + 8000] for i in starts[:4]] + [t]
+    for w in windows:
+        for m in EMP_RX.finditer(w):
+            n = float(m.group(1).replace(",", ""))
+            unit = (m.group(2) or "").lower()
+            v = n * 1e6 if unit == "million" else n * 1e3 if unit == "thousand" else n
+            if 50 <= v <= 5_000_000 and (unit or "," in m.group(1) or v >= 100):
+                return int(round(v))
+    return None
+
+
+def _sec_get(url, limit=None):
+    req = urllib.request.Request(url, headers={"User-Agent": SEC_UA, "Accept-Encoding": "identity"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read(limit) if limit else r.read()
+
+
+def _strip(raw):
+    t = raw.decode("utf-8", "replace")
+    t = _re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", t)
+    t = _re.sub(r"(?s)<[^>]+>", " ", t)
+    return _html.unescape(t)
+
+
+def tenk_points(uni, old, profile):
+    """z155 - {T: [(period end, employees, form, accession)]}: each company's own annual reports. The
+    filings index (data.sec.gov/submissions) lists them; each report's text is read once (the first 4 MB -
+    Item 1, where Human Capital sits) and remembered by accession number. Newest reports first, companies
+    with the least history first, TENK_DOCS reports a run; the most recent count must sit within 4x of the
+    quote page's (a guard against grabbing the wrong number)."""
+    out, seen = {}, {}
+    if not SEC_UA or "@" not in SEC_UA:
+        return out, seen
+    try:
+        cmap = json.loads(_sec_get("https://www.sec.gov/files/company_tickers.json").decode())
+        cik = {str(v["ticker"]).upper().replace(".", "-"): int(v["cik_str"]) for v in cmap.values()}
+    except Exception as e:
+        log(f"10-K: SEC ticker map unavailable ({e}) - skipped")
+        return out, seen
+    def history_size(t):
+        return sum(1 for p in (old.get(t) or {}).get("points") or [] if p.get("source") in ("tenk", "filing", "sec"))
+    order = sorted([t for t in uni if t in cik], key=lambda t: (history_size(t), (old.get(t) or {}).get("tenkAt") or "", t))
+    budget, docs, companies = TENK_DOCS, 0, 0
+    for t in order:
+        if budget <= 0:
+            break
+        done = dict((old.get(t) or {}).get("tenk") or {})
+        try:
+            sub = json.loads(_sec_get(f"https://data.sec.gov/submissions/CIK{cik[t]:010d}.json").decode())
+        except Exception as e:
+            log(f"10-K {t}: filings index unavailable ({e})")
+            time.sleep(0.15)
+            continue
+        time.sleep(0.12)
+        r = (sub.get("filings") or {}).get("recent") or {}
+        rows = list(zip(r.get("form") or [], r.get("accessionNumber") or [], r.get("reportDate") or [], r.get("primaryDocument") or []))
+        annual = [x for x in rows if x[0] in ("10-K", "10-K405", "20-F", "40-F", "10-KT") and x[2] and x[3]][:10]
+        companies += 1
+        for form, acc, rep, doc in annual:
+            if acc in done or budget <= 0:
+                continue
+            url = f"https://www.sec.gov/Archives/edgar/data/{cik[t]}/{acc.replace('-', '')}/{doc}"
+            try:
+                v = employees_in_text(_strip(_sec_get(url, limit=4_000_000)))
+            except Exception as e:
+                v = None
+            budget -= 1
+            docs += 1
+            time.sleep(0.12)
+            prof = (profile.get(t) or 0)
+            if v and prof and rep >= (date.today() - timedelta(days=800)).isoformat() and not (prof / 4 <= v <= prof * 4):
+                v = None                                            # far from today's count: probably the wrong number
+            done[acc] = {"date": clean_date(rep), "employees": v, "form": form}
+            if v:
+                out.setdefault(t, []).append((clean_date(rep), v, form, acc))
+        seen[t] = done
+    log(f"10-K: {docs} annual reports read for {companies} companies · {sum(len(v) for v in out.values())} headcounts found for {len(out)} companies")
+    return out, seen
+
+
 # ---------------------------------------------------------------- FMP through the key proxy
 def fmp_points(order):
     """{T: [(date, employees, form)]} - the company's filings history, FMP_PER_RUN tickers a run (oldest
@@ -353,6 +451,8 @@ def breadth(docs, uni):
             continue
         ya = near(doc["points"][:-1], d(m["latest"]["date"]) - timedelta(days=365), 75)
         now_rows.append((t, m["yoyPct"], ya["employees"], m["latest"]["employees"], (uni.get(t) or {}).get("sector") or "Other"))
+    outliers = [r for r in now_rows if abs(r[1]) > 60]
+    now_rows = [r for r in now_rows if abs(r[1]) <= 60]          # z155: |YoY| > 60 % = a merger or a source mismatch, not hiring
     sectors = {}
     for s in sorted({r[4] for r in now_rows}):
         sectors[s] = summarize([r for r in now_rows if r[4] == s])
@@ -362,16 +462,17 @@ def breadth(docs, uni):
         for t, doc in docs.items():
             a = near(doc["points"], date(y - 1, 12, 31), 75)
             b = near(doc["points"], date(y, 12, 31), 75)
-            if a and b and a["date"] != b["date"] and a["employees"]:
+            if a and b and a["date"] != b["date"] and a["employees"] and abs(b["employees"] / a["employees"] - 1) <= 0.6:
                 rows.append((t, (b["employees"] / a["employees"] - 1) * 100, a["employees"], b["employees"], ""))
         s = summarize(rows)
         if s and s["companies"] >= 20:
             years.append(dict(s, year=y))
     big = [r for r in now_rows if r[3] >= 1000]
     return {"asOf": now_iso(), "now": summarize(now_rows), "sectors": sectors, "byYear": years,
+            "excluded": [{"ticker": r[0], "yoyPct": round(r[1], 1), "employees": r[3]} for r in sorted(outliers, key=lambda r: -abs(r[1]))],
             "cutting": [{"ticker": r[0], "yoyPct": round(r[1], 1), "employees": r[3]} for r in sorted(big, key=lambda r: r[1])[:15]],
             "growing": [{"ticker": r[0], "yoyPct": round(r[1], 1), "employees": r[3]} for r in sorted(big, key=lambda r: -r[1])[:15]],
-            "note": "cutting ≤ −2 % YoY, growing ≥ +2 %; latest headcount within 15 months vs the point nearest a year earlier (±75 days)"}
+            "note": "cutting ≤ −2 % YoY, growing ≥ +2 %; latest headcount within 15 months vs the point nearest a year earlier (±75 days); moves beyond ±60 % (mergers, source mismatches) left out"}
 
 
 def latest_fy_end(fin):
@@ -398,6 +499,9 @@ def main():
         adds[t] += [{"date": dt, "employees": v, "source": "sec", "form": f} for dt, v, f in rows]
     for t, rows in wikidata_points(uni).items():
         adds[t] += [{"date": dt, "employees": v, "source": "wikidata"} for dt, v in rows]
+    tk_pts, tk_seen = tenk_points(uni, old, {t: info.get("employees") for t, info in uni.items()})
+    for t, rows in tk_pts.items():
+        adds[t] += [{"date": dt, "employees": v, "source": "tenk", "form": f, "acc": a} for dt, v, f, a in rows if dt]
     order = sorted(tick, key=lambda t: (old[t].get("fmpAt") or "", t))
     fmp = fmp_points(order)
     for t, rows in fmp.items():
@@ -425,7 +529,8 @@ def main():
         if not pts:
             continue
         doc = {"ticker": t, "name": info.get("name"), "sector": info.get("sector"), "points": pts, "updatedAt": now_iso(),
-               "fmpAt": now_iso() if t in fmp else old[t].get("fmpAt")}
+               "fmpAt": now_iso() if t in fmp else old[t].get("fmpAt"),
+               "tenk": tk_seen.get(t, old[t].get("tenk") or {}), "tenkAt": now_iso() if t in tk_seen else old[t].get("tenkAt")}
         doc["metrics"] = metrics(pts, fins.get(t), info)
         write(OUT / f"{t}.json", doc)
         docs[t] = doc

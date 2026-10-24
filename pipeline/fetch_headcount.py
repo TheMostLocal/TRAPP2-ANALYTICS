@@ -358,6 +358,60 @@ def fmp_points(order):
 
 
 # ---------------------------------------------------------------- merge + metrics
+# ---------------------------------------------------------------- the archive (z156)
+# Every headcount we have ever read is kept, forever, in the company's file as an OBSERVATION
+# {date, employees, source, form, acc, firstSeen, lastSeen}. Sources forget - Wikidata edits a value away,
+# a filing index rolls off, a provider changes its plan - so the series shown in the app is rebuilt every
+# run from ALL observations ever made, never from "what the sources returned today". A point can be
+# replaced by a better source for the same date (a 10-K beats Wikidata) or by its own source's correction,
+# but nothing is ever removed because a source stopped returning it.
+def _key(p):
+    return (p["source"], p["date"], int(p["employees"]))
+
+
+def seed_observations(old):
+    """The archive from an existing file; files written before z156 seed it from their points."""
+    obs = old.get("observations")
+    if obs is None:
+        when = str(old.get("updatedAt") or now_iso())[:10]
+        obs = [dict(p, firstSeen=when, lastSeen=when) for p in old.get("points") or []
+               if p.get("source") != "profile" or p.get("fy")]          # the first run's undated quote-page points (z152)
+    out = []
+    for o in obs:
+        cd = clean_date(o.get("date"))
+        if cd and o.get("employees") and o.get("source") in PRIORITY:
+            out.append(dict(o, date=cd, employees=int(o["employees"])))
+    return out
+
+
+def observe(obs, new_points, today):
+    """Add this run's readings: a reading seen before only moves its lastSeen; a new one is appended."""
+    idx = {_key(o): o for o in obs}
+    for p in new_points:
+        cd = clean_date(p.get("date"))
+        if not cd or not p.get("employees") or p.get("source") not in PRIORITY:
+            continue
+        p = dict(p, date=cd, employees=int(p["employees"]))
+        k = _key(p)
+        if k in idx:
+            idx[k]["lastSeen"] = today
+        else:
+            idx[k] = dict(p, firstSeen=today, lastSeen=today)
+    return sorted(idx.values(), key=lambda o: (o["date"], o["source"], o.get("firstSeen", "")))
+
+
+def points_from(obs):
+    """The series to show: per source and date the newest reading (a correction), then per 20-day cluster
+    the best source."""
+    latest = {}
+    for o in obs:
+        k = (o["source"], o["date"])
+        if k not in latest or (o.get("lastSeen", ""), o.get("firstSeen", "")) >= (latest[k].get("lastSeen", ""), latest[k].get("firstSeen", "")):
+            latest[k] = o
+    cand = [{k2: v for k2, v in o.items() if k2 not in ("firstSeen", "lastSeen")} for o in sorted(latest.values(), key=lambda o: (o["date"], -PRIORITY[o["source"]]))]
+    return merge([], cand)
+
+
 def merge(existing, adds):
     """Points by date; within 20 days of each other the better source wins. Points without a valid date
     (z154: a Wikidata "unknown value" crashed the run) are dropped, from new data and from old files."""
@@ -516,7 +570,7 @@ def main():
         # books' income statements) so it lines up with the reported history; today only when unknown
         fy = latest_fy_end(fins.get(t))
         at = fy if (fy and (today - fy).days <= 550) else today
-        known = merge([p for p in old[t].get("points") or [] if p["source"] != "profile" or p.get("fy")], adds[t])
+        known = points_from(observe(seed_observations(old[t]), adds[t], today.isoformat()))
         reported = [p for p in known if p["source"] != "profile"]
         if reported and reported[-1]["employees"] == e:
             continue                                         # the quote page repeats the latest report - nothing new
@@ -524,11 +578,11 @@ def main():
     docs = {}
     for t, info in uni.items():
         # z152: undated quote-page points from the first run are dropped - the dated one above replaces them
-        base = [p for p in old[t].get("points") or [] if p["source"] != "profile" or p.get("fy")]
-        pts = merge(base, adds[t])
+        obs = observe(seed_observations(old[t]), adds[t], date.today().isoformat())     # z156: the archive only grows
+        pts = points_from(obs)
         if not pts:
             continue
-        doc = {"ticker": t, "name": info.get("name"), "sector": info.get("sector"), "points": pts, "updatedAt": now_iso(),
+        doc = {"ticker": t, "name": info.get("name"), "sector": info.get("sector"), "points": pts, "observations": obs, "updatedAt": now_iso(),
                "fmpAt": now_iso() if t in fmp else old[t].get("fmpAt"),
                "tenk": tk_seen.get(t, old[t].get("tenk") or {}), "tenkAt": now_iso() if t in tk_seen else old[t].get("tenkAt")}
         doc["metrics"] = metrics(pts, fins.get(t), info)
@@ -543,6 +597,9 @@ def main():
     write(OUT / "summary.json", s_)
     n = s_.get("now") or {}
     multi = sum(1 for doc in docs.values() if len(doc["points"]) > 1)
+    kept = sorted(p.stem for p in OUT.glob("*.json") if not p.stem.startswith("_") and p.stem not in ("index", "summary") and p.stem not in docs)
+    if kept:
+        log(f"{len(kept)} companies no longer in the universe keep their files and history (not rewritten, never deleted)")
     log(f"{len(docs)} companies with headcount ({multi} with a history) · now: {n.get('pctCutting')} % cutting, {n.get('pctGrowing')} % growing, "
         f"aggregate {n.get('aggregateYoY')} % YoY over {n.get('companies')}")
     return 0

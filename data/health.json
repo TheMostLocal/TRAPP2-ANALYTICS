@@ -1,0 +1,256 @@
+{
+ "asOf": "2026-10-25T19:08:18Z",
+ "session": "closed",
+ "summary": {
+  "ok": 10,
+  "stale": 0,
+  "missing": 0,
+  "notDue": 12,
+  "unknown": 0
+ },
+ "botInputsDown": [],
+ "checks": [
+  {
+   "name": "TRAPP2 quotes",
+   "repo": "TRAPP2",
+   "path": "data/master.json",
+   "feedsBot": true,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-25T05:14:54Z",
+   "ageMinutes": 833,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2 15-min tape",
+   "repo": "TRAPP2",
+   "path": "data/intraday/latest.json",
+   "feedsBot": false,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-24T00:00:13Z",
+   "ageMinutes": 2588,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-1 quotes",
+   "repo": "TRAPP2-1",
+   "path": "data/master.json",
+   "feedsBot": true,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-25T05:10:55Z",
+   "ageMinutes": 837,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-1 15-min tape",
+   "repo": "TRAPP2-1",
+   "path": "data/intraday/latest.json",
+   "feedsBot": false,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-23T23:48:12Z",
+   "ageMinutes": 2600,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-2 quotes",
+   "repo": "TRAPP2-2",
+   "path": "data/master.json",
+   "feedsBot": true,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-25T05:19:39Z",
+   "ageMinutes": 829,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-2 15-min tape",
+   "repo": "TRAPP2-2",
+   "path": "data/intraday/latest.json",
+   "feedsBot": false,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-23T23:50:10Z",
+   "ageMinutes": 2598,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-3 quotes",
+   "repo": "TRAPP2-3",
+   "path": "data/master.json",
+   "feedsBot": true,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-25T05:29:34Z",
+   "ageMinutes": 819,
+   "status": "notDue"
+  },
+  {
+   "name": "TRAPP2-3 15-min tape",
+   "repo": "TRAPP2-3",
+   "path": "data/intraday/latest.json",
+   "feedsBot": false,
+   "rule": "intraday",
+   "maxMinutes": null,
+   "updated": "2026-10-23T23:55:07Z",
+   "ageMinutes": 2593,
+   "status": "notDue"
+  },
+  {
+   "name": "FX rates",
+   "repo": "TRAPP2-1",
+   "path": "data/fx/rates.json",
+   "feedsBot": true,
+   "rule": "fx",
+   "maxMinutes": null,
+   "updated": "2026-10-25T19:04:19Z",
+   "ageMinutes": 4,
+   "status": "notDue"
+  },
+  {
+   "name": "Crypto prices",
+   "repo": "TRAPP2-1",
+   "path": "data/crypto/prices.json",
+   "feedsBot": false,
+   "rule": "24h",
+   "maxMinutes": 45,
+   "updated": "2026-10-25T19:04:25Z",
+   "ageMinutes": 4,
+   "status": "ok"
+  },
+  {
+   "name": "Regime certainty",
+   "repo": "TRAPP2-1",
+   "path": "data/regime_certainty.json",
+   "feedsBot": true,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-23T19:28:15Z",
+   "ageMinutes": 2860,
+   "status": "ok"
+  },
+  {
+   "name": "Macro quad",
+   "repo": "TRAPP2-1",
+   "path": "data/macro/quad.json",
+   "feedsBot": true,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-23T17:52:36Z",
+   "ageMinutes": 2956,
+   "status": "ok"
+  },
+  {
+   "name": "Fed monitor",
+   "repo": "TRAPP2-1",
+   "path": "data/fed/monitor.json",
+   "feedsBot": true,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-23T21:42:09Z",
+   "ageMinutes": 2726,
+   "status": "ok"
+  },
+  {
+   "name": "Bot journal",
+   "repo": "TRAPP2-BOT",
+   "path": "data/bot_training_data.json",
+   "feedsBot": true,
+   "rule": "session",
+   "maxMinutes": null,
+   "updated": "2026-10-23T19:36:01Z",
+   "ageMinutes": 2852,
+   "status": "notDue"
+  },
+  {
+   "name": "Bot equity tape",
+   "repo": "TRAPP2-BOT",
+   "path": "data/bot_equity_history.json",
+   "feedsBot": false,
+   "rule": "session",
+   "maxMinutes": null,
+   "updated": "2026-10-23T22:30:00Z",
+   "ageMinutes": 2678,
+   "status": "notDue"
+  },
+  {
+   "name": "Option chains",
+   "repo": "TRAPP2-OPTIONS",
+   "path": "data/options/summary.json",
+   "feedsBot": true,
+   "rule": "session",
+   "maxMinutes": null,
+   "updated": "2026-10-23T23:29:13Z",
+   "ageMinutes": 2619,
+   "status": "notDue"
+  },
+  {
+   "name": "Earnings season",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/earnings/season.json",
+   "feedsBot": false,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-24T05:33:55Z",
+   "ageMinutes": 2254,
+   "status": "ok"
+  },
+  {
+   "name": "Earnings calendar",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/earnings/calendar.json",
+   "feedsBot": true,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-24T05:33:55Z",
+   "ageMinutes": 2254,
+   "status": "ok"
+  },
+  {
+   "name": "Headcount",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/headcount/summary.json",
+   "feedsBot": true,
+   "rule": "weekly",
+   "maxMinutes": 7200,
+   "updated": "2026-10-24T21:05:51Z",
+   "ageMinutes": 1322,
+   "status": "ok"
+  },
+  {
+   "name": "Research grades",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/research_grades.json",
+   "feedsBot": true,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-25T08:02:06Z",
+   "ageMinutes": 666,
+   "status": "ok"
+  },
+  {
+   "name": "News",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/news/latest.json",
+   "feedsBot": false,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-25T08:15:03Z",
+   "ageMinutes": 653,
+   "status": "ok"
+  },
+  {
+   "name": "Credit index (bonds / CDS)",
+   "repo": "TRAPP2-CREDIT",
+   "path": "data/credit_index.json",
+   "feedsBot": false,
+   "rule": "daily",
+   "maxMinutes": 4680,
+   "updated": "2026-10-24T14:58:58Z",
+   "ageMinutes": 1689,
+   "status": "ok"
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+# ============================================================
+#  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/sec.yml
+#  z158 - SEC EDGAR (8-K events, Form 4 insiders, XBRL facts as filed) and FINRA short selling (daily short
+#  volume; short interest when the API tier allows). Weekdays 0705 ET (overnight filings) and 1810 ET (the
+#  day's filings + FINRA's daily short-volume file, posted ~1800 ET). ET-gated twin crons.
+#  Secrets: SEC_USER_AGENT (already set), FINRA_CLIENT_ID / FINRA_CLIENT_SECRET (add to this repo for short interest).
+# ============================================================
+name: SEC filings + short selling
+
+on:
+  schedule:
+    - cron: '5 11 * * 1-5'     # 0705 EDT
+    - cron: '5 12 * * 1-5'     # 0705 EST
+    - cron: '10 22 * * 1-5'    # 1810 EDT
+    - cron: '10 23 * * 1-5'    # 1810 EST
+  workflow_dispatch:
+
+concurrency:
+  group: analytics-sec
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          S="${{ github.event.schedule }}"; OFF=$(TZ=America/New_York date +%z); OFFH=$((10#${OFF:1:2}))
+          UM=$(echo "$S" | awk '{print $1}'); UH=$(echo "$S" | awk '{print $2}')
+          ETH=$(( (10#$UH - OFFH + 24) % 24 )); ETM=$(printf '%02d' "$UM")
+          case " 7:05 18:10 " in *" ${ETH}:${ETM} "*) RUN=true ;; *) RUN=false ;; esac
+          echo "schedule '$S' = ${ETH}:${ETM} ET -> run=${RUN}"; echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
+  sec:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: SEC - 8-K events, Form 4 insiders, XBRL facts
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
+        run: python pipeline/fetch_sec.py
+        continue-on-error: true
+      - name: FINRA - short volume and short interest
+        env:
+          FINRA_CLIENT_ID: ${{ secrets.FINRA_CLIENT_ID }}
+          FINRA_CLIENT_SECRET: ${{ secrets.FINRA_CLIENT_SECRET }}
+        run: python pipeline/fetch_short.py
+        continue-on-error: true
+      - name: Commit & push
+        run: |
+          git config user.name "valuatio-sec"; git config user.email "actions@github.com"
+          for p in data/sec data/short; do [ -e "$p" ] && git add -A "$p"; done
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -q -m "sec + short: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
+          for k in 1 2 3 4 5; do
+            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
+            git fetch -q origin main; git merge -X ours origin/main --no-edit -q || true; sleep $((k * 3))
+          done
+          echo "::warning::push failed after 5 attempts"

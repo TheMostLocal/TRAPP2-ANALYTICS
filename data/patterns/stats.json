@@ -2,7 +2,7 @@
  "asOf": "2026-10-23",
  "engine": "patterns-v3",
  "liveStart": "2026-10-07",
- "baselineFwd20Pct": 1.07,
+ "baselineFwd20Pct": 1.069,
  "baselineByTrendRegime": {
   "mixed": 0.93,
   "up": 0.965,
@@ -21,13 +21,13 @@
    "direction": "bullish",
    "kind": "template",
    "backtest": {
-    "n": 12049,
+    "n": 12050,
     "byStatus": {
      "success": 5885,
-     "failure": 6002,
+     "failure": 6003,
      "open": 162
     },
-    "judged": 11887,
+    "judged": 11888,
     "successRate": 49.5,
     "successCI95": [
      48.6,
@@ -54,13 +54,13 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 10057,
+      "n": 10058,
       "byStatus": {
        "success": 4932,
-       "failure": 4963,
+       "failure": 4964,
        "open": 162
       },
-      "judged": 9895,
+      "judged": 9896,
       "successRate": 49.8,
       "successCI95": [
        48.9,
@@ -108,13 +108,13 @@
     },
     "vol": {
      "calm": {
-      "n": 8910,
+      "n": 8911,
       "byStatus": {
        "success": 4315,
-       "failure": 4435,
+       "failure": 4436,
        "open": 160
       },
-      "judged": 8750,
+      "judged": 8751,
       "successRate": 49.3,
       "successCI95": [
        48.3,
@@ -146,14 +146,14 @@
     },
     "joint": {
      "up/calm": {
-      "n": 8323,
+      "n": 8324,
       "byStatus": {
        "success": 4037,
-       "failure": 4126,
+       "failure": 4127,
        "open": 160
       },
-      "judged": 8163,
-      "successRate": 49.5,
+      "judged": 8164,
+      "successRate": 49.4,
       "successCI95": [
        48.4,
        50.5
@@ -304,21 +304,21 @@
       "usable": true
      },
      "4": {
-      "n": 2259,
+      "n": 2260,
       "byStatus": {
        "success": 1133,
-       "failure": 1115,
+       "failure": 1116,
        "open": 11
       },
-      "judged": 2248,
+      "judged": 2249,
       "successRate": 50.4,
       "successCI95": [
        48.3,
-       52.5
+       52.4
       ],
-      "avgReturnPct": 4.88,
-      "avgFwd20Pct": 2.1,
-      "edgeVsBaselinePct": 1.03,
+      "avgReturnPct": 4.87,
+      "avgFwd20Pct": 2.09,
+      "edgeVsBaselinePct": 1.02,
       "usable": true
      }
     }
@@ -3992,14 +3992,14 @@
    "direction": "bearish",
    "kind": "pattern",
    "backtest": {
-    "n": 3900,
+    "n": 3901,
     "byStatus": {
      "failure": 1474,
      "invalidated": 834,
      "timeout": 1143,
      "success": 352,
      "confirmed": 46,
-     "expired": 49,
+     "expired": 50,
      "open": 2
     },
     "judged": 2969,
@@ -4043,14 +4043,14 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 1936,
+      "n": 1937,
       "byStatus": {
        "failure": 673,
        "invalidated": 334,
        "timeout": 661,
        "success": 195,
        "confirmed": 46,
-       "expired": 25,
+       "expired": 26,
        "open": 2
       },
       "judged": 1529,
@@ -4064,7 +4064,7 @@
       "confirmRate": 81.4,
       "identificationSuccessRate": 15.9,
       "identCI95": [
-       14.0,
+       13.9,
        18.0
       ],
       "edgeVsBaselinePct": -0.38,
@@ -4125,14 +4125,14 @@
     },
     "vol": {
      "calm": {
-      "n": 1565,
+      "n": 1566,
       "byStatus": {
        "failure": 540,
        "invalidated": 260,
        "success": 171,
        "timeout": 523,
        "confirmed": 46,
-       "expired": 23,
+       "expired": 24,
        "open": 2
       },
       "judged": 1234,
@@ -4143,7 +4143,7 @@
       ],
       "avgReturnPct": -1.98,
       "avgFwd20Pct": -1.37,
-      "confirmRate": 81.9,
+      "confirmRate": 81.8,
       "identificationSuccessRate": 17.2,
       "identCI95": [
        15.0,
@@ -4181,14 +4181,14 @@
     },
     "joint": {
      "up/calm": {
-      "n": 1456,
+      "n": 1457,
       "byStatus": {
        "failure": 490,
        "invalidated": 236,
        "success": 164,
        "timeout": 496,
        "confirmed": 46,
-       "expired": 22,
+       "expired": 23,
        "open": 2
       },
       "judged": 1150,
@@ -4199,7 +4199,7 @@
       ],
       "avgReturnPct": -1.23,
       "avgFwd20Pct": -1.14,
-      "confirmRate": 82.3,
+      "confirmRate": 82.2,
       "identificationSuccessRate": 18.0,
       "identCI95": [
        15.6,
@@ -4420,14 +4420,14 @@
       "usable": true
      },
      "4": {
-      "n": 724,
+      "n": 725,
       "byStatus": {
        "failure": 307,
        "timeout": 197,
        "invalidated": 133,
        "confirmed": 3,
        "success": 76,
-       "expired": 8
+       "expired": 9
       },
       "judged": 580,
       "successRate": 13.1,
@@ -4437,11 +4437,11 @@
       ],
       "avgReturnPct": -6.88,
       "avgFwd20Pct": -3.16,
-      "confirmRate": 80.5,
+      "confirmRate": 80.4,
       "identificationSuccessRate": 14.5,
       "identCI95": [
        11.7,
-       17.8
+       17.7
       ],
       "edgeVsBaselinePct": -2.09,
       "usable": true
@@ -5534,28 +5534,28 @@
    "direction": "bullish",
    "kind": "pattern",
    "backtest": {
-    "n": 4478,
+    "n": 4477,
     "byStatus": {
      "timeout": 1330,
-     "failure": 1919,
+     "failure": 1918,
      "success": 1216,
      "confirmed": 13
     },
-    "judged": 4465,
+    "judged": 4464,
     "successRate": 27.2,
     "successCI95": [
-     25.9,
+     26.0,
      28.6
     ],
-    "avgReturnPct": 2.65,
-    "avgFwd20Pct": 2.34,
+    "avgReturnPct": 2.66,
+    "avgFwd20Pct": 2.35,
     "confirmRate": 100.0,
     "identificationSuccessRate": 38.8,
     "identCI95": [
      37.1,
      40.5
     ],
-    "edgeVsBaselinePct": 1.27
+    "edgeVsBaselinePct": 1.28
    },
    "live": {
     "n": 10,
@@ -5581,28 +5581,28 @@
    "byRegime": {
     "trend": {
      "up": {
-      "n": 3887,
+      "n": 3886,
       "byStatus": {
        "timeout": 1166,
-       "failure": 1643,
+       "failure": 1642,
        "success": 1065,
        "confirmed": 13
       },
-      "judged": 3874,
+      "judged": 3873,
       "successRate": 27.5,
       "successCI95": [
        26.1,
        28.9
       ],
-      "avgReturnPct": 2.78,
-      "avgFwd20Pct": 2.5,
+      "avgReturnPct": 2.79,
+      "avgFwd20Pct": 2.52,
       "confirmRate": 100.0,
       "identificationSuccessRate": 39.3,
       "identCI95": [
        37.5,
        41.2
       ],
-      "edgeVsBaselinePct": 1.54,
+      "edgeVsBaselinePct": 1.56,
       "usable": true
      },
      "mixed": {
@@ -5656,28 +5656,28 @@
     },
     "vol": {
      "calm": {
-      "n": 3345,
+      "n": 3344,
       "byStatus": {
        "timeout": 1044,
-       "failure": 1431,
+       "failure": 1430,
        "success": 857,
        "confirmed": 13
       },
-      "judged": 3332,
+      "judged": 3331,
       "successRate": 25.7,
       "successCI95": [
        24.3,
        27.2
       ],
-      "avgReturnPct": 2.38,
-      "avgFwd20Pct": 2.01,
+      "avgReturnPct": 2.39,
+      "avgFwd20Pct": 2.03,
       "confirmRate": 100.0,
       "identificationSuccessRate": 37.5,
       "identCI95": [
        35.5,
        39.5
       ],
-      "edgeVsBaselinePct": 0.94,
+      "edgeVsBaselinePct": 0.96,
       "usable": true
      },
      "stressed": {
@@ -5707,28 +5707,28 @@
     },
     "joint": {
      "up/calm": {
-      "n": 3145,
+      "n": 3144,
       "byStatus": {
        "timeout": 974,
-       "failure": 1347,
+       "failure": 1346,
        "success": 811,
        "confirmed": 13
       },
-      "judged": 3132,
+      "judged": 3131,
       "successRate": 25.9,
       "successCI95": [
        24.4,
        27.5
       ],
-      "avgReturnPct": 2.43,
-      "avgFwd20Pct": 2.09,
+      "avgReturnPct": 2.44,
+      "avgFwd20Pct": 2.11,
       "confirmRate": 100.0,
       "identificationSuccessRate": 37.6,
       "identCI95": [
        35.6,
-       39.6
+       39.7
       ],
-      "edgeVsBaselinePct": 1.12,
+      "edgeVsBaselinePct": 1.15,
       "usable": true
      },
      "up/stressed": {
@@ -5927,28 +5927,28 @@
       "usable": true
      },
      "4": {
-      "n": 884,
+      "n": 883,
       "byStatus": {
        "timeout": 280,
-       "failure": 384,
+       "failure": 383,
        "success": 218,
        "confirmed": 2
       },
-      "judged": 882,
+      "judged": 881,
       "successRate": 24.7,
       "successCI95": [
        22.0,
        27.7
       ],
-      "avgReturnPct": 3.69,
-      "avgFwd20Pct": 4.47,
+      "avgReturnPct": 3.72,
+      "avgFwd20Pct": 4.53,
       "confirmRate": 100.0,
-      "identificationSuccessRate": 36.2,
+      "identificationSuccessRate": 36.3,
       "identCI95": [
        32.5,
-       40.1
+       40.2
       ],
-      "edgeVsBaselinePct": 3.4,
+      "edgeVsBaselinePct": 3.46,
       "usable": true
      }
     }

@@ -5,7 +5,7 @@
  "baselineFwd20Pct": 1.069,
  "baselineByTrendRegime": {
   "mixed": 0.93,
-  "up": 0.965,
+  "up": 0.964,
   "down": 1.476
  },
  "regimeNow": {
@@ -68,7 +68,7 @@
       ],
       "avgReturnPct": 4.05,
       "avgFwd20Pct": 1.45,
-      "edgeVsBaselinePct": 0.48,
+      "edgeVsBaselinePct": 0.49,
       "usable": true
      },
      "mixed": {
@@ -543,7 +543,7 @@
        22.4,
        29.3
       ],
-      "edgeVsBaselinePct": -4.58,
+      "edgeVsBaselinePct": -4.59,
       "usable": true
      },
      "up/stressed": {
@@ -569,7 +569,7 @@
        16.8,
        27.4
       ],
-      "edgeVsBaselinePct": -1.0,
+      "edgeVsBaselinePct": -1.01,
       "usable": true
      },
      "mixed/calm": {
@@ -1059,7 +1059,7 @@
        30.5,
        37.6
       ],
-      "edgeVsBaselinePct": -0.02,
+      "edgeVsBaselinePct": -0.01,
       "usable": true
      },
      "up/stressed": {
@@ -1085,7 +1085,7 @@
        35.8,
        53.1
       ],
-      "edgeVsBaselinePct": 0.72,
+      "edgeVsBaselinePct": 0.73,
       "usable": true
      },
      "mixed/calm": {
@@ -1438,7 +1438,7 @@
        26.3,
        28.6
       ],
-      "edgeVsBaselinePct": -2.35,
+      "edgeVsBaselinePct": -2.36,
       "usable": true
      },
      "mixed": {
@@ -1602,7 +1602,7 @@
        22.7,
        26.8
       ],
-      "edgeVsBaselinePct": 0.68,
+      "edgeVsBaselinePct": 0.67,
       "usable": true
      },
      "mixed/calm": {
@@ -2468,7 +2468,7 @@
        29.5,
        37.3
       ],
-      "edgeVsBaselinePct": 0.22,
+      "edgeVsBaselinePct": 0.23,
       "usable": true
      },
      "mixed": {
@@ -4205,7 +4205,7 @@
        15.6,
        20.6
       ],
-      "edgeVsBaselinePct": -0.17,
+      "edgeVsBaselinePct": -0.18,
       "usable": true
      },
      "up/stressed": {
@@ -4231,7 +4231,7 @@
        7.0,
        13.6
       ],
-      "edgeVsBaselinePct": -0.97,
+      "edgeVsBaselinePct": -0.98,
       "usable": true
      },
      "mixed/calm": {
@@ -4716,7 +4716,7 @@
        31.6,
        37.4
       ],
-      "edgeVsBaselinePct": 0.91,
+      "edgeVsBaselinePct": 0.92,
       "usable": true
      },
      "up/stressed": {
@@ -5091,7 +5091,7 @@
        22.1,
        27.4
       ],
-      "edgeVsBaselinePct": 0.27,
+      "edgeVsBaselinePct": 0.26,
       "usable": true
      },
      "mixed": {
@@ -6013,12 +6013,12 @@
     "n": 15858,
     "byStatus": {
      "timeout": 1895,
-     "invalidated": 5314,
+     "invalidated": 5313,
      "success": 5148,
      "expired": 578,
      "failure": 2844,
      "confirmed": 68,
-     "open": 11
+     "open": 12
     },
     "judged": 9887,
     "successRate": 52.1,
@@ -6064,12 +6064,12 @@
       "n": 13640,
       "byStatus": {
        "timeout": 1605,
-       "invalidated": 4537,
+       "invalidated": 4536,
        "success": 4507,
        "expired": 492,
        "failure": 2420,
        "confirmed": 68,
-       "open": 11
+       "open": 12
       },
       "judged": 8532,
       "successRate": 52.8,
@@ -6146,12 +6146,12 @@
       "n": 11208,
       "byStatus": {
        "timeout": 1228,
-       "invalidated": 4059,
+       "invalidated": 4058,
        "success": 3381,
        "expired": 432,
        "failure": 2029,
        "confirmed": 68,
-       "open": 11
+       "open": 12
       },
       "judged": 6638,
       "successRate": 50.9,
@@ -6162,7 +6162,7 @@
       "avgReturnPct": 0.92,
       "avgFwd20Pct": 0.68,
       "confirmRate": 59.9,
-      "identificationSuccessRate": 34.1,
+      "identificationSuccessRate": 34.2,
       "identCI95": [
        33.2,
        35.1
@@ -6202,12 +6202,12 @@
       "n": 10584,
       "byStatus": {
        "timeout": 1150,
-       "invalidated": 3784,
+       "invalidated": 3783,
        "success": 3241,
        "expired": 401,
        "failure": 1929,
        "confirmed": 68,
-       "open": 11
+       "open": 12
       },
       "judged": 6320,
       "successRate": 51.3,
@@ -6223,7 +6223,7 @@
        33.7,
        35.6
       ],
-      "edgeVsBaselinePct": -0.27,
+      "edgeVsBaselinePct": -0.26,
       "usable": true
      },
      "up/stressed": {
@@ -6249,7 +6249,7 @@
        46.8,
        50.6
       ],
-      "edgeVsBaselinePct": 1.31,
+      "edgeVsBaselinePct": 1.32,
       "usable": true
      },
      "mixed/calm": {
@@ -6442,12 +6442,12 @@
       "n": 3501,
       "byStatus": {
        "success": 1141,
-       "invalidated": 1132,
+       "invalidated": 1131,
        "timeout": 461,
        "expired": 125,
        "failure": 629,
        "confirmed": 10,
-       "open": 3
+       "open": 4
       },
       "judged": 2231,
       "successRate": 51.1,

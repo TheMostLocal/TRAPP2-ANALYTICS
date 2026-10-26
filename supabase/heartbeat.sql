@@ -9,7 +9,7 @@
 --
 --  Run in the Analytics Supabase project → SQL Editor, in two steps:
 --   1. once, with your token (fine-grained PAT, resource owner TheMostLocal, repositories TRAPP2, TRAPP2-1,
---      TRAPP2-2, TRAPP2-3, TRAPP2-BOT, TRAPP2-OPTIONS, TRAPP2-ANALYTICS, permission Actions: Read and write):
+--      TRAPP2-2, TRAPP2-3, TRAPP2-BOT, TRAPP2-OPTIONS, TRAPP2-ANALYTICS, TRAPP2-QUANT, permission Actions: Read and write):
 --        select vault.create_secret('github_pat_…', 'gh_dispatch_token');
 --      (to replace it later: select vault.update_secret((select id from vault.secrets where name = 'gh_dispatch_token'), 'github_pat_…');)
 --   2. this whole file (safe to re-run; it replaces the jobs by name).
@@ -59,3 +59,6 @@ select cron.schedule('valuatio-options', '13 13-20 * * 1-5',
   $$ select public.kick_workflow('TRAPP2-OPTIONS', 'options-loop.yml') $$);
 select cron.schedule('valuatio-health', '29,59 * * * *',
   $$ select public.kick_workflow('TRAPP2-ANALYTICS', 'health.yml') $$);
+-- z163: the quant engine - 0920 ET either way (13:20 UTC in EDT, 14:20 in EST; the other start just queues behind)
+select cron.schedule('valuatio-quant-engine', '20 13,14 * * 1-5',
+  $$ select public.kick_workflow('TRAPP2-QUANT', 'engine.yml') $$);

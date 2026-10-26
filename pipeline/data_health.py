@@ -128,6 +128,21 @@ def supabase_live_check(now, now_et):
         else:
             age = (now - ts).total_seconds() / 60
             row.update(updated=ts.strftime("%Y-%m-%dT%H:%M:%SZ"), ageMinutes=round(age), status="notDue" if lim is None else ("ok" if age <= lim else "stale"))
+            # z161.2: per book - one book pushing looks fine by "newest row" alone (10-26: 246 rows, TRAPP2-1 only)
+            cut = (now - timedelta(minutes=lim or 60)).strftime("%Y-%m-%dT%H:%M:%SZ")
+            counts = {}
+            for b in BOOKS:
+                rq = urllib.request.Request(f"{url}/rest/v1/live_quotes?select=ticker&book=eq.{b}&fetched_at=gte.{cut}",
+                                            headers={"apikey": key, "Authorization": f"Bearer {key}", "Prefer": "count=exact", "Range": "0-0"})
+                with urllib.request.urlopen(rq, timeout=30) as r2:
+                    cr = r2.headers.get("Content-Range") or ""
+                counts[b] = int(cr.split("/")[-1]) if cr.split("/")[-1].isdigit() else 0
+            row["perBook"] = counts
+            quiet = [b for b, n in counts.items() if n == 0]
+            row["note"] = "fresh rows per book: " + " · ".join(f"{b} {n}" for b, n in counts.items())
+            if lim is not None and quiet:
+                row["status"] = "stale"
+                row["note"] += f" - not pushing: {', '.join(quiet)}"
     except Exception as e:
         row.update(status="missing", note=f"{str(e)[:100]} - run supabase/live_schema.sql?")
     return row

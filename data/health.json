@@ -1,14 +1,16 @@
 {
- "asOf": "2026-10-26T00:09:47Z",
+ "asOf": "2026-10-26T04:51:33Z",
  "session": "closed",
  "summary": {
-  "ok": 16,
-  "stale": 0,
+  "ok": 14,
+  "stale": 2,
   "missing": 1,
   "notDue": 11,
   "unknown": 0
  },
- "botInputsDown": [],
+ "botInputsDown": [
+  "FX rates"
+ ],
  "checks": [
   {
    "name": "TRAPP2 quotes",
@@ -18,7 +20,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-25T05:14:54Z",
-   "ageMinutes": 1135,
+   "ageMinutes": 1417,
    "status": "notDue"
   },
   {
@@ -29,7 +31,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-24T00:00:13Z",
-   "ageMinutes": 2890,
+   "ageMinutes": 3171,
    "status": "notDue"
   },
   {
@@ -40,7 +42,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-25T05:10:55Z",
-   "ageMinutes": 1139,
+   "ageMinutes": 1421,
    "status": "notDue"
   },
   {
@@ -51,7 +53,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-23T23:48:12Z",
-   "ageMinutes": 2902,
+   "ageMinutes": 3183,
    "status": "notDue"
   },
   {
@@ -62,7 +64,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-25T05:19:39Z",
-   "ageMinutes": 1130,
+   "ageMinutes": 1412,
    "status": "notDue"
   },
   {
@@ -73,7 +75,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-23T23:50:10Z",
-   "ageMinutes": 2900,
+   "ageMinutes": 3181,
    "status": "notDue"
   },
   {
@@ -84,7 +86,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-25T05:29:34Z",
-   "ageMinutes": 1120,
+   "ageMinutes": 1402,
    "status": "notDue"
   },
   {
@@ -95,7 +97,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-10-23T23:55:07Z",
-   "ageMinutes": 2895,
+   "ageMinutes": 3176,
    "status": "notDue"
   },
   {
@@ -105,9 +107,9 @@
    "feedsBot": true,
    "rule": "fx",
    "maxMinutes": 45,
-   "updated": "2026-10-26T00:02:04Z",
-   "ageMinutes": 8,
-   "status": "ok"
+   "updated": "2026-10-26T03:17:03Z",
+   "ageMinutes": 94,
+   "status": "stale"
   },
   {
    "name": "Crypto prices",
@@ -116,9 +118,9 @@
    "feedsBot": false,
    "rule": "24h",
    "maxMinutes": 45,
-   "updated": "2026-10-26T00:02:09Z",
-   "ageMinutes": 8,
-   "status": "ok"
+   "updated": "2026-10-26T03:17:07Z",
+   "ageMinutes": 94,
+   "status": "stale"
   },
   {
    "name": "Regime certainty",
@@ -128,7 +130,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-23T19:28:15Z",
-   "ageMinutes": 3162,
+   "ageMinutes": 3443,
    "status": "ok"
   },
   {
@@ -139,7 +141,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-23T17:52:36Z",
-   "ageMinutes": 3257,
+   "ageMinutes": 3539,
    "status": "ok"
   },
   {
@@ -150,7 +152,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-23T21:42:09Z",
-   "ageMinutes": 3028,
+   "ageMinutes": 3309,
    "status": "ok"
   },
   {
@@ -161,7 +163,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-10-23T19:36:01Z",
-   "ageMinutes": 3154,
+   "ageMinutes": 3436,
    "status": "notDue"
   },
   {
@@ -172,7 +174,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-10-23T22:30:00Z",
-   "ageMinutes": 2980,
+   "ageMinutes": 3262,
    "status": "notDue"
   },
   {
@@ -183,7 +185,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-10-23T23:29:13Z",
-   "ageMinutes": 2921,
+   "ageMinutes": 3202,
    "status": "notDue"
   },
   {
@@ -194,7 +196,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-24T05:33:55Z",
-   "ageMinutes": 2556,
+   "ageMinutes": 2838,
    "status": "ok"
   },
   {
@@ -205,7 +207,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-24T05:33:55Z",
-   "ageMinutes": 2556,
+   "ageMinutes": 2838,
    "status": "ok"
   },
   {
@@ -216,7 +218,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-10-24T21:05:51Z",
-   "ageMinutes": 1624,
+   "ageMinutes": 1906,
    "status": "ok"
   },
   {
@@ -227,7 +229,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T08:02:06Z",
-   "ageMinutes": 968,
+   "ageMinutes": 1249,
    "status": "ok"
   },
   {
@@ -238,7 +240,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T08:15:03Z",
-   "ageMinutes": 955,
+   "ageMinutes": 1237,
    "status": "ok"
   },
   {
@@ -249,7 +251,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-24T14:58:58Z",
-   "ageMinutes": 1991,
+   "ageMinutes": 2273,
    "status": "ok"
   },
   {
@@ -260,7 +262,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T23:50:22Z",
-   "ageMinutes": 19,
+   "ageMinutes": 301,
    "status": "ok"
   },
   {
@@ -271,7 +273,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T23:50:48Z",
-   "ageMinutes": 19,
+   "ageMinutes": 301,
    "status": "ok"
   },
   {
@@ -282,7 +284,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T23:46:16Z",
-   "ageMinutes": 24,
+   "ageMinutes": 305,
    "status": "ok"
   },
   {
@@ -293,7 +295,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T23:46:17Z",
-   "ageMinutes": 24,
+   "ageMinutes": 305,
    "status": "ok"
   },
   {
@@ -304,7 +306,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-10-25T23:47:32Z",
-   "ageMinutes": 22,
+   "ageMinutes": 304,
    "status": "ok"
   },
   {
@@ -315,7 +317,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "status": "missing",
-   "note": "HTTP Error 404: Not Found - run supabase/live_schema.sql?"
+   "note": "table empty - books not pushing yet (SUPABASE_LIVE_* secrets?)"
   }
  ]
 }

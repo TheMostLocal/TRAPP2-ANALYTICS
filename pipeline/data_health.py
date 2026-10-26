@@ -99,7 +99,38 @@ CHECKS += [
     ("Research grades", "TRAPP2-ANALYTICS", "data/research_grades.json", "doc", "daily", True),
     ("News", "TRAPP2-ANALYTICS", "data/news/latest.json", "doc", "daily", False),
     ("Credit index (bonds / CDS)", "TRAPP2-CREDIT", "data/credit_index.json", "doc", "daily", False),
+    # z158: the new official sources
+    ("SEC filings (8-K / Form 4)", "TRAPP2-ANALYTICS", "data/sec/index.json", "doc", "daily", True),
+    ("FINRA short selling", "TRAPP2-ANALYTICS", "data/short/index.json", "doc", "daily", True),
+    ("CBOE volatility", "TRAPP2-1", "data/extras/vol.json", "doc", "daily", True),
+    ("Treasury auctions", "TRAPP2-1", "data/extras/treasury.json", "doc", "daily", False),
+    ("FX / crypto cross-checks", "TRAPP2-1", "data/extras/checks.json", "doc", "daily", False),
 ]
+
+
+def supabase_live_check(now, now_et):
+    """z159: the newest live quote in the Analytics Supabase project (the books push after every pass)."""
+    import os
+    url = (os.environ.get("SUPABASE_URL") or "").strip().rstrip("/").replace("/rest/v1", "")
+    key = (os.environ.get("SUPABASE_SERVICE_ROLE") or os.environ.get("SUPABASE_SERVICE_KEY") or "").strip()
+    if not (url and key):
+        return None
+    lim = limit_minutes("intraday", now_et)
+    row = {"name": "Supabase live quotes", "repo": "Supabase (Analytics)", "path": "live_quotes", "feedsBot": False, "rule": "intraday", "maxMinutes": lim}
+    try:
+        req = urllib.request.Request(f"{url}/rest/v1/live_quotes?select=fetched_at&order=fetched_at.desc&limit=1",
+                                     headers={"apikey": key, "Authorization": f"Bearer {key}", "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            rows = json.loads(r.read().decode())
+        ts = parse(rows[0]["fetched_at"]) if rows else None
+        if ts is None:
+            row.update(status="missing", note="table empty - books not pushing yet (SUPABASE_LIVE_* secrets?)")
+        else:
+            age = (now - ts).total_seconds() / 60
+            row.update(updated=ts.strftime("%Y-%m-%dT%H:%M:%SZ"), ageMinutes=round(age), status="notDue" if lim is None else ("ok" if age <= lim else "stale"))
+    except Exception as e:
+        row.update(status="missing", note=f"{str(e)[:100]} - run supabase/live_schema.sql?")
+    return row
 
 
 def limit_minutes(rule, now_et):
@@ -139,6 +170,9 @@ def main():
         except Exception as e:
             row.update(status="missing", note=str(e)[:120])
         out.append(row)
+    sb = supabase_live_check(now, now_et)
+    if sb:
+        out.append(sb)
     summ = {k: sum(1 for r in out if r["status"] == k) for k in ("ok", "stale", "missing", "notDue", "unknown")}
     bad_bot = [r["name"] for r in out if r["feedsBot"] and r["status"] in ("stale", "missing")]
     doc = {"asOf": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "session": session(now_et), "summary": summ,

@@ -108,7 +108,9 @@ def main():
                  "date": rep["date"] if rep else nxt.get("date"), "time": (rep or nxt).get("time") if (rep or nxt) else ""}
             rows.append(r)
             if rep:
-                results.append({k: r[k] for k in ("ticker", "name", "sector", "date", "time", "est", "act")} | {"surprisePct": num(rep.get("surprisePct"))})
+                # z158: revenue too, where Finnhub's calendar carries it
+                results.append({k: r[k] for k in ("ticker", "name", "sector", "date", "time", "est", "act")} | {"surprisePct": num(rep.get("surprisePct")),
+                                "revEst": num(rep.get("revenueEstimate")), "revAct": num(rep.get("revenueActual")), "revSurprisePct": num(rep.get("revenueSurprisePct"))})
             elif nxt.get("date") and today <= nxt["date"] <= q["to"]:
                 upcoming.append({"ticker": m["ticker"], "name": m.get("name"), "sector": m.get("sector"), "date": nxt["date"], "time": nxt.get("time"), "est": est_next})
         sectors = {}
@@ -140,6 +142,10 @@ def main():
                 ser[-1] = {"date": today, "eps": round(blended, 4)}
             else:
                 ser.append({"date": today, "eps": round(blended, 4)})
+        rv = [x for x in results if x.get("revSurprisePct") is not None]
+        total["revenueReported"] = len(rv)
+        total["pctRevenueBeat"] = round(sum(1 for x in rv if x["revSurprisePct"] > 0) / len(rv) * 100, 1) if rv else None
+        total["revenueSurprise"] = round(sum(x["revSurprisePct"] for x in rv) / len(rv), 2) if rv else None
         results.sort(key=lambda x: x["date"] or "", reverse=True)
         upcoming.sort(key=lambda x: (x["date"], x["time"] or ""))
         season["indices"][etf] = {"name": ix.get("name"), "source": ix.get("source"), "total": total, "groups": groups, "sectors": sectors,

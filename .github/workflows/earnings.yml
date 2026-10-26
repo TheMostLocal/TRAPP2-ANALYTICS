@@ -73,9 +73,10 @@ jobs:
           else echo "members: kept (refreshed on Mondays)"; fi
         continue-on-error: true
 
-      - name: Members' reports (Yahoo)
+      - name: Members' reports (Finnhub calendar first, Yahoo for depth)
         env:
           EARNINGS_FULL: ${{ github.event.inputs.full == 'true' && '1' || '' }}
+          KEY_PROXY: 'https://project-66nen.vercel.app/api/v'      # z158: Finnhub's key lives on Vercel
         run: python pipeline/fetch_earnings.py
         continue-on-error: true
         timeout-minutes: 35

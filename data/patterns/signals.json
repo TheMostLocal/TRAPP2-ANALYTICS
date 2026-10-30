@@ -255,6 +255,34 @@
    }
   },
   {
+   "ticker": "BTC-USD",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-29",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 86602.9141,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6583,
+    "edgeVsBaselinePct": -1.78
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.3,
+    "n": 4210,
+    "edgeVsBaselinePct": -2.35
+   }
+  },
+  {
    "ticker": "^AXJO",
    "template": "double_bottom",
    "direction": "bullish",
@@ -322,6 +350,34 @@
    "stop": 155.9,
    "volConfirmed": null,
    "volRatio": null,
+   "track": {
+    "successRate": 38.3,
+    "ci95": [
+     37.1,
+     39.4
+    ],
+    "n": 6583,
+    "edgeVsBaselinePct": -1.78
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.3,
+    "n": 4210,
+    "edgeVsBaselinePct": -2.35
+   }
+  },
+  {
+   "ticker": "XRP-USD",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-10-08",
+   "confirmDate": "2026-10-29",
+   "status": "confirmed",
+   "entry": 1.2349,
+   "target": 1.0224,
+   "stop": 1.5718,
+   "volConfirmed": false,
+   "volRatio": 1.15,
    "track": {
     "successRate": 38.3,
     "ci95": [
@@ -603,18 +659,18 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 33.4,
+    "successRate": 33.3,
     "ci95": [
      30.7,
      36.1
     ],
-    "n": 1145,
+    "n": 1146,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 32.8,
-    "n": 690,
+    "successRate": 32.7,
+    "n": 691,
     "edgeVsBaselinePct": 3.57
    }
   },
@@ -5027,18 +5083,18 @@
    "volConfirmed": false,
    "volRatio": 0.77,
    "track": {
-    "successRate": 33.4,
+    "successRate": 33.3,
     "ci95": [
      30.7,
      36.1
     ],
-    "n": 1145,
+    "n": 1146,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 32.8,
-    "n": 690,
+    "successRate": 32.7,
+    "n": 691,
     "edgeVsBaselinePct": 3.57
    }
   },
@@ -6315,18 +6371,18 @@
    "volConfirmed": false,
    "volRatio": 0.81,
    "track": {
-    "successRate": 33.4,
+    "successRate": 33.3,
     "ci95": [
      30.7,
      36.1
     ],
-    "n": 1145,
+    "n": 1146,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 32.8,
-    "n": 690,
+    "successRate": 32.7,
+    "n": 691,
     "edgeVsBaselinePct": 3.57
    }
   },
@@ -7351,18 +7407,18 @@
    "volConfirmed": null,
    "volRatio": null,
    "track": {
-    "successRate": 33.4,
+    "successRate": 33.3,
     "ci95": [
      30.7,
      36.1
     ],
-    "n": 1145,
+    "n": 1146,
     "edgeVsBaselinePct": 3.9
    },
    "trackNow": {
     "regime": "up",
-    "successRate": 32.8,
-    "n": 690,
+    "successRate": 32.7,
+    "n": 691,
     "edgeVsBaselinePct": 3.57
    }
   },
@@ -7672,34 +7728,6 @@
     "successRate": 33.0,
     "n": 1291,
     "edgeVsBaselinePct": 1.79
-   }
-  },
-  {
-   "ticker": "GLEN.L",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-14",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 542.2,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.0,
-    "ci95": [
-     51.1,
-     53.0
-    ],
-    "n": 9899,
-    "edgeVsBaselinePct": -0.01
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8544,
-    "edgeVsBaselinePct": 0.15
    }
   }
  ]

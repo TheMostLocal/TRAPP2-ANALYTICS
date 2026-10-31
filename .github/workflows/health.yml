@@ -1,8 +1,9 @@
 # ============================================================
 #  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
 #  >>> FILE PATH:   .github/workflows/health.yml
-#  z157 - DATA HEALTH every 30 min (at :19 / :49, off GitHub's busy minutes): every input the app and
-#  the bot read, across all repos, against what its schedule promises. -> data/health.json
+#  z157 data health; z168 - one job checks every 30 minutes for ~170 minutes and queues its own next run
+#  (pipeline/health_loop.sh), so the Home card no longer depends on GitHub starting each 30-minute schedule.
+#  The schedule stays as a backstop; while a loop runs, a scheduled start just waits (never cancels it).
 # ============================================================
 name: Data health (every input, every repo)
 
@@ -13,33 +14,25 @@ on:
 
 concurrency:
   group: analytics-health
-  cancel-in-progress: true
+  cancel-in-progress: false        # z168: a backstop start must never cancel the running loop
+
+permissions:
+  contents: write
+  actions: write                   # z168: the loop queues its own next run
 
 jobs:
   health:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
+    timeout-minutes: 185
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check every input
+      - name: Check every input, every 30 minutes, then queue the next run
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}                    # z159: the live tables' freshness too
           SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
-        run: python pipeline/data_health.py
-      - name: Commit & push
-        run: |
-          git config user.name "valuatio-health"
-          git config user.email "actions@github.com"
-          git add data/health.json
-          git diff --staged --quiet && echo "No changes" && exit 0
-          git commit -q -m "health: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
-          for k in 1 2 3 4 5; do
-            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
-            git fetch -q origin main; git merge -X ours origin/main --no-edit -q || true; sleep $((k * 3))
-          done
-          echo "::warning::push failed after 5 attempts"
+          GH_TOKEN: ${{ github.token }}
+          LOOP_BUDGET_MIN: '170'
+        run: bash pipeline/health_loop.sh

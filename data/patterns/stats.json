@@ -2,10 +2,10 @@
  "asOf": "2026-11-02",
  "engine": "patterns-v3",
  "liveStart": "2026-10-07",
- "baselineFwd20Pct": 1.069,
+ "baselineFwd20Pct": 1.068,
  "baselineByTrendRegime": {
   "mixed": 0.93,
-  "up": 0.964,
+  "up": 0.963,
   "down": 1.476
  },
  "regimeNow": {
@@ -24,13 +24,13 @@
     "n": 12049,
     "byStatus": {
      "success": 5892,
-     "failure": 6023,
-     "open": 134
+     "failure": 6024,
+     "open": 133
     },
-    "judged": 11915,
-    "successRate": 49.5,
+    "judged": 11916,
+    "successRate": 49.4,
     "successCI95": [
-     48.6,
+     48.5,
      50.3
     ],
     "avgReturnPct": 4.44,
@@ -57,10 +57,10 @@
       "n": 10057,
       "byStatus": {
        "success": 4939,
-       "failure": 4984,
-       "open": 134
+       "failure": 4985,
+       "open": 133
       },
-      "judged": 9923,
+      "judged": 9924,
       "successRate": 49.8,
       "successCI95": [
        48.8,
@@ -111,10 +111,10 @@
       "n": 8910,
       "byStatus": {
        "success": 4322,
-       "failure": 4454,
-       "open": 134
+       "failure": 4455,
+       "open": 133
       },
-      "judged": 8776,
+      "judged": 8777,
       "successRate": 49.2,
       "successCI95": [
        48.2,
@@ -148,10 +148,10 @@
       "n": 8323,
       "byStatus": {
        "success": 4044,
-       "failure": 4145,
-       "open": 134
+       "failure": 4146,
+       "open": 133
       },
-      "judged": 8189,
+      "judged": 8190,
       "successRate": 49.4,
       "successCI95": [
        48.3,
@@ -287,13 +287,13 @@
       "n": 3002,
       "byStatus": {
        "success": 1286,
-       "failure": 1593,
-       "open": 123
+       "failure": 1594,
+       "open": 122
       },
-      "judged": 2879,
+      "judged": 2880,
       "successRate": 44.7,
       "successCI95": [
-       42.9,
+       42.8,
        46.5
       ],
       "avgReturnPct": 2.48,

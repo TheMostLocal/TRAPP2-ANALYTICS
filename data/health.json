@@ -1,14 +1,16 @@
 {
- "asOf": "2026-11-04T20:19:00Z",
+ "asOf": "2026-11-04T20:19:20Z",
  "session": "regular",
  "summary": {
-  "ok": 27,
+  "ok": 26,
   "stale": 1,
-  "missing": 0,
+  "missing": 1,
   "notDue": 0,
   "unknown": 0
  },
- "botInputsDown": [],
+ "botInputsDown": [
+  "TRAPP2-3 quotes"
+ ],
  "checks": [
   {
    "name": "TRAPP2 quotes",
@@ -83,9 +85,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-04T20:10:18Z",
-   "ageMinutes": 9,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 503: between bytes timeout"
   },
   {
    "name": "TRAPP2-3 15-min tape",
@@ -128,7 +129,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-03T21:54:46Z",
-   "ageMinutes": 1344,
+   "ageMinutes": 1345,
    "status": "ok"
   },
   {
@@ -139,7 +140,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-03T20:30:31Z",
-   "ageMinutes": 1428,
+   "ageMinutes": 1429,
    "status": "ok"
   },
   {
@@ -161,7 +162,7 @@
    "rule": "session",
    "maxMinutes": 50,
    "updated": "2026-11-04T20:07:46Z",
-   "ageMinutes": 11,
+   "ageMinutes": 12,
    "status": "ok"
   },
   {
@@ -238,7 +239,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-04T10:29:45Z",
-   "ageMinutes": 589,
+   "ageMinutes": 590,
    "status": "ok"
   },
   {
@@ -249,7 +250,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-04T19:56:47Z",
-   "ageMinutes": 22,
+   "ageMinutes": 23,
    "status": "ok"
   },
   {
@@ -260,7 +261,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-04T19:44:42Z",
-   "ageMinutes": 34,
+   "ageMinutes": 35,
    "status": "ok"
   },
   {
@@ -304,7 +305,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-04T19:54:43Z",
-   "ageMinutes": 24,
+   "ageMinutes": 25,
    "status": "ok"
   },
   {

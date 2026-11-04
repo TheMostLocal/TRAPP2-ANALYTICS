@@ -311,6 +311,62 @@
    }
   },
   {
+   "ticker": "BOSCHLTD.NS",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-03",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 49645.0,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 49.4,
+    "ci95": [
+     48.5,
+     50.3
+    ],
+    "n": 11919,
+    "edgeVsBaselinePct": 0.42
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.8,
+    "n": 9927,
+    "edgeVsBaselinePct": 0.48
+   }
+  },
+  {
+   "ticker": "LONN.SW",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-03",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 652.2,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 49.4,
+    "ci95": [
+     48.5,
+     50.3
+    ],
+    "n": 11919,
+    "edgeVsBaselinePct": 0.42
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.8,
+    "n": 9927,
+    "edgeVsBaselinePct": 0.48
+   }
+  },
+  {
    "ticker": "DAL",
    "template": "minervini",
    "direction": "bullish",

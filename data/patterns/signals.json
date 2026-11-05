@@ -1179,6 +1179,62 @@
    }
   },
   {
+   "ticker": "BOSCHLTD.NS",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-28",
+   "confirmDate": "2026-11-04",
+   "status": "confirmed",
+   "entry": 50925.0,
+   "target": 56845.0,
+   "stop": 43155.0,
+   "volConfirmed": true,
+   "volRatio": 1.76,
+   "track": {
+    "successRate": 52.0,
+    "ci95": [
+     51.1,
+     53.0
+    ],
+    "n": 9907,
+    "edgeVsBaselinePct": -0.01
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.8,
+    "n": 8552,
+    "edgeVsBaselinePct": 0.14
+   }
+  },
+  {
+   "ticker": "BOSCHLTD.NS",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-11-04",
+   "confirmDate": "2026-11-04",
+   "status": "confirmed",
+   "entry": 50925.0,
+   "target": 61110.0,
+   "stop": 45832.5,
+   "volConfirmed": true,
+   "volRatio": 1.76,
+   "track": {
+    "successRate": 27.2,
+    "ci95": [
+     25.9,
+     28.5
+    ],
+    "n": 4471,
+    "edgeVsBaselinePct": 1.26
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 27.4,
+    "n": 3880,
+    "edgeVsBaselinePct": 1.53
+   }
+  },
+  {
    "ticker": "STETH-USD",
    "template": "flat_base",
    "direction": "bullish",
@@ -5460,34 +5516,6 @@
     "successRate": 49.7,
     "n": 9928,
     "edgeVsBaselinePct": 0.47
-   }
-  },
-  {
-   "ticker": "BOSCHLTD.NS",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-10-28",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 43155.0,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 52.0,
-    "ci95": [
-     51.1,
-     53.0
-    ],
-    "n": 9907,
-    "edgeVsBaselinePct": -0.01
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 52.8,
-    "n": 8552,
-    "edgeVsBaselinePct": 0.14
    }
   },
   {

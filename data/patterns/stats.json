@@ -5553,9 +5553,9 @@
     "edgeVsBaselinePct": 1.26
    },
    "live": {
-    "n": 33,
+    "n": 34,
     "byStatus": {
-     "confirmed": 29,
+     "confirmed": 30,
      "failure": 4
     },
     "judged": 4,
@@ -6034,8 +6034,8 @@
     "n": 75,
     "byStatus": {
      "invalidated": 14,
-     "confirmed": 28,
-     "open": 21,
+     "confirmed": 29,
+     "open": 20,
      "success": 6,
      "failure": 6
     },
@@ -6047,7 +6047,7 @@
     ],
     "avgReturnPct": -2.5,
     "avgFwd20Pct": null,
-    "confirmRate": 74.1,
+    "confirmRate": 74.5,
     "identificationSuccessRate": 23.1,
     "identCI95": [
      11.0,

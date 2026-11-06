@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-06T19:19:00Z",
+ "asOf": "2026-11-06T19:49:00Z",
  "session": "regular",
  "summary": {
   "ok": 27,
@@ -17,8 +17,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:17:50Z",
-   "ageMinutes": 1,
+   "updated": "2026-11-06T19:45:33Z",
+   "ageMinutes": 3,
    "status": "ok"
   },
   {
@@ -28,8 +28,8 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:17:50Z",
-   "ageMinutes": 1,
+   "updated": "2026-11-06T19:45:34Z",
+   "ageMinutes": 3,
    "status": "ok"
   },
   {
@@ -39,8 +39,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:04:45Z",
-   "ageMinutes": 14,
+   "updated": "2026-11-06T19:48:14Z",
+   "ageMinutes": 1,
    "status": "ok"
   },
   {
@@ -50,7 +50,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:18:18Z",
+   "updated": "2026-11-06T19:48:15Z",
    "ageMinutes": 1,
    "status": "ok"
   },
@@ -61,8 +61,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:07:40Z",
-   "ageMinutes": 11,
+   "updated": "2026-11-06T19:35:30Z",
+   "ageMinutes": 14,
    "status": "ok"
   },
   {
@@ -72,8 +72,8 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:07:41Z",
-   "ageMinutes": 11,
+   "updated": "2026-11-06T19:35:31Z",
+   "ageMinutes": 13,
    "status": "ok"
   },
   {
@@ -83,8 +83,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:12:21Z",
-   "ageMinutes": 7,
+   "updated": "2026-11-06T19:40:31Z",
+   "ageMinutes": 8,
    "status": "ok"
   },
   {
@@ -94,8 +94,8 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:12:21Z",
-   "ageMinutes": 7,
+   "updated": "2026-11-06T19:40:32Z",
+   "ageMinutes": 8,
    "status": "ok"
   },
   {
@@ -105,7 +105,7 @@
    "feedsBot": true,
    "rule": "fx",
    "maxMinutes": 45,
-   "updated": "2026-11-06T19:17:05Z",
+   "updated": "2026-11-06T19:47:05Z",
    "ageMinutes": 2,
    "status": "ok"
   },
@@ -116,7 +116,7 @@
    "feedsBot": false,
    "rule": "24h",
    "maxMinutes": 45,
-   "updated": "2026-11-06T19:17:10Z",
+   "updated": "2026-11-06T19:47:10Z",
    "ageMinutes": 2,
    "status": "ok"
   },
@@ -128,7 +128,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-05T22:12:36Z",
-   "ageMinutes": 1266,
+   "ageMinutes": 1296,
    "status": "ok"
   },
   {
@@ -139,7 +139,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-05T21:06:15Z",
-   "ageMinutes": 1333,
+   "ageMinutes": 1363,
    "status": "ok"
   },
   {
@@ -150,7 +150,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-06T02:00:21Z",
-   "ageMinutes": 1039,
+   "ageMinutes": 1069,
    "status": "ok"
   },
   {
@@ -160,8 +160,8 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-06T19:07:29Z",
-   "ageMinutes": 12,
+   "updated": "2026-11-06T19:35:41Z",
+   "ageMinutes": 13,
    "status": "ok"
   },
   {
@@ -171,7 +171,7 @@
    "feedsBot": false,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-06T14:00:00Z",
+   "updated": "2026-11-06T14:30:00Z",
    "ageMinutes": 319,
    "status": "stale"
   },
@@ -182,7 +182,7 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-06T19:06:16Z",
+   "updated": "2026-11-06T19:36:16Z",
    "ageMinutes": 13,
    "status": "ok"
   },
@@ -194,7 +194,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-06T09:03:17Z",
-   "ageMinutes": 616,
+   "ageMinutes": 646,
    "status": "ok"
   },
   {
@@ -205,7 +205,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-06T09:03:17Z",
-   "ageMinutes": 616,
+   "ageMinutes": 646,
    "status": "ok"
   },
   {
@@ -216,7 +216,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-05T19:10:05Z",
-   "ageMinutes": 1449,
+   "ageMinutes": 1479,
    "status": "ok"
   },
   {
@@ -227,7 +227,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-06T10:16:41Z",
-   "ageMinutes": 542,
+   "ageMinutes": 572,
    "status": "ok"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-06T10:25:45Z",
-   "ageMinutes": 533,
+   "ageMinutes": 563,
    "status": "ok"
   },
   {
@@ -249,7 +249,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-05T20:10:37Z",
-   "ageMinutes": 1388,
+   "ageMinutes": 1418,
    "status": "ok"
   },
   {
@@ -259,8 +259,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-06T03:27:13Z",
-   "ageMinutes": 952,
+   "updated": "2026-11-06T19:19:03Z",
+   "ageMinutes": 30,
    "status": "ok"
   },
   {
@@ -270,8 +270,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-06T03:27:36Z",
-   "ageMinutes": 951,
+   "updated": "2026-11-06T19:19:35Z",
+   "ageMinutes": 29,
    "status": "ok"
   },
   {
@@ -281,8 +281,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-06T03:28:03Z",
-   "ageMinutes": 951,
+   "updated": "2026-11-06T19:31:34Z",
+   "ageMinutes": 17,
    "status": "ok"
   },
   {
@@ -292,8 +292,8 @@
    "feedsBot": false,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-06T03:28:05Z",
-   "ageMinutes": 951,
+   "updated": "2026-11-06T19:31:35Z",
+   "ageMinutes": 17,
    "status": "ok"
   },
   {
@@ -303,8 +303,8 @@
    "feedsBot": false,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-06T03:29:53Z",
-   "ageMinutes": 949,
+   "updated": "2026-11-06T19:32:51Z",
+   "ageMinutes": 16,
    "status": "ok"
   },
   {
@@ -314,7 +314,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-06T19:18:17Z",
+   "updated": "2026-11-06T19:48:14Z",
    "ageMinutes": 1,
    "status": "ok",
    "perBook": {

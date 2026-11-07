@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-07T10:49:00Z",
+ "asOf": "2026-11-07T10:49:19Z",
  "session": "closed",
  "summary": {
   "ok": 15,
@@ -106,7 +106,7 @@
    "rule": "fx",
    "maxMinutes": null,
    "updated": "2026-11-07T10:47:39Z",
-   "ageMinutes": 1,
+   "ageMinutes": 2,
    "status": "notDue"
   },
   {
@@ -117,7 +117,7 @@
    "rule": "24h",
    "maxMinutes": 45,
    "updated": "2026-11-07T10:47:42Z",
-   "ageMinutes": 1,
+   "ageMinutes": 2,
    "status": "ok"
   },
   {
@@ -128,7 +128,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-06T21:43:37Z",
-   "ageMinutes": 785,
+   "ageMinutes": 786,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-07T02:46:45Z",
-   "ageMinutes": 482,
+   "ageMinutes": 483,
    "status": "ok"
   },
   {

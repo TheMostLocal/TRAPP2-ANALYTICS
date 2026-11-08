@@ -170,7 +170,7 @@ def book_equities():
     import re
     import urllib.request
     out = set()
-    for b in ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3"):
+    for b in ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4"):   # z178: + TRAPP2-4 (EARNINGS_MAX still caps the calls)
         try:
             with urllib.request.urlopen(f"https://raw.githubusercontent.com/TheMostLocal/{b}/main/data/master.json", timeout=60) as r:
                 rows = json.loads(r.read().decode())

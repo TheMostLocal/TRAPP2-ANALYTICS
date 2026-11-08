@@ -66,7 +66,7 @@ def book_prices():
     import json
     import urllib.request
     out = {}
-    for b in ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3"):
+    for b in ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4"):   # z178: + TRAPP2-4
         try:
             with urllib.request.urlopen(f"https://raw.githubusercontent.com/TheMostLocal/{b}/main/data/master.json", timeout=60) as r:
                 rows = json.loads(r.read().decode())

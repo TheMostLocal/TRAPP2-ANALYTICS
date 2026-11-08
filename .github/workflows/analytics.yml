@@ -46,7 +46,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75                 # z178: +TRAPP2-4 (research, patterns, ~400 more news names)
     steps:
       - uses: actions/checkout@v4
 
@@ -61,6 +61,8 @@ jobs:
         with: { repository: "${{ github.repository_owner }}/TRAPP2-2", path: books/TRAPP2-2 }
       - uses: actions/checkout@v4
         with: { repository: "${{ github.repository_owner }}/TRAPP2-3", path: books/TRAPP2-3 }
+      - uses: actions/checkout@v4          # z178: the NYSE equities that weren't in the app
+        with: { repository: "${{ github.repository_owner }}/TRAPP2-4", path: books/TRAPP2-4 }
 
       - uses: actions/setup-python@v5
         with:
@@ -87,7 +89,7 @@ jobs:
       - name: Scan patterns & templates
         run: python pipeline/scan_patterns.py
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 35             # z178: +1,600 histories to scan
 
       - name: Pull news corpus
         # Best-effort — a Yahoo hiccup shouldn't block the grades commit.

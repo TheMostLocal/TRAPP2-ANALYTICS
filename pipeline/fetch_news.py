@@ -58,7 +58,11 @@ REPOS = [
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data/master.json",
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-2/main/data/master.json",
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-3/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-4/main/data/master.json",   # z178 - its largest names only (below)
 ]
+# z178: TRAPP2-4 holds ~1,600 NYSE equities; news for all of them would add ~25 minutes to a 45-minute job, so it
+# contributes its NEWS_TRAPP2_4_MAX largest names by market cap (the other books are taken whole, as before).
+NEWS_TRAPP2_4_MAX = int(os.environ.get("NEWS_TRAPP2_4_MAX") or 400)
 OUT = Path(__file__).resolve().parent.parent / "data" / "news" / "latest.json"
 XTRAPP_URL = f"https://raw.githubusercontent.com/{_GH_OWNER}/XTRAPP/main/data/xtrapp_data.json"
 PER_TICKER = 4
@@ -122,6 +126,13 @@ def load_universe():
         except Exception as e:
             print(f"  ✗ {url.split('/')[4]}: {e}", file=sys.stderr)
             continue
+        if "/TRAPP2-4/" in url:
+            def _mc(r):
+                try:
+                    return float(r.get("marketcap") or 0)
+                except (TypeError, ValueError):
+                    return 0.0
+            rows = sorted(rows, key=_mc, reverse=True)[:NEWS_TRAPP2_4_MAX]
         for row in rows:
             t = (row.get("ticker") or "").upper()
             if not t or t in seen:

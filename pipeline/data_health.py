@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 OUT = Path(__file__).resolve().parent.parent / "data" / "health.json"
 RAW = "https://raw.githubusercontent.com/TheMostLocal"
 ET = ZoneInfo("America/New_York")
-BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3")
+BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")   # z178: + TRAPP2-4
 
 
 def fetch(repo, path):

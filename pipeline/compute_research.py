@@ -34,12 +34,13 @@ _GH_OWNER = (__import__("os").environ.get("VALUATIO_OWNER")
              or __import__("os").environ.get("GITHUB_REPOSITORY_OWNER")
              or "TheMostLocal").strip()
 
-BOOKS = ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3"]
+BOOKS = ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3", "books/TRAPP2-4"]   # z178: + TRAPP2-4
 REPOS = [
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2/main/data/master.json",
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data/master.json",
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-2/main/data/master.json",
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-3/main/data/master.json",
+    f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-4/main/data/master.json",   # z178
 ]
 OUT = Path(__file__).resolve().parent.parent / "data" / "research_grades.json"
 

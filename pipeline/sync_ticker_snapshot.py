@@ -43,6 +43,7 @@ MASTER_SOURCES = [
     (f"{RAW}/TRAPP2-2/main/data/master.json", "TRAPP2-2"),
     (f"{RAW}/TRAPP2-1/main/data/master.json", "TRAPP2-1"),  # non-equities; 404 is fine
     (f"{RAW}/TRAPP2-3/main/data/master.json", "TRAPP2-3"),  # ~200 equities not in TRAPP2/-2
+    (f"{RAW}/TRAPP2-4/main/data/master.json", "TRAPP2-4"),  # z178: ~1,600 NYSE equities that weren't in the app
 ]
 GRADES_URL = f"{RAW}/TRAPP2-ANALYTICS/main/data/research_grades.json"
 SIGNALS_URL = f"{RAW}/TRAPP2/main/data/signals.json"

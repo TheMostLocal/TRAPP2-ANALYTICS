@@ -30,7 +30,7 @@ from earnings_common import OUT as EOUT, num, now_iso, read, write
 
 OUT = EOUT.parent / "headcount"
 RAW = "https://raw.githubusercontent.com/TheMostLocal"
-BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3")
+BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")   # z178: + TRAPP2-4 (150 companies a run, rotating)
 SEC_UA = (os.environ.get("SEC_USER_AGENT") or "").strip()     # z152: SEC refuses requests without "Name email" - repo variable
 PROXY = (os.environ.get("KEY_PROXY") or "").strip()
 FMP_PER_RUN = int(os.environ.get("HEADCOUNT_FMP_PER_RUN", "150"))

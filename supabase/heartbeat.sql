@@ -9,7 +9,7 @@
 --
 --  Run in the PORT+ANALYTICS Supabase project -> SQL Editor, in two steps:
 --   1. once, with your token (fine-grained PAT; resource owner TheMostLocal; repositories TRAPP2, TRAPP2-1, TRAPP2-2,
---      TRAPP2-3, TRAPP2-BOT, TRAPP2-OPTIONS, TRAPP2-ANALYTICS, TRAPP2-QUANT; permission Actions: Read and write):
+--      TRAPP2-3, TRAPP2-4, TRAPP2-BOT, TRAPP2-OPTIONS, TRAPP2-ANALYTICS, TRAPP2-QUANT; permission Actions: Read and write):
 --        select vault.create_secret('github_pat_...', 'gh_dispatch_token');
 --      (to replace it later: select vault.update_secret((select id from vault.secrets where name = 'gh_dispatch_token'), 'github_pat_...');)
 --   2. this whole file (safe to re-run: it replaces the jobs by name).
@@ -82,7 +82,7 @@ revoke all on public.heartbeat_recent from anon, authenticated;
 
 -- times are UTC (pg_cron); each covers EDT and EST - the loops keep their own Eastern-time rules.
 select cron.schedule('valuatio-intraday', '7 8-23 * * 1-5',
-  $$ select public.kick_workflow(r, 'intraday.yml') from unnest(array['TRAPP2', 'TRAPP2-1', 'TRAPP2-2', 'TRAPP2-3']) as r $$);
+  $$ select public.kick_workflow(r, 'intraday.yml') from unnest(array['TRAPP2', 'TRAPP2-1', 'TRAPP2-2', 'TRAPP2-3', 'TRAPP2-4']) as r $$);   -- z178: + TRAPP2-4
 select cron.schedule('valuatio-fx-crypto', '23 * * * *',
   $$ select public.kick_workflow('TRAPP2-1', 'fx-crypto-refresh.yml') $$);
 select cron.schedule('valuatio-bot', '21 12-21 * * 1-5',

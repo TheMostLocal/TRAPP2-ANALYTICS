@@ -41,7 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "patterns"
 REC = OUT / "records"
 BOOKS = [p for p in (os.environ.get("PATTERNS_BOOKS") or "").split(",") if p] or \
-        ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3"]
+        ["books/TRAPP2", "books/TRAPP2-1", "books/TRAPP2-2", "books/TRAPP2-3", "books/TRAPP2-4"]   # z178: + TRAPP2-4
 MIN_BARS = 300
 SIGNAL_WINDOW = 10          # bars: a detection this recent is an active signal
 RECORD_CRITERIA_BARS = 504  # keep full rule detail on records from the last ~2 years

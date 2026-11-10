@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-10T01:19:00Z",
+ "asOf": "2026-11-10T01:19:25Z",
  "session": "closed",
  "summary": {
   "ok": 16,
@@ -40,7 +40,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-10T00:41:33Z",
-   "ageMinutes": 37,
+   "ageMinutes": 38,
    "status": "notDue"
   },
   {
@@ -51,7 +51,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-10T00:41:34Z",
-   "ageMinutes": 37,
+   "ageMinutes": 38,
    "status": "notDue"
   },
   {
@@ -161,7 +161,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-09T23:26:53Z",
-   "ageMinutes": 112,
+   "ageMinutes": 113,
    "status": "ok"
   },
   {
@@ -183,7 +183,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-09T20:35:52Z",
-   "ageMinutes": 283,
+   "ageMinutes": 284,
    "status": "notDue"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-09T21:47:55Z",
-   "ageMinutes": 211,
+   "ageMinutes": 212,
    "status": "ok"
   },
   {
@@ -249,7 +249,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-09T23:31:53Z",
-   "ageMinutes": 107,
+   "ageMinutes": 108,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-07T18:04:52Z",
-   "ageMinutes": 3314,
+   "ageMinutes": 3315,
    "status": "ok"
   },
   {
@@ -326,7 +326,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-09T22:31:40Z",
-   "ageMinutes": 167,
+   "ageMinutes": 168,
    "status": "ok"
   },
   {
@@ -344,9 +344,9 @@
     "TRAPP2-1": 163,
     "TRAPP2-2": 205,
     "TRAPP2-3": 207,
-    "TRAPP2-4": 236
+    "TRAPP2-4": 0
    },
-   "note": "fresh rows per book: TRAPP2 330 \u00b7 TRAPP2-1 163 \u00b7 TRAPP2-2 205 \u00b7 TRAPP2-3 207 \u00b7 TRAPP2-4 236"
+   "note": "fresh rows per book: TRAPP2 330 \u00b7 TRAPP2-1 163 \u00b7 TRAPP2-2 205 \u00b7 TRAPP2-3 207 \u00b7 TRAPP2-4 0"
   }
  ]
 }

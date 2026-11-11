@@ -76,13 +76,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -132,13 +132,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -160,13 +160,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -272,13 +272,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -328,13 +328,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -356,13 +356,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -448,6 +448,118 @@
     "successRate": 31.3,
     "n": 870,
     "edgeVsBaselinePct": 3.09
+   }
+  },
+  {
+   "ticker": "AAMI",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-09-21",
+   "confirmDate": "2026-11-10",
+   "status": "confirmed",
+   "entry": 97.57,
+   "target": 107.14,
+   "stop": 87.48,
+   "volConfirmed": false,
+   "volRatio": 0.82,
+   "track": {
+    "successRate": 51.4,
+    "ci95": [
+     50.5,
+     52.3
+    ],
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 52.1,
+    "n": 10532,
+    "edgeVsBaselinePct": -0.06
+   }
+  },
+  {
+   "ticker": "ALTG",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-11-05",
+   "confirmDate": "2026-11-10",
+   "status": "confirmed",
+   "entry": 4.97,
+   "target": 3.745,
+   "stop": 7.79,
+   "volConfirmed": true,
+   "volRatio": 2.6,
+   "track": {
+    "successRate": 38.2,
+    "ci95": [
+     37.1,
+     39.2
+    ],
+    "n": 8197,
+    "edgeVsBaselinePct": -1.34
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 39.0,
+    "n": 5269,
+    "edgeVsBaselinePct": -1.77
+   }
+  },
+  {
+   "ticker": "AMBP",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-10",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 4.73,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 48.7,
+    "ci95": [
+     47.9,
+     49.5
+    ],
+    "n": 15012,
+    "edgeVsBaselinePct": 0.19
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 49.1,
+    "n": 12476,
+    "edgeVsBaselinePct": 0.28
+   }
+  },
+  {
+   "ticker": "AMG",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-09",
+   "confirmDate": "2026-11-10",
+   "status": "confirmed",
+   "entry": 401.32,
+   "target": 451.36,
+   "stop": 342.82,
+   "volConfirmed": true,
+   "volRatio": 2.53,
+   "track": {
+    "successRate": 47.4,
+    "ci95": [
+     46.3,
+     48.4
+    ],
+    "n": 8681,
+    "edgeVsBaselinePct": 0.22
+   },
+   "trackNow": {
+    "regime": "up",
+    "successRate": 48.4,
+    "n": 5781,
+    "edgeVsBaselinePct": 0.32
    }
   },
   {
@@ -636,13 +748,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -692,13 +804,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -804,13 +916,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -1056,13 +1168,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -1112,13 +1224,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -1336,13 +1448,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -1364,42 +1476,14 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
-   }
-  },
-  {
-   "ticker": "AMG",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 342.82,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.4,
-    "ci95": [
-     46.3,
-     48.4
-    ],
-    "n": 8681,
-    "edgeVsBaselinePct": 0.22
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 48.4,
-    "n": 5781,
-    "edgeVsBaselinePct": 0.32
    }
   },
   {
@@ -1412,8 +1496,8 @@
    "entry": 9.52,
    "target": 10.77,
    "stop": 7.52,
-   "volConfirmed": false,
-   "volRatio": 1.39,
+   "volConfirmed": true,
+   "volRatio": 1.4,
    "track": {
     "successRate": 47.4,
     "ci95": [
@@ -1672,13 +1756,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -1812,13 +1896,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -1868,13 +1952,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -1952,13 +2036,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -1980,13 +2064,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -2036,13 +2120,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -2176,13 +2260,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -2232,13 +2316,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -2288,13 +2372,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -2400,13 +2484,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -2680,13 +2764,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -2820,13 +2904,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -3156,13 +3240,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3464,13 +3548,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3716,13 +3800,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -3772,13 +3856,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3828,13 +3912,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -3856,13 +3940,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -3884,13 +3968,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3912,13 +3996,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3940,13 +4024,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -3968,13 +4052,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -4004,34 +4088,6 @@
     "successRate": 48.4,
     "n": 5781,
     "edgeVsBaselinePct": 0.32
-   }
-  },
-  {
-   "ticker": "ALTG",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-11-05",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 7.79,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 38.2,
-    "ci95": [
-     37.1,
-     39.2
-    ],
-    "n": 8197,
-    "edgeVsBaselinePct": -1.34
-   },
-   "trackNow": {
-    "regime": "up",
-    "successRate": 39.0,
-    "n": 5269,
-    "edgeVsBaselinePct": -1.77
    }
   },
   {
@@ -4248,13 +4304,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -4332,13 +4388,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4360,13 +4416,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4444,13 +4500,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4472,13 +4528,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4500,13 +4556,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4612,13 +4668,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4640,13 +4696,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4724,13 +4780,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -4892,13 +4948,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5200,13 +5256,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5256,13 +5312,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5312,13 +5368,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5340,13 +5396,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5452,13 +5508,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5704,13 +5760,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5732,13 +5788,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -5788,13 +5844,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6040,13 +6096,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6236,13 +6292,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6320,13 +6376,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6432,13 +6488,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6460,13 +6516,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6516,13 +6572,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6544,13 +6600,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6572,13 +6628,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6656,13 +6712,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -6824,13 +6880,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -6992,13 +7048,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7356,13 +7412,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7384,13 +7440,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7524,13 +7580,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7552,13 +7608,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7580,13 +7636,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7664,13 +7720,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7888,13 +7944,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -7916,13 +7972,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8084,13 +8140,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8196,13 +8252,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -8364,13 +8420,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8504,13 +8560,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -8532,13 +8588,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8616,13 +8672,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8700,13 +8756,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8784,13 +8840,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -8924,13 +8980,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -8952,13 +9008,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -9092,13 +9148,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -9288,13 +9344,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -9400,13 +9456,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -9764,13 +9820,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -9960,13 +10016,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10184,13 +10240,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -10268,13 +10324,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10408,13 +10464,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10520,13 +10576,13 @@
      10.8,
      12.9
     ],
-    "n": 3595,
+    "n": 3596,
     "edgeVsBaselinePct": -1.8
    },
    "trackNow": {
     "regime": "up",
     "successRate": 12.5,
-    "n": 1834,
+    "n": 1835,
     "edgeVsBaselinePct": -0.51
    }
   },
@@ -10632,13 +10688,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10688,13 +10744,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10912,13 +10968,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },
@@ -10968,13 +11024,13 @@
      50.5,
      52.3
     ],
-    "n": 12205,
-    "edgeVsBaselinePct": -0.22
+    "n": 12206,
+    "edgeVsBaselinePct": -0.21
    },
    "trackNow": {
     "regime": "up",
     "successRate": 52.1,
-    "n": 10531,
+    "n": 10532,
     "edgeVsBaselinePct": -0.06
    }
   },

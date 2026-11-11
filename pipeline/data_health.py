@@ -51,8 +51,12 @@ def stamp_of(doc, kind):
         ts = [t for t in ts if t]
         return max(ts) if ts else None
     if kind == "equity":                                         # bot equity tape: last point
+        # z182: the bot stamps its tape in EASTERN wall-clock time tagged +00:00 (bot_equity_snapshot.py bucket_iso -
+        # the app and the bot_equity table read it that way). Read as real UTC it looked 5 h old in winter (4 h in
+        # summer) and was flagged STALE all session while it was current.
         rows = doc if isinstance(doc, list) else doc.get("points") or []
-        return parse(rows[-1].get("t")) if rows else None
+        ts = parse(rows[-1].get("t")) if rows else None
+        return ts.replace(tzinfo=None).replace(tzinfo=ET).astimezone(timezone.utc) if ts else None
     if isinstance(doc, dict):
         for k in ("updatedAt", "generatedAt", "asOf", "generated_at", "fetched_at", "fetchedAt", "lastUpdated", "at", "computedAt"):
             if doc.get(k):

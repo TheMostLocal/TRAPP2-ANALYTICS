@@ -162,6 +162,47 @@ def baseline_fwd20(series, tickers):
     return round(s / n * 100, 3) if n else None
 
 
+def matched_fwd20(series, equities, clip=0.5):
+    """z184 - what the TYPICAL STOCK did over each 20-bar window: date -> equal-weight mean 20-bar forward return (%)
+    across the universe's equities from that date (each name's return clipped to +/-50% so one squeeze can't move the
+    yardstick). A call's date-matched edge = its 20-bar return minus this, over the same 20 bars."""
+    acc = {}
+    for t in equities:
+        d, c = series[t]
+        for i in range(len(c) - pe.FWD_BARS):
+            r = max(-clip, min(clip, c[i + pe.FWD_BARS] / c[i] - 1))
+            a = acc.get(d[i])
+            if a is None:
+                acc[d[i]] = [r, 1]
+            else:
+                a[0] += r
+                a[1] += 1
+    return {dt: a[0] / a[1] * 100 for dt, a in acc.items() if a[1] >= 20}
+
+
+CLIP_PCT = 50.0          # z184: the cap on one call's 20-bar move when judging a template (see stamp_matched)
+
+
+def stamp_matched(x, d, dirn, ew, is_equity):
+    """z184: abn20Pct (the call's 20-bar return minus the typical stock's over the same bars, direction-adjusted;
+    non-equities - FX, futures, indices - are measured against standing aside) and blk (the calendar month the
+    20-bar window starts in - the cluster for the interval). The window starts at confirmation (patterns) or at the
+    signal bar (Minervini), exactly where fwd20Pct starts."""
+    f = x.get("fwd20Pct")
+    k = x.get("confirmIdx") if x.get("confirmIdx") is not None else x.get("identIdx")
+    if f is None or k is None or not (0 <= k < len(d)):
+        return
+    start = d[k]
+    bench = ew.get(start) if is_equity else 0.0
+    if bench is None:
+        return
+    # each call's own 20-bar move is capped at +/-50% (the yardstick's names are too): on the 11-11 run a few dozen
+    # moves of +100% to +12,000% - squeezes and unadjusted splits - were deciding the flags' "edge" on their own
+    x["abn20Pct"] = round(max(-CLIP_PCT, min(CLIP_PCT, f)) - dirn * bench, 3)
+    x["abn20RawPct"] = round(f - dirn * bench, 3)
+    x["blk"] = start[:7]
+
+
 def _r(x, nd=4):
     return round(x, nd) if isinstance(x, (int, float)) and math.isfinite(x) else None
 
@@ -250,7 +291,7 @@ def dated(det, d):
         if det.get(src) is not None:
             out[dst] = di(det[src])
     for src, dst, nd in (("entry", "en", 6), ("target", "tg", 6), ("stop", "sp", 6), ("returnPct", "rt", 2),
-                         ("fwd20Pct", "f20", 2), ("mfePct", "mfe", 2), ("maePct", "mae", 2),
+                         ("fwd20Pct", "f20", 2), ("abn20Pct", "ab", 2), ("mfePct", "mfe", 2), ("maePct", "mae", 2),
                          ("excessPct", "ex", 2), ("score", "sc", 0), ("of", "of", 0),
                          ("breakoutVolRatio", "vr", 2)):          # z103: breakout volume / 50-bar avg
         v = det.get(src)
@@ -297,6 +338,9 @@ def main():
     log(f"macro quad history: {len(quad_known)} months (label = quad known {quad_lag} months later); known now: Q{quad_now}"
         if quad_known else "macro quad history: none (TRAPP2-1 data/macro/quad_history_full.json not found) — no quad split")
     rbase = regime_baselines(series, list(series), regimes, rkeys)
+    ew20 = matched_fwd20(series, equities)              # z184: the typical stock, date by date
+    eqset = set(equities)
+    log(f"date-matched yardstick: {len(ew20)} dates (equal-weight 20-bar forward return of {len(equities)} equities)")
     log(f"market regime now: trend {regime_now[0]} · volatility {regime_now[1]} · "
         f"20-bar baselines by trend regime {rbase}")
 
@@ -316,6 +360,8 @@ def main():
         ev = pe.minervini_series(c, rs_t)
         spy_idx = lambda k, d=d: spy_at.get(d[k]) if 0 <= k < len(d) else None
         dets += pe.minervini_signals(c, ev, spy_idx)
+        for x in dets:                                  # z184: date-matched 20-bar edge + its month cluster
+            stamp_matched(x, d, -1 if pe.TEMPLATES[x["template"]]["direction"] == "bearish" else 1, ew20, t in eqset)
         recs = [dated(x, d) for x in dets]
         for x, r in zip(dets, recs):
             tr, vo = regime_at(regimes, rkeys, r["id"]) if r["id"] else (None, None)
@@ -426,8 +472,17 @@ def main():
                 sm = pe.summarize(sub, bl)
                 sm["usable"] = sm["judged"] >= MIN_REGIME_N
                 by_scale[sc] = sm
+        main_rec = pe.summarize(bt, bl) if bt else {"n": 0}
+        # z184: a split (trend regime, volatility, breakout volume, quad, pivot scale) can refine an EARNED template's
+        # edge but not create one: with ~100 splits tested at 95%, a few would "pass" by luck. Under a template that
+        # hasn't earned its edge, every split stays UNPROVEN (trust 0), whatever its own interval says.
+        if main_rec.get("edgeVerdict") != "earned":
+            for grp in list(by_regime.values()) + [by_volume, by_scale]:
+                for sm in grp.values():
+                    if isinstance(sm, dict) and sm.get("edgeVerdict") in ("earned", "harmful"):
+                        sm.update(edgeVerdict="unproven", trustEdgePct=0.0, verdictNote="the template itself has not earned an edge")
         stats[k] = {**pe.TEMPLATES[k],
-                    "backtest": pe.summarize(bt, bl) if bt else {"n": 0},
+                    "backtest": main_rec,
                     "live": pe.summarize(live_main, bl) if live_main else {"n": 0},
                     "byRegime": by_regime, "byVolume": by_volume, "volConfirmAt": pe.VOL_CONFIRM,
                     **({"byPivotScale": by_scale} if by_scale else {})}
@@ -435,11 +490,16 @@ def main():
     for s in signals:
         bt = stats[s["template"]]["backtest"]
         s["track"] = {"successRate": bt.get("successRate"), "ci95": bt.get("successCI95"), "n": bt.get("judged"),
-                      "edgeVsBaselinePct": bt.get("edgeVsBaselinePct")}
+                      "edgeVsBaselinePct": bt.get("edgeVsBaselinePct"),
+                      # z184: the date-matched edge, its month-clustered interval and the verdict trust follows
+                      "edgeAbnPct": bt.get("edgeAbnPct"), "edgeAbnCI95": bt.get("edgeAbnCI95"),
+                      "edgeVerdict": bt.get("edgeVerdict"), "trustEdgePct": bt.get("trustEdgePct")}
         rg = (stats[s["template"]].get("byRegime") or {}).get("trend", {}).get(regime_now[0] or "")
         if rg and rg.get("usable"):
             s["trackNow"] = {"regime": regime_now[0], "successRate": rg.get("successRate"),
-                             "n": rg.get("judged"), "edgeVsBaselinePct": rg.get("edgeVsBaselinePct")}
+                             "n": rg.get("judged"), "edgeVsBaselinePct": rg.get("edgeVsBaselinePct"),
+                             "edgeAbnPct": rg.get("edgeAbnPct"), "edgeAbnCI95": rg.get("edgeAbnCI95"),
+                             "edgeVerdict": rg.get("edgeVerdict"), "trustEdgePct": rg.get("trustEdgePct")}
     signals.sort(key=lambda s: (s.get("confirmDate") or s["identDate"] or ""), reverse=True)
 
     meta.update({"liveStart": live_start, "engine": pe.ENGINE_VERSION, "updated": as_of})
@@ -451,7 +511,12 @@ def main():
     write_json(OUT / "stats.json", {"asOf": as_of, "engine": pe.ENGINE_VERSION, "liveStart": live_start,
                                     "baselineFwd20Pct": base, "baselineByTrendRegime": rbase,
                                     "regimeNow": {"trend": regime_now[0], "vol": regime_now[1], "quadKnown": quad_now, "quadLagMonths": quad_lag},
-                                    "minRegimeN": MIN_REGIME_N, "templates": stats}, compact=False)
+                                    "minRegimeN": MIN_REGIME_N,
+                                    "edgeMethod": ("z184 date-matched: each call's 20-bar return (capped at +/-50%) minus the equal-weight typical "
+                                                   "stock's over the same 20 bars (non-equities vs standing aside); 95% interval clustered by calendar "
+                                                   "month (CR1, Student t); EARNED = whole interval above 0, HARMFUL = below, else "
+                                                   f"UNPROVEN (trust neutral); fewer than {pe.MIN_EDGE_MONTHS} months = unproven"),
+                                    "templates": stats}, compact=False)
     write_json(OUT / "signals.json", {"asOf": as_of, "window": SIGNAL_WINDOW, "signals": signals}, compact=False)
     secs = (datetime.now(timezone.utc) - started).total_seconds()
     n_bt = sum(len(b["backtest"]) for b in all_dets.values())
@@ -465,7 +530,9 @@ def main():
             by = " · ".join(f"{r} {tr[r].get('successRate')}%/{tr[r].get('edgeVsBaselinePct')}"
                             for r in ("up", "mixed", "down") if r in tr)
             log(f"  {k:14s} n={b['n']:5d} judged={b['judged']:5d} success={b.get('successRate')}% "
-                f"CI{b.get('successCI95')} avgRet={b.get('avgReturnPct')}% edge={b.get('edgeVsBaselinePct')} | by trend: {by}")
+                f"CI{b.get('successCI95')} avgRet={b.get('avgReturnPct')}% edge={b.get('edgeVsBaselinePct')} | "
+                f"date-matched {b.get('edgeAbnPct')} CI{b.get('edgeAbnCI95')} {str(b.get('edgeVerdict')).upper()} "
+                f"({b.get('months')} months, ~{b.get('nEff')} independent) | by trend: {by}")
     return 0
 
 

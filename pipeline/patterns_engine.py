@@ -55,7 +55,7 @@ Pattern lifecycle (hs_*, double_*)
 """
 import math
 
-ENGINE_VERSION = "patterns-v3"
+ENGINE_VERSION = "patterns-v4"   # z184: date-matched edges, clustered intervals, earned / unproven / harmful
 CONFIRM_BARS = 40
 OUTCOME_BARS = 60
 MINERVINI_FWD = 63
@@ -908,6 +908,86 @@ def rule_names():
 
 
 # ----------------------------------------------------------- statistics ----
+# z184 - EDGES ARE EARNED BY EVIDENCE THAT HOLDS UP. Two corrections to how a template's record is judged:
+#  1. DATE-MATCHED: a call's 20-bar return is compared with what the typical stock did over THE SAME 20 bars (the
+#     scanner stamps abn20Pct on every call), not with a 20-year average. Bull flags crowd into rising markets; part
+#     of their raw "edge" was the market itself.
+#     Each call's own 20-bar move is capped at +/-50% for this (a few dozen squeezes and unadjusted splits of +100% to
+#     +12,000% were deciding the flags' edge alone); the uncapped mean is kept beside it (edgeAbnRawPct).
+#  2. CLUSTERED: calls in the same month share one market and overlapping 20-bar windows, so they are not independent
+#     evidence. The edge's 95% interval is cluster-robust by calendar month (CR1 standard error, Student t with
+#     months - 1 degrees of freedom), and so is the success rate's.
+# A template's edge is EARNED when the whole interval is above zero, HARMFUL when it is below, else UNPROVEN - and an
+# unproven edge earns no trust (trustEdgePct 0 = neutral). Fewer than MIN_EDGE_MONTHS months: unproven.
+MIN_EDGE_MONTHS = 10
+
+
+def _betacf(a, b, x, itmax=300, eps=3e-14):
+    qab, qap, qam = a + b, a + 1.0, a - 1.0
+    c, d = 1.0, 1.0 - qab * x / qap
+    d = 1.0 / (d if abs(d) > 1e-300 else 1e-300)
+    h = d
+    for m in range(1, itmax + 1):
+        m2 = 2 * m
+        for aa in (m * (b - m) * x / ((qam + m2) * (a + m2)), -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))):
+            d = 1.0 + aa * d
+            d = 1.0 / (d if abs(d) > 1e-300 else 1e-300)
+            c = 1.0 + aa / (c if abs(c) > 1e-300 else 1e-300)
+            h *= d * c
+        if abs(d * c - 1.0) < eps:
+            break
+    return h
+
+
+def _betainc(a, b, x):
+    if x <= 0:
+        return 0.0
+    if x >= 1:
+        return 1.0
+    lbt = math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log(1.0 - x)
+    if x < (a + 1.0) / (a + b + 2.0):
+        return math.exp(lbt) * _betacf(a, b, x) / a
+    return 1.0 - math.exp(lbt) * _betacf(b, a, 1.0 - x) / b
+
+
+def t_cdf(t, df):
+    """Student t cumulative distribution."""
+    tail = 0.5 * _betainc(df / 2.0, 0.5, df / (df + t * t))
+    return 1.0 - tail if t >= 0 else tail
+
+
+def t_crit975(df):
+    """The two-sided 95% critical value of Student t (1.96 as df grows)."""
+    if df >= 1000:
+        return 1.96
+    lo, hi = 0.0, 20.0
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if t_cdf(mid, df) < 0.975 else (lo, mid)
+    return (lo + hi) / 2
+
+
+def clustered_mean(pairs):
+    """pairs [(value, cluster)] -> mean, CR1 cluster-robust SE, t, 95% interval with Student t (G-1 df), G clusters,
+    and nEff (how many independent observations the sample behaves like). None with fewer than 2 clusters."""
+    groups = {}
+    for v, g in pairs:
+        s = groups.setdefault(g, [0, 0.0])
+        s[0] += 1
+        s[1] += v
+    N, G = sum(x[0] for x in groups.values()), len(groups)
+    if N < 2 or G < 2:
+        return None
+    mu = sum(x[1] for x in groups.values()) / N
+    num = sum((sg - ng * mu) ** 2 for ng, sg in groups.values())
+    var = (G / (G - 1.0)) * num / (N * N)
+    se = math.sqrt(var) if var > 0 else 0.0
+    tc = t_crit975(G - 1)
+    sd2 = sum((v - mu) ** 2 for v, _ in pairs) / (N - 1)
+    n_eff = int(round(min(N, N * (sd2 / N) / var))) if var > 0 and sd2 > 0 else N
+    return {"mean": mu, "se": se, "t": (mu / se) if se > 0 else 0.0, "lo": mu - tc * se, "hi": mu + tc * se, "G": G, "nEff": n_eff}
+
+
 def wilson(k, n, z=1.96):
     if n == 0:
         return None, None
@@ -947,4 +1027,25 @@ def summarize(dets, baseline_fwd20=None):
         out["identCI95"] = list(wilson(wins, wins + unsuccessful))
     if baseline_fwd20 is not None and out["avgFwd20Pct"] is not None:
         out["edgeVsBaselinePct"] = round(out["avgFwd20Pct"] - baseline_fwd20, 2)
+    # z184: the date-matched edge with its month-clustered interval, and the verdict the bot's trust follows
+    ab = [(d["abn20Pct"], d["blk"]) for d in dets if d.get("abn20Pct") is not None and d.get("blk")]
+    cm = clustered_mean(ab) if len(ab) >= 2 else None
+    if cm:
+        verdict = "unproven"
+        if cm["G"] >= MIN_EDGE_MONTHS:
+            verdict = "earned" if cm["lo"] > 0 else "harmful" if cm["hi"] < 0 else "unproven"
+        out.update({"edgeAbnPct": round(cm["mean"], 2), "edgeAbnCI95": [round(cm["lo"], 2), round(cm["hi"], 2)],
+                    "edgeAbnT": round(cm["t"], 2), "months": cm["G"], "nEff": cm["nEff"], "edgeVerdict": verdict,
+                    "trustEdgePct": round(cm["mean"], 2) if verdict != "unproven" else 0.0})
+    elif ab:
+        out.update({"edgeAbnPct": round(ab[0][0], 2), "months": 1, "edgeVerdict": "unproven", "trustEdgePct": 0.0})
+    raw = [d["abn20RawPct"] for d in dets if d.get("abn20RawPct") is not None]
+    if raw:                                         # the uncapped mean and how many calls the cap touched, for the record
+        out["edgeAbnRawPct"] = round(sum(raw) / len(raw), 2)
+        out["extremeCalls"] = sum(1 for d in dets if d.get("fwd20Pct") is not None and abs(d["fwd20Pct"]) > 50)
+    won = [(1.0 if d["status"] == "success" else 0.0, d["blk"]) for d in dets if d.get("blk") and
+           d["status"] in (("success", "failure") if is_template else ("success", "failure", "timeout"))]
+    cs = clustered_mean(won) if len(won) >= 2 else None
+    if cs:
+        out["successCI95Cl"] = [round(max(0.0, cs["lo"]) * 100, 1), round(min(1.0, cs["hi"]) * 100, 1)]
     return out

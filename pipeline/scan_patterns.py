@@ -181,6 +181,53 @@ def matched_fwd20(series, equities, clip=0.5):
 
 
 CLIP_PCT = 50.0          # z184: the cap on one call's 20-bar move when judging a template (see stamp_matched)
+JUMP = 2.5               # z185: a one-day close ratio beyond x2.5 (or under /2.5) is a data question, not a move
+REVERT = 1.25            # z185: ... and back within 25% of the prior close inside 3 bars = a bad print
+
+
+def clean_series(d, c, v=None):
+    """z185 - FLAG, DON'T FABRICATE. Yahoo's 20-year files carry bad prints (CLP=X 663.8 -> 5.0 -> 663.8, ^VIX9D)
+    and unexplained level shifts (unadjusted reverse splits, spin-offs, a bankrupt name's quotes). Both re-appear on
+    every re-fetch, so they are handled here, where the statistics are made:
+      * a BAD PRINT - a one-day jump beyond x2.5 that comes back within 25% of the prior close inside 3 bars - is
+        dropped from the series (no price that day beats a wrong one);
+      * any other one-day jump beyond x2.5 is a BREAK: kept (it may be real - AIG 2008), but no call whose
+        formation or 20-bar outcome spans it counts in a template's record.
+    -> (d, c, v, spikes [[date, ratio]], breaks [[date, ratio, index]]) - indices refer to the cleaned series."""
+    lj, lr = math.log(JUMP), math.log(REVERT)
+    drop, spikes = set(), []
+    i, n = 1, len(c)
+    while i < n:
+        if abs(math.log(c[i] / c[i - 1])) > lj:
+            k = next((k for k in (1, 2, 3) if i + k < n and abs(math.log(c[i + k] / c[i - 1])) < lr), None)
+            if k:
+                for j in range(i, i + k):
+                    drop.add(j)
+                spikes.append([d[i], round(c[i] / c[i - 1], 4)])
+                i += k
+                continue
+        i += 1
+    if drop:
+        keep = [j for j in range(n) if j not in drop]
+        d, c = [d[j] for j in keep], [c[j] for j in keep]
+        v = [v[j] for j in keep] if v else v
+    breaks = [[d[i], round(c[i] / c[i - 1], 4), i] for i in range(1, len(c)) if abs(math.log(c[i] / c[i - 1])) > lj]
+    return d, c, v, spikes, breaks
+
+
+def mark_breaks(x, breaks):
+    """z185: a call whose formation (first pivot, or the year behind a Minervini signal) through the end of its
+    20-bar outcome spans a data break is excluded from the statistics (kept in the ticker's record, flagged)."""
+    if not breaks:
+        return
+    k = x.get("confirmIdx") if x.get("confirmIdx") is not None else x.get("identIdx")
+    if k is None:
+        return
+    piv = x.get("pivots") or []
+    a = min([p["i"] for p in piv] + [k - (252 if x.get("template") == "minervini" else 60)])
+    b = k + max(pe.FWD_BARS, 63 if x.get("template") == "minervini" else pe.FWD_BARS)
+    if any(a < bi <= b for _, _, bi in breaks):
+        x["dataBreak"] = True
 
 
 def stamp_matched(x, d, dirn, ew, is_equity):
@@ -297,6 +344,8 @@ def dated(det, d):
         v = det.get(src)
         if v is not None:
             out[dst] = _r(v, nd) if nd else v
+    if det.get("dataBreak"):
+        out["db"] = 1                                   # z185: spans a data break - not in the statistics
     if det.get("pivots"):
         out["pv"] = [[di(p["i"]), _r(p["price"], 6), p["type"]] for p in det["pivots"]]
     if det.get("neckline"):
@@ -313,15 +362,22 @@ def main():
     uni = load_universe()
     log(f"universe {len(uni)} tickers across {len(BOOKS)} books")
     series, volumes = {}, {}
+    quality, n_spk, breaks_by = {}, 0, {}
     for t, info in uni.items():
         d, c, vol = load_series(info, t)
         if c:
+            d, c, vol, spk, brk = clean_series(d, c, vol)      # z185: bad prints out, breaks flagged
+            if spk or brk:
+                quality[t] = {"book": info["book"], "badPrints": spk, "breaks": [b[:2] for b in brk]}
+                n_spk += len(spk)
+                breaks_by[t] = brk
             series[t] = (d, c)
             volumes[t] = vol
     if "SPY" not in series:
         log("::error::no SPY history - cannot judge templates vs the market")
         return 1
-    log(f"{len(series)} tickers with >= {MIN_BARS} bars")
+    log(f"{len(series)} tickers with >= {MIN_BARS} bars · history quality: {n_spk} bad prints dropped, "
+        f"{sum(len(q['breaks']) for q in quality.values())} breaks flagged, in {len(quality)} tickers (data/patterns/quality.json)")
     spy_d, spy_c = series["SPY"]
     spy_at = dict(zip(spy_d, spy_c))
     as_of = spy_d[-1]
@@ -360,8 +416,10 @@ def main():
         ev = pe.minervini_series(c, rs_t)
         spy_idx = lambda k, d=d: spy_at.get(d[k]) if 0 <= k < len(d) else None
         dets += pe.minervini_signals(c, ev, spy_idx)
+        brk_t = breaks_by.get(t) or []
         for x in dets:                                  # z184: date-matched 20-bar edge + its month cluster
             stamp_matched(x, d, -1 if pe.TEMPLATES[x["template"]]["direction"] == "bearish" else 1, ew20, t in eqset)
+            mark_breaks(x, brk_t)                       # z185: calls spanning a data break don't count
         recs = [dated(x, d) for x in dets]
         for x, r in zip(dets, recs):
             tr, vo = regime_at(regimes, rkeys, r["id"]) if r["id"] else (None, None)
@@ -512,12 +570,18 @@ def main():
                                     "baselineFwd20Pct": base, "baselineByTrendRegime": rbase,
                                     "regimeNow": {"trend": regime_now[0], "vol": regime_now[1], "quadKnown": quad_now, "quadLagMonths": quad_lag},
                                     "minRegimeN": MIN_REGIME_N,
+                                    "historyQuality": {"badPrintsDropped": n_spk, "tickers": len(quality),
+                                                       "breaks": sum(len(q["breaks"]) for q in quality.values())},
                                     "edgeMethod": ("z184 date-matched: each call's 20-bar return (capped at +/-50%) minus the equal-weight typical "
                                                    "stock's over the same 20 bars (non-equities vs standing aside); 95% interval clustered by calendar "
                                                    "month (CR1, Student t); EARNED = whole interval above 0, HARMFUL = below, else "
                                                    f"UNPROVEN (trust neutral); fewer than {pe.MIN_EDGE_MONTHS} months = unproven"),
                                     "templates": stats}, compact=False)
     write_json(OUT / "signals.json", {"asOf": as_of, "window": SIGNAL_WINDOW, "signals": signals}, compact=False)
+    write_json(OUT / "quality.json", {"asOf": as_of, "rule": f"bad print = a one-day jump beyond x{JUMP} back within "
+                                      f"{int((REVERT - 1) * 100)}% of the prior close inside 3 bars (dropped); break = any other "
+                                      f"one-day jump beyond x{JUMP} (kept; calls spanning it are left out of the statistics)",
+                                      "tickers": quality}, compact=False)
     secs = (datetime.now(timezone.utc) - started).total_seconds()
     n_bt = sum(len(b["backtest"]) for b in all_dets.values())
     n_lv = sum(len(b["live"]) for b in all_dets.values())

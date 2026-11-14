@@ -999,7 +999,10 @@ def wilson(k, n, z=1.96):
 
 
 def summarize(dets, baseline_fwd20=None):
-    """Aggregate stats for a list of detections of ONE template."""
+    """Aggregate stats for a list of detections of ONE template.
+    z185: calls that span a data break (the scanner's dataBreak) are left out and counted."""
+    n_break = sum(1 for d in dets if d.get("dataBreak"))
+    dets = [d for d in dets if not d.get("dataBreak")]
     by = {}
     for d in dets:
         by[d["status"]] = by.get(d["status"], 0) + 1
@@ -1015,6 +1018,7 @@ def summarize(dets, baseline_fwd20=None):
     f20 = [d["fwd20Pct"] for d in dets if d.get("fwd20Pct") is not None]
     lo, hi = wilson(wins, judged)
     out = {"n": n, "byStatus": by, "judged": judged, "successRate": round(wins / judged * 100, 1) if judged else None,
+           **({"excludedDataBreaks": n_break} if n_break else {}),
            "successCI95": [lo, hi], "avgReturnPct": round(sum(rets) / len(rets), 2) if rets else None,
            "avgFwd20Pct": round(sum(f20) / len(f20), 2) if f20 else None}
     if not is_template:

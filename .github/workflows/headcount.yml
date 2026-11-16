@@ -29,11 +29,15 @@ concurrency:
 jobs:
   gate:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read                 # z189: to see whether the on-time run already started
     outputs:
       run: ${{ steps.g.outputs.run }}
     steps:
       - id: g
-        name: Eastern-time gate
+        name: Eastern-time gate (+ z189 late-start check)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           S="${{ github.event.schedule }}"
@@ -42,6 +46,20 @@ jobs:
           ETH=$(( (10#$UH - OFFH + 24) % 24 )); ETM=$(printf '%02d' "$UM")
           if [ "${ETH}:${ETM}" = "6:40" ]; then RUN=true; else RUN=false; fi
           echo "schedule '$S' = ${ETH}:${ETM} ET today (UTC${OFF}) -> run=${RUN}"
+          # z189: TRAPP2-ANALYTICS' 24/7 health loop (pipeline/ontime.py) queues this workflow at its slot -
+          # GitHub starts this account's crons 6-7 h late. A late scheduled start stands down when an on-time or manual run has
+          # started since the slot (one that failed or was cancelled doesn't count - then this late start is the retry).
+          # Can't tell -> run.
+          if [ "$RUN" = true ]; then
+            SLOT=$(date -u -d "$(date -u +%F) $(printf '%02d:%02d' "$((10#$UH))" "$((10#$UM))")" +%s); NOW=$(date -u +%s)
+            [ "$SLOT" -gt "$NOW" ] && SLOT=$(( SLOT - 86400 ))
+            SINCE=$(date -u -d "@$(( SLOT - 600 ))" +%Y-%m-%dT%H:%M:%SZ)
+            WF="${GITHUB_WORKFLOW_REF%@*}"; WF="${WF##*/}"
+            N=$(gh run list -R "$GITHUB_REPOSITORY" -w "$WF" -L 30 --json databaseId,event,createdAt,conclusion \
+                  --jq "[.[] | select(.event == \"workflow_dispatch\" and .createdAt >= \"$SINCE\" and .databaseId != $GITHUB_RUN_ID and .conclusion != \"failure\" and .conclusion != \"cancelled\" and .conclusion != \"timed_out\")] | length" 2>/dev/null || true)
+            echo "slot $(date -u -d "@$SLOT" +%H:%M) UTC · this start $(( (NOW - SLOT) / 60 )) min after it · on-time / manual runs since: ${N:-unknown}"
+            if [ -n "$N" ] && [ "$N" -gt 0 ] 2>/dev/null; then RUN=false; echo "already ran on time - this late start stands down"; fi
+          fi
           echo "run=${RUN}" >> "$GITHUB_OUTPUT"
 
   headcount:

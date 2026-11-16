@@ -10,6 +10,7 @@
 #  old number (FX six hours stale, a journal that stopped, an earnings table with empty sectors); now
 #  it shows up here, on the app's Home page and in the bot's log.
 #    -> data/health.json { asOf, summary: {ok, stale, missing, notDue}, checks: [...] }
+#  z189: a book whose quotes are stale while the other books are live gets a note saying what to do (its loop isn't running).
 # ============================================================
 import json
 import sys
@@ -192,6 +193,15 @@ def main():
     sb = supabase_live_check(now, now_et)
     if sb:
         out.append(sb)
+    # z189: one book dark while the others are live is its session loop not running (11-16: TRAPP2-4 had no pass by the
+    # open - the heartbeat's Monday kick didn't include it). Say what to do on the card instead of just "stale".
+    quotes = [r for r in out if r["repo"] in BOOKS and r["name"] == f"{r['repo']} quotes"]
+    live = [r["repo"] for r in quotes if r["status"] == "ok"]
+    for r in quotes:
+        if r["status"] == "stale" and len(live) >= 2:
+            r["note"] = (f"{r['repo']}'s session loop isn't running while {len(live)} other books are live - Actions → {r['repo']} → "
+                         "Intraday Quotes + 15-min Tape → Run workflow; weekday 0807 UTC starts come from the Supabase heartbeat "
+                         "(is this repo in valuatio-intraday? re-run supabase/heartbeat.sql)")
     summ = {k: sum(1 for r in out if r["status"] == k) for k in ("ok", "stale", "missing", "notDue", "unknown")}
     bad_bot = [r["name"] for r in out if r["feedsBot"] and r["status"] in ("stale", "missing")]
     doc = {"asOf": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "session": session(now_et), "summary": summ,

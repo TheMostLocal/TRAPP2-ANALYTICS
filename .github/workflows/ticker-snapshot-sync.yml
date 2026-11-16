@@ -13,21 +13,48 @@ name: ticker-snapshot-sync
 
 on:
   schedule:
-    - cron: "30 * * * *"      # hourly at :30 (after the grade/price pipelines settle)
+    - cron: "30 * * * *"      # hourly at :30 (after the grade/price pipelines settle) - z189: queued on time by the health loop
   workflow_dispatch: {}        # manual "Run workflow" button
-  push:
-    branches: [main]
+  push:                         # z189: fires for YOUR pushes only (a workflow's own-token push starts nothing) -
+    branches: [main]            # Analytics queues this sync itself after new grades
     paths:
       - "data/research_grades.json"   # re-sync when grades refresh
       - "data/master.json"
 
-# Don't pile up overlapping runs.
-concurrency:
-  group: ticker-snapshot-sync
-  cancel-in-progress: true
-
 jobs:
+  gate:
+    # z189: TRAPP2-ANALYTICS' health loop (pipeline/ontime.py) queues this sync every hour on time, and Analytics queues
+    # it right after new grades. A late scheduled start (GitHub runs this account's crons hours late) stands down when a
+    # queued run started in the last 50 min (not one that failed or was cancelled). Can't tell -> run. The concurrency
+    # group sits on the sync job, so a late start that stands down never cancels a sync in progress.
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        name: Late-start check (z189)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RUN=true
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            SINCE=$(date -u -d "@$(( $(date -u +%s) - 3000 ))" +%Y-%m-%dT%H:%M:%SZ)
+            WF="${GITHUB_WORKFLOW_REF%@*}"; WF="${WF##*/}"
+            N=$(gh run list -R "$GITHUB_REPOSITORY" -w "$WF" -L 30 --json databaseId,event,createdAt,conclusion \
+                  --jq "[.[] | select(.event == \"workflow_dispatch\" and .createdAt >= \"$SINCE\" and .databaseId != $GITHUB_RUN_ID and .conclusion != \"failure\" and .conclusion != \"cancelled\" and .conclusion != \"timed_out\")] | length" 2>/dev/null || true)
+            echo "queued (on-time / manual) runs since $SINCE: ${N:-unknown}"
+            if [ -n "$N" ] && [ "$N" -gt 0 ] 2>/dev/null; then RUN=false; echo "synced within the hour - this late start stands down"; fi
+          fi
+          echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
   sync:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    concurrency:                    # don't pile up overlapping runs (z189: on the job, so a gate that stands down cancels nothing)
+      group: ticker-snapshot-sync
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

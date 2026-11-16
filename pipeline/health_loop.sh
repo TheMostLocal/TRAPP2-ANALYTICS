@@ -6,7 +6,12 @@
 #  GitHub started it only every 4-6 hours, so the Home card showed a 6-hour-old picture. One job now runs the
 #  check at :19 and :49 for ~170 minutes, committing each result, then queues its own next run (24/7).
 #  GitHub's schedule and the Supabase heartbeat stay as backstops; a start while one runs just queues.
-#  Env: LOOP_BUDGET_MIN (170), GH_TOKEN (the job's own token, for chaining), SUPABASE_URL / SUPABASE_SERVICE_ROLE.
+#  z189 - THE ON-TIME CLOCK FOR THIS REPO'S WORKFLOWS. GitHub starts this account's crons 6-7 h late (SEC's 0705 ET run
+#  landed ~1440 ET, the 0900 ET earnings run ~1600 ET, Analytics' 03:00 UTC run ~10:30 UTC), so after each check - and
+#  at each slot, waking from its sleep for it - the loop queues whatever is due with pipeline/ontime.py: SEC, earnings,
+#  headcount, Analytics (03:00 UTC once the five books' Nightlies are in; 14:30 UTC), the hourly Supabase syncs.
+#  Each workflow's own cron stays as the backstop. ONTIME=0 turns it off.
+#  Env: LOOP_BUDGET_MIN (170), GH_TOKEN (the job's own token, for chaining and queueing), SUPABASE_URL / SUPABASE_SERVICE_ROLE.
 # ============================================================
 set -u
 BRANCH="${GITHUB_REF_NAME:-main}"
@@ -40,6 +45,24 @@ one_pass() {
   echo "::warning::push failed after 5 attempts"
 }
 
+# z189: queue this repo's workflows on time (pipeline/ontime.py - best-effort, a failure is a log line). nap sleeps
+# like `sleep`, but wakes on the way for each slot and queues it.
+ontime_run()  { [ "${ONTIME:-1}" = "1" ] && [ -f pipeline/ontime.py ] && python pipeline/ontime.py run; return 0; }
+ontime_next() { [ "${ONTIME:-1}" = "1" ] && [ -f pipeline/ontime.py ] && python pipeline/ontime.py next 2>/dev/null; return 0; }
+nap() {
+  local end now n
+  end=$(( $(date +%s) + $1 ))
+  while now=$(date +%s); [ "$now" -lt "$end" ]; do
+    n=$(ontime_next)
+    if [ -n "$n" ] && [ "$n" -ge 0 ] 2>/dev/null && [ $(( now + n )) -le $(( end + 5 )) ]; then
+      [ "$n" -gt 0 ] && sleep "$n"
+      ontime_run
+    else
+      sleep $(( end - now ))
+    fi
+  done
+}
+
 next_wait() {   # seconds to the next :19 or :49 (minute ≡ 19 mod 30), at least 60 s away
   local now m s w
   now=$(date +%s); m=$(( (now / 60) % 60 )); s=$(( now % 60 ))
@@ -53,6 +76,7 @@ while :; do
   i=$((i + 1))
   echo "── check $i · $(TZ=America/New_York date +'%a %H:%M') ET"
   one_pass
+  ontime_run                       # z189: anything due now (a slot passed while the check ran, or this job just started)
   w=$(next_wait)
   if [ $(( $(date +%s) - START + w + 120 )) -gt "$BUDGET" ]; then
     echo "budget reached after $i check(s) - queueing the next run (24/7)"
@@ -60,5 +84,5 @@ while :; do
     break
   fi
   echo "  next check in $(( w / 60 )) min"
-  sleep "$w"
+  nap "$w"
 done

@@ -235,7 +235,7 @@ def build_rows(master, grades, signals):
             # financials
             "pe": _num(m.get("pe")),
             "peg": _num(m.get("pegRatio")),
-            "pb": _num(m.get("priceToBook")),
+            "pb": _num(m.get("priceToBook")),        # z187: market cap / latest-quarter equity, USD, at the row's price (P/S: ranks.ps)
             "ev_ebitda": _num(m.get("evToEbitda")),
             "ev_rev": _num(m.get("evToRevenue")),
             "dividend_yield": _num(m.get("dividend_yield")),
@@ -247,7 +247,8 @@ def build_rows(master, grades, signals):
             "roa": _num(m.get("returnOnAssets")),
             "rev_growth": _num(m.get("revenueGrowth")),
             "eps_growth": _num(m.get("earningsGrowth")),
-            "debt_equity": _num(m.get("debtToEquity")),
+            # z187: Yahoo's debtToEquity is a PERCENT (84 = 0.84x) - stored as the multiple the app uses
+            "debt_equity": (lambda v: round(v / 100, 6) if v is not None else None)(_num(m.get("debtToEquity"))),
             "current_ratio": _num(m.get("currentRatio")),
             "revenue": _num(m.get("revenue")),
             "net_income": _num(m.get("netIncome")),

@@ -1,16 +1,14 @@
 # ============================================================
 #  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
-#  >>> FILE PATH:   .github/workflows/anayltics.yml
-#  >>> FULL PATH:   TheMostLocal/TRAPP2-ANALYTICS/.github/workflows/anayltics.yml
+#  >>> FILE PATH:   .github/workflows/analytics.yml
 #
-#  Edit/paste directly on GitHub here:
-#  https://github.com/TheMostLocal/TRAPP2-ANALYTICS/edit/main/.github/workflows/anayltics.yml
-#
-#  WHAT CHANGED IN THIS FILE:
-#    Push logic changed from `git pull --rebase -X ours` to `git fetch` +
-#    `git merge -X ours` (cleaner, never leaves unmerged files). NOTE:
-#    filename keeps the existing 'anayltics' spelling so it overwrites
-#    the live file rather than creating a duplicate.
+#  z189 - ON TIME. GitHub started this workflow's 03:00 UTC cron ~10:30 UTC (11-10..11-16). TRAPP2-ANALYTICS' 24/7
+#  health loop (pipeline/ontime.py) now queues it at 03:00 UTC after a trading day - as soon as all five books'
+#  Nightlies have committed (forced at 09:00 UTC) - and at 14:30 UTC on weekdays. The gate lets the late scheduled
+#  start stand down when that run already happened. And because a push made with the job's own token never fires
+#  another workflow's `on: push`, the Supabase mirrors (research_grades, ticker_snapshot) are queued at the end of
+#  the run instead of waiting for their hourly schedule.
+#  (Push logic: `git fetch` + `git merge -X ours`, never leaves unmerged files.)
 # ============================================================
 
 # .github/workflows/analytics.yml  →  goes in the NEW TRAPP2-ANALYTICS repo
@@ -32,19 +30,53 @@ name: Analytics refresh
 
 on:
   schedule:
-    - cron: '0 3 * * *'        # 03:00 UTC — after the 00:30 nightly chains
+    - cron: '0 3 * * *'        # 03:00 UTC — after the 00:30 nightly chains (z189: queued on time by the health loop)
     - cron: '30 14 * * 1-5'    # 14:30 UTC weekdays — midday news top-up
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write                   # z189: the gate reads this workflow's runs; the last step queues the Supabase syncs
 
 concurrency:
   group: analytics
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        name: Late-start check (z189)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RUN=true
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            S="${{ github.event.schedule }}"
+            UM=$(echo "$S" | awk '{print $1}'); UH=$(echo "$S" | awk '{print $2}')
+            # z189: TRAPP2-ANALYTICS' 24/7 health loop (pipeline/ontime.py) queues this workflow at its slot -
+            # GitHub starts this account's crons 6-7 h late. A late scheduled start stands down when an on-time or manual run has
+            # started since the slot (one that failed or was cancelled doesn't count - then this late start is the retry).
+            # Can't tell -> run.
+            if [ "$RUN" = true ]; then
+              SLOT=$(date -u -d "$(date -u +%F) $(printf '%02d:%02d' "$((10#$UH))" "$((10#$UM))")" +%s); NOW=$(date -u +%s)
+              [ "$SLOT" -gt "$NOW" ] && SLOT=$(( SLOT - 86400 ))
+              SINCE=$(date -u -d "@$(( SLOT - 600 ))" +%Y-%m-%dT%H:%M:%SZ)
+              WF="${GITHUB_WORKFLOW_REF%@*}"; WF="${WF##*/}"
+              N=$(gh run list -R "$GITHUB_REPOSITORY" -w "$WF" -L 30 --json databaseId,event,createdAt,conclusion \
+                    --jq "[.[] | select(.event == \"workflow_dispatch\" and .createdAt >= \"$SINCE\" and .databaseId != $GITHUB_RUN_ID and .conclusion != \"failure\" and .conclusion != \"cancelled\" and .conclusion != \"timed_out\")] | length" 2>/dev/null || true)
+              echo "slot $(date -u -d "@$SLOT" +%H:%M) UTC · this start $(( (NOW - SLOT) / 60 )) min after it · on-time / manual runs since: ${N:-unknown}"
+              if [ -n "$N" ] && [ "$N" -gt 0 ] 2>/dev/null; then RUN=false; echo "already ran on time - this late start stands down"; fi
+            fi
+          fi
+          echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
   refresh:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 75                 # z178: +TRAPP2-4 (research, patterns, ~400 more news names)
     steps:
@@ -110,4 +142,17 @@ jobs:
             git fetch origin "${GITHUB_REF_NAME:-main}" || git fetch origin main
             git merge -X ours --no-edit "origin/${GITHUB_REF_NAME:-main}" 2>/dev/null || git merge -X ours --no-edit origin/main 2>/dev/null || git merge --abort 2>/dev/null || true
             sleep $((i * 2))
+          done
+
+      # z189: a push made with this job's token never starts another workflow's `on: push`, so research_grades and
+      # ticker_snapshot in Supabase (the app reads grades from there first) waited for their hourly crons - which this
+      # account's GitHub starts hours late. Queue both now: Supabase has tonight's grades within minutes.
+      - name: Queue the Supabase mirrors (research_grades, ticker_snapshot)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for wf in supabase-sync.yml ticker-snapshot-sync.yml; do
+            if gh workflow run "$wf" --ref "${GITHUB_REF_NAME:-main}" -R "$GITHUB_REPOSITORY"; then echo "queued $wf"
+            else echo "::warning::could not queue $wf"; fi
           done

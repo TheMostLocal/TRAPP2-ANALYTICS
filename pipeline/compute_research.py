@@ -14,6 +14,19 @@ The frontend then prefers these backend values, keeps its own computation as a
 cross-check, and FLAGS any divergence — backend computes, frontend verifies.
 Formulas and grade thresholds are kept 1:1 with the app so a divergence means
 DATA drift, not method drift.
+
+z187 - back in step with the app, in one currency:
+  * the app's CURRENT method: 29 metrics (adds current / quick / payout ratio, PEG, fund expense ratio and - new in both -
+    Price / Sales), category-weighted grade (Profitability .28 · Growth .20 · Valuation .20 · Balance Sheet .16 ·
+    Income .10 · Cost .06; Scale is context, not graded), per-metric weights inside Valuation (P/E .35, P/B .40,
+    P/S .50, EV/EBITDA 1.3, EV/Revenue 1.2) and the P/E / P/B dampening. This file still averaged 23 metrics flat,
+    size included - so the grade the BOT trades on favoured big companies and disagreed with the app's.
+  * USD: statements converted from the reporting currency (financialCurrency), market cap from the quote currency -
+    the app's ensureRowNormalized, plus stock-based comp / goodwill / intangibles. TSM ranked #19 on revenue in TWD,
+    its cash / market cap was TWD over USD (1.9 -> ~0.06).
+  * market-cap multiples (P/B, P/S, EV ratios, cash / market cap) are left out for a row whose market cap disagrees with
+    its own P/E (valuationNote "mcap?": an ADR ratio or a single share class); P/E, per share, still counts.
+  * percentiles round like the app (half up), 1-year return = 252 sessions, Sharpe annualised arithmetically.
 """
 import json
 import sys
@@ -43,6 +56,12 @@ REPOS = [
     f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-4/main/data/master.json",   # z178
 ]
 OUT = Path(__file__).resolve().parent.parent / "data" / "research_grades.json"
+FX_URL = f"https://raw.githubusercontent.com/{_GH_OWNER}/TRAPP2-1/main/data/fx/rates.json"
+SUBUNIT = {"GBp": ("GBP", 0.01), "GBX": ("GBP", 0.01), "ZAc": ("ZAR", 0.01), "ZAC": ("ZAR", 0.01),
+           "ILA": ("ILS", 0.01), "ILa": ("ILS", 0.01), "USX": ("USD", 0.01), "USd": ("USD", 0.01)}
+# statement (reporting-currency) money fields - the app's ensureRowNormalized list + SBC, goodwill, intangibles (z187)
+FIN_MONEY = ("totalAssets", "totalLiabilities", "totalEquity", "bookValue", "cash", "totalDebt", "freeCashFlow", "revenue",
+             "netIncome", "ebitda", "stockBasedComp", "goodwill", "intangibleAssets", "intangibles")
 
 # Mirror of the app's normalizeRowFields (pipeline snake_case → app camelCase).
 ALIASES = {
@@ -104,32 +123,212 @@ def pos(v):
     return v if (v is not None and v > 0) else None
 
 
-# (key, higher_is_better, getter) — 1:1 with the app's RESEARCH_METRICS.
+def load_fx():
+    """USD per unit of each currency - TRAPP2-1/data/fx/rates.json (the rates the app and the bot use)."""
+    d = None
+    try:
+        d = json.loads((Path("books/TRAPP2-1") / "data" / "fx" / "rates.json").read_text())
+    except Exception:
+        try:
+            with urllib.request.urlopen(urllib.request.Request(FX_URL, headers={"User-Agent": "ValuatioAnalytics"}), timeout=30) as r:
+                d = json.load(r)
+        except Exception as e:
+            print(f"  FX rates unavailable ({e}) - only USD rows convert", file=sys.stderr)
+    out = {"USD": 1.0}
+    for c, v in ((d or {}).get("rates") or {}).items():
+        up = num(v.get("usdPer")) if isinstance(v, dict) else num(v)
+        if up and up > 0:
+            out[str(c).upper()] = up
+    return out
+
+
+def _main_ccy(c):
+    c = str(c or "").strip()
+    return SUBUNIT.get(c, (c.upper(), 1.0)) if c else ("USD", 1.0)
+
+
+def to_usd(row, fx):
+    """z187 - the app's ensureRowNormalized: market cap from the quote currency's main unit, statements from the
+    reporting currency, both to USD (the pipeline's fxQuote / fxFin when the row carries them). A currency with no
+    rate leaves that side's money fields out (None) instead of mixing currencies. Ratios are never touched."""
+    q, _ = _main_ccy(row.get("currency"))
+    f, _ = _main_ccy(row.get("financialCurrency") or row.get("currency"))
+    rq = num(row.get("fxQuote")) or fx.get(q)
+    rf = num(row.get("fxFin")) or fx.get(f)
+    if q != "USD":
+        mc = num(row.get("marketCap"))
+        row["marketCap"] = (mc * rq) if (mc is not None and rq) else None
+    if f != "USD":
+        for k in FIN_MONEY:
+            v = num(row.get(k))
+            if v is not None:
+                row[k] = (v * rf) if rf else None
+    row["_usd"] = bool((q == "USD" or rq) and (f == "USD" or rf))
+    return row
+
+
+def _suspect(r):
+    return "mcap?" in str(r.get("valuationNote") or "")
+
+
+def _legacy(r):
+    """A row written before z187 (no valuationNote): its P/B and EV ratios are Yahoo's, which divide a USD price by
+    local-currency statements for ADRs (TSM P/B 76, ASML 1,284) and a class-B price by class-A book (BRK-B 0.001)."""
+    return "valuationNote" not in r
+
+
+def _cross_ccy(r):
+    return _main_ccy(r.get("currency"))[0] != _main_ccy(r.get("financialCurrency") or r.get("currency"))[0]
+
+
+def price_to_book(r):
+    """The pipeline's P/B (z187: market cap / latest-quarter common equity, USD, at the row's price); a row from before
+    z187: market cap / total equity, both in USD here - never Yahoo's."""
+    if _suspect(r):
+        return None
+    if not _legacy(r):
+        return pos(r.get("priceToBook"))
+    if not r.get("_usd"):
+        return None
+    mc, eq = num(r.get("marketCap")), num(r.get("totalEquity"))
+    return (mc / eq) if (mc and mc > 0 and eq and eq > 0) else None
+
+
+def _mc_multiple(field):
+    """EV / EBITDA, EV / Revenue: the pipeline's (z187, USD); a row from before z187 only when it reports in the currency
+    it trades in (Yahoo's cross-currency EV ratios are wrong - ASML EV / Revenue 768)."""
+    def get(r):
+        if _suspect(r) or (_legacy(r) and _cross_ccy(r)):
+            return None
+        return pos(r.get(field))
+    return get
+
+
+def price_to_sales(r):
+    """The pipeline's P/S (z187: at the row's price, both sides in USD); a row from before z187: market cap / revenue,
+    both converted to USD here."""
+    if _suspect(r):
+        return None
+    v = pos(r.get("priceToSales"))
+    if v is not None:
+        return v
+    if not _legacy(r) or not r.get("_usd"):
+        return None
+    return ratio(r.get("marketCap"), r.get("revenue"))
+
+
+def div_yield(r):
+    v = num(r.get("dividendYield"))
+    if v is not None and v > 0:
+        return v if v < 0.5 else (v / 100 if v <= 40 else None)
+    raw = num(r.get("dividend_yield"))
+    return raw / 100 if (raw is not None and 0 < raw <= 40) else None
+
+
+def payout(r):
+    v = num(r.get("payoutRatio"))
+    if v is None or v <= 0:
+        return None
+    if v > 2:
+        v = v / 100
+    return v if 0 < v <= 2 else None
+
+
+def expense_ratio(r):
+    raw = r.get("expenseRatio")
+    if raw in (None, ""):
+        raw = r.get("expense ratio") if r.get("expense ratio") not in (None, "") else r.get("expenseratio")
+    try:
+        v = float(str(raw).replace("%", "").replace(",", "").strip()) if raw not in (None, "") else None
+    except ValueError:
+        v = None
+    if v is None or v != v or v <= 0 or v > 20:
+        return None
+    if v > 0.05:
+        v = v / 100
+    return v if 0 < v <= 0.20 else None
+
+
+def peg(r):
+    v = num(r.get("pegRatio"))
+    return v if (v is not None and 0 < v < 10) else None
+
+
+# (key, category, higher_is_better, getter) - 1:1 with the app's RESEARCH_METRICS (z187 adds Price / Sales to both)
 METRICS = [
-    ("roe",         True,  lambda r: num(r.get("returnOnEquity"))),
-    ("rotce",       True,  rotce),
-    ("roa",         True,  lambda r: num(r.get("returnOnAssets"))),
-    ("grossMargin", True,  lambda r: num(r.get("grossMargin"))),
-    ("opMargin",    True,  lambda r: num(r.get("operatingMargin"))),
-    ("netMargin",   True,  lambda r: num(r.get("profitMargin"))),
-    ("fcfMargin",   True,  lambda r: ratio(r.get("freeCashFlow"), r.get("revenue"))),
-    ("sbcPctRev",   False, lambda r: (lambda s: s if (s is not None and s > 0) else None)(ratio(r.get("stockBasedComp"), r.get("revenue")))),
-    ("revGrowth",   True,  lambda r: num(r.get("revenueGrowth"))),
-    ("epsGrowth",   True,  lambda r: num(r.get("earningsGrowth"))),
-    ("pe",          False, lambda r: pos(r.get("pe"))),
-    ("pb",          False, lambda r: pos(r.get("priceToBook"))),
-    ("evEbitda",    False, lambda r: pos(r.get("evToEbitda"))),
-    ("evRev",       False, lambda r: pos(r.get("evToRevenue"))),
-    ("debtEquity",  False, lambda r: ratio(r.get("totalDebt"), r.get("totalEquity"))),
-    ("cashRatio",   True,  lambda r: ratio(r.get("cash"), r.get("marketCap"))),
-    ("divYield",    True,  lambda r: pos(r.get("dividendYield"))),
-    ("revenue",     True,  lambda r: num(r.get("revenue"))),
-    ("netIncome",   True,  lambda r: num(r.get("netIncome"))),
-    ("ebitda",      True,  lambda r: num(r.get("ebitda"))),
-    ("fcf",         True,  lambda r: num(r.get("freeCashFlow"))),
-    ("marketCap",   True,  lambda r: num(r.get("marketCap"))),
-    ("totalAssets", True,  lambda r: num(r.get("totalAssets"))),
+    ("roe",          "Profitability", True,  lambda r: num(r.get("returnOnEquity"))),
+    ("rotce",        "Profitability", True,  rotce),
+    ("roa",          "Profitability", True,  lambda r: num(r.get("returnOnAssets"))),
+    ("grossMargin",  "Profitability", True,  lambda r: num(r.get("grossMargin"))),
+    ("opMargin",     "Profitability", True,  lambda r: num(r.get("operatingMargin"))),
+    ("netMargin",    "Profitability", True,  lambda r: num(r.get("profitMargin"))),
+    ("fcfMargin",    "Profitability", True,  lambda r: (lambda rev, fcf: fcf / rev if (rev and rev > 0 and fcf is not None) else None)(num(r.get("revenue")), num(r.get("freeCashFlow")))),
+    ("sbcPctRev",    "Profitability", False, lambda r: (lambda rev, sbc: sbc / rev if (rev and rev > 0 and sbc is not None and sbc > 0) else None)(num(r.get("revenue")), num(r.get("stockBasedComp")))),
+    ("revGrowth",    "Growth",        True,  lambda r: num(r.get("revenueGrowth"))),
+    ("epsGrowth",    "Growth",        True,  lambda r: num(r.get("earningsGrowth"))),
+    ("pe",           "Valuation",     False, lambda r: pos(r.get("pe"))),
+    ("pb",           "Valuation",     False, price_to_book),
+    ("ps",           "Valuation",     False, price_to_sales),
+    ("evEbitda",     "Valuation",     False, _mc_multiple("evToEbitda")),
+    ("evRev",        "Valuation",     False, _mc_multiple("evToRevenue")),
+    ("debtEquity",   "Balance Sheet", False, lambda r: ratio(r.get("totalDebt"), r.get("totalEquity"))),
+    ("cashRatio",    "Balance Sheet", True,  lambda r: None if _suspect(r) else (lambda c, m: c / m if (c is not None and m and m > 0) else None)(num(r.get("cash")), num(r.get("marketCap")))),
+    ("currentRatio", "Balance Sheet", True,  lambda r: pos(r.get("currentRatio"))),
+    ("quickRatio",   "Balance Sheet", True,  lambda r: pos(r.get("quickRatio"))),
+    ("divYield",     "Income",        True,  div_yield),
+    ("payoutRatio",  "Income",        False, payout),
+    ("expenseRatio", "Cost",          False, expense_ratio),
+    ("peg",          "Valuation",     False, peg),
+    ("revenue",      "Scale",         True,  lambda r: num(r.get("revenue"))),
+    ("netIncome",    "Scale",         True,  lambda r: num(r.get("netIncome"))),
+    ("ebitda",       "Scale",         True,  lambda r: num(r.get("ebitda"))),
+    ("fcf",          "Scale",         True,  lambda r: num(r.get("freeCashFlow"))),
+    ("marketCap",    "Scale",         True,  lambda r: num(r.get("marketCap"))),
+    ("totalAssets",  "Scale",         True,  lambda r: num(r.get("totalAssets"))),
 ]
+# the app's RESEARCH_CATEGORY_WEIGHTS / RESEARCH_METRIC_WEIGHTS / RESEARCH_METRIC_DAMPEN (Scale is not graded)
+CATEGORY_WEIGHTS = {"Profitability": 0.28, "Growth": 0.20, "Valuation": 0.20, "Balance Sheet": 0.16, "Income": 0.10, "Cost": 0.06}
+METRIC_WEIGHTS = {"pe": 0.35, "pb": 0.4, "ps": 0.5, "evEbitda": 1.3, "evRev": 1.2}
+DAMPEN = {"pe": 0.78, "pb": 0.72}
+
+
+def js_round(x):
+    """Math.round (half up) - Python's round() is half-to-even, so ties ranked a point apart from the app."""
+    return int(math.floor(x + 0.5))
+
+
+def rank_metric(vals, higher):
+    """[(ticker, value)] -> {ticker: {rank, total, pct, value}} - the app's ranking (stable sort, 100 = best)."""
+    vals = sorted(vals, key=lambda x: x[1], reverse=higher)
+    total = len(vals)
+    return {t: {"rank": i + 1, "total": total, "pct": js_round((1 - i / (total - 1)) * 100) if total > 1 else 100, "value": v}
+            for i, (t, v) in enumerate(vals)}
+
+
+def category_grade(ranks):
+    """The app's computeResearchRankings grade: dampen, weight inside the category, weight the categories, renormalised
+    over the categories the ticker has."""
+    cat_sum, cat_w = {}, {}
+    for key, cat, _, _ in METRICS:
+        e = ranks.get(key)
+        if not e or cat not in CATEGORY_WEIGHTS:
+            continue
+        pct = e["pct"]
+        d = DAMPEN.get(key, 0)
+        if d:
+            pct = pct + (50 - pct) * d
+        w = METRIC_WEIGHTS.get(key, 1.0)
+        cat_sum[cat] = cat_sum.get(cat, 0.0) + pct * w
+        cat_w[cat] = cat_w.get(cat, 0.0) + w
+    scores, num_, den = {}, 0.0, 0.0
+    for cat, w in CATEGORY_WEIGHTS.items():
+        if cat_w.get(cat):
+            avg = cat_sum[cat] / cat_w[cat]
+            scores[cat] = js_round(avg)
+            num_ += avg * w
+            den += w
+    return (num_ / den if den else None), scores
+
 
 # Exact mirror of researchGradeLetter().
 def grade_letter(score):
@@ -209,13 +408,13 @@ def technicals(closes):
     mean_r = sum(rets) / len(rets)
     vol_d = math.sqrt(sum((r - mean_r) ** 2 for r in rets) / len(rets))
     vol_ann = vol_d * math.sqrt(252)
-    ret_1y = (last / px[0] - 1) if n >= 200 else None
+    ret_1y = (last / px[-253] - 1) if n >= 253 else ((last / px[0] - 1) if n >= 200 else None)   # z187: 252 sessions
     ret_3m = (last / px[-63] - 1) if n >= 64 else None
     peak, max_dd = px[0], 0.0
     for v in px:
         peak = max(peak, v)
         max_dd = min(max_dd, v / peak - 1)
-    ann_ret = ((1 + mean_r) ** 252 - 1)
+    ann_ret = mean_r * 252                       # z187: arithmetic annualisation (compounding the daily mean overstated it)
     sharpe = (ann_ret / vol_ann) if vol_ann > 0 else None
     # Trend persistence: % of 20d windows moving the same direction as 1y
     return {
@@ -265,7 +464,7 @@ def percentile_grade(rows_with_vals, metrics):
         total = len(vals)
         per_metric[key] = {
             t: {"rank": i + 1, "total": total,
-                "pct": round((1 - i / (total - 1)) * 100) if total > 1 else 100,
+                "pct": js_round((1 - i / (total - 1)) * 100) if total > 1 else 100,
                 "value": v}
             for i, (t, v) in enumerate(vals)
         }
@@ -306,6 +505,10 @@ def main():
                 rows.append(normalize(r))
                 book_of[t] = book
     print(f"{len(rows)} tickers across books")
+    fx = load_fx()
+    for r in rows:
+        to_usd(r, fx)
+    print(f"USD: {sum(1 for r in rows if not r.get('_usd'))} rows without an FX rate for their currency (money fields left out)")
 
     # ---- Technicals for EVERY ticker with history (feeds the bot fast-path) ----
     tech = {}
@@ -324,38 +527,27 @@ def main():
     nonequities = [r for r in rows if classes[r["ticker"]] != "equity"]
     print(f"{len(equities)} equities · {len(nonequities)} non-equities")
 
-    # ---- Equity grading (23 fundamental metrics — unchanged) ----
+    # ---- Equity grading (z187: the app's method - 29 metrics, category-weighted, Scale ungraded) ----
     per_metric = {}
-    for key, higher, get in METRICS:
+    for key, _, higher, get in METRICS:
         vals = []
         for r in equities:
             v = get(r)
-            if v is not None:
+            if v is not None and math.isfinite(v):
                 vals.append((r["ticker"], v))
-        vals.sort(key=lambda x: x[1], reverse=higher)
-        total = len(vals)
-        per_metric[key] = {
-            t: {"rank": i + 1, "total": total,
-                "pct": round((1 - i / (total - 1)) * 100) if total > 1 else 100,
-                "value": v}
-            for i, (t, v) in enumerate(vals)
-        }
+        per_metric[key] = rank_metric(vals, higher)
     by_ticker = {}
     for r in equities:
-        ranks, pct_sum, covered = {}, 0, 0
-        for key, _, _ in METRICS:
-            e = per_metric[key].get(r["ticker"])
-            ranks[key] = e
-            if e:
-                pct_sum += e["pct"]
-                covered += 1
-        score = (pct_sum / covered) if covered else None
+        ranks = {key: per_metric[key].get(r["ticker"]) for key, _, _, _ in METRICS}
+        covered = sum(1 for e in ranks.values() if e)
+        score, cats = category_grade(ranks)
         by_ticker[r["ticker"]] = {
             "ticker": r["ticker"], "name": r.get("name") or r["ticker"],
             "sector": r.get("sector"), "assetClass": "equity",
             "gradeScore": round(score, 2) if score is not None else None,
             "grade": grade_letter(score), "coverage": covered,
-            "coverageTotal": len(METRICS), "ranks": ranks,
+            "coverageTotal": len(METRICS), "categoryScores": cats, "ranks": ranks,
+            "valuationNote": r.get("valuationNote") or None,
         }
 
     # ---- Non-equity grading (risk-adjusted conduct, cohort-ranked) ----
@@ -376,7 +568,9 @@ def main():
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "universeSize": len(equities),
         "nonEquityUniverse": len(nonequities),
-        "metrics": [k for k, _, _ in METRICS],
+        "metrics": [k for k, _, _, _ in METRICS],
+        "method": "z187 category-weighted (app computeResearchRankings), USD",
+        "categoryWeights": CATEGORY_WEIGHTS, "metricWeights": METRIC_WEIGHTS, "dampen": DAMPEN,
         "nonEquityMetrics": [k for k, _ in NONEQ_METRICS],
         "byTicker": by_ticker,
         "nonEquity": non_equity,

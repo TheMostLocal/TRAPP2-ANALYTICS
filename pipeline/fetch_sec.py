@@ -12,6 +12,11 @@
 #               officers, directors and 10 % holders; net value, distinct buyers / sellers, cluster buying
 #    facts    - XBRL company facts AS FILED: revenue, net income, diluted EPS, operating income, operating
 #               cash flow, capex, cash, long-term debt, equity, diluted shares - annual (10-K) and quarterly
+#  z187 - facts are CURRENT: every alternative name of a line item is read and merged by period (Apple's revenue was
+#               "Revenues" to 2018 and RevenueFromContractWithCustomer... since - the table showed FY2015-2018 as the
+#               latest years; UNH / V / QCOM equity stopped years ago the same way), the quarters a 10-Q only reports
+#               year-to-date (cash flow, every Q4) are derived from the YTD figures, and each flow item carries its
+#               trailing-12-month total (ttm) and each balance item its latest value. Companies filed before z187 refresh first.
 #  Timely: EDGAR's "current filings" feed is read each run and any company with a new 8-K or Form 4 is
 #  refreshed first; the rest rotate (oldest first). SEC asks for <= 10 requests / s and a contact in the
 #  User-Agent (SEC_USER_AGENT).
@@ -42,12 +47,23 @@ ITEMS = {"1.01": "material agreement", "1.02": "agreement terminated", "1.03": "
          "5.03": "bylaws amended", "5.07": "shareholder vote", "7.01": "Reg FD disclosure", "8.01": "other events", "9.01": "exhibits"}
 RED = {"1.03", "4.02", "3.01", "4.01", "2.04", "2.06"}
 CAUTION = {"5.02", "2.05", "1.05", "5.01"}
+# z187: every name a company may file the line item under, in priority order - merged by period, so a company that
+# switched names (ASC 606 moved most revenue to RevenueFromContractWithCustomer... in 2018) keeps a current series
 CONCEPTS = {
-    "revenue": ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "RevenueFromContractWithCustomerIncludingAssessedTax", "SalesRevenueNet"],
-    "netIncome": ["NetIncomeLoss"], "epsDiluted": ["EarningsPerShareDiluted"], "operatingIncome": ["OperatingIncomeLoss"],
-    "operatingCashFlow": ["NetCashProvidedByUsedInOperatingActivities"], "capex": ["PaymentsToAcquirePropertyPlantAndEquipment"],
-    "cash": ["CashAndCashEquivalentsAtCarryingValue"], "longTermDebt": ["LongTermDebtNoncurrent", "LongTermDebt"],
-    "equity": ["StockholdersEquity"], "dilutedShares": ["WeightedAverageNumberOfDilutedSharesOutstanding"]}
+    "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "RevenueFromContractWithCustomerIncludingAssessedTax",
+                "SalesRevenueNet", "RevenuesNetOfInterestExpense", "SalesRevenueGoodsNet", "SalesRevenueServicesNet"],
+    "netIncome": ["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"],
+    "epsDiluted": ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"],
+    "operatingIncome": ["OperatingIncomeLoss"],
+    "operatingCashFlow": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"],
+    "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"],
+    "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"],
+    "longTermDebt": ["LongTermDebtNoncurrent", "LongTermDebt", "LongTermDebtAndCapitalLeaseObligations"],
+    "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
+    "dilutedShares": ["WeightedAverageNumberOfDilutedSharesOutstanding"]}
+FLOW_USD = {"revenue", "netIncome", "operatingIncome", "operatingCashFlow", "capex"}    # quarters derivable from YTD
+INSTANT = {"cash", "longTermDebt", "equity"}
+FACTS_VERSION = 2
 
 
 def log(*a):
@@ -157,35 +173,105 @@ def insider_summary(tx, today):
             "ceoCfoBuy": any(re.search(r"\b(CEO|Chief Executive|CFO|Chief Financial)\b", t["role"], re.I) for t in buys)}
 
 
+def _days(a, b):
+    return (date.fromisoformat(b) - date.fromisoformat(a)).days
+
+
+def _concept_points(us, n):
+    """[(start|None, end, val, form, fy, fp, filed)] for one concept, the latest filing's figure per (start, end)."""
+    units = (us.get(n) or {}).get("units") or {}
+    vals = units.get("USD") or units.get("USD/shares") or units.get("shares") or []
+    best = {}
+    for v in vals:
+        end, start, form = v.get("end"), v.get("start"), v.get("form") or ""
+        if not end or v.get("val") is None or not (form.startswith("10-K") or form.startswith("10-Q")):
+            continue
+        k = (start, end)
+        if k not in best or (v.get("filed") or "") >= best[k][6]:
+            best[k] = (start, end, v.get("val"), form, v.get("fy"), v.get("fp"), v.get("filed") or "")
+    return list(best.values())
+
+
 def facts_from(cf):
-    """Compact as-filed series per concept: annual (10-K, ~1-year periods) and quarterly (10-Q, ~3-month)."""
+    """Compact as-filed series per line item: annual (10-K, ~1-year periods) and quarterly (~3-month). z187: all the
+    item's concept names merged by period (priority order breaks ties), quarters a 10-Q reports only year-to-date
+    derived from the YTD figures (Q2 = H1 - Q1, Q3 = 9M - H1, Q4 = FY - 9M; marked derived), plus ttm / latest."""
     us = ((cf or {}).get("facts") or {}).get("us-gaap") or {}
     out = {}
     for key, names in CONCEPTS.items():
-        for n in names:
-            units = (us.get(n) or {}).get("units") or {}
-            vals = units.get("USD") or units.get("USD/shares") or units.get("shares") or []
-            if not vals:
-                continue
-            ann, qtr, seen = {}, {}, set()
-            for v in vals:
-                end, start, form = v.get("end"), v.get("start"), v.get("form") or ""
-                if not end:
-                    continue
-                k = (end, start)
+        ann, qtr, ytd, used = {}, {}, {}, {}
+        for rank, n in enumerate(names):
+            pts = _concept_points(us, n)
+            for start, end, val, form, fy, fp, filed in pts:
+                rec = {"end": end, "val": val, "fy": fy, "fp": fp, "form": form, "filed": filed}
                 if start:
-                    days = (date.fromisoformat(end) - date.fromisoformat(start)).days
-                    bucket = ann if (330 <= days <= 400 and form.startswith("10-K")) else qtr if (80 <= days <= 100 and form.startswith("10-Q")) else None
+                    try:
+                        days = _days(start, end)
+                    except ValueError:
+                        continue
+                    if 330 <= days <= 400 and form.startswith("10-K"):
+                        bucket = ann
+                    elif 80 <= days <= 100:
+                        bucket = qtr
+                    elif 170 <= days <= 290 and form.startswith("10-Q"):
+                        ytd.setdefault(start, {}).setdefault(end, (val, filed))   # 6- / 9-month year-to-date
+                        continue
+                    else:
+                        continue
+                    if key in FLOW_USD and bucket is ann:
+                        ytd.setdefault(start, {}).setdefault(end, (val, filed))   # the full year closes the chain
+                    if key in FLOW_USD and bucket is qtr:
+                        ytd.setdefault(start, {}).setdefault(end, (val, filed))  # Q1 opens it
                 else:
-                    bucket = ann if form.startswith("10-K") else qtr if form.startswith("10-Q") else None
-                if bucket is None:
-                    continue
+                    bucket = ann if form.startswith("10-K") else qtr
                 prev = bucket.get(end)
-                if prev is None or (v.get("filed") or "") >= prev["filed"]:      # the latest filing's figure for that period
-                    bucket[end] = {"end": end, "val": v.get("val"), "fy": v.get("fy"), "fp": v.get("fp"), "form": form, "filed": v.get("filed") or ""}
-            if ann or qtr:
-                out[key] = {"concept": n, "annual": sorted(ann.values(), key=lambda x: x["end"])[-10:], "quarterly": sorted(qtr.values(), key=lambda x: x["end"])[-12:]}
-                break
+                # higher-priority concept wins a period it covers; within one concept the latest filing wins
+                if prev is None or used.get((id(bucket), end), 99) > rank or (used.get((id(bucket), end)) == rank and filed >= prev["filed"]):
+                    bucket[end] = rec
+                    used[(id(bucket), end)] = rank
+                    used.setdefault(("concept", end), n)
+        if key in FLOW_USD:                                                    # fill quarters from year-to-date figures
+            for start, chain in ytd.items():
+                ends = sorted(chain)
+                prev_end, prev_val = None, None
+                for e in ends:
+                    val, filed = chain[e]
+                    try:
+                        span = _days(start, e)
+                    except ValueError:
+                        break
+                    if prev_end is None:
+                        if 80 <= span <= 100:
+                            prev_end, prev_val = e, val
+                            continue
+                        break                                                 # no Q1 for this year - can't difference
+                    gap = _days(prev_end, e)
+                    if 80 <= gap <= 100 and e not in qtr and val is not None and prev_val is not None:
+                        qtr[e] = {"end": e, "val": val - prev_val, "fy": None, "fp": None, "form": "derived (YTD)", "filed": filed,
+                                  "derived": True}
+                    if 80 <= gap <= 100:
+                        prev_end, prev_val = e, val
+                    else:
+                        break
+        if not (ann or qtr):
+            continue
+        a = sorted(ann.values(), key=lambda x: x["end"])[-10:]
+        q = sorted(qtr.values(), key=lambda x: x["end"])[-12:]
+        latest_end = max([x["end"] for x in a] + [x["end"] for x in q])
+        doc = {"concept": used.get(("concept", latest_end)) or names[0], "annual": a, "quarterly": q}
+        if key in FLOW_USD and len(q) >= 4:
+            last4 = q[-4:]
+            try:
+                span = _days(last4[0]["end"], last4[-1]["end"])
+            except ValueError:
+                span = 0
+            if 250 <= span <= 300 and all(x.get("val") is not None for x in last4):
+                doc["ttm"] = {"end": last4[-1]["end"], "val": sum(x["val"] for x in last4)}
+        if key in INSTANT:
+            pts = a + q
+            last = max(pts, key=lambda x: x["end"])
+            doc["latest"] = {"end": last["end"], "val": last["val"]}
+        out[key] = doc
     return out
 
 
@@ -211,7 +297,9 @@ def main():
     order = (first + rest)[:PER_RUN]
     log(f"{len(tick)} companies with a CIK · {len(first)} with new 8-K / Form 4 filings first · {len(order)} this run")
     f4_budget, facts_budget = FORM4_DOCS, FACTS_PER_RUN
-    facts_order = set(sorted(tick, key=lambda t: (old[t].get("factsAt") or "", t))[:FACTS_PER_RUN])
+    # z187: companies whose facts were read before the concept merge (stale series) refresh first, then the oldest
+    facts_order = set(sorted(tick, key=lambda t: ((old[t].get("factsV") or 0) >= FACTS_VERSION, old[t].get("factsAt") or "", t))[:FACTS_PER_RUN])
+    order = order + [t for t in tick if t in facts_order and t not in set(order)]
     for t in order:
         c = cik[t]
         doc = dict(old[t]) or {"ticker": t}
@@ -242,6 +330,7 @@ def main():
             try:
                 doc["facts"] = facts_from(get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{c:010d}.json"))
                 doc["factsAt"] = now_iso()
+                doc["factsV"] = FACTS_VERSION
             except Exception as e:
                 log(f"{t}: facts {e}")
             facts_budget -= 1

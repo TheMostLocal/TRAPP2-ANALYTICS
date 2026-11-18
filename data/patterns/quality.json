@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-16",
+ "asOf": "2026-11-17",
  "rule": "bad print = a one-day jump beyond x2.5 back within 25% of the prior close inside 3 bars (dropped); break = any other one-day jump beyond x2.5 (kept; calls spanning it are left out of the statistics)",
  "tickers": {
   "VELO": {
@@ -1045,16 +1045,6 @@
     [
      "2023-12-05",
      20.0704
-    ]
-   ]
-  },
-  "EMBJ": {
-   "book": "TRAPP2-4",
-   "badPrints": [],
-   "breaks": [
-    [
-     "2026-11-16",
-     0.2384
     ]
    ]
   },

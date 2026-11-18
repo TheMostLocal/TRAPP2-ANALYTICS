@@ -1,11 +1,11 @@
 {
- "asOf": "2026-11-16",
+ "asOf": "2026-11-17",
  "engine": "patterns-v4",
  "liveStart": "2026-10-07",
  "baselineFwd20Pct": 1.032,
  "baselineByTrendRegime": {
   "mixed": 0.851,
-  "up": 0.859,
+  "up": 0.858,
   "down": 1.854
  },
  "regimeNow": {
@@ -17,8 +17,8 @@
  "minRegimeN": 50,
  "historyQuality": {
   "badPrintsDropped": 33,
-  "tickers": 106,
-  "breaks": 190
+  "tickers": 105,
+  "breaks": 189
  },
  "edgeMethod": "z184 date-matched: each call's 20-bar return (capped at +/-50%) minus the equal-weight typical stock's over the same 20 bars (non-equities vs standing aside); 95% interval clustered by calendar month (CR1, Student t); EARNED = whole interval above 0, HARMFUL = below, else UNPROVEN (trust neutral); fewer than 10 months = unproven",
  "templates": {
@@ -27,185 +27,184 @@
    "direction": "bullish",
    "kind": "template",
    "backtest": {
-    "n": 32705,
+    "n": 32963,
     "byStatus": {
-     "success": 15280,
-     "failure": 17149,
-     "open": 276
+     "success": 15393,
+     "failure": 17296,
+     "open": 274
     },
-    "judged": 32429,
+    "judged": 32689,
     "successRate": 47.1,
-    "excludedDataBreaks": 80,
+    "excludedDataBreaks": 79,
     "successCI95": [
-     46.6,
-     47.7
+     46.5,
+     47.6
     ],
-    "avgReturnPct": 3.06,
-    "avgFwd20Pct": 1.0,
-    "edgeVsBaselinePct": -0.03,
-    "edgeAbnPct": 0.26,
+    "avgReturnPct": 3.09,
+    "avgFwd20Pct": 1.02,
+    "edgeVsBaselinePct": -0.01,
+    "edgeAbnPct": 0.27,
     "edgeAbnCI95": [
-     0.05,
-     0.46
+     0.06,
+     0.47
     ],
-    "edgeAbnT": 2.47,
+    "edgeAbnT": 2.51,
     "months": 233,
-    "nEff": 9351,
+    "nEff": 9222,
     "edgeVerdict": "earned",
-    "trustEdgePct": 0.26,
-    "edgeAbnRawPct": 0.38,
-    "extremeCalls": 183,
+    "trustEdgePct": 0.27,
+    "edgeAbnRawPct": 0.39,
+    "extremeCalls": 186,
     "successCI95Cl": [
      45.7,
      48.5
     ]
    },
    "live": {
-    "n": 294,
+    "n": 302,
     "byStatus": {
-     "open": 294
+     "open": 302
     },
     "judged": 0,
     "successRate": null,
-    "excludedDataBreaks": 1,
     "successCI95": [
      null,
      null
     ],
     "avgReturnPct": null,
-    "avgFwd20Pct": -2.16,
-    "edgeVsBaselinePct": -3.19,
-    "edgeAbnPct": -4.62,
+    "avgFwd20Pct": -2.21,
+    "edgeVsBaselinePct": -3.24,
+    "edgeAbnPct": -4.55,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -2.21,
+    "edgeAbnRawPct": -1.96,
     "extremeCalls": 0
    },
    "byRegime": {
     "trend": {
      "up": {
-      "n": 26997,
+      "n": 27203,
       "byStatus": {
-       "success": 12679,
-       "failure": 14042,
-       "open": 276
+       "success": 12769,
+       "failure": 14160,
+       "open": 274
       },
-      "judged": 26721,
+      "judged": 26929,
       "successRate": 47.4,
-      "excludedDataBreaks": 71,
+      "excludedDataBreaks": 70,
       "successCI95": [
-       46.9,
+       46.8,
        48.0
       ],
-      "avgReturnPct": 3.28,
-      "avgFwd20Pct": 1.16,
-      "edgeVsBaselinePct": 0.3,
-      "edgeAbnPct": 0.35,
+      "avgReturnPct": 3.31,
+      "avgFwd20Pct": 1.18,
+      "edgeVsBaselinePct": 0.32,
+      "edgeAbnPct": 0.36,
       "edgeAbnCI95": [
        0.14,
-       0.57
+       0.58
       ],
-      "edgeAbnT": 3.22,
+      "edgeAbnT": 3.27,
       "months": 184,
-      "nEff": 8362,
+      "nEff": 8198,
       "edgeVerdict": "earned",
-      "trustEdgePct": 0.35,
-      "edgeAbnRawPct": 0.48,
-      "extremeCalls": 155,
+      "trustEdgePct": 0.36,
+      "edgeAbnRawPct": 0.5,
+      "extremeCalls": 157,
       "successCI95Cl": [
-       46.0,
+       45.9,
        48.9
       ],
       "usable": true
      },
      "mixed": {
-      "n": 3143,
+      "n": 3173,
       "byStatus": {
-       "success": 1459,
-       "failure": 1684
+       "success": 1471,
+       "failure": 1702
       },
-      "judged": 3143,
+      "judged": 3173,
       "successRate": 46.4,
       "excludedDataBreaks": 6,
       "successCI95": [
-       44.7,
-       48.2
+       44.6,
+       48.1
       ],
-      "avgReturnPct": 3.32,
-      "avgFwd20Pct": 0.51,
-      "edgeVsBaselinePct": -0.34,
-      "edgeAbnPct": 0.17,
+      "avgReturnPct": 3.39,
+      "avgFwd20Pct": 0.53,
+      "edgeVsBaselinePct": -0.32,
+      "edgeAbnPct": 0.16,
       "edgeAbnCI95": [
-       -0.56,
-       0.9
+       -0.58,
+       0.89
       ],
-      "edgeAbnT": 0.47,
+      "edgeAbnT": 0.43,
       "months": 64,
-      "nEff": 740,
+      "nEff": 737,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.22,
-      "extremeCalls": 12,
+      "edgeAbnRawPct": 0.21,
+      "extremeCalls": 13,
       "successCI95Cl": [
        41.8,
-       51.0
+       50.9
       ],
       "usable": true
      },
      "down": {
-      "n": 2565,
+      "n": 2587,
       "byStatus": {
-       "success": 1142,
-       "failure": 1423
+       "success": 1153,
+       "failure": 1434
       },
-      "judged": 2565,
-      "successRate": 44.5,
+      "judged": 2587,
+      "successRate": 44.6,
       "excludedDataBreaks": 3,
       "successCI95": [
-       42.6,
+       42.7,
        46.5
       ],
-      "avgReturnPct": 0.36,
-      "avgFwd20Pct": -0.12,
-      "edgeVsBaselinePct": -1.97,
+      "avgReturnPct": 0.42,
+      "avgFwd20Pct": -0.11,
+      "edgeVsBaselinePct": -1.96,
       "edgeAbnPct": -0.64,
       "edgeAbnCI95": [
-       -1.5,
-       0.23
+       -1.49,
+       0.21
       ],
-      "edgeAbnT": -1.48,
+      "edgeAbnT": -1.52,
       "months": 49,
-      "nEff": 633,
+      "nEff": 654,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.53,
+      "edgeAbnRawPct": -0.54,
       "extremeCalls": 16,
       "successCI95Cl": [
        40.3,
-       48.8
+       48.9
       ],
       "usable": true
      }
     },
     "vol": {
      "calm": {
-      "n": 24123,
+      "n": 24302,
       "byStatus": {
-       "success": 11152,
-       "failure": 12695,
-       "open": 276
+       "success": 11233,
+       "failure": 12795,
+       "open": 274
       },
-      "judged": 23847,
-      "successRate": 46.8,
-      "excludedDataBreaks": 49,
+      "judged": 24028,
+      "successRate": 46.7,
+      "excludedDataBreaks": 48,
       "successCI95": [
        46.1,
        47.4
       ],
-      "avgReturnPct": 2.0,
-      "avgFwd20Pct": 0.71,
-      "edgeVsBaselinePct": -0.32,
+      "avgReturnPct": 2.01,
+      "avgFwd20Pct": 0.72,
+      "edgeVsBaselinePct": -0.31,
       "edgeAbnPct": 0.43,
       "edgeAbnCI95": [
        0.24,
@@ -213,11 +212,11 @@
       ],
       "edgeAbnT": 4.37,
       "months": 181,
-      "nEff": 9465,
+      "nEff": 9425,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.43,
-      "edgeAbnRawPct": 0.52,
-      "extremeCalls": 112,
+      "edgeAbnRawPct": 0.53,
+      "extremeCalls": 114,
       "successCI95Cl": [
        45.3,
        48.2
@@ -225,58 +224,58 @@
       "usable": true
      },
      "stressed": {
-      "n": 8582,
+      "n": 8661,
       "byStatus": {
-       "failure": 4454,
-       "success": 4128
+       "failure": 4501,
+       "success": 4160
       },
-      "judged": 8582,
-      "successRate": 48.1,
+      "judged": 8661,
+      "successRate": 48.0,
       "excludedDataBreaks": 31,
       "successCI95": [
        47.0,
-       49.2
+       49.1
       ],
-      "avgReturnPct": 5.99,
-      "avgFwd20Pct": 1.81,
-      "edgeVsBaselinePct": 0.78,
-      "edgeAbnPct": -0.23,
+      "avgReturnPct": 6.07,
+      "avgFwd20Pct": 1.85,
+      "edgeVsBaselinePct": 0.82,
+      "edgeAbnPct": -0.21,
       "edgeAbnCI95": [
-       -0.77,
-       0.31
+       -0.76,
+       0.34
       ],
-      "edgeAbnT": -0.85,
+      "edgeAbnT": -0.75,
       "months": 137,
-      "nEff": 1723,
+      "nEff": 1670,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.02,
-      "extremeCalls": 71,
+      "edgeAbnRawPct": -0.0,
+      "extremeCalls": 72,
       "successCI95Cl": [
        45.3,
-       50.9
+       50.8
       ],
       "usable": true
      }
     },
     "joint": {
      "up/calm": {
-      "n": 22421,
+      "n": 22590,
       "byStatus": {
-       "success": 10364,
-       "failure": 11781,
-       "open": 276
+       "success": 10441,
+       "failure": 11875,
+       "open": 274
       },
-      "judged": 22145,
+      "judged": 22316,
       "successRate": 46.8,
-      "excludedDataBreaks": 48,
+      "excludedDataBreaks": 47,
       "successCI95": [
        46.1,
-       47.5
+       47.4
       ],
-      "avgReturnPct": 2.06,
-      "avgFwd20Pct": 0.78,
-      "edgeVsBaselinePct": -0.08,
+      "avgReturnPct": 2.08,
+      "avgFwd20Pct": 0.79,
+      "edgeVsBaselinePct": -0.07,
       "edgeAbnPct": 0.43,
       "edgeAbnCI95": [
        0.22,
@@ -284,11 +283,11 @@
       ],
       "edgeAbnT": 4.16,
       "months": 163,
-      "nEff": 8914,
+      "nEff": 8852,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.43,
-      "edgeAbnRawPct": 0.52,
-      "extremeCalls": 107,
+      "edgeAbnRawPct": 0.53,
+      "extremeCalls": 108,
       "successCI95Cl": [
        45.3,
        48.3
@@ -296,67 +295,67 @@
       "usable": true
      },
      "up/stressed": {
-      "n": 4576,
+      "n": 4613,
       "byStatus": {
-       "failure": 2261,
-       "success": 2315
+       "failure": 2285,
+       "success": 2328
       },
-      "judged": 4576,
-      "successRate": 50.6,
+      "judged": 4613,
+      "successRate": 50.5,
       "excludedDataBreaks": 23,
       "successCI95": [
-       49.1,
-       52.0
+       49.0,
+       51.9
       ],
-      "avgReturnPct": 9.19,
-      "avgFwd20Pct": 3.06,
-      "edgeVsBaselinePct": 2.2,
-      "edgeAbnPct": -0.0,
+      "avgReturnPct": 9.28,
+      "avgFwd20Pct": 3.13,
+      "edgeVsBaselinePct": 2.27,
+      "edgeAbnPct": 0.05,
       "edgeAbnCI95": [
-       -0.8,
-       0.79
+       -0.77,
+       0.87
       ],
-      "edgeAbnT": -0.01,
+      "edgeAbnT": 0.12,
       "months": 87,
-      "nEff": 865,
+      "nEff": 823,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.3,
-      "extremeCalls": 48,
+      "edgeAbnRawPct": 0.35,
+      "extremeCalls": 49,
       "successCI95Cl": [
-       46.9,
-       54.2
+       46.8,
+       54.1
       ],
       "usable": true
      },
      "mixed/calm": {
-      "n": 1232,
+      "n": 1240,
       "byStatus": {
-       "success": 578,
-       "failure": 654
+       "success": 582,
+       "failure": 658
       },
-      "judged": 1232,
+      "judged": 1240,
       "successRate": 46.9,
       "excludedDataBreaks": 1,
       "successCI95": [
-       44.1,
+       44.2,
        49.7
       ],
-      "avgReturnPct": 2.73,
-      "avgFwd20Pct": 0.25,
-      "edgeVsBaselinePct": -0.6,
-      "edgeAbnPct": 0.7,
+      "avgReturnPct": 2.8,
+      "avgFwd20Pct": 0.3,
+      "edgeVsBaselinePct": -0.55,
+      "edgeAbnPct": 0.72,
       "edgeAbnCI95": [
-       -0.21,
-       1.6
+       -0.19,
+       1.63
       ],
-      "edgeAbnT": 1.57,
+      "edgeAbnT": 1.61,
       "months": 31,
-      "nEff": 405,
+      "nEff": 404,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.73,
-      "extremeCalls": 4,
+      "edgeAbnRawPct": 0.77,
+      "extremeCalls": 5,
       "successCI95Cl": [
        41.5,
        52.4
@@ -364,243 +363,243 @@
       "usable": true
      },
      "mixed/stressed": {
-      "n": 1911,
+      "n": 1933,
       "byStatus": {
-       "success": 881,
-       "failure": 1030
+       "success": 889,
+       "failure": 1044
       },
-      "judged": 1911,
-      "successRate": 46.1,
+      "judged": 1933,
+      "successRate": 46.0,
       "excludedDataBreaks": 5,
       "successCI95": [
-       43.9,
-       48.3
+       43.8,
+       48.2
       ],
-      "avgReturnPct": 3.7,
+      "avgReturnPct": 3.77,
       "avgFwd20Pct": 0.68,
       "edgeVsBaselinePct": -0.17,
-      "edgeAbnPct": -0.17,
+      "edgeAbnPct": -0.21,
       "edgeAbnCI95": [
-       -1.17,
-       0.83
+       -1.2,
+       0.79
       ],
-      "edgeAbnT": -0.34,
+      "edgeAbnT": -0.41,
       "months": 46,
       "nEff": 451,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.12,
+      "edgeAbnRawPct": -0.15,
       "extremeCalls": 8,
       "successCI95Cl": [
-       40.3,
-       51.9
+       40.2,
+       51.8
       ],
       "usable": true
      },
      "down/calm": {
-      "n": 470,
+      "n": 472,
       "byStatus": {
        "success": 210,
-       "failure": 260
+       "failure": 262
       },
-      "judged": 470,
-      "successRate": 44.7,
+      "judged": 472,
+      "successRate": 44.5,
       "successCI95": [
-       40.2,
-       49.2
+       40.1,
+       49.0
       ],
-      "avgReturnPct": -2.92,
-      "avgFwd20Pct": -1.15,
-      "edgeVsBaselinePct": -3.0,
-      "edgeAbnPct": 0.03,
+      "avgReturnPct": -3.01,
+      "avgFwd20Pct": -1.19,
+      "edgeVsBaselinePct": -3.04,
+      "edgeAbnPct": -0.04,
       "edgeAbnCI95": [
-       -1.72,
-       1.78
+       -1.75,
+       1.67
       ],
-      "edgeAbnT": 0.04,
+      "edgeAbnT": -0.05,
       "months": 13,
-      "nEff": 130,
+      "nEff": 138,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.03,
+      "edgeAbnRawPct": -0.1,
       "extremeCalls": 1,
       "successCI95Cl": [
        36.3,
-       53.1
+       52.6
       ],
       "usable": true
      },
      "down/stressed": {
-      "n": 2095,
+      "n": 2115,
       "byStatus": {
-       "success": 932,
-       "failure": 1163
+       "success": 943,
+       "failure": 1172
       },
-      "judged": 2095,
-      "successRate": 44.5,
+      "judged": 2115,
+      "successRate": 44.6,
       "excludedDataBreaks": 3,
       "successCI95": [
-       42.4,
-       46.6
+       42.5,
+       46.7
       ],
-      "avgReturnPct": 1.09,
-      "avgFwd20Pct": 0.11,
-      "edgeVsBaselinePct": -1.74,
-      "edgeAbnPct": -0.78,
+      "avgReturnPct": 1.19,
+      "avgFwd20Pct": 0.14,
+      "edgeVsBaselinePct": -1.71,
+      "edgeAbnPct": -0.77,
       "edgeAbnCI95": [
-       -1.75,
+       -1.73,
        0.18
       ],
       "edgeAbnT": -1.64,
       "months": 46,
-      "nEff": 538,
+      "nEff": 550,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.65,
+      "edgeAbnRawPct": -0.64,
       "extremeCalls": 15,
       "successCI95Cl": [
        39.9,
-       49.1
+       49.2
       ],
       "usable": true
      }
     },
     "quad": {
      "1": {
-      "n": 9583,
+      "n": 9669,
       "byStatus": {
-       "success": 4700,
-       "failure": 4883
+       "success": 4728,
+       "failure": 4941
       },
-      "judged": 9583,
-      "successRate": 49.0,
+      "judged": 9669,
+      "successRate": 48.9,
       "excludedDataBreaks": 22,
       "successCI95": [
-       48.0,
-       50.0
+       47.9,
+       49.9
       ],
-      "avgReturnPct": 4.76,
+      "avgReturnPct": 4.73,
       "avgFwd20Pct": 1.71,
       "edgeVsBaselinePct": 0.68,
       "edgeAbnPct": 0.39,
       "edgeAbnCI95": [
        0.07,
-       0.71
+       0.7
       ],
-      "edgeAbnT": 2.47,
+      "edgeAbnT": 2.43,
       "months": 61,
-      "nEff": 3827,
+      "nEff": 3835,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.39,
-      "edgeAbnRawPct": 0.51,
+      "edgeAbnRawPct": 0.5,
       "extremeCalls": 46,
       "successCI95Cl": [
-       46.7,
-       51.4
+       46.5,
+       51.3
       ],
       "usable": true
      },
      "2": {
-      "n": 8641,
+      "n": 8710,
       "byStatus": {
-       "failure": 4460,
-       "success": 4181
+       "failure": 4491,
+       "success": 4219
       },
-      "judged": 8641,
+      "judged": 8710,
       "successRate": 48.4,
       "excludedDataBreaks": 28,
       "successCI95": [
-       47.3,
-       49.4
+       47.4,
+       49.5
       ],
-      "avgReturnPct": 4.02,
-      "avgFwd20Pct": 1.11,
-      "edgeVsBaselinePct": 0.08,
-      "edgeAbnPct": 0.22,
+      "avgReturnPct": 4.09,
+      "avgFwd20Pct": 1.15,
+      "edgeVsBaselinePct": 0.12,
+      "edgeAbnPct": 0.24,
       "edgeAbnCI95": [
-       -0.24,
-       0.68
+       -0.23,
+       0.71
       ],
-      "edgeAbnT": 0.95,
+      "edgeAbnT": 1.03,
       "months": 53,
-      "nEff": 2126,
+      "nEff": 2075,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.34,
-      "extremeCalls": 68,
+      "edgeAbnRawPct": 0.37,
+      "extremeCalls": 70,
       "successCI95Cl": [
-       45.3,
+       45.4,
        51.5
       ],
       "usable": true
      },
      "3": {
-      "n": 7959,
+      "n": 8005,
       "byStatus": {
-       "success": 3409,
-       "failure": 4310,
-       "open": 240
+       "success": 3435,
+       "failure": 4332,
+       "open": 238
       },
-      "judged": 7719,
+      "judged": 7767,
       "successRate": 44.2,
-      "excludedDataBreaks": 13,
+      "excludedDataBreaks": 12,
       "successCI95": [
        43.1,
        45.3
       ],
-      "avgReturnPct": 0.14,
-      "avgFwd20Pct": -0.42,
-      "edgeVsBaselinePct": -1.45,
-      "edgeAbnPct": 0.1,
+      "avgReturnPct": 0.15,
+      "avgFwd20Pct": -0.41,
+      "edgeVsBaselinePct": -1.44,
+      "edgeAbnPct": 0.11,
       "edgeAbnCI95": [
-       -0.26,
-       0.46
+       -0.25,
+       0.48
       ],
-      "edgeAbnT": 0.57,
+      "edgeAbnT": 0.63,
       "months": 65,
       "nEff": 2834,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.19,
+      "edgeAbnRawPct": 0.2,
       "extremeCalls": 26,
       "successCI95Cl": [
-       41.8,
-       46.5
+       41.9,
+       46.6
       ],
       "usable": true
      },
      "4": {
-      "n": 6303,
+      "n": 6357,
       "byStatus": {
-       "success": 2869,
-       "failure": 3398,
+       "success": 2890,
+       "failure": 3431,
        "open": 36
       },
-      "judged": 6267,
-      "successRate": 45.8,
+      "judged": 6321,
+      "successRate": 45.7,
       "excludedDataBreaks": 16,
       "successCI95": [
        44.5,
        47.0
       ],
-      "avgReturnPct": 2.63,
-      "avgFwd20Pct": 1.48,
-      "edgeVsBaselinePct": 0.45,
+      "avgReturnPct": 2.74,
+      "avgFwd20Pct": 1.5,
+      "edgeVsBaselinePct": 0.47,
       "edgeAbnPct": 0.24,
       "edgeAbnCI95": [
-       -0.34,
-       0.82
+       -0.35,
+       0.83
       ],
-      "edgeAbnT": 0.84,
+      "edgeAbnT": 0.82,
       "months": 53,
-      "nEff": 1283,
+      "nEff": 1248,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.41,
-      "extremeCalls": 41,
+      "extremeCalls": 42,
       "successCI95Cl": [
-       42.7,
-       48.9
+       42.6,
+       48.8
       ],
       "usable": true
      }
@@ -616,13 +615,13 @@
    "backtest": {
     "n": 5535,
     "byStatus": {
-     "expired": 1013,
+     "expired": 1014,
      "timeout": 2313,
      "success": 861,
      "failure": 852,
      "confirmed": 28,
      "invalidated": 466,
-     "open": 2
+     "open": 1
     },
     "judged": 4026,
     "successRate": 21.4,
@@ -640,17 +639,17 @@
      28.5
     ],
     "edgeVsBaselinePct": -0.26,
-    "edgeAbnPct": -0.21,
+    "edgeAbnPct": -0.19,
     "edgeAbnCI95": [
-     -0.69,
-     0.28
+     -0.68,
+     0.3
     ],
-    "edgeAbnT": -0.83,
+    "edgeAbnT": -0.77,
     "months": 236,
-    "nEff": 2424,
+    "nEff": 2428,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.47,
+    "edgeAbnRawPct": -0.46,
     "extremeCalls": 62,
     "successCI95Cl": [
      17.9,
@@ -658,11 +657,11 @@
     ]
    },
    "live": {
-    "n": 50,
+    "n": 57,
     "byStatus": {
-     "confirmed": 33,
-     "success": 2,
-     "open": 15
+     "open": 18,
+     "confirmed": 37,
+     "success": 2
     },
     "judged": 2,
     "successRate": 100.0,
@@ -679,11 +678,11 @@
      100.0
     ],
     "edgeVsBaselinePct": 4.01,
-    "edgeAbnPct": 12.48,
+    "edgeAbnPct": 12.71,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 3.11,
+    "edgeAbnRawPct": 3.13,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -691,13 +690,13 @@
      "up": {
       "n": 3777,
       "byStatus": {
-       "expired": 739,
+       "expired": 740,
        "timeout": 1602,
        "success": 555,
        "failure": 534,
        "confirmed": 28,
        "invalidated": 317,
-       "open": 2
+       "open": 1
       },
       "judged": 2691,
       "successRate": 20.6,
@@ -715,17 +714,17 @@
        27.8
       ],
       "edgeVsBaselinePct": 0.23,
-      "edgeAbnPct": -0.06,
+      "edgeAbnPct": -0.05,
       "edgeAbnCI95": [
-       -0.56,
-       0.44
+       -0.55,
+       0.45
       ],
-      "edgeAbnT": -0.25,
+      "edgeAbnT": -0.2,
       "months": 186,
-      "nEff": 2036,
+      "nEff": 2054,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.23,
+      "edgeAbnRawPct": -0.21,
       "extremeCalls": 25,
       "successCI95Cl": [
        16.7,
@@ -758,17 +757,17 @@
        32.8
       ],
       "edgeVsBaselinePct": -3.38,
-      "edgeAbnPct": -1.35,
+      "edgeAbnPct": -1.32,
       "edgeAbnCI95": [
-       -2.58,
-       -0.12
+       -2.54,
+       -0.09
       ],
-      "edgeAbnT": -2.19,
+      "edgeAbnT": -2.15,
       "months": 63,
-      "nEff": 400,
+      "nEff": 403,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.84,
+      "edgeAbnRawPct": -1.81,
       "extremeCalls": 13,
       "successCI95Cl": [
        12.3,
@@ -802,17 +801,17 @@
        33.7
       ],
       "edgeVsBaselinePct": 0.47,
-      "edgeAbnPct": 0.15,
+      "edgeAbnPct": 0.16,
       "edgeAbnCI95": [
-       -1.43,
-       1.73
+       -1.42,
+       1.74
       ],
-      "edgeAbnT": 0.19,
+      "edgeAbnT": 0.2,
       "months": 48,
-      "nEff": 343,
+      "nEff": 342,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.32,
+      "edgeAbnRawPct": -0.31,
       "extremeCalls": 24,
       "successCI95Cl": [
        15.6,
@@ -825,13 +824,13 @@
      "calm": {
       "n": 2889,
       "byStatus": {
-       "expired": 586,
+       "expired": 587,
        "timeout": 1240,
        "success": 449,
        "failure": 394,
        "confirmed": 28,
        "invalidated": 190,
-       "open": 2
+       "open": 1
       },
       "judged": 2083,
       "successRate": 21.6,
@@ -846,20 +845,20 @@
       "identificationSuccessRate": 27.7,
       "identCI95": [
        25.6,
-       30.0
+       29.9
       ],
       "edgeVsBaselinePct": 0.74,
-      "edgeAbnPct": 0.01,
+      "edgeAbnPct": 0.02,
       "edgeAbnCI95": [
-       -0.57,
-       0.59
+       -0.56,
+       0.6
       ],
-      "edgeAbnT": 0.02,
+      "edgeAbnT": 0.06,
       "months": 179,
-      "nEff": 1599,
+      "nEff": 1605,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.21,
+      "edgeAbnRawPct": -0.19,
       "extremeCalls": 23,
       "successCI95Cl": [
        18.0,
@@ -892,17 +891,17 @@
        28.4
       ],
       "edgeVsBaselinePct": -1.34,
-      "edgeAbnPct": -0.44,
+      "edgeAbnPct": -0.42,
       "edgeAbnCI95": [
-       -1.24,
-       0.37
+       -1.23,
+       0.39
       ],
-      "edgeAbnT": -1.07,
+      "edgeAbnT": -1.02,
       "months": 144,
-      "nEff": 956,
+      "nEff": 954,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.76,
+      "edgeAbnRawPct": -0.74,
       "extremeCalls": 39,
       "successCI95Cl": [
        16.0,
@@ -915,13 +914,13 @@
      "up/calm": {
       "n": 2739,
       "byStatus": {
-       "expired": 559,
+       "expired": 560,
        "timeout": 1180,
        "success": 424,
        "failure": 368,
        "confirmed": 28,
        "invalidated": 178,
-       "open": 2
+       "open": 1
       },
       "judged": 1972,
       "successRate": 21.5,
@@ -932,24 +931,24 @@
       ],
       "avgReturnPct": -1.1,
       "avgFwd20Pct": -0.34,
-      "confirmRate": 73.1,
+      "confirmRate": 73.0,
       "identificationSuccessRate": 27.7,
       "identCI95": [
        25.5,
        30.0
       ],
       "edgeVsBaselinePct": 0.52,
-      "edgeAbnPct": -0.02,
+      "edgeAbnPct": -0.01,
       "edgeAbnCI95": [
-       -0.62,
-       0.57
+       -0.61,
+       0.58
       ],
-      "edgeAbnT": -0.08,
+      "edgeAbnT": -0.04,
       "months": 158,
-      "nEff": 1479,
+      "nEff": 1484,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.21,
+      "edgeAbnRawPct": -0.2,
       "extremeCalls": 21,
       "successCI95Cl": [
        17.8,
@@ -981,17 +980,17 @@
        24.7
       ],
       "edgeVsBaselinePct": -0.58,
-      "edgeAbnPct": -0.17,
+      "edgeAbnPct": -0.16,
       "edgeAbnCI95": [
-       -0.94,
+       -0.93,
        0.6
       ],
-      "edgeAbnT": -0.45,
+      "edgeAbnT": -0.42,
       "months": 94,
       "nEff": 719,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.26,
+      "edgeAbnRawPct": -0.25,
       "extremeCalls": 4,
       "successCI95Cl": [
        11.2,
@@ -1023,17 +1022,17 @@
        40.3
       ],
       "edgeVsBaselinePct": 1.59,
-      "edgeAbnPct": 0.9,
+      "edgeAbnPct": 0.89,
       "edgeAbnCI95": [
-       -2.25,
-       4.05
+       -2.29,
+       4.06
       ],
-      "edgeAbnT": 0.59,
+      "edgeAbnT": 0.58,
       "months": 25,
       "nEff": 68,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.21,
+      "edgeAbnRawPct": 0.2,
       "extremeCalls": 1,
       "successCI95Cl": [
        8.8,
@@ -1066,17 +1065,17 @@
        33.4
       ],
       "edgeVsBaselinePct": -4.05,
-      "edgeAbnPct": -1.65,
+      "edgeAbnPct": -1.62,
       "edgeAbnCI95": [
-       -3.05,
-       -0.25
+       -3.01,
+       -0.22
       ],
-      "edgeAbnT": -2.37,
+      "edgeAbnT": -2.33,
       "months": 52,
-      "nEff": 307,
+      "nEff": 310,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -2.12,
+      "edgeAbnRawPct": -2.08,
       "extremeCalls": 12,
       "successCI95Cl": [
        11.6,
@@ -1109,12 +1108,12 @@
        51.2
       ],
       "edgeVsBaselinePct": 2.61,
-      "edgeAbnPct": -0.8,
+      "edgeAbnPct": -0.81,
       "edgeAbnCI95": [
-       -8.57,
-       6.97
+       -8.56,
+       6.95
       ],
-      "edgeAbnT": -0.22,
+      "edgeAbnT": -0.23,
       "months": 13,
       "nEff": 26,
       "edgeVerdict": "unproven",
@@ -1152,17 +1151,17 @@
        33.7
       ],
       "edgeVsBaselinePct": 0.38,
-      "edgeAbnPct": 0.19,
+      "edgeAbnPct": 0.2,
       "edgeAbnCI95": [
        -1.46,
-       1.84
+       1.85
       ],
-      "edgeAbnT": 0.23,
+      "edgeAbnT": 0.24,
       "months": 46,
-      "nEff": 308,
+      "nEff": 307,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.26,
+      "edgeAbnRawPct": -0.25,
       "extremeCalls": 23,
       "successCI95Cl": [
        15.1,
@@ -1197,17 +1196,17 @@
        20.7
       ],
       "edgeVsBaselinePct": -0.72,
-      "edgeAbnPct": -0.03,
+      "edgeAbnPct": -0.0,
       "edgeAbnCI95": [
-       -0.69,
-       0.62
+       -0.66,
+       0.66
       ],
-      "edgeAbnT": -0.09,
+      "edgeAbnT": -0.0,
       "months": 89,
       "nEff": 932,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.06,
+      "edgeAbnRawPct": -0.03,
       "extremeCalls": 8,
       "successCI95Cl": [
        11.5,
@@ -1240,17 +1239,17 @@
        30.2
       ],
       "edgeVsBaselinePct": 0.18,
-      "edgeAbnPct": -0.36,
+      "edgeAbnPct": -0.33,
       "edgeAbnCI95": [
-       -1.14,
-       0.43
+       -1.11,
+       0.46
       ],
-      "edgeAbnT": -0.9,
+      "edgeAbnT": -0.83,
       "months": 82,
-      "nEff": 852,
+      "nEff": 856,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.47,
+      "edgeAbnRawPct": -0.44,
       "extremeCalls": 13,
       "successCI95Cl": [
        14.3,
@@ -1264,10 +1263,10 @@
        "timeout": 712,
        "success": 352,
        "failure": 211,
-       "expired": 253,
+       "expired": 254,
        "confirmed": 27,
        "invalidated": 132,
-       "open": 2
+       "open": 1
       },
       "judged": 1275,
       "successRate": 27.6,
@@ -1278,21 +1277,21 @@
       ],
       "avgReturnPct": -0.24,
       "avgFwd20Pct": -0.39,
-      "confirmRate": 77.2,
+      "confirmRate": 77.1,
       "identificationSuccessRate": 37.1,
       "identCI95": [
        34.1,
-       40.3
+       40.2
       ],
       "edgeVsBaselinePct": 0.64,
-      "edgeAbnPct": -0.0,
+      "edgeAbnPct": -0.01,
       "edgeAbnCI95": [
-       -1.03,
-       1.03
+       -1.04,
+       1.02
       ],
-      "edgeAbnT": -0.01,
+      "edgeAbnT": -0.02,
       "months": 86,
-      "nEff": 505,
+      "nEff": 503,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.19,
@@ -1329,17 +1328,17 @@
        26.4
       ],
       "edgeVsBaselinePct": -1.98,
-      "edgeAbnPct": -0.8,
+      "edgeAbnPct": -0.79,
       "edgeAbnCI95": [
-       -2.0,
-       0.4
+       -1.99,
+       0.41
       ],
-      "edgeAbnT": -1.34,
+      "edgeAbnT": -1.32,
       "months": 72,
-      "nEff": 534,
+      "nEff": 538,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.65,
+      "edgeAbnRawPct": -1.64,
       "extremeCalls": 24,
       "successCI95Cl": [
        13.4,
@@ -1374,17 +1373,17 @@
       59.7
      ],
      "edgeVsBaselinePct": -0.16,
-     "edgeAbnPct": -0.39,
+     "edgeAbnPct": -0.38,
      "edgeAbnCI95": [
-      -1.1,
-      0.32
+      -1.09,
+      0.33
      ],
-     "edgeAbnT": -1.08,
+     "edgeAbnT": -1.04,
      "months": 221,
      "nEff": 975,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -0.51,
+     "edgeAbnRawPct": -0.49,
      "extremeCalls": 16,
      "successCI95Cl": [
       17.5,
@@ -1416,17 +1415,17 @@
       50.2
      ],
      "edgeVsBaselinePct": -0.27,
-     "edgeAbnPct": -0.03,
+     "edgeAbnPct": -0.02,
      "edgeAbnCI95": [
-      -0.64,
-      0.57
+      -0.62,
+      0.59
      ],
-     "edgeAbnT": -0.11,
+     "edgeAbnT": -0.06,
      "months": 228,
-     "nEff": 1691,
+     "nEff": 1689,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -0.38,
+     "edgeAbnRawPct": -0.36,
      "extremeCalls": 45,
      "successCI95Cl": [
       17.6,
@@ -1467,29 +1466,29 @@
      34.1
     ],
     "edgeVsBaselinePct": 0.06,
-    "edgeAbnPct": -0.2,
+    "edgeAbnPct": -0.19,
     "edgeAbnCI95": [
      -0.69,
-     0.3
+     0.31
     ],
-    "edgeAbnT": -0.78,
+    "edgeAbnT": -0.76,
     "months": 237,
-    "nEff": 2331,
+    "nEff": 2328,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": 0.08,
     "extremeCalls": 44,
     "successCI95Cl": [
-     25.7,
+     25.6,
      31.8
     ]
    },
    "live": {
     "n": 35,
     "byStatus": {
-     "open": 15,
+     "open": 14,
      "confirmed": 14,
-     "invalidated": 4,
+     "invalidated": 5,
      "success": 2
     },
     "judged": 2,
@@ -1499,19 +1498,19 @@
      100.0
     ],
     "avgReturnPct": 29.08,
-    "avgFwd20Pct": 3.63,
-    "confirmRate": 80.0,
-    "identificationSuccessRate": 33.3,
+    "avgFwd20Pct": -4.66,
+    "confirmRate": 76.2,
+    "identificationSuccessRate": 28.6,
     "identCI95": [
-     9.7,
-     70.0
+     8.2,
+     64.1
     ],
-    "edgeVsBaselinePct": 2.6,
-    "edgeAbnPct": 14.88,
+    "edgeVsBaselinePct": -5.69,
+    "edgeAbnPct": 14.92,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 3.7,
+    "edgeAbnRawPct": -4.18,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -1542,17 +1541,17 @@
        34.7
       ],
       "edgeVsBaselinePct": -0.38,
-      "edgeAbnPct": -0.24,
+      "edgeAbnPct": -0.23,
       "edgeAbnCI95": [
-       -0.73,
-       0.25
+       -0.72,
+       0.27
       ],
-      "edgeAbnT": -0.96,
+      "edgeAbnT": -0.9,
       "months": 187,
-      "nEff": 2251,
+      "nEff": 2244,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.04,
+      "edgeAbnRawPct": -0.02,
       "extremeCalls": 21,
       "successCI95Cl": [
        25.7,
@@ -1588,14 +1587,14 @@
       "edgeAbnPct": -0.41,
       "edgeAbnCI95": [
        -1.86,
-       1.05
+       1.04
       ],
-      "edgeAbnT": -0.56,
+      "edgeAbnT": -0.57,
       "months": 56,
-      "nEff": 229,
+      "nEff": 230,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.31,
+      "edgeAbnRawPct": -0.32,
       "extremeCalls": 2,
       "successCI95Cl": [
        14.1,
@@ -1628,17 +1627,17 @@
        38.5
       ],
       "edgeVsBaselinePct": 0.86,
-      "edgeAbnPct": -0.01,
+      "edgeAbnPct": -0.03,
       "edgeAbnCI95": [
        -1.41,
-       1.38
+       1.36
       ],
-      "edgeAbnT": -0.02,
+      "edgeAbnT": -0.04,
       "months": 54,
-      "nEff": 379,
+      "nEff": 380,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.52,
+      "edgeAbnRawPct": 0.51,
       "extremeCalls": 21,
       "successCI95Cl": [
        23.6,
@@ -1674,20 +1673,20 @@
        31.2
       ],
       "edgeVsBaselinePct": -1.04,
-      "edgeAbnPct": -0.4,
+      "edgeAbnPct": -0.37,
       "edgeAbnCI95": [
-       -0.89,
-       0.1
+       -0.87,
+       0.13
       ],
-      "edgeAbnT": -1.57,
+      "edgeAbnT": -1.47,
       "months": 189,
-      "nEff": 2010,
+      "nEff": 1997,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.21,
+      "edgeAbnRawPct": -0.19,
       "extremeCalls": 17,
       "successCI95Cl": [
-       23.2,
+       23.1,
        29.7
       ],
       "usable": true
@@ -1717,17 +1716,17 @@
        40.3
       ],
       "edgeVsBaselinePct": 1.69,
-      "edgeAbnPct": 0.1,
+      "edgeAbnPct": 0.07,
       "edgeAbnCI95": [
-       -0.87,
-       1.07
+       -0.9,
+       1.04
       ],
-      "edgeAbnT": 0.2,
+      "edgeAbnT": 0.15,
       "months": 126,
-      "nEff": 746,
+      "nEff": 745,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.5,
+      "edgeAbnRawPct": 0.48,
       "extremeCalls": 27,
       "successCI95Cl": [
        26.8,
@@ -1763,21 +1762,21 @@
        32.4
       ],
       "edgeVsBaselinePct": -0.74,
-      "edgeAbnPct": -0.31,
+      "edgeAbnPct": -0.28,
       "edgeAbnCI95": [
-       -0.84,
-       0.23
+       -0.81,
+       0.26
       ],
-      "edgeAbnT": -1.13,
+      "edgeAbnT": -1.03,
       "months": 166,
-      "nEff": 1801,
+      "nEff": 1789,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.11,
+      "edgeAbnRawPct": -0.09,
       "extremeCalls": 15,
       "successCI95Cl": [
        23.6,
-       30.6
+       30.5
       ],
       "usable": true
      },
@@ -1806,17 +1805,17 @@
        51.0
       ],
       "edgeVsBaselinePct": 1.48,
-      "edgeAbnPct": 0.1,
+      "edgeAbnPct": 0.05,
       "edgeAbnCI95": [
-       -1.27,
-       1.48
+       -1.33,
+       1.42
       ],
-      "edgeAbnT": 0.15,
+      "edgeAbnT": 0.07,
       "months": 71,
       "nEff": 366,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.37,
+      "edgeAbnRawPct": 0.32,
       "extremeCalls": 6,
       "successCI95Cl": [
        31.4,
@@ -1848,17 +1847,17 @@
        23.6
       ],
       "edgeVsBaselinePct": -2.35,
-      "edgeAbnPct": -1.47,
+      "edgeAbnPct": -1.43,
       "edgeAbnCI95": [
-       -3.23,
-       0.3
+       -3.2,
+       0.35
       ],
-      "edgeAbnT": -1.7,
+      "edgeAbnT": -1.65,
       "months": 28,
       "nEff": 125,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.46,
+      "edgeAbnRawPct": -1.42,
       "extremeCalls": 1,
       "successCI95Cl": [
        11.1,
@@ -1891,17 +1890,17 @@
        38.5
       ],
       "edgeVsBaselinePct": 1.62,
-      "edgeAbnPct": 0.23,
+      "edgeAbnPct": 0.2,
       "edgeAbnCI95": [
-       -1.76,
-       2.23
+       -1.79,
+       2.2
       ],
-      "edgeAbnT": 0.24,
+      "edgeAbnT": 0.21,
       "months": 45,
       "nEff": 140,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.38,
+      "edgeAbnRawPct": 0.35,
       "extremeCalls": 1,
       "successCI95Cl": [
        13.1,
@@ -1933,17 +1932,17 @@
        41.5
       ],
       "edgeVsBaselinePct": -2.58,
-      "edgeAbnPct": -0.89,
+      "edgeAbnPct": -0.91,
       "edgeAbnCI95": [
-       -3.38,
-       1.6
+       -3.39,
+       1.56
       ],
-      "edgeAbnT": -0.77,
+      "edgeAbnT": -0.79,
       "months": 16,
       "nEff": 61,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.54,
+      "edgeAbnRawPct": -0.57,
       "extremeCalls": 1,
       "successCI95Cl": [
        11.8,
@@ -1976,17 +1975,17 @@
        39.2
       ],
       "edgeVsBaselinePct": 1.12,
-      "edgeAbnPct": 0.05,
+      "edgeAbnPct": 0.04,
       "edgeAbnCI95": [
        -1.45,
-       1.55
+       1.54
       ],
-      "edgeAbnT": 0.07,
+      "edgeAbnT": 0.05,
       "months": 53,
-      "nEff": 336,
+      "nEff": 337,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.6,
+      "edgeAbnRawPct": 0.59,
       "extremeCalls": 20,
       "successCI95Cl": [
        23.8,
@@ -2021,20 +2020,20 @@
        40.8
       ],
       "edgeVsBaselinePct": 0.68,
-      "edgeAbnPct": -0.07,
+      "edgeAbnPct": -0.09,
       "edgeAbnCI95": [
-       -1.03,
-       0.89
+       -1.04,
+       0.87
       ],
-      "edgeAbnT": -0.15,
+      "edgeAbnT": -0.18,
       "months": 89,
-      "nEff": 569,
+      "nEff": 567,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.31,
+      "edgeAbnRawPct": 0.3,
       "extremeCalls": 7,
       "successCI95Cl": [
-       27.1,
+       27.0,
        36.0
       ],
       "usable": true
@@ -2064,17 +2063,17 @@
        39.1
       ],
       "edgeVsBaselinePct": -0.79,
-      "edgeAbnPct": -0.29,
+      "edgeAbnPct": -0.23,
       "edgeAbnCI95": [
-       -1.14,
-       0.56
+       -1.09,
+       0.63
       ],
-      "edgeAbnT": -0.68,
+      "edgeAbnT": -0.53,
       "months": 80,
       "nEff": 645,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.22,
+      "edgeAbnRawPct": -0.16,
       "extremeCalls": 8,
       "successCI95Cl": [
        28.4,
@@ -2113,9 +2112,9 @@
        -2.03,
        -0.25
       ],
-      "edgeAbnT": -2.55,
+      "edgeAbnT": -2.54,
       "months": 93,
-      "nEff": 755,
+      "nEff": 743,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.8,
@@ -2153,17 +2152,17 @@
        37.1
       ],
       "edgeVsBaselinePct": 1.31,
-      "edgeAbnPct": 0.74,
+      "edgeAbnPct": 0.73,
       "edgeAbnCI95": [
-       -0.3,
-       1.78
+       -0.31,
+       1.76
       ],
-      "edgeAbnT": 1.42,
+      "edgeAbnT": 1.39,
       "months": 74,
-      "nEff": 600,
+      "nEff": 602,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.98,
+      "edgeAbnRawPct": 0.96,
       "extremeCalls": 16,
       "successCI95Cl": [
        19.4,
@@ -2198,14 +2197,14 @@
       75.5
      ],
      "edgeVsBaselinePct": -0.01,
-     "edgeAbnPct": -0.34,
+     "edgeAbnPct": -0.33,
      "edgeAbnCI95": [
       -1.11,
       0.44
      ],
-     "edgeAbnT": -0.86,
+     "edgeAbnT": -0.85,
      "months": 224,
-     "nEff": 1129,
+     "nEff": 1127,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.01,
@@ -2240,14 +2239,14 @@
       64.0
      ],
      "edgeVsBaselinePct": 0.17,
-     "edgeAbnPct": -0.09,
+     "edgeAbnPct": -0.08,
      "edgeAbnCI95": [
-      -0.67,
+      -0.66,
       0.5
      ],
-     "edgeAbnT": -0.29,
+     "edgeAbnT": -0.27,
      "months": 233,
-     "nEff": 1495,
+     "nEff": 1492,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.15,
@@ -2268,15 +2267,15 @@
    "backtest": {
     "n": 28956,
     "byStatus": {
-     "timeout": 5664,
+     "timeout": 5665,
      "failure": 4914,
-     "success": 6357,
-     "expired": 4416,
+     "success": 6358,
+     "expired": 4417,
      "invalidated": 7485,
      "confirmed": 102,
-     "open": 18
+     "open": 15
     },
-    "judged": 16935,
+    "judged": 16937,
     "successRate": 37.5,
     "excludedDataBreaks": 27,
     "successCI95": [
@@ -2294,12 +2293,12 @@
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.06,
     "edgeAbnCI95": [
-     -0.31,
+     -0.3,
      0.18
     ],
-    "edgeAbnT": -0.51,
+    "edgeAbnT": -0.49,
     "months": 243,
-    "nEff": 8617,
+    "nEff": 8711,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": -0.17,
@@ -2310,10 +2309,10 @@
     ]
    },
    "live": {
-    "n": 188,
+    "n": 201,
     "byStatus": {
-     "confirmed": 94,
-     "open": 57,
+     "confirmed": 98,
+     "open": 66,
      "success": 21,
      "invalidated": 10,
      "failure": 6
@@ -2326,19 +2325,19 @@
      89.4
     ],
     "avgReturnPct": 12.05,
-    "avgFwd20Pct": 12.91,
-    "confirmRate": 92.4,
+    "avgFwd20Pct": 12.36,
+    "confirmRate": 92.6,
     "identificationSuccessRate": 56.8,
     "identCI95": [
      40.9,
      71.3
     ],
-    "edgeVsBaselinePct": 13.94,
-    "edgeAbnPct": 33.77,
+    "edgeVsBaselinePct": 13.39,
+    "edgeAbnPct": 33.7,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 13.45,
+    "edgeAbnRawPct": 12.63,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -2346,22 +2345,22 @@
      "up": {
       "n": 19360,
       "byStatus": {
-       "timeout": 3741,
+       "timeout": 3742,
        "failure": 3078,
-       "success": 4210,
-       "expired": 3222,
+       "success": 4211,
+       "expired": 3223,
        "invalidated": 4989,
        "confirmed": 102,
-       "open": 18
+       "open": 15
       },
-      "judged": 11029,
+      "judged": 11031,
       "successRate": 38.2,
       "excludedDataBreaks": 20,
       "successCI95": [
        37.3,
        39.1
       ],
-      "avgReturnPct": -1.57,
+      "avgReturnPct": -1.56,
       "avgFwd20Pct": -0.48,
       "confirmRate": 57.5,
       "identificationSuccessRate": 27.2,
@@ -2370,14 +2369,14 @@
        27.9
       ],
       "edgeVsBaselinePct": 0.38,
-      "edgeAbnPct": -0.02,
+      "edgeAbnPct": -0.01,
       "edgeAbnCI95": [
        -0.28,
-       0.25
+       0.26
       ],
-      "edgeAbnT": -0.12,
+      "edgeAbnT": -0.09,
       "months": 192,
-      "nEff": 6466,
+      "nEff": 6498,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.08,
@@ -2413,20 +2412,20 @@
        31.7
       ],
       "edgeVsBaselinePct": -1.46,
-      "edgeAbnPct": -0.43,
+      "edgeAbnPct": -0.41,
       "edgeAbnCI95": [
-       -1.06,
-       0.19
+       -1.03,
+       0.21
       ],
-      "edgeAbnT": -1.38,
+      "edgeAbnT": -1.32,
       "months": 87,
-      "nEff": 1248,
+      "nEff": 1256,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.58,
+      "edgeAbnRawPct": -0.56,
       "extremeCalls": 18,
       "successCI95Cl": [
-       31.0,
+       30.9,
        44.6
       ],
       "usable": true
@@ -2456,17 +2455,17 @@
        28.1
       ],
       "edgeVsBaselinePct": -0.09,
-      "edgeAbnPct": 0.04,
+      "edgeAbnPct": 0.02,
       "edgeAbnCI95": [
-       -0.66,
-       0.74
+       -0.67,
+       0.71
       ],
-      "edgeAbnT": 0.12,
+      "edgeAbnT": 0.06,
       "months": 59,
-      "nEff": 1509,
+      "nEff": 1525,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.16,
+      "edgeAbnRawPct": -0.18,
       "extremeCalls": 69,
       "successCI95Cl": [
        27.0,
@@ -2481,20 +2480,20 @@
       "byStatus": {
        "timeout": 3025,
        "failure": 2348,
-       "success": 3468,
-       "expired": 2639,
+       "success": 3469,
+       "expired": 2640,
        "invalidated": 3496,
-       "confirmed": 100,
-       "open": 18
+       "confirmed": 101,
+       "open": 15
       },
-      "judged": 8841,
+      "judged": 8842,
       "successRate": 39.2,
       "excludedDataBreaks": 15,
       "successCI95": [
        38.2,
-       40.2
+       40.3
       ],
-      "avgReturnPct": -0.97,
+      "avgReturnPct": -0.96,
       "avgFwd20Pct": -0.05,
       "confirmRate": 59.3,
       "identificationSuccessRate": 29.0,
@@ -2508,12 +2507,12 @@
        -0.19,
        0.41
       ],
-      "edgeAbnT": 0.71,
+      "edgeAbnT": 0.73,
       "months": 205,
       "nEff": 5086,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.07,
+      "edgeAbnRawPct": 0.08,
       "extremeCalls": 83,
       "successCI95Cl": [
        35.6,
@@ -2524,14 +2523,14 @@
      "stressed": {
       "n": 13862,
       "byStatus": {
-       "timeout": 2639,
+       "timeout": 2640,
        "failure": 2566,
        "invalidated": 3989,
        "success": 2889,
        "expired": 1777,
-       "confirmed": 2
+       "confirmed": 1
       },
-      "judged": 8094,
+      "judged": 8095,
       "successRate": 35.7,
       "excludedDataBreaks": 12,
       "successCI95": [
@@ -2554,13 +2553,13 @@
       ],
       "edgeAbnT": -1.33,
       "months": 171,
-      "nEff": 4131,
+      "nEff": 4165,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.44,
+      "edgeAbnRawPct": -0.43,
       "extremeCalls": 126,
       "successCI95Cl": [
-       30.4,
+       30.5,
        40.9
       ],
       "usable": true
@@ -2572,20 +2571,20 @@
       "byStatus": {
        "timeout": 2762,
        "failure": 2159,
-       "success": 3156,
-       "expired": 2430,
+       "success": 3157,
+       "expired": 2431,
        "invalidated": 3204,
-       "confirmed": 100,
-       "open": 18
+       "confirmed": 101,
+       "open": 15
       },
-      "judged": 8077,
+      "judged": 8078,
       "successRate": 39.1,
       "excludedDataBreaks": 14,
       "successCI95": [
        38.0,
-       40.1
+       40.2
       ],
-      "avgReturnPct": -1.12,
+      "avgReturnPct": -1.11,
       "avgFwd20Pct": -0.14,
       "confirmRate": 59.2,
       "identificationSuccessRate": 28.8,
@@ -2599,9 +2598,9 @@
        -0.28,
        0.34
       ],
-      "edgeAbnT": 0.17,
+      "edgeAbnT": 0.19,
       "months": 173,
-      "nEff": 4665,
+      "nEff": 4654,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.02,
@@ -2618,16 +2617,16 @@
        "failure": 919,
        "invalidated": 1785,
        "success": 1054,
-       "timeout": 979,
+       "timeout": 980,
        "expired": 792,
-       "confirmed": 2
+       "confirmed": 1
       },
-      "judged": 2952,
+      "judged": 2953,
       "successRate": 35.7,
       "excludedDataBreaks": 6,
       "successCI95": [
        34.0,
-       37.5
+       37.4
       ],
       "avgReturnPct": -2.8,
       "avgFwd20Pct": -1.43,
@@ -2638,17 +2637,17 @@
        24.4
       ],
       "edgeVsBaselinePct": -0.57,
-      "edgeAbnPct": -0.14,
+      "edgeAbnPct": -0.13,
       "edgeAbnCI95": [
-       -0.6,
-       0.33
+       -0.59,
+       0.34
       ],
-      "edgeAbnT": -0.57,
+      "edgeAbnT": -0.54,
       "months": 119,
-      "nEff": 2338,
+      "nEff": 2358,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.37,
+      "edgeAbnRawPct": -0.36,
       "extremeCalls": 46,
       "successCI95Cl": [
        28.0,
@@ -2681,17 +2680,17 @@
        32.0
       ],
       "edgeVsBaselinePct": 0.96,
-      "edgeAbnPct": 0.48,
+      "edgeAbnPct": 0.45,
       "edgeAbnCI95": [
-       -0.78,
-       1.74
+       -0.8,
+       1.7
       ],
-      "edgeAbnT": 0.77,
+      "edgeAbnT": 0.73,
       "months": 42,
-      "nEff": 341,
+      "nEff": 348,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.04,
+      "edgeAbnRawPct": -0.07,
       "extremeCalls": 5,
       "successCI95Cl": [
        28.9,
@@ -2724,17 +2723,17 @@
        32.4
       ],
       "edgeVsBaselinePct": -2.0,
-      "edgeAbnPct": -0.64,
+      "edgeAbnPct": -0.61,
       "edgeAbnCI95": [
-       -1.34,
-       0.06
+       -1.3,
+       0.09
       ],
-      "edgeAbnT": -1.82,
+      "edgeAbnT": -1.74,
       "months": 68,
-      "nEff": 983,
+      "nEff": 994,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.7,
+      "edgeAbnRawPct": -0.67,
       "extremeCalls": 13,
       "successCI95Cl": [
        29.5,
@@ -2769,14 +2768,14 @@
       "edgeAbnPct": 2.95,
       "edgeAbnCI95": [
        1.23,
-       4.68
+       4.67
       ],
-      "edgeAbnT": 3.56,
+      "edgeAbnT": 3.57,
       "months": 22,
       "nEff": 180,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.81,
+      "edgeAbnRawPct": 2.8,
       "extremeCalls": 2,
       "successCI95Cl": [
        43.9,
@@ -2810,17 +2809,17 @@
        27.2
       ],
       "edgeVsBaselinePct": -0.53,
-      "edgeAbnPct": -0.12,
+      "edgeAbnPct": -0.15,
       "edgeAbnCI95": [
-       -0.82,
-       0.57
+       -0.84,
+       0.55
       ],
-      "edgeAbnT": -0.35,
+      "edgeAbnT": -0.42,
       "months": 57,
-      "nEff": 1488,
+      "nEff": 1496,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.33,
+      "edgeAbnRawPct": -0.35,
       "extremeCalls": 67,
       "successCI95Cl": [
        25.9,
@@ -2855,17 +2854,17 @@
        23.2
       ],
       "edgeVsBaselinePct": -0.15,
-      "edgeAbnPct": 0.04,
+      "edgeAbnPct": 0.06,
       "edgeAbnCI95": [
-       -0.45,
-       0.54
+       -0.43,
+       0.56
       ],
-      "edgeAbnT": 0.18,
+      "edgeAbnT": 0.25,
       "months": 101,
-      "nEff": 1938,
+      "nEff": 1948,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.06,
+      "edgeAbnRawPct": 0.07,
       "extremeCalls": 44,
       "successCI95Cl": [
        27.4,
@@ -2898,14 +2897,14 @@
        27.7
       ],
       "edgeVsBaselinePct": 0.26,
-      "edgeAbnPct": -0.29,
+      "edgeAbnPct": -0.3,
       "edgeAbnCI95": [
        -0.68,
-       0.09
+       0.08
       ],
-      "edgeAbnT": -1.52,
+      "edgeAbnT": -1.55,
       "months": 91,
-      "nEff": 3287,
+      "nEff": 3296,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.41,
@@ -2919,15 +2918,15 @@
      "3": {
       "n": 9118,
       "byStatus": {
-       "timeout": 1849,
-       "expired": 1143,
+       "timeout": 1850,
+       "expired": 1144,
        "confirmed": 100,
-       "success": 2447,
+       "success": 2448,
        "failure": 1446,
        "invalidated": 2117,
-       "open": 16
+       "open": 13
       },
-      "judged": 5742,
+      "judged": 5744,
       "successRate": 42.6,
       "excludedDataBreaks": 6,
       "successCI95": [
@@ -2943,17 +2942,17 @@
        35.3
       ],
       "edgeVsBaselinePct": 0.4,
-      "edgeAbnPct": -0.2,
+      "edgeAbnPct": -0.21,
       "edgeAbnCI95": [
-       -0.6,
-       0.2
+       -0.61,
+       0.19
       ],
-      "edgeAbnT": -0.99,
+      "edgeAbnT": -1.04,
       "months": 103,
-      "nEff": 3231,
+      "nEff": 3266,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.28,
+      "edgeAbnRawPct": -0.29,
       "extremeCalls": 54,
       "successCI95Cl": [
        36.0,
@@ -2988,17 +2987,17 @@
        25.6
       ],
       "edgeVsBaselinePct": -1.01,
-      "edgeAbnPct": 0.21,
+      "edgeAbnPct": 0.23,
       "edgeAbnCI95": [
-       -0.4,
-       0.83
+       -0.38,
+       0.84
       ],
-      "edgeAbnT": 0.69,
+      "edgeAbnT": 0.75,
       "months": 86,
-      "nEff": 1584,
+      "nEff": 1589,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.05,
+      "edgeAbnRawPct": -0.03,
       "extremeCalls": 50,
       "successCI95Cl": [
        30.1,
@@ -3010,12 +3009,12 @@
    },
    "byVolume": {
     "confirmed": {
-     "n": 6998,
+     "n": 7000,
      "byStatus": {
       "timeout": 2442,
       "success": 2832,
       "failure": 1694,
-      "confirmed": 30
+      "confirmed": 32
      },
      "judged": 6968,
      "successRate": 40.6,
@@ -3038,9 +3037,9 @@
       -0.18,
       0.42
      ],
-     "edgeAbnT": 0.77,
+     "edgeAbnT": 0.79,
      "months": 239,
-     "nEff": 5346,
+     "nEff": 5440,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.04,
@@ -3054,12 +3053,12 @@
     "unconfirmed": {
      "n": 9535,
      "byStatus": {
-      "timeout": 3011,
+      "timeout": 3012,
       "failure": 3084,
-      "success": 3372,
-      "confirmed": 68
+      "success": 3373,
+      "confirmed": 66
      },
-     "judged": 9467,
+     "judged": 9469,
      "successRate": 35.6,
      "excludedDataBreaks": 6,
      "successCI95": [
@@ -3072,17 +3071,17 @@
      "identificationSuccessRate": 52.2,
      "identCI95": [
       51.0,
-      53.4
+      53.5
      ],
      "edgeVsBaselinePct": -0.4,
      "edgeAbnPct": -0.12,
      "edgeAbnCI95": [
-      -0.42,
+      -0.41,
       0.17
      ],
-     "edgeAbnT": -0.83,
+     "edgeAbnT": -0.81,
      "months": 240,
-     "nEff": 6073,
+     "nEff": 6126,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": -0.23,
@@ -3105,13 +3104,13 @@
     "byStatus": {
      "success": 8361,
      "failure": 4287,
-     "timeout": 5336,
+     "timeout": 5337,
      "expired": 5313,
      "invalidated": 8875,
-     "confirmed": 27,
+     "confirmed": 26,
      "open": 6
     },
-    "judged": 17984,
+    "judged": 17985,
     "successRate": 46.5,
     "excludedDataBreaks": 57,
     "successCI95": [
@@ -3127,17 +3126,17 @@
      31.7
     ],
     "edgeVsBaselinePct": 0.2,
-    "edgeAbnPct": 0.18,
+    "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
-     -0.07,
-     0.43
+     -0.08,
+     0.42
     ],
-    "edgeAbnT": 1.43,
+    "edgeAbnT": 1.37,
     "months": 244,
-    "nEff": 8233,
+    "nEff": 8348,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 0.53,
+    "edgeAbnRawPct": 0.52,
     "extremeCalls": 198,
     "successCI95Cl": [
      44.0,
@@ -3145,35 +3144,35 @@
     ]
    },
    "live": {
-    "n": 385,
+    "n": 386,
     "byStatus": {
-     "open": 201,
-     "invalidated": 55,
-     "confirmed": 103,
-     "failure": 10,
+     "invalidated": 60,
+     "open": 197,
+     "confirmed": 101,
+     "failure": 12,
      "success": 16
     },
-    "judged": 26,
-    "successRate": 61.5,
+    "judged": 28,
+    "successRate": 57.1,
     "excludedDataBreaks": 1,
     "successCI95": [
-     42.5,
-     77.6
+     39.1,
+     73.5
     ],
-    "avgReturnPct": -3.99,
-    "avgFwd20Pct": 1.87,
-    "confirmRate": 70.1,
-    "identificationSuccessRate": 19.8,
+    "avgReturnPct": -5.27,
+    "avgFwd20Pct": 1.33,
+    "confirmRate": 68.3,
+    "identificationSuccessRate": 18.2,
     "identCI95": [
-     12.5,
-     29.7
+     11.5,
+     27.5
     ],
-    "edgeVsBaselinePct": 0.84,
-    "edgeAbnPct": -2.54,
+    "edgeVsBaselinePct": 0.3,
+    "edgeAbnPct": -2.47,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 1.35,
+    "edgeAbnRawPct": 1.58,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -3183,13 +3182,13 @@
       "byStatus": {
        "success": 5745,
        "failure": 2848,
-       "timeout": 3457,
+       "timeout": 3458,
        "expired": 3714,
        "invalidated": 5828,
-       "confirmed": 27,
+       "confirmed": 26,
        "open": 6
       },
-      "judged": 12050,
+      "judged": 12051,
       "successRate": 47.7,
       "excludedDataBreaks": 44,
       "successCI95": [
@@ -3205,17 +3204,17 @@
        32.4
       ],
       "edgeVsBaselinePct": 0.52,
-      "edgeAbnPct": 0.34,
+      "edgeAbnPct": 0.33,
       "edgeAbnCI95": [
-       0.07,
-       0.62
+       0.06,
+       0.61
       ],
-      "edgeAbnT": 2.46,
+      "edgeAbnT": 2.43,
       "months": 195,
-      "nEff": 6911,
+      "nEff": 7059,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.77,
+      "edgeAbnRawPct": 0.76,
       "extremeCalls": 134,
       "successCI95Cl": [
        45.0,
@@ -3249,17 +3248,17 @@
        31.7
       ],
       "edgeVsBaselinePct": 0.43,
-      "edgeAbnPct": 0.22,
+      "edgeAbnPct": 0.2,
       "edgeAbnCI95": [
-       -0.73,
-       1.18
+       -0.74,
+       1.14
       ],
-      "edgeAbnT": 0.46,
+      "edgeAbnT": 0.42,
       "months": 82,
-      "nEff": 597,
+      "nEff": 614,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.47,
+      "edgeAbnRawPct": 0.45,
       "extremeCalls": 21,
       "successCI95Cl": [
        40.2,
@@ -3292,17 +3291,17 @@
        30.3
       ],
       "edgeVsBaselinePct": -1.21,
-      "edgeAbnPct": -0.4,
+      "edgeAbnPct": -0.41,
       "edgeAbnCI95": [
-       -1.0,
+       -1.01,
        0.19
       ],
-      "edgeAbnT": -1.36,
+      "edgeAbnT": -1.37,
       "months": 60,
-      "nEff": 1571,
+      "nEff": 1542,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.24,
+      "edgeAbnRawPct": -0.25,
       "extremeCalls": 43,
       "successCI95Cl": [
        35.7,
@@ -3317,13 +3316,13 @@
       "byStatus": {
        "success": 4951,
        "failure": 2784,
-       "timeout": 3225,
+       "timeout": 3226,
        "expired": 3374,
        "invalidated": 5562,
-       "confirmed": 27,
+       "confirmed": 26,
        "open": 6
       },
-      "judged": 10960,
+      "judged": 10961,
       "successRate": 45.2,
       "excludedDataBreaks": 32,
       "successCI95": [
@@ -3342,11 +3341,11 @@
       "edgeAbnPct": 0.29,
       "edgeAbnCI95": [
        0.0,
-       0.58
+       0.57
       ],
-      "edgeAbnT": 2.0,
+      "edgeAbnT": 1.98,
       "months": 205,
-      "nEff": 5810,
+      "nEff": 5907,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.59,
@@ -3383,17 +3382,17 @@
        34.5
       ],
       "edgeVsBaselinePct": 1.0,
-      "edgeAbnPct": 0.01,
+      "edgeAbnPct": -0.0,
       "edgeAbnCI95": [
-       -0.43,
-       0.46
+       -0.44,
+       0.44
       ],
-      "edgeAbnT": 0.07,
+      "edgeAbnT": -0.01,
       "months": 159,
-      "nEff": 3042,
+      "nEff": 3074,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.44,
+      "edgeAbnRawPct": 0.42,
       "extremeCalls": 104,
       "successCI95Cl": [
        43.9,
@@ -3408,13 +3407,13 @@
       "byStatus": {
        "success": 4458,
        "failure": 2444,
-       "timeout": 2867,
+       "timeout": 2868,
        "expired": 3062,
        "invalidated": 4869,
-       "confirmed": 27,
+       "confirmed": 26,
        "open": 6
       },
-      "judged": 9769,
+      "judged": 9770,
       "successRate": 45.6,
       "excludedDataBreaks": 31,
       "successCI95": [
@@ -3430,14 +3429,14 @@
        30.8
       ],
       "edgeVsBaselinePct": -0.07,
-      "edgeAbnPct": 0.3,
+      "edgeAbnPct": 0.29,
       "edgeAbnCI95": [
        -0.01,
        0.6
       ],
-      "edgeAbnT": 1.89,
+      "edgeAbnT": 1.88,
       "months": 177,
-      "nEff": 5214,
+      "nEff": 5297,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.63,
@@ -3473,24 +3472,23 @@
        40.7
       ],
       "edgeVsBaselinePct": 3.04,
-      "edgeAbnPct": 0.54,
+      "edgeAbnPct": 0.51,
       "edgeAbnCI95": [
-       0.0,
-       1.07
+       -0.01,
+       1.04
       ],
-      "edgeAbnT": 2.0,
+      "edgeAbnT": 1.94,
       "months": 102,
-      "nEff": 2208,
+      "nEff": 2276,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.36,
+      "edgeAbnRawPct": 1.33,
       "extremeCalls": 40,
       "successCI95Cl": [
        49.1,
        63.7
       ],
-      "usable": true,
-      "verdictNote": "the template itself has not earned an edge"
+      "usable": true
      },
      "mixed/calm": {
       "n": 1177,
@@ -3518,12 +3516,12 @@
       "edgeVsBaselinePct": -1.55,
       "edgeAbnPct": -0.39,
       "edgeAbnCI95": [
-       -1.65,
-       0.87
+       -1.63,
+       0.85
       ],
-      "edgeAbnT": -0.62,
+      "edgeAbnT": -0.63,
       "months": 47,
-      "nEff": 238,
+      "nEff": 247,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.39,
@@ -3559,17 +3557,17 @@
        36.2
       ],
       "edgeVsBaselinePct": 1.2,
-      "edgeAbnPct": 0.46,
+      "edgeAbnPct": 0.43,
       "edgeAbnCI95": [
-       -0.72,
-       1.64
+       -0.74,
+       1.6
       ],
-      "edgeAbnT": 0.77,
+      "edgeAbnT": 0.73,
       "months": 64,
-      "nEff": 441,
+      "nEff": 451,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.8,
+      "edgeAbnRawPct": 0.77,
       "extremeCalls": 21,
       "successCI95Cl": [
        41.6,
@@ -3602,17 +3600,17 @@
        28.4
       ],
       "edgeVsBaselinePct": -1.93,
-      "edgeAbnPct": 0.54,
+      "edgeAbnPct": 0.52,
       "edgeAbnCI95": [
-       -0.39,
-       1.48
+       -0.42,
+       1.46
       ],
-      "edgeAbnT": 1.21,
+      "edgeAbnT": 1.15,
       "months": 22,
-      "nEff": 416,
+      "nEff": 410,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.54,
+      "edgeAbnRawPct": 0.52,
       "extremeCalls": 0,
       "successCI95Cl": [
        23.9,
@@ -3645,14 +3643,14 @@
        30.9
       ],
       "edgeVsBaselinePct": -1.12,
-      "edgeAbnPct": -0.53,
+      "edgeAbnPct": -0.54,
       "edgeAbnCI95": [
-       -1.18,
+       -1.19,
        0.12
       ],
       "edgeAbnT": -1.64,
       "months": 60,
-      "nEff": 1381,
+      "nEff": 1357,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.35,
@@ -3690,17 +3688,17 @@
        37.3
       ],
       "edgeVsBaselinePct": 0.93,
-      "edgeAbnPct": 0.38,
+      "edgeAbnPct": 0.36,
       "edgeAbnCI95": [
        -0.1,
-       0.85
+       0.82
       ],
-      "edgeAbnT": 1.58,
+      "edgeAbnT": 1.54,
       "months": 101,
-      "nEff": 2143,
+      "nEff": 2221,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.65,
+      "edgeAbnRawPct": 0.64,
       "extremeCalls": 50,
       "successCI95Cl": [
        45.5,
@@ -3733,20 +3731,20 @@
        35.4
       ],
       "edgeVsBaselinePct": 1.11,
-      "edgeAbnPct": 0.48,
+      "edgeAbnPct": 0.47,
       "edgeAbnCI95": [
        0.01,
-       0.95
+       0.93
       ],
-      "edgeAbnT": 2.04,
+      "edgeAbnT": 2.02,
       "months": 93,
-      "nEff": 2555,
+      "nEff": 2604,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 1.03,
       "extremeCalls": 58,
       "successCI95Cl": [
-       46.3,
+       46.4,
        57.2
       ],
       "usable": true,
@@ -3758,19 +3756,19 @@
        "failure": 1620,
        "success": 2215,
        "invalidated": 3193,
-       "timeout": 1654,
+       "timeout": 1655,
        "expired": 1534,
-       "confirmed": 20,
+       "confirmed": 19,
        "open": 2
       },
-      "judged": 5489,
-      "successRate": 40.4,
+      "judged": 5490,
+      "successRate": 40.3,
       "excludedDataBreaks": 18,
       "successCI95": [
        39.1,
        41.7
       ],
-      "avgReturnPct": -0.0,
+      "avgReturnPct": 0.0,
       "avgFwd20Pct": -0.42,
       "confirmRate": 53.8,
       "identificationSuccessRate": 25.9,
@@ -3782,14 +3780,14 @@
       "edgeAbnPct": -0.29,
       "edgeAbnCI95": [
        -0.76,
-       0.18
+       0.17
       ],
-      "edgeAbnT": -1.24,
+      "edgeAbnT": -1.25,
       "months": 103,
-      "nEff": 2273,
+      "nEff": 2265,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.21,
+      "edgeAbnRawPct": -0.22,
       "extremeCalls": 42,
       "successCI95Cl": [
        36.2,
@@ -3824,17 +3822,17 @@
        30.8
       ],
       "edgeVsBaselinePct": 0.72,
-      "edgeAbnPct": 0.28,
+      "edgeAbnPct": 0.27,
       "edgeAbnCI95": [
-       -0.29,
-       0.84
+       -0.3,
+       0.83
       ],
-      "edgeAbnT": 0.97,
+      "edgeAbnT": 0.93,
       "months": 87,
-      "nEff": 1918,
+      "nEff": 1884,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.9,
+      "edgeAbnRawPct": 0.89,
       "extremeCalls": 46,
       "successCI95Cl": [
        40.7,
@@ -3869,17 +3867,17 @@
       71.8
      ],
      "edgeVsBaselinePct": 0.73,
-     "edgeAbnPct": 0.37,
+     "edgeAbnPct": 0.36,
      "edgeAbnCI95": [
-      -0.05,
-      0.79
+      -0.06,
+      0.78
      ],
-     "edgeAbnT": 1.73,
+     "edgeAbnT": 1.69,
      "months": 241,
-     "nEff": 3606,
+     "nEff": 3672,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 0.97,
+     "edgeAbnRawPct": 0.96,
      "extremeCalls": 112,
      "successCI95Cl": [
       48.5,
@@ -3891,16 +3889,16 @@
      "n": 11033,
      "byStatus": {
       "success": 4805,
-      "timeout": 3439,
+      "timeout": 3440,
       "failure": 2771,
-      "confirmed": 18
+      "confirmed": 17
      },
-     "judged": 11015,
+     "judged": 11016,
      "successRate": 43.6,
      "excludedDataBreaks": 11,
      "successCI95": [
       42.7,
-      44.6
+      44.5
      ],
      "avgReturnPct": 1.49,
      "avgFwd20Pct": 1.03,
@@ -3911,14 +3909,14 @@
       64.5
      ],
      "edgeVsBaselinePct": -0.0,
-     "edgeAbnPct": 0.15,
+     "edgeAbnPct": 0.14,
      "edgeAbnCI95": [
       -0.12,
-      0.42
+      0.41
      ],
-     "edgeAbnT": 1.12,
+     "edgeAbnT": 1.06,
      "months": 242,
-     "nEff": 6146,
+     "nEff": 6178,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.36,
@@ -3966,7 +3964,7 @@
      -0.58,
      0.31
     ],
-    "edgeAbnT": -0.6,
+    "edgeAbnT": -0.61,
     "months": 210,
     "nEff": 801,
     "edgeVerdict": "unproven",
@@ -4000,11 +3998,11 @@
      49.0
     ],
     "edgeVsBaselinePct": -1.36,
-    "edgeAbnPct": 0.68,
+    "edgeAbnPct": 0.72,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -1.54,
+    "edgeAbnRawPct": -1.48,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -4076,17 +4074,17 @@
        36.4
       ],
       "edgeVsBaselinePct": -1.29,
-      "edgeAbnPct": -0.66,
+      "edgeAbnPct": -0.67,
       "edgeAbnCI95": [
-       -1.61,
-       0.29
+       -1.62,
+       0.27
       ],
-      "edgeAbnT": -1.41,
+      "edgeAbnT": -1.44,
       "months": 38,
-      "nEff": 123,
+      "nEff": 124,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.66,
+      "edgeAbnRawPct": -0.67,
       "extremeCalls": 0,
       "successCI95Cl": [
        12.4,
@@ -4118,17 +4116,17 @@
        22.7
       ],
       "edgeVsBaselinePct": -2.45,
-      "edgeAbnPct": -0.4,
+      "edgeAbnPct": -0.42,
       "edgeAbnCI95": [
-       -1.77,
-       0.96
+       -1.78,
+       0.94
       ],
-      "edgeAbnT": -0.6,
+      "edgeAbnT": -0.62,
       "months": 32,
       "nEff": 101,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.4,
+      "edgeAbnRawPct": -0.42,
       "extremeCalls": 0,
       "successCI95Cl": [
        3.9,
@@ -4170,7 +4168,7 @@
       ],
       "edgeAbnT": 0.45,
       "months": 163,
-      "nEff": 925,
+      "nEff": 924,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.09,
@@ -4205,17 +4203,17 @@
        32.7
       ],
       "edgeVsBaselinePct": -0.52,
-      "edgeAbnPct": -1.09,
+      "edgeAbnPct": -1.11,
       "edgeAbnCI95": [
-       -2.5,
-       0.32
+       -2.52,
+       0.29
       ],
-      "edgeAbnT": -1.54,
+      "edgeAbnT": -1.57,
       "months": 96,
       "nEff": 91,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.09,
+      "edgeAbnRawPct": -1.11,
       "extremeCalls": 0,
       "successCI95Cl": [
        14.0,
@@ -4253,17 +4251,17 @@
       "edgeAbnPct": 0.13,
       "edgeAbnCI95": [
        -0.28,
-       0.54
+       0.55
       ],
-      "edgeAbnT": 0.64,
+      "edgeAbnT": 0.65,
       "months": 151,
-      "nEff": 899,
+      "nEff": 897,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.13,
       "extremeCalls": 0,
       "successCI95Cl": [
-       19.6,
+       19.5,
        25.4
       ],
       "usable": true
@@ -4292,17 +4290,17 @@
        37.0
       ],
       "edgeVsBaselinePct": 0.23,
-      "edgeAbnPct": -1.71,
+      "edgeAbnPct": -1.73,
       "edgeAbnCI95": [
-       -4.16,
-       0.75
+       -4.18,
+       0.72
       ],
-      "edgeAbnT": -1.39,
+      "edgeAbnT": -1.42,
       "months": 58,
       "nEff": 39,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.71,
+      "edgeAbnRawPct": -1.73,
       "extremeCalls": 0,
       "successCI95Cl": [
        14.3,
@@ -4334,17 +4332,17 @@
        30.0
       ],
       "edgeVsBaselinePct": -1.86,
-      "edgeAbnPct": -0.61,
+      "edgeAbnPct": -0.62,
       "edgeAbnCI95": [
-       -3.08,
-       1.87
+       -3.09,
+       1.85
       ],
-      "edgeAbnT": -0.51,
+      "edgeAbnT": -0.53,
       "months": 19,
       "nEff": 27,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.61,
+      "edgeAbnRawPct": -0.62,
       "extremeCalls": 0,
       "successCI95Cl": [
        2.4,
@@ -4376,17 +4374,17 @@
        48.5
       ],
       "edgeVsBaselinePct": -1.01,
-      "edgeAbnPct": -0.69,
+      "edgeAbnPct": -0.7,
       "edgeAbnCI95": [
-       -1.5,
-       0.13
+       -1.51,
+       0.11
       ],
-      "edgeAbnT": -1.75,
+      "edgeAbnT": -1.79,
       "months": 23,
       "nEff": 91,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.69,
+      "edgeAbnRawPct": -0.7,
       "extremeCalls": 0,
       "successCI95Cl": [
        13.2,
@@ -4418,17 +4416,17 @@
        33.3
       ],
       "edgeVsBaselinePct": -5.17,
-      "edgeAbnPct": -1.78,
+      "edgeAbnPct": -1.82,
       "edgeAbnCI95": [
-       -6.47,
-       2.9
+       -6.5,
+       2.87
       ],
-      "edgeAbnT": -0.9,
+      "edgeAbnT": -0.92,
       "months": 8,
       "nEff": 16,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.78,
+      "edgeAbnRawPct": -1.82,
       "extremeCalls": 0,
       "successCI95Cl": [
        0.0,
@@ -4460,17 +4458,17 @@
        25.3
       ],
       "edgeVsBaselinePct": -1.94,
-      "edgeAbnPct": -0.14,
+      "edgeAbnPct": -0.15,
       "edgeAbnCI95": [
        -1.54,
-       1.25
+       1.24
       ],
-      "edgeAbnT": -0.21,
+      "edgeAbnT": -0.23,
       "months": 30,
       "nEff": 85,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.14,
+      "edgeAbnRawPct": -0.15,
       "extremeCalls": 0,
       "successCI95Cl": [
        3.5,
@@ -4506,12 +4504,12 @@
       "edgeVsBaselinePct": 0.52,
       "edgeAbnPct": 0.14,
       "edgeAbnCI95": [
-       -0.45,
-       0.74
+       -0.46,
+       0.73
       ],
-      "edgeAbnT": 0.48,
+      "edgeAbnT": 0.46,
       "months": 82,
-      "nEff": 436,
+      "nEff": 438,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.14,
@@ -4546,7 +4544,7 @@
        30.9
       ],
       "edgeVsBaselinePct": -1.04,
-      "edgeAbnPct": -0.64,
+      "edgeAbnPct": -0.63,
       "edgeAbnCI95": [
        -1.82,
        0.55
@@ -4556,7 +4554,7 @@
       "nEff": 130,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.64,
+      "edgeAbnRawPct": -0.63,
       "extremeCalls": 0,
       "successCI95Cl": [
        17.4,
@@ -4589,17 +4587,17 @@
        21.0
       ],
       "edgeVsBaselinePct": -2.08,
-      "edgeAbnPct": -0.37,
+      "edgeAbnPct": -0.38,
       "edgeAbnCI95": [
        -1.0,
        0.25
       ],
-      "edgeAbnT": -1.19,
+      "edgeAbnT": -1.2,
       "months": 74,
-      "nEff": 370,
+      "nEff": 371,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.37,
+      "edgeAbnRawPct": -0.38,
       "extremeCalls": 0,
       "successCI95Cl": [
        9.6,
@@ -4633,12 +4631,12 @@
       "edgeVsBaselinePct": 0.09,
       "edgeAbnPct": 0.68,
       "edgeAbnCI95": [
-       -0.31,
+       -0.32,
        1.68
       ],
-      "edgeAbnT": 1.38,
+      "edgeAbnT": 1.36,
       "months": 49,
-      "nEff": 155,
+      "nEff": 154,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.68,
@@ -4674,17 +4672,17 @@
       55.6
      ],
      "edgeVsBaselinePct": -0.34,
-     "edgeAbnPct": -0.1,
+     "edgeAbnPct": -0.09,
      "edgeAbnCI95": [
       -0.74,
       0.55
      ],
      "edgeAbnT": -0.29,
      "months": 182,
-     "nEff": 439,
+     "nEff": 437,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -0.1,
+     "edgeAbnRawPct": -0.09,
      "extremeCalls": 0,
      "successCI95Cl": [
       22.6,
@@ -4717,12 +4715,12 @@
      "edgeVsBaselinePct": -0.83,
      "edgeAbnPct": -0.14,
      "edgeAbnCI95": [
-      -0.6,
-      0.33
+      -0.61,
+      0.32
      ],
-     "edgeAbnT": -0.58,
+     "edgeAbnT": -0.6,
      "months": 192,
-     "nEff": 672,
+     "nEff": 671,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": -0.14,
@@ -4766,7 +4764,7 @@
       -0.58,
       0.31
      ],
-     "edgeAbnT": -0.6,
+     "edgeAbnT": -0.61,
      "months": 210,
      "nEff": 801,
      "edgeVerdict": "unproven",
@@ -4805,20 +4803,20 @@
       35.6
      ],
      "edgeVsBaselinePct": -0.27,
-     "edgeAbnPct": 0.15,
+     "edgeAbnPct": 0.14,
      "edgeAbnCI95": [
-      -0.15,
-      0.46
+      -0.17,
+      0.44
      ],
-     "edgeAbnT": 0.99,
+     "edgeAbnT": 0.89,
      "months": 232,
-     "nEff": 3976,
+     "nEff": 3898,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 0.23,
+     "edgeAbnRawPct": 0.22,
      "extremeCalls": 33,
      "successCI95Cl": [
-      39.8,
+      39.9,
       44.5
      ],
      "usable": true
@@ -4856,12 +4854,12 @@
     "edgeVsBaselinePct": -0.46,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
-     -1.0,
-     0.91
+     -1.01,
+     0.92
     ],
     "edgeAbnT": -0.09,
     "months": 188,
-    "nEff": 480,
+    "nEff": 479,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": 0.12,
@@ -4895,11 +4893,11 @@
      62.4
     ],
     "edgeVsBaselinePct": -2.69,
-    "edgeAbnPct": 3.01,
+    "edgeAbnPct": 3.04,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -2.45,
+    "edgeAbnRawPct": -2.41,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -4929,17 +4927,17 @@
        24.3
       ],
       "edgeVsBaselinePct": -0.2,
-      "edgeAbnPct": 0.28,
+      "edgeAbnPct": 0.27,
       "edgeAbnCI95": [
-       -0.77,
+       -0.78,
        1.32
       ],
-      "edgeAbnT": 0.52,
+      "edgeAbnT": 0.5,
       "months": 156,
-      "nEff": 416,
+      "nEff": 414,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.48,
+      "edgeAbnRawPct": 0.47,
       "extremeCalls": 4,
       "successCI95Cl": [
        12.3,
@@ -4971,17 +4969,17 @@
        27.5
       ],
       "edgeVsBaselinePct": -1.35,
-      "edgeAbnPct": -0.95,
+      "edgeAbnPct": -0.87,
       "edgeAbnCI95": [
-       -4.03,
-       2.14
+       -4.04,
+       2.3
       ],
-      "edgeAbnT": -0.63,
+      "edgeAbnT": -0.57,
       "months": 27,
-      "nEff": 43,
+      "nEff": 44,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.95,
+      "edgeAbnRawPct": -0.87,
       "extremeCalls": 0,
       "successCI95Cl": [
        3.8,
@@ -5012,17 +5010,17 @@
        35.3
       ],
       "edgeVsBaselinePct": -0.76,
-      "edgeAbnPct": -2.59,
+      "edgeAbnPct": -2.6,
       "edgeAbnCI95": [
-       -6.5,
-       1.31
+       -6.49,
+       1.3
       ],
-      "edgeAbnT": -1.42,
+      "edgeAbnT": -1.43,
       "months": 15,
       "nEff": 30,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -2.59,
+      "edgeAbnRawPct": -2.6,
       "extremeCalls": 0,
       "successCI95Cl": [
        4.3,
@@ -5059,12 +5057,12 @@
       "edgeVsBaselinePct": -1.42,
       "edgeAbnPct": -0.14,
       "edgeAbnCI95": [
-       -1.11,
-       0.82
+       -1.12,
+       0.83
       ],
       "edgeAbnT": -0.29,
       "months": 144,
-      "nEff": 409,
+      "nEff": 405,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.15,
@@ -5101,15 +5099,15 @@
       "edgeVsBaselinePct": 2.26,
       "edgeAbnPct": 0.24,
       "edgeAbnCI95": [
-       -2.08,
-       2.56
+       -2.1,
+       2.57
       ],
-      "edgeAbnT": 0.21,
+      "edgeAbnT": 0.2,
       "months": 63,
       "nEff": 116,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.9,
+      "edgeAbnRawPct": 0.89,
       "extremeCalls": 2,
       "successCI95Cl": [
        10.7,
@@ -5146,12 +5144,12 @@
       "edgeVsBaselinePct": -1.17,
       "edgeAbnPct": -0.15,
       "edgeAbnCI95": [
-       -1.17,
+       -1.18,
        0.88
       ],
       "edgeAbnT": -0.28,
       "months": 135,
-      "nEff": 379,
+      "nEff": 376,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.16,
@@ -5186,17 +5184,17 @@
        43.4
       ],
       "edgeVsBaselinePct": 4.78,
-      "edgeAbnPct": 2.44,
+      "edgeAbnPct": 2.38,
       "edgeAbnCI95": [
-       -0.94,
-       5.82
+       -1.0,
+       5.76
       ],
-      "edgeAbnT": 1.47,
+      "edgeAbnT": 1.43,
       "months": 35,
       "nEff": 68,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 3.73,
+      "edgeAbnRawPct": 3.67,
       "extremeCalls": 2,
       "successCI95Cl": [
        8.2,
@@ -5230,8 +5228,8 @@
       "edgeVsBaselinePct": -2.46,
       "edgeAbnPct": -0.04,
       "edgeAbnCI95": [
-       -3.08,
-       3.0
+       -3.09,
+       3.01
       ],
       "edgeAbnT": -0.03,
       "months": 9,
@@ -5270,17 +5268,17 @@
        42.1
       ],
       "edgeVsBaselinePct": -0.68,
-      "edgeAbnPct": -1.49,
+      "edgeAbnPct": -1.37,
       "edgeAbnCI95": [
-       -6.31,
-       3.34
+       -6.34,
+       3.61
       ],
-      "edgeAbnT": -0.64,
+      "edgeAbnT": -0.57,
       "months": 21,
-      "nEff": 23,
+      "nEff": 24,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.49,
+      "edgeAbnRawPct": -1.37,
       "extremeCalls": 0,
       "successCI95Cl": [
        1.6,
@@ -5309,17 +5307,17 @@
        43.4
       ],
       "edgeVsBaselinePct": -5.36,
-      "edgeAbnPct": -1.0,
+      "edgeAbnPct": -0.99,
       "edgeAbnCI95": [
-       -15.78,
-       13.78
+       -16.01,
+       14.03
       ],
-      "edgeAbnT": -0.86,
+      "edgeAbnT": -0.84,
       "months": 2,
       "nEff": 3,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.0,
+      "edgeAbnRawPct": -0.99,
       "extremeCalls": 0,
       "successCI95Cl": [
        0.0,
@@ -5353,9 +5351,9 @@
       "edgeAbnPct": -2.73,
       "edgeAbnCI95": [
        -6.99,
-       1.53
+       1.52
       ],
-      "edgeAbnT": -1.38,
+      "edgeAbnT": -1.39,
       "months": 14,
       "nEff": 28,
       "edgeVerdict": "unproven",
@@ -5394,17 +5392,17 @@
        26.7
       ],
       "edgeVsBaselinePct": -1.03,
-      "edgeAbnPct": -0.9,
+      "edgeAbnPct": -0.92,
       "edgeAbnCI95": [
-       -2.24,
-       0.44
+       -2.28,
+       0.43
       ],
-      "edgeAbnT": -1.34,
+      "edgeAbnT": -1.37,
       "months": 56,
       "nEff": 189,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.92,
+      "edgeAbnRawPct": -0.95,
       "extremeCalls": 1,
       "successCI95Cl": [
        8.1,
@@ -5436,17 +5434,17 @@
        35.7
       ],
       "edgeVsBaselinePct": 1.81,
-      "edgeAbnPct": 2.09,
+      "edgeAbnPct": 2.15,
       "edgeAbnCI95": [
-       -0.44,
-       4.63
+       -0.4,
+       4.7
       ],
-      "edgeAbnT": 1.65,
+      "edgeAbnT": 1.69,
       "months": 56,
       "nEff": 108,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.8,
+      "edgeAbnRawPct": 2.85,
       "extremeCalls": 3,
       "successCI95Cl": [
        15.2,
@@ -5484,7 +5482,7 @@
        -3.86,
        0.35
       ],
-      "edgeAbnT": -1.67,
+      "edgeAbnT": -1.68,
       "months": 55,
       "nEff": 88,
       "edgeVerdict": "unproven",
@@ -5521,17 +5519,17 @@
        26.3
       ],
       "edgeVsBaselinePct": 0.37,
-      "edgeAbnPct": 0.55,
+      "edgeAbnPct": 0.52,
       "edgeAbnCI95": [
-       -1.03,
-       2.13
+       -1.1,
+       2.15
       ],
-      "edgeAbnT": 0.7,
+      "edgeAbnT": 0.65,
       "months": 43,
       "nEff": 115,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.55,
+      "edgeAbnRawPct": 0.52,
       "extremeCalls": 0,
       "successCI95Cl": [
        8.1,
@@ -5566,10 +5564,10 @@
      "edgeVsBaselinePct": 0.26,
      "edgeAbnPct": 0.95,
      "edgeAbnCI95": [
-      -0.69,
-      2.6
+      -0.71,
+      2.61
      ],
-     "edgeAbnT": 1.15,
+     "edgeAbnT": 1.13,
      "months": 128,
      "nEff": 192,
      "edgeVerdict": "unproven",
@@ -5607,12 +5605,12 @@
      "edgeVsBaselinePct": -0.79,
      "edgeAbnPct": -0.48,
      "edgeAbnCI95": [
-      -1.59,
-      0.63
+      -1.6,
+      0.64
      ],
      "edgeAbnT": -0.85,
      "months": 147,
-     "nEff": 314,
+     "nEff": 312,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": -0.36,
@@ -5653,12 +5651,12 @@
      "edgeVsBaselinePct": -0.46,
      "edgeAbnPct": -0.04,
      "edgeAbnCI95": [
-      -1.0,
-      0.91
+      -1.01,
+      0.92
      ],
      "edgeAbnT": -0.09,
      "months": 188,
-     "nEff": 480,
+     "nEff": 479,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.12,
@@ -5693,17 +5691,17 @@
       30.9
      ],
      "edgeVsBaselinePct": -0.21,
-     "edgeAbnPct": 0.25,
+     "edgeAbnPct": 0.24,
      "edgeAbnCI95": [
-      -0.37,
-      0.88
+      -0.38,
+      0.87
      ],
-     "edgeAbnT": 0.81,
+     "edgeAbnT": 0.76,
      "months": 216,
-     "nEff": 960,
+     "nEff": 953,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 0.28,
+     "edgeAbnRawPct": 0.27,
      "extremeCalls": 6,
      "successCI95Cl": [
       29.5,
@@ -5743,20 +5741,20 @@
      32.3
     ],
     "edgeVsBaselinePct": 2.94,
-    "edgeAbnPct": 1.0,
+    "edgeAbnPct": 0.99,
     "edgeAbnCI95": [
-     0.11,
-     1.9
+     0.09,
+     1.88
     ],
-    "edgeAbnT": 2.2,
+    "edgeAbnT": 2.17,
     "months": 240,
-    "nEff": 1572,
+    "nEff": 1575,
     "edgeVerdict": "earned",
-    "trustEdgePct": 1.0,
-    "edgeAbnRawPct": 2.45,
+    "trustEdgePct": 0.99,
+    "edgeAbnRawPct": 2.43,
     "extremeCalls": 139,
     "successCI95Cl": [
-     27.0,
+     26.9,
      35.2
     ]
    },
@@ -5776,19 +5774,19 @@
      56.2
     ],
     "avgReturnPct": -30.02,
-    "avgFwd20Pct": -20.66,
+    "avgFwd20Pct": -24.97,
     "confirmRate": 90.0,
     "identificationSuccessRate": 0.0,
     "identCI95": [
      0.0,
      49.0
     ],
-    "edgeVsBaselinePct": -21.69,
-    "edgeAbnPct": -2.79,
+    "edgeVsBaselinePct": -26.0,
+    "edgeAbnPct": -34.25,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -22.15,
+    "edgeAbnRawPct": -25.13,
     "extremeCalls": 1
    },
    "byRegime": {
@@ -5819,17 +5817,17 @@
        31.1
       ],
       "edgeVsBaselinePct": 2.84,
-      "edgeAbnPct": 0.92,
+      "edgeAbnPct": 0.9,
       "edgeAbnCI95": [
-       -0.19,
-       2.03
+       -0.2,
+       2.0
       ],
-      "edgeAbnT": 1.64,
+      "edgeAbnT": 1.61,
       "months": 179,
-      "nEff": 1080,
+      "nEff": 1092,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.58,
+      "edgeAbnRawPct": 2.56,
       "extremeCalls": 83,
       "successCI95Cl": [
        26.2,
@@ -5862,17 +5860,17 @@
        31.2
       ],
       "edgeVsBaselinePct": -0.47,
-      "edgeAbnPct": -0.19,
+      "edgeAbnPct": -0.16,
       "edgeAbnCI95": [
-       -2.3,
-       1.92
+       -2.28,
+       1.96
       ],
-      "edgeAbnT": -0.18,
+      "edgeAbnT": -0.15,
       "months": 52,
       "nEff": 297,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.34,
+      "edgeAbnRawPct": 0.37,
       "extremeCalls": 10,
       "successCI95Cl": [
        20.9,
@@ -5905,17 +5903,17 @@
        37.6
       ],
       "edgeVsBaselinePct": 3.64,
-      "edgeAbnPct": 1.29,
+      "edgeAbnPct": 1.25,
       "edgeAbnCI95": [
-       -0.57,
-       3.14
+       -0.61,
+       3.11
       ],
-      "edgeAbnT": 1.4,
+      "edgeAbnT": 1.35,
       "months": 47,
-      "nEff": 357,
+      "nEff": 353,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.66,
+      "edgeAbnRawPct": 2.62,
       "extremeCalls": 44,
       "successCI95Cl": [
        23.1,
@@ -5951,17 +5949,17 @@
        27.1
       ],
       "edgeVsBaselinePct": 0.84,
-      "edgeAbnPct": 0.12,
+      "edgeAbnPct": 0.13,
       "edgeAbnCI95": [
-       -1.06,
-       1.3
+       -1.04,
+       1.31
       ],
-      "edgeAbnT": 0.21,
+      "edgeAbnT": 0.22,
       "months": 185,
-      "nEff": 939,
+      "nEff": 941,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.6,
+      "edgeAbnRawPct": 1.61,
       "extremeCalls": 63,
       "successCI95Cl": [
        23.9,
@@ -5994,17 +5992,17 @@
        38.8
       ],
       "edgeVsBaselinePct": 4.84,
-      "edgeAbnPct": 1.8,
+      "edgeAbnPct": 1.75,
       "edgeAbnCI95": [
-       0.61,
-       2.98
+       0.57,
+       2.94
       ],
-      "edgeAbnT": 3.01,
+      "edgeAbnT": 2.93,
       "months": 118,
-      "nEff": 889,
+      "nEff": 888,
       "edgeVerdict": "earned",
-      "trustEdgePct": 1.8,
-      "edgeAbnRawPct": 3.21,
+      "trustEdgePct": 1.75,
+      "edgeAbnRawPct": 3.17,
       "extremeCalls": 76,
       "successCI95Cl": [
        28.1,
@@ -6040,21 +6038,21 @@
        27.2
       ],
       "edgeVsBaselinePct": 0.94,
-      "edgeAbnPct": -0.14,
+      "edgeAbnPct": -0.13,
       "edgeAbnCI95": [
-       -1.4,
-       1.12
+       -1.38,
+       1.13
       ],
-      "edgeAbnT": -0.21,
+      "edgeAbnT": -0.2,
       "months": 159,
-      "nEff": 813,
+      "nEff": 816,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 1.43,
       "extremeCalls": 52,
       "successCI95Cl": [
        23.7,
-       30.2
+       30.1
       ],
       "usable": true
      },
@@ -6083,17 +6081,17 @@
        44.5
       ],
       "edgeVsBaselinePct": 7.19,
-      "edgeAbnPct": 3.34,
+      "edgeAbnPct": 3.26,
       "edgeAbnCI95": [
-       1.79,
-       4.89
+       1.71,
+       4.8
       ],
-      "edgeAbnT": 4.29,
+      "edgeAbnT": 4.21,
       "months": 64,
       "nEff": 568,
       "edgeVerdict": "earned",
-      "trustEdgePct": 3.34,
-      "edgeAbnRawPct": 5.21,
+      "trustEdgePct": 3.26,
+      "edgeAbnRawPct": 5.13,
       "extremeCalls": 31,
       "successCI95Cl": [
        28.1,
@@ -6136,7 +6134,7 @@
       "nEff": 119,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.27,
+      "edgeAbnRawPct": 0.28,
       "extremeCalls": 6,
       "successCI95Cl": [
        12.1,
@@ -6169,17 +6167,17 @@
        39.4
       ],
       "edgeVsBaselinePct": 0.13,
-      "edgeAbnPct": -0.0,
+      "edgeAbnPct": 0.04,
       "edgeAbnCI95": [
-       -2.66,
-       2.65
+       -2.63,
+       2.71
       ],
-      "edgeAbnT": -0.0,
+      "edgeAbnT": 0.03,
       "months": 37,
       "nEff": 178,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.38,
+      "edgeAbnRawPct": 0.42,
       "extremeCalls": 4,
       "successCI95Cl": [
        22.5,
@@ -6211,17 +6209,17 @@
        36.3
       ],
       "edgeVsBaselinePct": 4.81,
-      "edgeAbnPct": 5.36,
+      "edgeAbnPct": 5.38,
       "edgeAbnCI95": [
-       -8.51,
-       19.23
+       -8.5,
+       19.26
       ],
-      "edgeAbnT": 0.87,
+      "edgeAbnT": 0.88,
       "months": 10,
       "nEff": 16,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 8.21,
+      "edgeAbnRawPct": 8.22,
       "extremeCalls": 3,
       "successCI95Cl": [
        0.0,
@@ -6254,17 +6252,17 @@
        38.2
       ],
       "edgeVsBaselinePct": 3.61,
-      "edgeAbnPct": 1.18,
+      "edgeAbnPct": 1.15,
       "edgeAbnCI95": [
-       -0.71,
-       3.07
+       -0.75,
+       3.05
       ],
-      "edgeAbnT": 1.26,
+      "edgeAbnT": 1.22,
       "months": 44,
-      "nEff": 335,
+      "nEff": 331,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.52,
+      "edgeAbnRawPct": 2.48,
       "extremeCalls": 41,
       "successCI95Cl": [
        23.1,
@@ -6299,17 +6297,17 @@
        29.0
       ],
       "edgeVsBaselinePct": 0.12,
-      "edgeAbnPct": -0.87,
+      "edgeAbnPct": -0.86,
       "edgeAbnCI95": [
-       -2.83,
+       -2.82,
        1.1
       ],
-      "edgeAbnT": -0.88,
+      "edgeAbnT": -0.87,
       "months": 82,
-      "nEff": 334,
+      "nEff": 335,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.04,
+      "edgeAbnRawPct": 0.05,
       "extremeCalls": 22,
       "successCI95Cl": [
        21.0,
@@ -6342,17 +6340,17 @@
        39.5
       ],
       "edgeVsBaselinePct": 5.18,
-      "edgeAbnPct": 2.17,
+      "edgeAbnPct": 2.11,
       "edgeAbnCI95": [
-       -0.01,
-       4.34
+       -0.05,
+       4.28
       ],
-      "edgeAbnT": 1.98,
+      "edgeAbnT": 1.95,
       "months": 69,
-      "nEff": 308,
+      "nEff": 311,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 4.73,
+      "edgeAbnRawPct": 4.67,
       "extremeCalls": 37,
       "successCI95Cl": [
        28.8,
@@ -6386,17 +6384,17 @@
        33.9
       ],
       "edgeVsBaselinePct": 2.03,
-      "edgeAbnPct": 0.61,
+      "edgeAbnPct": 0.63,
       "edgeAbnCI95": [
-       -1.03,
-       2.24
+       -1.0,
+       2.26
       ],
-      "edgeAbnT": 0.74,
+      "edgeAbnT": 0.76,
       "months": 87,
-      "nEff": 452,
+      "nEff": 453,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.62,
+      "edgeAbnRawPct": 1.64,
       "extremeCalls": 36,
       "successCI95Cl": [
        21.1,
@@ -6429,17 +6427,17 @@
        33.3
       ],
       "edgeVsBaselinePct": 4.22,
-      "edgeAbnPct": 1.8,
+      "edgeAbnPct": 1.74,
       "edgeAbnCI95": [
-       0.28,
-       3.32
+       0.22,
+       3.27
       ],
-      "edgeAbnT": 2.36,
+      "edgeAbnT": 2.28,
       "months": 68,
-      "nEff": 547,
+      "nEff": 541,
       "edgeVerdict": "earned",
-      "trustEdgePct": 1.8,
-      "edgeAbnRawPct": 3.33,
+      "trustEdgePct": 1.74,
+      "edgeAbnRawPct": 3.27,
       "extremeCalls": 44,
       "successCI95Cl": [
        24.6,
@@ -6474,21 +6472,21 @@
       53.5
      ],
      "edgeVsBaselinePct": 3.49,
-     "edgeAbnPct": 1.58,
+     "edgeAbnPct": 1.55,
      "edgeAbnCI95": [
-      0.06,
-      3.1
+      0.03,
+      3.06
      ],
-     "edgeAbnT": 2.05,
+     "edgeAbnT": 2.01,
      "months": 211,
-     "nEff": 709,
+     "nEff": 713,
      "edgeVerdict": "earned",
-     "trustEdgePct": 1.58,
-     "edgeAbnRawPct": 3.12,
+     "trustEdgePct": 1.55,
+     "edgeAbnRawPct": 3.08,
      "extremeCalls": 64,
      "successCI95Cl": [
       33.1,
-      42.2
+      42.1
      ],
      "usable": true
     },
@@ -6516,17 +6514,17 @@
       43.4
      ],
      "edgeVsBaselinePct": 2.53,
-     "edgeAbnPct": 0.82,
+     "edgeAbnPct": 0.81,
      "edgeAbnCI95": [
-      -0.16,
+      -0.17,
       1.79
      ],
-     "edgeAbnT": 1.64,
+     "edgeAbnT": 1.62,
      "months": 221,
-     "nEff": 1093,
+     "nEff": 1090,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 1.91,
+     "edgeAbnRawPct": 1.9,
      "extremeCalls": 69,
      "successCI95Cl": [
       22.3,
@@ -6544,121 +6542,121 @@
    "backtest": {
     "n": 9445,
     "byStatus": {
-     "failure": 3553,
+     "failure": 3554,
      "invalidated": 2006,
-     "timeout": 2818,
-     "success": 890,
-     "confirmed": 55,
-     "expired": 123
+     "timeout": 2819,
+     "success": 894,
+     "expired": 123,
+     "confirmed": 49
     },
-    "judged": 7261,
+    "judged": 7267,
     "successRate": 12.3,
     "excludedDataBreaks": 99,
     "successCI95": [
-     11.5,
-     13.0
+     11.6,
+     13.1
     ],
-    "avgReturnPct": -4.91,
+    "avgReturnPct": -4.88,
     "avgFwd20Pct": -2.43,
     "confirmRate": 77.5,
-    "identificationSuccessRate": 13.5,
+    "identificationSuccessRate": 13.6,
     "identCI95": [
-     12.7,
+     12.8,
      14.4
     ],
     "edgeVsBaselinePct": -1.4,
-    "edgeAbnPct": -0.46,
+    "edgeAbnPct": -0.45,
     "edgeAbnCI95": [
-     -1.14,
-     0.23
+     -1.13,
+     0.24
     ],
-    "edgeAbnT": -1.32,
+    "edgeAbnT": -1.29,
     "months": 242,
-    "nEff": 2477,
+    "nEff": 2483,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -1.23,
+    "edgeAbnRawPct": -1.22,
     "extremeCalls": 278,
     "successCI95Cl": [
      9.6,
-     14.9
+     15.0
     ]
    },
    "live": {
-    "n": 111,
+    "n": 120,
     "byStatus": {
-     "open": 13,
-     "confirmed": 74,
+     "open": 17,
+     "confirmed": 78,
      "failure": 12,
-     "success": 5,
+     "success": 6,
      "invalidated": 7
     },
-    "judged": 17,
-    "successRate": 29.4,
+    "judged": 18,
+    "successRate": 33.3,
     "excludedDataBreaks": 1,
     "successCI95": [
-     13.3,
-     53.1
+     16.3,
+     56.3
     ],
-    "avgReturnPct": -7.99,
-    "avgFwd20Pct": 8.39,
-    "confirmRate": 92.9,
-    "identificationSuccessRate": 20.8,
+    "avgReturnPct": -4.82,
+    "avgFwd20Pct": 12.11,
+    "confirmRate": 93.2,
+    "identificationSuccessRate": 24.0,
     "identCI95": [
-     9.2,
-     40.5
+     11.5,
+     43.4
     ],
-    "edgeVsBaselinePct": 9.42,
-    "edgeAbnPct": 21.95,
+    "edgeVsBaselinePct": 13.14,
+    "edgeAbnPct": 21.88,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 8.51,
-    "extremeCalls": 4
+    "edgeAbnRawPct": 12.1,
+    "extremeCalls": 5
    },
    "byRegime": {
     "trend": {
      "up": {
       "n": 4499,
       "byStatus": {
-       "failure": 1585,
+       "failure": 1586,
        "invalidated": 756,
-       "timeout": 1575,
-       "success": 457,
-       "confirmed": 55,
-       "expired": 71
+       "timeout": 1576,
+       "success": 461,
+       "expired": 71,
+       "confirmed": 49
       },
-      "judged": 3617,
-      "successRate": 12.6,
+      "judged": 3623,
+      "successRate": 12.7,
       "excludedDataBreaks": 63,
       "successCI95": [
-       11.6,
+       11.7,
        13.8
       ],
-      "avgReturnPct": -2.32,
+      "avgReturnPct": -2.26,
       "avgFwd20Pct": -0.98,
       "confirmRate": 81.6,
-      "identificationSuccessRate": 15.9,
+      "identificationSuccessRate": 16.0,
       "identCI95": [
-       14.6,
-       17.3
+       14.7,
+       17.4
       ],
       "edgeVsBaselinePct": -0.12,
-      "edgeAbnPct": 0.4,
+      "edgeAbnPct": 0.39,
       "edgeAbnCI95": [
        -0.34,
-       1.14
+       1.13
       ],
-      "edgeAbnT": 1.06,
+      "edgeAbnT": 1.05,
       "months": 188,
-      "nEff": 2270,
+      "nEff": 2290,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.29,
       "extremeCalls": 132,
       "successCI95Cl": [
        10.3,
-       15.0
+       15.1
       ],
       "usable": true
      },
@@ -6687,17 +6685,17 @@
        15.8
       ],
       "edgeVsBaselinePct": -4.63,
-      "edgeAbnPct": -2.31,
+      "edgeAbnPct": -2.29,
       "edgeAbnCI95": [
-       -3.87,
-       -0.75
+       -3.85,
+       -0.74
       ],
-      "edgeAbnT": -2.96,
+      "edgeAbnT": -2.95,
       "months": 69,
-      "nEff": 387,
+      "nEff": 389,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -3.06,
+      "edgeAbnRawPct": -3.05,
       "extremeCalls": 38,
       "successCI95Cl": [
        2.8,
@@ -6731,17 +6729,17 @@
        12.1
       ],
       "edgeVsBaselinePct": -1.13,
-      "edgeAbnPct": -0.74,
+      "edgeAbnPct": -0.72,
       "edgeAbnCI95": [
-       -2.27,
-       0.78
+       -2.24,
+       0.8
       ],
-      "edgeAbnT": -0.98,
+      "edgeAbnT": -0.95,
       "months": 52,
-      "nEff": 524,
+      "nEff": 526,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.66,
+      "edgeAbnRawPct": -1.63,
       "extremeCalls": 108,
       "successCI95Cl": [
        6.5,
@@ -6754,44 +6752,44 @@
      "calm": {
       "n": 3535,
       "byStatus": {
-       "failure": 1242,
+       "failure": 1243,
        "invalidated": 566,
-       "success": 388,
-       "timeout": 1225,
-       "confirmed": 55,
-       "expired": 59
+       "success": 392,
+       "timeout": 1226,
+       "expired": 59,
+       "confirmed": 49
       },
-      "judged": 2855,
-      "successRate": 13.6,
+      "judged": 2861,
+      "successRate": 13.7,
       "excludedDataBreaks": 56,
       "successCI95": [
-       12.4,
-       14.9
+       12.5,
+       15.0
       ],
-      "avgReturnPct": -2.04,
+      "avgReturnPct": -1.96,
       "avgFwd20Pct": -0.67,
       "confirmRate": 82.3,
-      "identificationSuccessRate": 17.2,
+      "identificationSuccessRate": 17.3,
       "identCI95": [
-       15.7,
-       18.8
+       15.8,
+       19.0
       ],
       "edgeVsBaselinePct": 0.36,
       "edgeAbnPct": 0.11,
       "edgeAbnCI95": [
        -0.72,
-       0.94
+       0.93
       ],
-      "edgeAbnT": 0.26,
+      "edgeAbnT": 0.25,
       "months": 190,
-      "nEff": 1882,
+      "nEff": 1898,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.53,
       "extremeCalls": 99,
       "successCI95Cl": [
-       11.2,
-       16.0
+       11.3,
+       16.1
       ],
       "usable": true
      },
@@ -6820,17 +6818,17 @@
        12.6
       ],
       "edgeVsBaselinePct": -2.56,
-      "edgeAbnPct": -0.83,
+      "edgeAbnPct": -0.81,
       "edgeAbnCI95": [
-       -1.8,
-       0.13
+       -1.78,
+       0.15
       ],
-      "edgeAbnT": -1.71,
+      "edgeAbnT": -1.67,
       "months": 144,
-      "nEff": 1160,
+      "nEff": 1159,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.69,
+      "edgeAbnRawPct": -1.67,
       "extremeCalls": 179,
       "successCI95Cl": [
        7.4,
@@ -6843,27 +6841,27 @@
      "up/calm": {
       "n": 3275,
       "byStatus": {
-       "failure": 1135,
+       "failure": 1136,
        "invalidated": 515,
-       "success": 362,
-       "timeout": 1154,
-       "confirmed": 55,
-       "expired": 54
+       "success": 366,
+       "timeout": 1155,
+       "expired": 54,
+       "confirmed": 49
       },
-      "judged": 2651,
-      "successRate": 13.7,
+      "judged": 2657,
+      "successRate": 13.8,
       "excludedDataBreaks": 52,
       "successCI95": [
-       12.4,
-       15.0
+       12.5,
+       15.1
       ],
-      "avgReturnPct": -1.67,
+      "avgReturnPct": -1.59,
       "avgFwd20Pct": -0.54,
       "confirmRate": 82.6,
-      "identificationSuccessRate": 17.5,
+      "identificationSuccessRate": 17.7,
       "identCI95": [
-       15.9,
-       19.2
+       16.1,
+       19.4
       ],
       "edgeVsBaselinePct": 0.32,
       "edgeAbnPct": 0.34,
@@ -6873,14 +6871,14 @@
       ],
       "edgeAbnT": 0.77,
       "months": 161,
-      "nEff": 1714,
+      "nEff": 1727,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.33,
       "extremeCalls": 95,
       "successCI95Cl": [
-       11.1,
-       16.2
+       11.2,
+       16.3
       ],
       "usable": true
      },
@@ -6911,15 +6909,15 @@
       "edgeVsBaselinePct": -1.35,
       "edgeAbnPct": 0.55,
       "edgeAbnCI95": [
-       -0.7,
+       -0.71,
        1.81
       ],
-      "edgeAbnT": 0.88,
+      "edgeAbnT": 0.86,
       "months": 96,
-      "nEff": 708,
+      "nEff": 702,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.17,
+      "edgeAbnRawPct": -0.18,
       "extremeCalls": 37,
       "successCI95Cl": [
        6.0,
@@ -6952,17 +6950,17 @@
        22.8
       ],
       "edgeVsBaselinePct": -2.48,
-      "edgeAbnPct": -3.8,
+      "edgeAbnPct": -3.83,
       "edgeAbnCI95": [
-       -6.97,
-       -0.62
+       -7.01,
+       -0.65
       ],
-      "edgeAbnT": -2.45,
+      "edgeAbnT": -2.47,
       "months": 29,
       "nEff": 122,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -4.08,
+      "edgeAbnRawPct": -4.11,
       "extremeCalls": 3,
       "successCI95Cl": [
        7.0,
@@ -6996,17 +6994,17 @@
        15.8
       ],
       "edgeVsBaselinePct": -4.85,
-      "edgeAbnPct": -2.16,
+      "edgeAbnPct": -2.14,
       "edgeAbnCI95": [
-       -3.79,
-       -0.53
+       -3.76,
+       -0.51
       ],
-      "edgeAbnT": -2.65,
+      "edgeAbnT": -2.64,
       "months": 54,
-      "nEff": 343,
+      "nEff": 345,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -2.96,
+      "edgeAbnRawPct": -2.94,
       "extremeCalls": 35,
       "successCI95Cl": [
        1.6,
@@ -7040,17 +7038,17 @@
        26.2
       ],
       "edgeVsBaselinePct": 1.9,
-      "edgeAbnPct": -1.54,
+      "edgeAbnPct": -1.52,
       "edgeAbnCI95": [
-       -6.44,
+       -6.41,
        3.36
       ],
-      "edgeAbnT": -0.68,
+      "edgeAbnT": -0.67,
       "months": 14,
       "nEff": 60,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.68,
+      "edgeAbnRawPct": -1.66,
       "extremeCalls": 1,
       "successCI95Cl": [
        4.7,
@@ -7083,17 +7081,17 @@
        12.0
       ],
       "edgeVsBaselinePct": -1.21,
-      "edgeAbnPct": -0.72,
+      "edgeAbnPct": -0.69,
       "edgeAbnCI95": [
-       -2.28,
-       0.84
+       -2.25,
+       0.86
       ],
-      "edgeAbnT": -0.93,
+      "edgeAbnT": -0.9,
       "months": 50,
-      "nEff": 495,
+      "nEff": 497,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.66,
+      "edgeAbnRawPct": -1.63,
       "extremeCalls": 107,
       "successCI95Cl": [
        6.3,
@@ -7128,17 +7126,17 @@
        13.4
       ],
       "edgeVsBaselinePct": -0.34,
-      "edgeAbnPct": 0.82,
+      "edgeAbnPct": 0.84,
       "edgeAbnCI95": [
-       -0.37,
-       2.01
+       -0.35,
+       2.02
       ],
-      "edgeAbnT": 1.37,
+      "edgeAbnT": 1.41,
       "months": 82,
-      "nEff": 799,
+      "nEff": 804,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.52,
+      "edgeAbnRawPct": 0.54,
       "extremeCalls": 30,
       "successCI95Cl": [
        6.9,
@@ -7171,17 +7169,17 @@
        20.8
       ],
       "edgeVsBaselinePct": -1.59,
-      "edgeAbnPct": -1.04,
+      "edgeAbnPct": -1.05,
       "edgeAbnCI95": [
-       -2.34,
-       0.26
+       -2.35,
+       0.24
       ],
-      "edgeAbnT": -1.59,
+      "edgeAbnT": -1.62,
       "months": 82,
-      "nEff": 725,
+      "nEff": 732,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.89,
+      "edgeAbnRawPct": -1.91,
       "extremeCalls": 69,
       "successCI95Cl": [
        8.5,
@@ -7193,43 +7191,43 @@
       "n": 4007,
       "byStatus": {
        "invalidated": 1011,
-       "failure": 1428,
-       "timeout": 1137,
-       "success": 333,
+       "failure": 1429,
+       "timeout": 1138,
+       "success": 336,
        "expired": 45,
-       "confirmed": 53
+       "confirmed": 48
       },
-      "judged": 2898,
-      "successRate": 11.5,
+      "judged": 2903,
+      "successRate": 11.6,
       "excludedDataBreaks": 40,
       "successCI95": [
-       10.4,
-       12.7
+       10.5,
+       12.8
       ],
-      "avgReturnPct": -5.29,
+      "avgReturnPct": -5.23,
       "avgFwd20Pct": -2.45,
       "confirmRate": 73.6,
-      "identificationSuccessRate": 11.8,
+      "identificationSuccessRate": 11.9,
       "identCI95": [
-       10.7,
-       13.1
+       10.8,
+       13.2
       ],
       "edgeVsBaselinePct": -1.42,
-      "edgeAbnPct": -0.99,
+      "edgeAbnPct": -0.97,
       "edgeAbnCI95": [
-       -2.25,
-       0.27
+       -2.23,
+       0.29
       ],
-      "edgeAbnT": -1.56,
+      "edgeAbnT": -1.53,
       "months": 91,
-      "nEff": 702,
+      "nEff": 703,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.55,
+      "edgeAbnRawPct": -1.53,
       "extremeCalls": 110,
       "successCI95Cl": [
-       6.9,
-       16.1
+       7.0,
+       16.2
       ],
       "usable": true
      },
@@ -7239,40 +7237,40 @@
        "failure": 821,
        "timeout": 540,
        "invalidated": 358,
-       "confirmed": 2,
-       "success": 191,
-       "expired": 21
+       "success": 192,
+       "expired": 21,
+       "confirmed": 1
       },
-      "judged": 1552,
-      "successRate": 12.3,
+      "judged": 1553,
+      "successRate": 12.4,
       "excludedDataBreaks": 27,
       "successCI95": [
        10.8,
-       14.0
+       14.1
       ],
-      "avgReturnPct": -6.57,
+      "avgReturnPct": -6.53,
       "avgFwd20Pct": -3.31,
       "confirmRate": 80.4,
-      "identificationSuccessRate": 13.7,
+      "identificationSuccessRate": 13.8,
       "identCI95": [
-       12.0,
-       15.6
+       12.1,
+       15.7
       ],
       "edgeVsBaselinePct": -2.28,
-      "edgeAbnPct": -0.14,
+      "edgeAbnPct": -0.13,
       "edgeAbnCI95": [
-       -1.57,
+       -1.56,
        1.29
       ],
-      "edgeAbnT": -0.2,
+      "edgeAbnT": -0.19,
       "months": 75,
-      "nEff": 639,
+      "nEff": 642,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -1.63,
       "extremeCalls": 69,
       "successCI95Cl": [
-       8.7,
+       8.8,
        15.9
       ],
       "usable": true
@@ -7285,23 +7283,23 @@
      "byStatus": {
       "failure": 956,
       "timeout": 852,
-      "success": 320,
-      "confirmed": 15
+      "success": 323,
+      "confirmed": 12
      },
-     "judged": 2128,
-     "successRate": 15.0,
+     "judged": 2131,
+     "successRate": 15.2,
      "excludedDataBreaks": 15,
      "successCI95": [
-      13.6,
-      16.6
+      13.7,
+      16.7
      ],
-     "avgReturnPct": -5.38,
+     "avgReturnPct": -5.28,
      "avgFwd20Pct": -2.48,
      "confirmRate": 100.0,
-     "identificationSuccessRate": 25.1,
+     "identificationSuccessRate": 25.3,
      "identCI95": [
-      22.8,
-      27.5
+      22.9,
+      27.7
      ],
      "edgeVsBaselinePct": -1.45,
      "edgeAbnPct": -0.86,
@@ -7309,35 +7307,35 @@
       -1.85,
       0.13
      ],
-     "edgeAbnT": -1.72,
+     "edgeAbnT": -1.71,
      "months": 224,
-     "nEff": 1147,
+     "nEff": 1148,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -1.51,
+     "edgeAbnRawPct": -1.5,
      "extremeCalls": 86,
      "successCI95Cl": [
-      11.0,
-      19.0
+      11.1,
+      19.2
      ],
      "usable": true
     },
     "unconfirmed": {
      "n": 4928,
      "byStatus": {
-      "failure": 2465,
-      "timeout": 1885,
-      "success": 538,
-      "confirmed": 40
+      "failure": 2466,
+      "timeout": 1886,
+      "success": 539,
+      "confirmed": 37
      },
-     "judged": 4888,
+     "judged": 4891,
      "successRate": 11.0,
      "excludedDataBreaks": 43,
      "successCI95": [
       10.2,
       11.9
      ],
-     "avgReturnPct": -4.46,
+     "avgReturnPct": -4.45,
      "avgFwd20Pct": -2.37,
      "confirmRate": 100.0,
      "identificationSuccessRate": 17.9,
@@ -7346,17 +7344,17 @@
       19.3
      ],
      "edgeVsBaselinePct": -1.34,
-     "edgeAbnPct": -0.21,
+     "edgeAbnPct": -0.2,
      "edgeAbnCI95": [
-      -0.97,
-      0.55
+      -0.96,
+      0.56
      ],
-     "edgeAbnT": -0.54,
+     "edgeAbnT": -0.52,
      "months": 236,
-     "nEff": 1983,
+     "nEff": 1994,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -1.03,
+     "edgeAbnRawPct": -1.02,
      "extremeCalls": 180,
      "successCI95Cl": [
       8.6,
@@ -7378,17 +7376,17 @@
      "timeout": 1505,
      "expired": 231,
      "success": 1133,
-     "failure": 1100,
-     "confirmed": 6
+     "failure": 1101,
+     "confirmed": 5
     },
-    "judged": 3738,
+    "judged": 3739,
     "successRate": 30.3,
     "excludedDataBreaks": 10,
     "successCI95": [
-     28.9,
+     28.8,
      31.8
     ],
-    "avgReturnPct": 2.04,
+    "avgReturnPct": 2.03,
     "avgFwd20Pct": 1.38,
     "confirmRate": 73.4,
     "identificationSuccessRate": 31.6,
@@ -7404,7 +7402,7 @@
     ],
     "edgeAbnT": 2.19,
     "months": 240,
-    "nEff": 2818,
+    "nEff": 2816,
     "edgeVerdict": "earned",
     "trustEdgePct": 0.41,
     "edgeAbnRawPct": 0.65,
@@ -7430,19 +7428,19 @@
      56.4
     ],
     "avgReturnPct": -10.23,
-    "avgFwd20Pct": -11.79,
+    "avgFwd20Pct": -10.07,
     "confirmRate": 74.1,
     "identificationSuccessRate": 7.7,
     "identCI95": [
      1.4,
      33.3
     ],
-    "edgeVsBaselinePct": -12.82,
-    "edgeAbnPct": -11.72,
+    "edgeVsBaselinePct": -11.1,
+    "edgeAbnPct": 8.35,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -11.72,
+    "edgeAbnRawPct": -8.41,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -7454,36 +7452,36 @@
        "timeout": 1182,
        "expired": 183,
        "success": 919,
-       "failure": 856,
-       "confirmed": 6
+       "failure": 857,
+       "confirmed": 5
       },
-      "judged": 2957,
+      "judged": 2958,
       "successRate": 31.1,
       "excludedDataBreaks": 7,
       "successCI95": [
        29.4,
        32.8
       ],
-      "avgReturnPct": 2.09,
+      "avgReturnPct": 2.08,
       "avgFwd20Pct": 1.37,
       "confirmRate": 74.3,
       "identificationSuccessRate": 32.8,
       "identCI95": [
        31.1,
-       34.6
+       34.5
       ],
       "edgeVsBaselinePct": 0.51,
       "edgeAbnPct": 0.52,
       "edgeAbnCI95": [
-       0.12,
+       0.11,
        0.93
       ],
-      "edgeAbnT": 2.55,
+      "edgeAbnT": 2.52,
       "months": 187,
-      "nEff": 2178,
+      "nEff": 2176,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.52,
-      "edgeAbnRawPct": 0.76,
+      "edgeAbnRawPct": 0.75,
       "extremeCalls": 24,
       "successCI95Cl": [
        28.1,
@@ -7516,17 +7514,17 @@
        30.5
       ],
       "edgeVsBaselinePct": 0.09,
-      "edgeAbnPct": -0.6,
+      "edgeAbnPct": -0.61,
       "edgeAbnCI95": [
        -1.87,
-       0.67
+       0.66
       ],
-      "edgeAbnT": -0.95,
+      "edgeAbnT": -0.97,
       "months": 54,
-      "nEff": 229,
+      "nEff": 231,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.41,
+      "edgeAbnRawPct": -0.42,
       "extremeCalls": 2,
       "successCI95Cl": [
        18.9,
@@ -7559,17 +7557,17 @@
        31.1
       ],
       "edgeVsBaselinePct": -0.19,
-      "edgeAbnPct": 0.29,
+      "edgeAbnPct": 0.32,
       "edgeAbnCI95": [
-       -0.83,
-       1.41
+       -0.79,
+       1.43
       ],
-      "edgeAbnT": 0.52,
+      "edgeAbnT": 0.58,
       "months": 51,
-      "nEff": 437,
+      "nEff": 439,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.63,
+      "edgeAbnRawPct": 0.66,
       "extremeCalls": 6,
       "successCI95Cl": [
        20.0,
@@ -7586,10 +7584,10 @@
        "timeout": 1086,
        "expired": 187,
        "success": 765,
-       "failure": 813,
-       "confirmed": 6
+       "failure": 814,
+       "confirmed": 5
       },
-      "judged": 2664,
+      "judged": 2665,
       "successRate": 28.7,
       "excludedDataBreaks": 5,
       "successCI95": [
@@ -7605,17 +7603,17 @@
        31.5
       ],
       "edgeVsBaselinePct": -0.19,
-      "edgeAbnPct": 0.45,
+      "edgeAbnPct": 0.44,
       "edgeAbnCI95": [
        0.03,
-       0.86
+       0.85
       ],
-      "edgeAbnT": 2.13,
+      "edgeAbnT": 2.12,
       "months": 188,
-      "nEff": 1824,
+      "nEff": 1832,
       "edgeVerdict": "earned",
-      "trustEdgePct": 0.45,
-      "edgeAbnRawPct": 0.61,
+      "trustEdgePct": 0.44,
+      "edgeAbnRawPct": 0.6,
       "extremeCalls": 16,
       "successCI95Cl": [
        25.8,
@@ -7648,17 +7646,17 @@
        39.3
       ],
       "edgeVsBaselinePct": 1.71,
-      "edgeAbnPct": 0.31,
+      "edgeAbnPct": 0.32,
       "edgeAbnCI95": [
-       -0.41,
+       -0.4,
        1.03
       ],
-      "edgeAbnT": 0.86,
+      "edgeAbnT": 0.87,
       "months": 131,
-      "nEff": 1066,
+      "nEff": 1059,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.75,
+      "edgeAbnRawPct": 0.76,
       "extremeCalls": 16,
       "successCI95Cl": [
        28.8,
@@ -7675,17 +7673,17 @@
        "timeout": 999,
        "expired": 165,
        "success": 717,
-       "failure": 750,
-       "confirmed": 6
+       "failure": 751,
+       "confirmed": 5
       },
-      "judged": 2466,
+      "judged": 2467,
       "successRate": 29.1,
       "excludedDataBreaks": 5,
       "successCI95": [
        27.3,
        30.9
       ],
-      "avgReturnPct": 1.33,
+      "avgReturnPct": 1.32,
       "avgFwd20Pct": 0.85,
       "confirmRate": 73.4,
       "identificationSuccessRate": 30.3,
@@ -7699,15 +7697,15 @@
        -0.01,
        0.84
       ],
-      "edgeAbnT": 1.91,
+      "edgeAbnT": 1.92,
       "months": 166,
-      "nEff": 1719,
+      "nEff": 1724,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.56,
       "extremeCalls": 14,
       "successCI95Cl": [
-       26.1,
+       26.0,
        32.1
       ],
       "usable": true
@@ -7737,17 +7735,17 @@
        50.7
       ],
       "edgeVsBaselinePct": 3.13,
-      "edgeAbnPct": 1.09,
+      "edgeAbnPct": 1.06,
       "edgeAbnCI95": [
-       0.0,
-       2.18
+       -0.03,
+       2.15
       ],
-      "edgeAbnT": 2.0,
+      "edgeAbnT": 1.93,
       "months": 78,
       "nEff": 491,
-      "edgeVerdict": "earned",
-      "trustEdgePct": 1.09,
-      "edgeAbnRawPct": 1.77,
+      "edgeVerdict": "unproven",
+      "trustEdgePct": 0.0,
+      "edgeAbnRawPct": 1.74,
       "extremeCalls": 10,
       "successCI95Cl": [
        33.1,
@@ -7779,17 +7777,17 @@
        25.2
       ],
       "edgeVsBaselinePct": -0.68,
-      "edgeAbnPct": 0.19,
+      "edgeAbnPct": 0.18,
       "edgeAbnCI95": [
-       -2.07,
-       2.46
+       -2.09,
+       2.44
       ],
-      "edgeAbnT": 0.18,
+      "edgeAbnT": 0.16,
       "months": 26,
       "nEff": 71,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.61,
+      "edgeAbnRawPct": 0.59,
       "extremeCalls": 1,
       "successCI95Cl": [
        13.5,
@@ -7825,14 +7823,14 @@
       "edgeAbnPct": -1.07,
       "edgeAbnCI95": [
        -2.61,
-       0.48
+       0.46
       ],
-      "edgeAbnT": -1.4,
+      "edgeAbnT": -1.41,
       "months": 38,
-      "nEff": 164,
+      "nEff": 165,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.01,
+      "edgeAbnRawPct": -1.02,
       "extremeCalls": 1,
       "successCI95Cl": [
        19.8,
@@ -7864,17 +7862,17 @@
        32.3
       ],
       "edgeVsBaselinePct": -1.36,
-      "edgeAbnPct": 2.26,
+      "edgeAbnPct": 2.13,
       "edgeAbnCI95": [
-       -0.83,
-       5.35
+       -0.87,
+       5.13
       ],
-      "edgeAbnT": 1.56,
+      "edgeAbnT": 1.52,
       "months": 16,
-      "nEff": 47,
+      "nEff": 52,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.65,
+      "edgeAbnRawPct": 2.53,
       "extremeCalls": 1,
       "successCI95Cl": [
        10.0,
@@ -7907,17 +7905,17 @@
        32.4
       ],
       "edgeVsBaselinePct": -0.03,
-      "edgeAbnPct": 0.02,
+      "edgeAbnPct": 0.07,
       "edgeAbnCI95": [
-       -1.22,
-       1.25
+       -1.15,
+       1.29
       ],
-      "edgeAbnT": 0.03,
+      "edgeAbnT": 0.12,
       "months": 47,
       "nEff": 376,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.34,
+      "edgeAbnRawPct": 0.4,
       "extremeCalls": 5,
       "successCI95Cl": [
        20.2,
@@ -7952,12 +7950,12 @@
        38.5
       ],
       "edgeVsBaselinePct": 0.57,
-      "edgeAbnPct": 0.3,
+      "edgeAbnPct": 0.29,
       "edgeAbnCI95": [
-       -0.19,
-       0.79
+       -0.2,
+       0.78
       ],
-      "edgeAbnT": 1.21,
+      "edgeAbnT": 1.19,
       "months": 87,
       "nEff": 1067,
       "edgeVerdict": "unproven",
@@ -8000,7 +7998,7 @@
        -0.19,
        1.12
       ],
-      "edgeAbnT": 1.41,
+      "edgeAbnT": 1.42,
       "months": 80,
       "nEff": 891,
       "edgeVerdict": "unproven",
@@ -8017,20 +8015,20 @@
       "n": 1378,
       "byStatus": {
        "expired": 53,
-       "failure": 363,
+       "failure": 364,
        "success": 249,
        "timeout": 356,
        "invalidated": 352,
-       "confirmed": 5
+       "confirmed": 4
       },
-      "judged": 968,
+      "judged": 969,
       "successRate": 25.7,
       "excludedDataBreaks": 2,
       "successCI95": [
-       23.1,
-       28.6
+       23.0,
+       28.5
       ],
-      "avgReturnPct": -0.3,
+      "avgReturnPct": -0.32,
       "avgFwd20Pct": 0.27,
       "confirmRate": 70.6,
       "identificationSuccessRate": 24.5,
@@ -8039,17 +8037,17 @@
        27.2
       ],
       "edgeVsBaselinePct": -0.76,
-      "edgeAbnPct": -0.06,
+      "edgeAbnPct": -0.04,
       "edgeAbnCI95": [
-       -0.76,
-       0.63
+       -0.74,
+       0.65
       ],
-      "edgeAbnT": -0.18,
+      "edgeAbnT": -0.12,
       "months": 92,
-      "nEff": 784,
+      "nEff": 778,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.26,
+      "edgeAbnRawPct": 0.28,
       "extremeCalls": 7,
       "successCI95Cl": [
        20.5,
@@ -8083,17 +8081,17 @@
        35.5
       ],
       "edgeVsBaselinePct": 1.33,
-      "edgeAbnPct": 1.03,
+      "edgeAbnPct": 1.01,
       "edgeAbnCI95": [
-       -0.07,
-       2.13
+       -0.1,
+       2.11
       ],
-      "edgeAbnT": 1.87,
+      "edgeAbnT": 1.82,
       "months": 72,
-      "nEff": 440,
+      "nEff": 438,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.54,
+      "edgeAbnRawPct": 1.52,
       "extremeCalls": 11,
       "successCI95Cl": [
        23.8,
@@ -8126,17 +8124,17 @@
       59.7
      ],
      "edgeVsBaselinePct": 0.72,
-     "edgeAbnPct": 0.58,
+     "edgeAbnPct": 0.6,
      "edgeAbnCI95": [
-      -0.16,
-      1.33
+      -0.14,
+      1.34
      ],
-     "edgeAbnT": 1.54,
+     "edgeAbnT": 1.59,
      "months": 228,
-     "nEff": 955,
+     "nEff": 951,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 1.06,
+     "edgeAbnRawPct": 1.08,
      "extremeCalls": 19,
      "successCI95Cl": [
       31.8,
@@ -8149,40 +8147,40 @@
      "byStatus": {
       "timeout": 984,
       "success": 674,
-      "failure": 722,
-      "confirmed": 5
+      "failure": 723,
+      "confirmed": 4
      },
-     "judged": 2380,
+     "judged": 2381,
      "successRate": 28.3,
      "excludedDataBreaks": 7,
      "successCI95": [
       26.5,
       30.2
      ],
-     "avgReturnPct": 2.18,
+     "avgReturnPct": 2.17,
      "avgFwd20Pct": 1.31,
      "confirmRate": 100.0,
-     "identificationSuccessRate": 48.3,
+     "identificationSuccessRate": 48.2,
      "identCI95": [
-      45.7,
+      45.6,
       50.9
      ],
      "edgeVsBaselinePct": 0.28,
-     "edgeAbnPct": 0.4,
+     "edgeAbnPct": 0.39,
      "edgeAbnCI95": [
-      0.04,
-      0.77
+      0.03,
+      0.76
      ],
-     "edgeAbnT": 2.17,
+     "edgeAbnT": 2.12,
      "months": 237,
-     "nEff": 2240,
+     "nEff": 2243,
      "edgeVerdict": "earned",
-     "trustEdgePct": 0.4,
-     "edgeAbnRawPct": 0.53,
+     "trustEdgePct": 0.39,
+     "edgeAbnRawPct": 0.52,
      "extremeCalls": 12,
      "successCI95Cl": [
       25.4,
-      31.3
+      31.2
      ],
      "usable": true
     }
@@ -8200,71 +8198,71 @@
      "invalidated": 1029,
      "timeout": 1448,
      "expired": 195,
-     "success": 1059,
-     "confirmed": 26
+     "success": 1060,
+     "confirmed": 25
     },
-    "judged": 4154,
+    "judged": 4155,
     "successRate": 25.5,
     "excludedDataBreaks": 6,
     "successCI95": [
      24.2,
-     26.8
+     26.9
     ],
     "avgReturnPct": -1.34,
-    "avgFwd20Pct": -0.58,
+    "avgFwd20Pct": -0.57,
     "confirmRate": 77.4,
-    "identificationSuccessRate": 26.9,
+    "identificationSuccessRate": 27.0,
     "identCI95": [
      25.6,
      28.4
     ],
-    "edgeVsBaselinePct": 0.45,
-    "edgeAbnPct": 0.11,
+    "edgeVsBaselinePct": 0.46,
+    "edgeAbnPct": 0.13,
     "edgeAbnCI95": [
-     -0.23,
-     0.46
+     -0.22,
+     0.47
     ],
-    "edgeAbnT": 0.64,
+    "edgeAbnT": 0.73,
     "months": 239,
-    "nEff": 4175,
+    "nEff": 4177,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.11,
+    "edgeAbnRawPct": -0.1,
     "extremeCalls": 47,
     "successCI95Cl": [
-     21.7,
+     21.8,
      29.2
     ]
    },
    "live": {
-    "n": 59,
+    "n": 63,
     "byStatus": {
-     "confirmed": 30,
-     "open": 18,
-     "success": 5,
+     "open": 20,
+     "confirmed": 31,
+     "success": 6,
      "failure": 4,
      "invalidated": 2
     },
-    "judged": 9,
-    "successRate": 55.6,
+    "judged": 10,
+    "successRate": 60.0,
     "successCI95": [
-     26.7,
-     81.1
+     31.3,
+     83.2
     ],
-    "avgReturnPct": 2.93,
-    "avgFwd20Pct": -0.2,
-    "confirmRate": 95.1,
-    "identificationSuccessRate": 45.5,
+    "avgReturnPct": 3.6,
+    "avgFwd20Pct": 2.39,
+    "confirmRate": 95.3,
+    "identificationSuccessRate": 50.0,
     "identCI95": [
-     21.3,
-     72.0
+     25.4,
+     74.6
     ],
-    "edgeVsBaselinePct": 0.83,
+    "edgeVsBaselinePct": 3.42,
     "edgeAbnPct": 2.81,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 0.06,
+    "edgeAbnRawPct": 2.65,
     "extremeCalls": 1
    },
    "byRegime": {
@@ -8276,10 +8274,10 @@
        "invalidated": 683,
        "timeout": 972,
        "expired": 156,
-       "success": 678,
-       "confirmed": 26
+       "success": 679,
+       "confirmed": 25
       },
-      "judged": 2649,
+      "judged": 2650,
       "successRate": 25.6,
       "excludedDataBreaks": 5,
       "successCI95": [
@@ -8287,25 +8285,25 @@
        27.3
       ],
       "avgReturnPct": -0.58,
-      "avgFwd20Pct": -0.12,
+      "avgFwd20Pct": -0.11,
       "confirmRate": 76.1,
-      "identificationSuccessRate": 26.9,
+      "identificationSuccessRate": 27.0,
       "identCI95": [
-       25.2,
+       25.3,
        28.7
       ],
-      "edgeVsBaselinePct": 0.74,
-      "edgeAbnPct": 0.29,
+      "edgeVsBaselinePct": 0.75,
+      "edgeAbnPct": 0.3,
       "edgeAbnCI95": [
-       -0.14,
-       0.72
+       -0.13,
+       0.73
       ],
-      "edgeAbnT": 1.32,
+      "edgeAbnT": 1.39,
       "months": 189,
-      "nEff": 2670,
+      "nEff": 2672,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.05,
+      "edgeAbnRawPct": 0.06,
       "extremeCalls": 30,
       "successCI95Cl": [
        21.3,
@@ -8337,17 +8335,17 @@
        30.3
       ],
       "edgeVsBaselinePct": -1.96,
-      "edgeAbnPct": -1.09,
+      "edgeAbnPct": -1.04,
       "edgeAbnCI95": [
-       -1.92,
-       -0.25
+       -1.87,
+       -0.22
       ],
-      "edgeAbnT": -2.59,
+      "edgeAbnT": -2.53,
       "months": 61,
       "nEff": 648,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.22,
+      "edgeAbnRawPct": -1.18,
       "extremeCalls": 8,
       "successCI95Cl": [
        14.5,
@@ -8383,10 +8381,10 @@
       "edgeVsBaselinePct": 1.58,
       "edgeAbnPct": 0.47,
       "edgeAbnCI95": [
-       -0.32,
-       1.27
+       -0.33,
+       1.28
       ],
-      "edgeAbnT": 1.19,
+      "edgeAbnT": 1.18,
       "months": 50,
       "nEff": 835,
       "edgeVerdict": "unproven",
@@ -8408,40 +8406,40 @@
        "invalidated": 514,
        "timeout": 805,
        "expired": 142,
-       "success": 560,
-       "confirmed": 26
+       "success": 561,
+       "confirmed": 25
       },
-      "judged": 2158,
-      "successRate": 25.9,
+      "judged": 2159,
+      "successRate": 26.0,
       "excludedDataBreaks": 4,
       "successCI95": [
-       24.1,
-       27.8
+       24.2,
+       27.9
       ],
-      "avgReturnPct": -0.18,
-      "avgFwd20Pct": 0.05,
+      "avgReturnPct": -0.17,
+      "avgFwd20Pct": 0.06,
       "confirmRate": 76.9,
       "identificationSuccessRate": 27.9,
       "identCI95": [
        26.0,
        29.9
       ],
-      "edgeVsBaselinePct": 1.08,
-      "edgeAbnPct": 0.39,
+      "edgeVsBaselinePct": 1.09,
+      "edgeAbnPct": 0.4,
       "edgeAbnCI95": [
-       -0.02,
-       0.8
+       -0.01,
+       0.81
       ],
-      "edgeAbnT": 1.86,
+      "edgeAbnT": 1.94,
       "months": 187,
-      "nEff": 2180,
+      "nEff": 2182,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.11,
+      "edgeAbnRawPct": 0.13,
       "extremeCalls": 23,
       "successCI95Cl": [
        22.3,
-       29.5
+       29.6
       ],
       "usable": true
      },
@@ -8470,17 +8468,17 @@
        28.0
       ],
       "edgeVsBaselinePct": -0.23,
-      "edgeAbnPct": -0.19,
+      "edgeAbnPct": -0.18,
       "edgeAbnCI95": [
-       -0.73,
-       0.35
+       -0.72,
+       0.36
       ],
-      "edgeAbnT": -0.7,
+      "edgeAbnT": -0.64,
       "months": 152,
-      "nEff": 1855,
+      "nEff": 1860,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.37,
+      "edgeAbnRawPct": -0.35,
       "extremeCalls": 24,
       "successCI95Cl": [
        19.3,
@@ -8497,40 +8495,40 @@
        "invalidated": 478,
        "timeout": 758,
        "expired": 134,
-       "success": 524,
-       "confirmed": 26
+       "success": 525,
+       "confirmed": 25
       },
-      "judged": 2017,
+      "judged": 2018,
       "successRate": 26.0,
       "excludedDataBreaks": 4,
       "successCI95": [
        24.1,
-       27.9
+       28.0
       ],
-      "avgReturnPct": -0.14,
-      "avgFwd20Pct": 0.03,
+      "avgReturnPct": -0.13,
+      "avgFwd20Pct": 0.04,
       "confirmRate": 76.9,
       "identificationSuccessRate": 28.0,
       "identCI95": [
-       26.0,
+       26.1,
        30.1
       ],
-      "edgeVsBaselinePct": 0.89,
-      "edgeAbnPct": 0.37,
+      "edgeVsBaselinePct": 0.9,
+      "edgeAbnPct": 0.38,
       "edgeAbnCI95": [
-       -0.06,
-       0.79
+       -0.04,
+       0.8
       ],
-      "edgeAbnT": 1.71,
+      "edgeAbnT": 1.79,
       "months": 161,
-      "nEff": 2039,
+      "nEff": 2041,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.08,
+      "edgeAbnRawPct": 0.09,
       "extremeCalls": 22,
       "successCI95Cl": [
        22.2,
-       29.7
+       29.8
       ],
       "usable": true
      },
@@ -8559,12 +8557,12 @@
        27.3
       ],
       "edgeVsBaselinePct": 0.26,
-      "edgeAbnPct": 0.03,
+      "edgeAbnPct": 0.04,
       "edgeAbnCI95": [
-       -1.07,
-       1.12
+       -1.06,
+       1.13
       ],
-      "edgeAbnT": 0.05,
+      "edgeAbnT": 0.07,
       "months": 102,
       "nEff": 473,
       "edgeVerdict": "unproven",
@@ -8601,17 +8599,17 @@
        26.3
       ],
       "edgeVsBaselinePct": 0.18,
-      "edgeAbnPct": -0.42,
+      "edgeAbnPct": -0.41,
       "edgeAbnCI95": [
-       -3.24,
-       2.39
+       -3.23,
+       2.4
       ],
-      "edgeAbnT": -0.31,
+      "edgeAbnT": -0.3,
       "months": 29,
       "nEff": 76,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.54,
+      "edgeAbnRawPct": -0.53,
       "extremeCalls": 1,
       "successCI95Cl": [
        5.0,
@@ -8643,17 +8641,17 @@
        32.3
       ],
       "edgeVsBaselinePct": -2.27,
-      "edgeAbnPct": -1.18,
+      "edgeAbnPct": -1.14,
       "edgeAbnCI95": [
-       -2.12,
-       -0.25
+       -2.05,
+       -0.22
       ],
-      "edgeAbnT": -2.56,
+      "edgeAbnT": -2.5,
       "months": 48,
       "nEff": 565,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.32,
+      "edgeAbnRawPct": -1.27,
       "extremeCalls": 7,
       "successCI95Cl": [
        14.1,
@@ -8688,10 +8686,10 @@
       "edgeVsBaselinePct": 6.19,
       "edgeAbnPct": 3.48,
       "edgeAbnCI95": [
-       -0.08,
-       7.05
+       -0.07,
+       7.04
       ],
-      "edgeAbnT": 2.11,
+      "edgeAbnT": 2.12,
       "months": 14,
       "nEff": 36,
       "edgeVerdict": "unproven",
@@ -8731,10 +8729,10 @@
       "edgeVsBaselinePct": 1.37,
       "edgeAbnPct": 0.34,
       "edgeAbnCI95": [
-       -0.46,
+       -0.47,
        1.14
       ],
-      "edgeAbnT": 0.85,
+      "edgeAbnT": 0.84,
       "months": 48,
       "nEff": 799,
       "edgeVerdict": "unproven",
@@ -8773,17 +8771,17 @@
        21.5
       ],
       "edgeVsBaselinePct": -0.43,
-      "edgeAbnPct": 0.33,
+      "edgeAbnPct": 0.36,
       "edgeAbnCI95": [
-       -0.39,
-       1.04
+       -0.34,
+       1.06
       ],
-      "edgeAbnT": 0.9,
+      "edgeAbnT": 1.01,
       "months": 83,
       "nEff": 896,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.18,
+      "edgeAbnRawPct": 0.21,
       "extremeCalls": 10,
       "successCI95Cl": [
        14.2,
@@ -8815,12 +8813,12 @@
        31.4
       ],
       "edgeVsBaselinePct": 0.99,
-      "edgeAbnPct": -0.2,
+      "edgeAbnPct": -0.21,
       "edgeAbnCI95": [
        -0.88,
-       0.48
+       0.47
       ],
-      "edgeAbnT": -0.59,
+      "edgeAbnT": -0.61,
       "months": 77,
       "nEff": 1035,
       "edgeVerdict": "unproven",
@@ -8838,42 +8836,42 @@
       "byStatus": {
        "failure": 525,
        "timeout": 517,
-       "success": 429,
+       "success": 430,
        "invalidated": 292,
-       "confirmed": 26,
+       "confirmed": 25,
        "expired": 41
       },
-      "judged": 1471,
+      "judged": 1472,
       "successRate": 29.2,
       "excludedDataBreaks": 4,
       "successCI95": [
        26.9,
-       31.5
+       31.6
       ],
-      "avgReturnPct": -0.15,
-      "avgFwd20Pct": 0.06,
+      "avgReturnPct": -0.14,
+      "avgFwd20Pct": 0.07,
       "confirmRate": 81.8,
-      "identificationSuccessRate": 33.3,
+      "identificationSuccessRate": 33.4,
       "identCI95": [
-       30.8,
+       30.9,
        36.0
       ],
-      "edgeVsBaselinePct": 1.09,
-      "edgeAbnPct": 0.06,
+      "edgeVsBaselinePct": 1.1,
+      "edgeAbnPct": 0.08,
       "edgeAbnCI95": [
-       -0.5,
-       0.63
+       -0.48,
+       0.64
       ],
-      "edgeAbnT": 0.22,
+      "edgeAbnT": 0.28,
       "months": 91,
-      "nEff": 1473,
+      "nEff": 1484,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.12,
+      "edgeAbnRawPct": -0.1,
       "extremeCalls": 11,
       "successCI95Cl": [
        22.3,
-       36.0
+       36.1
       ],
       "usable": true
      },
@@ -8902,17 +8900,17 @@
        26.5
       ],
       "edgeVsBaselinePct": -0.7,
-      "edgeAbnPct": 0.24,
+      "edgeAbnPct": 0.27,
       "edgeAbnCI95": [
-       -0.67,
-       1.16
+       -0.65,
+       1.18
       ],
-      "edgeAbnT": 0.54,
+      "edgeAbnT": 0.59,
       "months": 74,
       "nEff": 732,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.48,
+      "edgeAbnRawPct": -0.46,
       "extremeCalls": 10,
       "successCI95Cl": [
        18.1,
@@ -8928,40 +8926,40 @@
      "byStatus": {
       "timeout": 613,
       "failure": 569,
-      "success": 469,
-      "confirmed": 9
+      "success": 470,
+      "confirmed": 8
      },
-     "judged": 1651,
-     "successRate": 28.4,
+     "judged": 1652,
+     "successRate": 28.5,
      "excludedDataBreaks": 1,
      "successCI95": [
       26.3,
-      30.6
+      30.7
      ],
-     "avgReturnPct": -1.04,
+     "avgReturnPct": -1.03,
      "avgFwd20Pct": -0.39,
      "confirmRate": 100.0,
      "identificationSuccessRate": 45.2,
      "identCI95": [
       42.2,
-      48.2
+      48.3
      ],
      "edgeVsBaselinePct": 0.64,
-     "edgeAbnPct": 0.06,
+     "edgeAbnPct": 0.08,
      "edgeAbnCI95": [
-      -0.46,
-      0.58
+      -0.45,
+      0.6
      ],
-     "edgeAbnT": 0.22,
+     "edgeAbnT": 0.28,
      "months": 225,
      "nEff": 1658,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -0.06,
+     "edgeAbnRawPct": -0.04,
      "extremeCalls": 18,
      "successCI95Cl": [
-      23.6,
-      33.1
+      23.7,
+      33.2
      ],
      "usable": true
     },
@@ -8981,25 +8979,25 @@
       25.3
      ],
      "avgReturnPct": -1.38,
-     "avgFwd20Pct": -0.64,
+     "avgFwd20Pct": -0.63,
      "confirmRate": 100.0,
      "identificationSuccessRate": 35.1,
      "identCI95": [
       32.8,
       37.5
      ],
-     "edgeVsBaselinePct": 0.39,
-     "edgeAbnPct": 0.24,
+     "edgeVsBaselinePct": 0.4,
+     "edgeAbnPct": 0.25,
      "edgeAbnCI95": [
-      -0.24,
-      0.71
+      -0.22,
+      0.72
      ],
-     "edgeAbnT": 0.98,
+     "edgeAbnT": 1.05,
      "months": 235,
-     "nEff": 2367,
+     "nEff": 2369,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -0.06,
+     "edgeAbnRawPct": -0.04,
      "extremeCalls": 26,
      "successCI95Cl": [
       19.9,
@@ -9038,17 +9036,17 @@
      37.7
     ],
     "edgeVsBaselinePct": 0.28,
-    "edgeAbnPct": 0.49,
+    "edgeAbnPct": 0.48,
     "edgeAbnCI95": [
-     0.14,
-     0.85
+     0.12,
+     0.84
     ],
-    "edgeAbnT": 2.73,
+    "edgeAbnT": 2.66,
     "months": 231,
-    "nEff": 4323,
+    "nEff": 4315,
     "edgeVerdict": "earned",
-    "trustEdgePct": 0.49,
-    "edgeAbnRawPct": 0.8,
+    "trustEdgePct": 0.48,
+    "edgeAbnRawPct": 0.78,
     "extremeCalls": 139,
     "successCI95Cl": [
      24.4,
@@ -9056,33 +9054,32 @@
     ]
    },
    "live": {
-    "n": 106,
+    "n": 108,
     "byStatus": {
      "confirmed": 85,
-     "failure": 17,
+     "failure": 19,
      "success": 4
     },
-    "judged": 21,
-    "successRate": 19.0,
-    "excludedDataBreaks": 1,
+    "judged": 23,
+    "successRate": 17.4,
     "successCI95": [
-     7.7,
-     40.0
+     7.0,
+     37.1
     ],
-    "avgReturnPct": -5.61,
-    "avgFwd20Pct": -0.13,
+    "avgReturnPct": -6.13,
+    "avgFwd20Pct": 0.46,
     "confirmRate": 100.0,
-    "identificationSuccessRate": 19.0,
+    "identificationSuccessRate": 17.4,
     "identCI95": [
-     7.7,
-     40.0
+     7.0,
+     37.1
     ],
-    "edgeVsBaselinePct": -1.16,
+    "edgeVsBaselinePct": -0.57,
     "edgeAbnPct": -4.16,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.2,
+    "edgeAbnRawPct": 0.53,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -9111,17 +9108,17 @@
        38.7
       ],
       "edgeVsBaselinePct": 0.55,
-      "edgeAbnPct": 0.53,
+      "edgeAbnPct": 0.52,
       "edgeAbnCI95": [
-       0.15,
-       0.91
+       0.14,
+       0.9
       ],
-      "edgeAbnT": 2.74,
+      "edgeAbnT": 2.68,
       "months": 183,
-      "nEff": 3750,
+      "nEff": 3759,
       "edgeVerdict": "earned",
-      "trustEdgePct": 0.53,
-      "edgeAbnRawPct": 0.85,
+      "trustEdgePct": 0.52,
+      "edgeAbnRawPct": 0.84,
       "extremeCalls": 121,
       "successCI95Cl": [
        24.7,
@@ -9152,17 +9149,17 @@
        38.3
       ],
       "edgeVsBaselinePct": 0.59,
-      "edgeAbnPct": 1.03,
+      "edgeAbnPct": 0.97,
       "edgeAbnCI95": [
-       -0.38,
-       2.44
+       -0.44,
+       2.39
       ],
-      "edgeAbnT": 1.46,
+      "edgeAbnT": 1.38,
       "months": 58,
-      "nEff": 299,
+      "nEff": 297,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.34,
+      "edgeAbnRawPct": 1.29,
       "extremeCalls": 14,
       "successCI95Cl": [
        21.4,
@@ -9193,17 +9190,17 @@
        31.1
       ],
       "edgeVsBaselinePct": -2.09,
-      "edgeAbnPct": -0.7,
+      "edgeAbnPct": -0.66,
       "edgeAbnCI95": [
        -2.1,
-       0.7
+       0.79
       ],
-      "edgeAbnT": -1.01,
+      "edgeAbnT": -0.92,
       "months": 44,
-      "nEff": 280,
+      "nEff": 262,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.63,
+      "edgeAbnRawPct": -0.59,
       "extremeCalls": 4,
       "successCI95Cl": [
        14.8,
@@ -9242,12 +9239,12 @@
        0.3,
        0.98
       ],
-      "edgeAbnT": 3.74,
+      "edgeAbnT": 3.73,
       "months": 181,
-      "nEff": 4311,
+      "nEff": 4321,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.64,
-      "edgeAbnRawPct": 0.9,
+      "edgeAbnRawPct": 0.89,
       "extremeCalls": 95,
       "successCI95Cl": [
        23.1,
@@ -9278,17 +9275,17 @@
        42.1
       ],
       "edgeVsBaselinePct": 1.19,
-      "edgeAbnPct": 0.04,
+      "edgeAbnPct": -0.01,
       "edgeAbnCI95": [
-       -0.89,
-       0.96
+       -0.93,
+       0.92
       ],
-      "edgeAbnT": 0.08,
+      "edgeAbnT": -0.02,
       "months": 129,
-      "nEff": 850,
+      "nEff": 848,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.49,
+      "edgeAbnRawPct": 0.44,
       "extremeCalls": 44,
       "successCI95Cl": [
        26.5,
@@ -9325,11 +9322,11 @@
       "edgeAbnPct": 0.61,
       "edgeAbnCI95": [
        0.26,
-       0.97
+       0.96
       ],
-      "edgeAbnT": 3.43,
+      "edgeAbnT": 3.42,
       "months": 163,
-      "nEff": 4035,
+      "nEff": 4046,
       "edgeVerdict": "earned",
       "trustEdgePct": 0.61,
       "edgeAbnRawPct": 0.88,
@@ -9363,17 +9360,17 @@
        48.6
       ],
       "edgeVsBaselinePct": 2.38,
-      "edgeAbnPct": 0.14,
+      "edgeAbnPct": 0.08,
       "edgeAbnCI95": [
-       -1.13,
-       1.41
+       -1.18,
+       1.33
       ],
-      "edgeAbnT": 0.22,
+      "edgeAbnT": 0.12,
       "months": 82,
-      "nEff": 481,
+      "nEff": 490,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.71,
+      "edgeAbnRawPct": 0.64,
       "extremeCalls": 29,
       "successCI95Cl": [
        29.5,
@@ -9404,17 +9401,17 @@
        39.5
       ],
       "edgeVsBaselinePct": 0.05,
-      "edgeAbnPct": 1.14,
+      "edgeAbnPct": 1.11,
       "edgeAbnCI95": [
-       -0.16,
-       2.44
+       -0.18,
+       2.41
       ],
-      "edgeAbnT": 1.79,
+      "edgeAbnT": 1.76,
       "months": 30,
       "nEff": 218,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.23,
+      "edgeAbnRawPct": 1.21,
       "extremeCalls": 3,
       "successCI95Cl": [
        15.8,
@@ -9445,17 +9442,17 @@
        39.9
       ],
       "edgeVsBaselinePct": 1.05,
-      "edgeAbnPct": 0.94,
+      "edgeAbnPct": 0.86,
       "edgeAbnCI95": [
-       -1.43,
-       3.31
+       -1.52,
+       3.23
       ],
-      "edgeAbnT": 0.8,
+      "edgeAbnT": 0.73,
       "months": 39,
-      "nEff": 146,
+      "nEff": 144,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.43,
+      "edgeAbnRawPct": 1.35,
       "extremeCalls": 11,
       "successCI95Cl": [
        22.5,
@@ -9485,17 +9482,17 @@
        36.9
       ],
       "edgeVsBaselinePct": -1.08,
-      "edgeAbnPct": 0.88,
+      "edgeAbnPct": 0.9,
       "edgeAbnCI95": [
-       -1.33,
-       3.09
+       -1.4,
+       3.19
       ],
-      "edgeAbnT": 0.87,
+      "edgeAbnT": 0.86,
       "months": 12,
-      "nEff": 87,
+      "nEff": 81,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.88,
+      "edgeAbnRawPct": 0.9,
       "extremeCalls": 0,
       "successCI95Cl": [
        8.5,
@@ -9526,17 +9523,17 @@
        31.5
       ],
       "edgeVsBaselinePct": -2.27,
-      "edgeAbnPct": -0.99,
+      "edgeAbnPct": -0.94,
       "edgeAbnCI95": [
-       -2.61,
-       0.64
+       -2.62,
+       0.74
       ],
-      "edgeAbnT": -1.22,
+      "edgeAbnT": -1.13,
       "months": 41,
-      "nEff": 220,
+      "nEff": 206,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.9,
+      "edgeAbnRawPct": -0.86,
       "extremeCalls": 4,
       "successCI95Cl": [
        14.1,
@@ -9569,17 +9566,17 @@
        45.3
       ],
       "edgeVsBaselinePct": 1.24,
-      "edgeAbnPct": 0.63,
+      "edgeAbnPct": 0.61,
       "edgeAbnCI95": [
        -0.01,
-       1.26
+       1.24
       ],
-      "edgeAbnT": 1.98,
+      "edgeAbnT": 1.96,
       "months": 61,
-      "nEff": 1317,
+      "nEff": 1343,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.9,
+      "edgeAbnRawPct": 0.88,
       "extremeCalls": 35,
       "successCI95Cl": [
        26.6,
@@ -9610,17 +9607,17 @@
        39.2
       ],
       "edgeVsBaselinePct": -0.09,
-      "edgeAbnPct": 0.02,
+      "edgeAbnPct": 0.01,
       "edgeAbnCI95": [
-       -0.73,
-       0.77
+       -0.75,
+       0.76
       ],
-      "edgeAbnT": 0.05,
+      "edgeAbnT": 0.02,
       "months": 53,
-      "nEff": 1109,
+      "nEff": 1101,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.39,
+      "edgeAbnRawPct": 0.38,
       "extremeCalls": 51,
       "successCI95Cl": [
        23.9,
@@ -9652,17 +9649,17 @@
        29.5
       ],
       "edgeVsBaselinePct": -1.51,
-      "edgeAbnPct": 0.23,
+      "edgeAbnPct": 0.24,
       "edgeAbnCI95": [
        -0.42,
        0.89
       ],
-      "edgeAbnT": 0.71,
+      "edgeAbnT": 0.72,
       "months": 63,
-      "nEff": 1130,
+      "nEff": 1125,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.35,
+      "edgeAbnRawPct": 0.36,
       "extremeCalls": 16,
       "successCI95Cl": [
        16.6,
@@ -9693,17 +9690,17 @@
        38.8
       ],
       "edgeVsBaselinePct": 1.2,
-      "edgeAbnPct": 1.05,
+      "edgeAbnPct": 1.02,
       "edgeAbnCI95": [
-       0.35,
-       1.75
+       0.31,
+       1.73
       ],
-      "edgeAbnT": 3.01,
+      "edgeAbnT": 2.89,
       "months": 53,
-      "nEff": 1262,
+      "nEff": 1227,
       "edgeVerdict": "earned",
-      "trustEdgePct": 1.05,
-      "edgeAbnRawPct": 1.52,
+      "trustEdgePct": 1.02,
+      "edgeAbnRawPct": 1.49,
       "extremeCalls": 36,
       "successCI95Cl": [
        22.5,
@@ -9738,17 +9735,17 @@
       37.6
      ],
      "edgeVsBaselinePct": 0.29,
-     "edgeAbnPct": 0.5,
+     "edgeAbnPct": 0.49,
      "edgeAbnCI95": [
-      0.15,
-      0.86
+      0.13,
+      0.84
      ],
-     "edgeAbnT": 2.78,
+     "edgeAbnT": 2.7,
      "months": 231,
-     "nEff": 4347,
+     "nEff": 4338,
      "edgeVerdict": "earned",
-     "trustEdgePct": 0.5,
-     "edgeAbnRawPct": 0.81,
+     "trustEdgePct": 0.49,
+     "edgeAbnRawPct": 0.79,
      "extremeCalls": 137,
      "successCI95Cl": [
       24.4,
@@ -9778,17 +9775,17 @@
       64.5
      ],
      "edgeVsBaselinePct": -2.65,
-     "edgeAbnPct": -1.8,
+     "edgeAbnPct": -1.6,
      "edgeAbnCI95": [
-      -13.92,
-      10.31
+      -13.66,
+      10.47
      ],
-     "edgeAbnT": -0.32,
+     "edgeAbnT": -0.28,
      "months": 15,
      "nEff": 14,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": -2.16,
+     "edgeAbnRawPct": -1.95,
      "extremeCalls": 1,
      "successCI95Cl": [
       4.8,
@@ -9806,15 +9803,15 @@
    "backtest": {
     "n": 42097,
     "byStatus": {
-     "timeout": 4884,
+     "timeout": 4885,
      "invalidated": 14468,
      "success": 13269,
      "expired": 1577,
-     "failure": 7836,
-     "confirmed": 62,
+     "failure": 7838,
+     "confirmed": 59,
      "open": 1
     },
-    "judged": 25989,
+    "judged": 25992,
     "successRate": 51.1,
     "excludedDataBreaks": 9,
     "successCI95": [
@@ -9830,53 +9827,52 @@
      36.2
     ],
     "edgeVsBaselinePct": -0.29,
-    "edgeAbnPct": 0.12,
+    "edgeAbnPct": 0.1,
     "edgeAbnCI95": [
-     -0.13,
-     0.36
+     -0.14,
+     0.34
     ],
-    "edgeAbnT": 0.94,
+    "edgeAbnT": 0.81,
     "months": 231,
-    "nEff": 5804,
+    "nEff": 5695,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 0.14,
+    "edgeAbnRawPct": 0.13,
     "extremeCalls": 58,
     "successCI95Cl": [
      48.9,
-     53.3
+     53.2
     ]
    },
    "live": {
-    "n": 301,
+    "n": 303,
     "byStatus": {
-     "invalidated": 76,
-     "confirmed": 99,
-     "open": 59,
-     "success": 39,
-     "failure": 28
+     "invalidated": 79,
+     "failure": 32,
+     "open": 57,
+     "confirmed": 96,
+     "success": 39
     },
-    "judged": 67,
-    "successRate": 58.2,
-    "excludedDataBreaks": 1,
+    "judged": 71,
+    "successRate": 54.9,
     "successCI95": [
-     46.3,
-     69.3
+     43.4,
+     66.0
     ],
-    "avgReturnPct": -1.57,
-    "avgFwd20Pct": -1.32,
-    "confirmRate": 68.6,
-    "identificationSuccessRate": 27.3,
+    "avgReturnPct": -2.34,
+    "avgFwd20Pct": -0.03,
+    "confirmRate": 67.9,
+    "identificationSuccessRate": 26.0,
     "identCI95": [
-     20.6,
-     35.1
+     19.6,
+     33.6
     ],
-    "edgeVsBaselinePct": -2.35,
-    "edgeAbnPct": 4.61,
+    "edgeVsBaselinePct": -1.06,
+    "edgeAbnPct": 4.63,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -1.49,
+    "edgeAbnRawPct": 0.1,
     "extremeCalls": 1
    },
    "byRegime": {
@@ -9884,15 +9880,15 @@
      "up": {
       "n": 36482,
       "byStatus": {
-       "timeout": 4194,
+       "timeout": 4195,
        "invalidated": 12469,
        "success": 11647,
        "expired": 1387,
-       "failure": 6722,
-       "confirmed": 62,
+       "failure": 6724,
+       "confirmed": 59,
        "open": 1
       },
-      "judged": 22563,
+      "judged": 22566,
       "successRate": 51.6,
       "excludedDataBreaks": 7,
       "successCI95": [
@@ -9908,17 +9904,17 @@
        36.7
       ],
       "edgeVsBaselinePct": -0.03,
-      "edgeAbnPct": 0.22,
+      "edgeAbnPct": 0.2,
       "edgeAbnCI95": [
-       -0.04,
-       0.47
+       -0.06,
+       0.46
       ],
-      "edgeAbnT": 1.66,
+      "edgeAbnT": 1.55,
       "months": 190,
-      "nEff": 5099,
+      "nEff": 5016,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.24,
+      "edgeAbnRawPct": 0.23,
       "extremeCalls": 49,
       "successCI95Cl": [
        49.2,
@@ -9951,17 +9947,17 @@
        37.8
       ],
       "edgeVsBaselinePct": -0.11,
-      "edgeAbnPct": 0.18,
+      "edgeAbnPct": 0.13,
       "edgeAbnCI95": [
-       -0.43,
-       0.8
+       -0.51,
+       0.78
       ],
-      "edgeAbnT": 0.59,
+      "edgeAbnT": 0.41,
       "months": 75,
-      "nEff": 970,
+      "nEff": 868,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.25,
+      "edgeAbnRawPct": 0.2,
       "extremeCalls": 6,
       "successCI95Cl": [
        44.6,
@@ -9997,14 +9993,14 @@
       "edgeAbnPct": -1.48,
       "edgeAbnCI95": [
        -2.43,
-       -0.52
+       -0.53
       ],
-      "edgeAbnT": -3.1,
+      "edgeAbnT": -3.12,
       "months": 56,
-      "nEff": 395,
+      "nEff": 392,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.45,
+      "edgeAbnRawPct": -1.46,
       "extremeCalls": 3,
       "successCI95Cl": [
        39.2,
@@ -10018,16 +10014,16 @@
      "calm": {
       "n": 30641,
       "byStatus": {
-       "timeout": 3318,
+       "timeout": 3319,
        "invalidated": 11304,
        "success": 8892,
        "expired": 1222,
-       "failure": 5842,
-       "confirmed": 62,
+       "failure": 5844,
+       "confirmed": 59,
        "open": 1
       },
-      "judged": 18052,
-      "successRate": 49.3,
+      "judged": 18055,
+      "successRate": 49.2,
       "excludedDataBreaks": 6,
       "successCI95": [
        48.5,
@@ -10042,21 +10038,21 @@
        33.2
       ],
       "edgeVsBaselinePct": -0.74,
-      "edgeAbnPct": 0.22,
+      "edgeAbnPct": 0.21,
       "edgeAbnCI95": [
-       -0.01,
-       0.45
+       -0.02,
+       0.44
       ],
-      "edgeAbnT": 1.87,
+      "edgeAbnT": 1.83,
       "months": 192,
-      "nEff": 6308,
+      "nEff": 6456,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.23,
+      "edgeAbnRawPct": 0.22,
       "extremeCalls": 36,
       "successCI95Cl": [
        47.1,
-       51.5
+       51.4
       ],
       "usable": true
      },
@@ -10085,17 +10081,17 @@
        45.2
       ],
       "edgeVsBaselinePct": 0.74,
-      "edgeAbnPct": -0.12,
+      "edgeAbnPct": -0.15,
       "edgeAbnCI95": [
-       -0.7,
-       0.46
+       -0.75,
+       0.44
       ],
-      "edgeAbnT": -0.41,
+      "edgeAbnT": -0.51,
       "months": 164,
-      "nEff": 1050,
+      "nEff": 990,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.06,
+      "edgeAbnRawPct": -0.09,
       "extremeCalls": 22,
       "successCI95Cl": [
        50.9,
@@ -10108,16 +10104,16 @@
      "up/calm": {
       "n": 28963,
       "byStatus": {
-       "timeout": 3113,
+       "timeout": 3114,
        "invalidated": 10603,
        "success": 8492,
        "expired": 1159,
-       "failure": 5533,
-       "confirmed": 62,
+       "failure": 5535,
+       "confirmed": 59,
        "open": 1
       },
-      "judged": 17138,
-      "successRate": 49.6,
+      "judged": 17141,
+      "successRate": 49.5,
       "excludedDataBreaks": 6,
       "successCI95": [
        48.8,
@@ -10132,17 +10128,17 @@
        33.5
       ],
       "edgeVsBaselinePct": -0.52,
-      "edgeAbnPct": 0.23,
+      "edgeAbnPct": 0.22,
       "edgeAbnCI95": [
-       -0.01,
-       0.47
+       -0.02,
+       0.46
       ],
-      "edgeAbnT": 1.87,
+      "edgeAbnT": 1.83,
       "months": 172,
-      "nEff": 5819,
+      "nEff": 5962,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.24,
+      "edgeAbnRawPct": 0.23,
       "extremeCalls": 35,
       "successCI95Cl": [
        47.3,
@@ -10175,17 +10171,17 @@
        50.2
       ],
       "edgeVsBaselinePct": 1.52,
-      "edgeAbnPct": 0.18,
+      "edgeAbnPct": 0.15,
       "edgeAbnCI95": [
-       -0.56,
-       0.92
+       -0.61,
+       0.91
       ],
-      "edgeAbnT": 0.48,
+      "edgeAbnT": 0.4,
       "months": 110,
-      "nEff": 636,
+      "nEff": 597,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.24,
+      "edgeAbnRawPct": 0.21,
       "extremeCalls": 14,
       "successCI95Cl": [
        52.8,
@@ -10217,17 +10213,17 @@
        32.8
       ],
       "edgeVsBaselinePct": -1.07,
-      "edgeAbnPct": 0.05,
+      "edgeAbnPct": 0.03,
       "edgeAbnCI95": [
-       -0.74,
-       0.84
+       -0.77,
+       0.83
       ],
-      "edgeAbnT": 0.13,
+      "edgeAbnT": 0.09,
       "months": 36,
-      "nEff": 500,
+      "nEff": 487,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.05,
+      "edgeAbnRawPct": 0.03,
       "extremeCalls": 0,
       "successCI95Cl": [
        40.2,
@@ -10260,17 +10256,17 @@
        42.8
       ],
       "edgeVsBaselinePct": 0.48,
-      "edgeAbnPct": 0.26,
+      "edgeAbnPct": 0.19,
       "edgeAbnCI95": [
-       -0.62,
-       1.14
+       -0.74,
+       1.13
       ],
-      "edgeAbnT": 0.6,
+      "edgeAbnT": 0.41,
       "months": 61,
-      "nEff": 525,
+      "nEff": 460,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.37,
+      "edgeAbnRawPct": 0.3,
       "extremeCalls": 6,
       "successCI95Cl": [
        44.7,
@@ -10302,17 +10298,17 @@
        21.9
       ],
       "edgeVsBaselinePct": -4.51,
-      "edgeAbnPct": 0.01,
+      "edgeAbnPct": 0.06,
       "edgeAbnCI95": [
-       -1.69,
-       1.72
+       -1.64,
+       1.76
       ],
-      "edgeAbnT": 0.02,
+      "edgeAbnT": 0.08,
       "months": 20,
-      "nEff": 164,
+      "nEff": 167,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.07,
+      "edgeAbnRawPct": 0.12,
       "extremeCalls": 1,
       "successCI95Cl": [
        21.6,
@@ -10345,17 +10341,17 @@
        33.6
       ],
       "edgeVsBaselinePct": -2.16,
-      "edgeAbnPct": -1.69,
+      "edgeAbnPct": -1.71,
       "edgeAbnCI95": [
-       -2.62,
-       -0.76
+       -2.63,
+       -0.78
       ],
-      "edgeAbnT": -3.66,
+      "edgeAbnT": -3.7,
       "months": 55,
-      "nEff": 402,
+      "nEff": 399,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -1.68,
+      "edgeAbnRawPct": -1.69,
       "extremeCalls": 2,
       "successCI95Cl": [
        41.0,
@@ -10391,17 +10387,17 @@
        41.2
       ],
       "edgeVsBaselinePct": 0.39,
-      "edgeAbnPct": 0.44,
+      "edgeAbnPct": 0.42,
       "edgeAbnCI95": [
-       0.05,
-       0.82
+       0.03,
+       0.81
       ],
-      "edgeAbnT": 2.27,
+      "edgeAbnT": 2.15,
       "months": 99,
-      "nEff": 2241,
+      "nEff": 2175,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.47,
+      "edgeAbnRawPct": 0.46,
       "extremeCalls": 23,
       "successCI95Cl": [
        50.3,
@@ -10435,17 +10431,17 @@
        37.2
       ],
       "edgeVsBaselinePct": -0.25,
-      "edgeAbnPct": -0.02,
+      "edgeAbnPct": -0.03,
       "edgeAbnCI95": [
-       -0.5,
+       -0.51,
        0.46
       ],
-      "edgeAbnT": -0.08,
+      "edgeAbnT": -0.11,
       "months": 88,
-      "nEff": 1609,
+      "nEff": 1576,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.01,
+      "edgeAbnRawPct": -0.0,
       "extremeCalls": 21,
       "successCI95Cl": [
        47.8,
@@ -10456,19 +10452,19 @@
      "3": {
       "n": 8463,
       "byStatus": {
-       "timeout": 848,
+       "timeout": 849,
        "invalidated": 3379,
        "success": 2079,
-       "failure": 1784,
-       "confirmed": 49,
+       "failure": 1785,
+       "confirmed": 47,
        "expired": 324
       },
-      "judged": 4711,
+      "judged": 4713,
       "successRate": 44.1,
       "excludedDataBreaks": 3,
       "successCI95": [
        42.7,
-       45.6
+       45.5
       ],
       "avgReturnPct": -0.77,
       "avgFwd20Pct": -0.97,
@@ -10481,12 +10477,12 @@
       "edgeVsBaselinePct": -2.0,
       "edgeAbnPct": -0.36,
       "edgeAbnCI95": [
-       -0.86,
-       0.15
+       -0.87,
+       0.14
       ],
-      "edgeAbnT": -1.4,
+      "edgeAbnT": -1.42,
       "months": 97,
-      "nEff": 1233,
+      "nEff": 1222,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.35,
@@ -10504,11 +10500,11 @@
        "invalidated": 3082,
        "timeout": 1080,
        "expired": 297,
-       "failure": 1746,
-       "confirmed": 13,
+       "failure": 1747,
+       "confirmed": 12,
        "open": 1
       },
-      "judged": 5687,
+      "judged": 5688,
       "successRate": 50.3,
       "successCI95": [
        49.0,
@@ -10523,17 +10519,17 @@
        36.9
       ],
       "edgeVsBaselinePct": -0.0,
-      "edgeAbnPct": 0.09,
+      "edgeAbnPct": 0.06,
       "edgeAbnCI95": [
-       -0.32,
-       0.5
+       -0.36,
+       0.47
       ],
-      "edgeAbnT": 0.43,
+      "edgeAbnT": 0.27,
       "months": 84,
-      "nEff": 2098,
+      "nEff": 2073,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.12,
+      "edgeAbnRawPct": 0.08,
       "extremeCalls": 12,
       "successCI95Cl": [
        47.3,
@@ -10568,17 +10564,17 @@
       69.0
      ],
      "edgeVsBaselinePct": -0.21,
-     "edgeAbnPct": 0.16,
+     "edgeAbnPct": 0.14,
      "edgeAbnCI95": [
-      -0.13,
-      0.46
+      -0.16,
+      0.44
      ],
-     "edgeAbnT": 1.09,
+     "edgeAbnT": 0.94,
      "months": 229,
-     "nEff": 4320,
+     "nEff": 4237,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 0.21,
+     "edgeAbnRawPct": 0.18,
      "extremeCalls": 24,
      "successCI95Cl": [
       54.5,
@@ -10590,11 +10586,11 @@
      "n": 17587,
      "byStatus": {
       "success": 8516,
-      "timeout": 3458,
-      "failure": 5569,
-      "confirmed": 44
+      "timeout": 3459,
+      "failure": 5571,
+      "confirmed": 41
      },
-     "judged": 17543,
+     "judged": 17546,
      "successRate": 48.5,
      "excludedDataBreaks": 4,
      "successCI95": [
@@ -10606,21 +10602,21 @@
      "confirmRate": 100.0,
      "identificationSuccessRate": 60.5,
      "identCI95": [
-      59.7,
+      59.6,
       61.3
      ],
      "edgeVsBaselinePct": -0.32,
-     "edgeAbnPct": 0.1,
+     "edgeAbnPct": 0.08,
      "edgeAbnCI95": [
-      -0.17,
-      0.36
+      -0.18,
+      0.35
      ],
-     "edgeAbnT": 0.72,
+     "edgeAbnT": 0.62,
      "months": 229,
-     "nEff": 4541,
+     "nEff": 4452,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 0.12,
+     "edgeAbnRawPct": 0.1,
      "extremeCalls": 34,
      "successCI95Cl": [
       46.1,
@@ -10661,17 +10657,17 @@
      26.2
     ],
     "edgeVsBaselinePct": 2.85,
-    "edgeAbnPct": 1.3,
+    "edgeAbnPct": 1.26,
     "edgeAbnCI95": [
-     0.15,
-     2.45
+     0.12,
+     2.41
     ],
-    "edgeAbnT": 2.22,
+    "edgeAbnT": 2.17,
     "months": 210,
-    "nEff": 1152,
+    "nEff": 1158,
     "edgeVerdict": "earned",
-    "trustEdgePct": 1.3,
-    "edgeAbnRawPct": 2.67,
+    "trustEdgePct": 1.26,
+    "edgeAbnRawPct": 2.63,
     "extremeCalls": 120,
     "successCI95Cl": [
      43.4,
@@ -10679,10 +10675,10 @@
     ]
    },
    "live": {
-    "n": 12,
+    "n": 13,
     "byStatus": {
-     "open": 2,
-     "invalidated": 5,
+     "invalidated": 7,
+     "open": 1,
      "confirmed": 5
     },
     "judged": 0,
@@ -10692,19 +10688,19 @@
      null
     ],
     "avgReturnPct": null,
-    "avgFwd20Pct": -0.42,
-    "confirmRate": 50.0,
+    "avgFwd20Pct": -0.35,
+    "confirmRate": 41.7,
     "identificationSuccessRate": 0.0,
     "identCI95": [
      0.0,
-     43.4
+     35.4
     ],
-    "edgeVsBaselinePct": -1.45,
+    "edgeVsBaselinePct": -1.38,
     "edgeAbnPct": 0.84,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 0.11,
+    "edgeAbnRawPct": 0.37,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -10735,17 +10731,17 @@
        24.2
       ],
       "edgeVsBaselinePct": 2.82,
-      "edgeAbnPct": 0.91,
+      "edgeAbnPct": 0.89,
       "edgeAbnCI95": [
-       -0.65,
-       2.47
+       -0.67,
+       2.44
       ],
-      "edgeAbnT": 1.15,
+      "edgeAbnT": 1.13,
       "months": 162,
-      "nEff": 652,
+      "nEff": 655,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.53,
+      "edgeAbnRawPct": 2.51,
       "extremeCalls": 73,
       "successCI95Cl": [
        41.5,
@@ -10778,17 +10774,17 @@
        28.6
       ],
       "edgeVsBaselinePct": 5.99,
-      "edgeAbnPct": 4.91,
+      "edgeAbnPct": 4.77,
       "edgeAbnCI95": [
-       1.12,
-       8.71
+       1.0,
+       8.55
       ],
-      "edgeAbnT": 2.62,
+      "edgeAbnT": 2.56,
       "months": 39,
-      "nEff": 122,
+      "nEff": 124,
       "edgeVerdict": "earned",
-      "trustEdgePct": 4.91,
-      "edgeAbnRawPct": 5.77,
+      "trustEdgePct": 4.77,
+      "edgeAbnRawPct": 5.63,
       "extremeCalls": 14,
       "successCI95Cl": [
        42.0,
@@ -10821,17 +10817,17 @@
        34.3
       ],
       "edgeVsBaselinePct": 1.23,
-      "edgeAbnPct": 0.65,
+      "edgeAbnPct": 0.64,
       "edgeAbnCI95": [
-       -1.34,
-       2.64
+       -1.35,
+       2.63
       ],
-      "edgeAbnT": 0.66,
+      "edgeAbnT": 0.65,
       "months": 39,
-      "nEff": 353,
+      "nEff": 350,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.68,
+      "edgeAbnRawPct": 1.67,
       "extremeCalls": 33,
       "successCI95Cl": [
        37.6,
@@ -10867,17 +10863,17 @@
        21.1
       ],
       "edgeVsBaselinePct": 0.38,
-      "edgeAbnPct": 0.17,
+      "edgeAbnPct": 0.16,
       "edgeAbnCI95": [
-       -1.66,
-       2.0
+       -1.67,
+       1.99
       ],
-      "edgeAbnT": 0.19,
+      "edgeAbnT": 0.17,
       "months": 153,
       "nEff": 498,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.36,
+      "edgeAbnRawPct": 1.34,
       "extremeCalls": 47,
       "successCI95Cl": [
        38.4,
@@ -10910,17 +10906,17 @@
        32.1
       ],
       "edgeVsBaselinePct": 4.72,
-      "edgeAbnPct": 2.15,
+      "edgeAbnPct": 2.1,
       "edgeAbnCI95": [
-       0.65,
-       3.64
+       0.61,
+       3.59
       ],
-      "edgeAbnT": 2.85,
+      "edgeAbnT": 2.8,
       "months": 96,
-      "nEff": 644,
+      "nEff": 647,
       "edgeVerdict": "earned",
-      "trustEdgePct": 2.15,
-      "edgeAbnRawPct": 3.66,
+      "trustEdgePct": 2.1,
+      "edgeAbnRawPct": 3.61,
       "extremeCalls": 73,
       "successCI95Cl": [
        45.0,
@@ -10956,17 +10952,17 @@
        20.1
       ],
       "edgeVsBaselinePct": -0.13,
-      "edgeAbnPct": -0.55,
+      "edgeAbnPct": -0.56,
       "edgeAbnCI95": [
-       -2.46,
-       1.36
+       -2.47,
+       1.34
       ],
-      "edgeAbnT": -0.57,
+      "edgeAbnT": -0.58,
       "months": 137,
       "nEff": 452,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 0.73,
+      "edgeAbnRawPct": 0.72,
       "extremeCalls": 42,
       "successCI95Cl": [
        36.6,
@@ -10999,17 +10995,17 @@
        34.2
       ],
       "edgeVsBaselinePct": 7.57,
-      "edgeAbnPct": 3.26,
+      "edgeAbnPct": 3.22,
       "edgeAbnCI95": [
-       1.14,
-       5.38
+       1.11,
+       5.33
       ],
-      "edgeAbnT": 3.08,
+      "edgeAbnT": 3.06,
       "months": 57,
-      "nEff": 339,
+      "nEff": 341,
       "edgeVerdict": "earned",
-      "trustEdgePct": 3.26,
-      "edgeAbnRawPct": 5.43,
+      "trustEdgePct": 3.22,
+      "edgeAbnRawPct": 5.39,
       "extremeCalls": 31,
       "successCI95Cl": [
        46.4,
@@ -11042,17 +11038,17 @@
        34.0
       ],
       "edgeVsBaselinePct": 5.58,
-      "edgeAbnPct": 5.17,
+      "edgeAbnPct": 5.18,
       "edgeAbnCI95": [
-       0.49,
-       9.85
+       0.51,
+       9.86
       ],
-      "edgeAbnT": 2.33,
+      "edgeAbnT": 2.34,
       "months": 18,
-      "nEff": 91,
+      "nEff": 92,
       "edgeVerdict": "earned",
-      "trustEdgePct": 5.17,
-      "edgeAbnRawPct": 5.77,
+      "trustEdgePct": 5.18,
+      "edgeAbnRawPct": 5.79,
       "extremeCalls": 5,
       "successCI95Cl": [
        40.6,
@@ -11085,17 +11081,17 @@
        27.9
       ],
       "edgeVsBaselinePct": 6.29,
-      "edgeAbnPct": 4.72,
+      "edgeAbnPct": 4.47,
       "edgeAbnCI95": [
-       -0.95,
-       10.38
+       -1.14,
+       10.07
       ],
-      "edgeAbnT": 1.72,
+      "edgeAbnT": 1.65,
       "months": 24,
-      "nEff": 56,
+      "nEff": 57,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 5.76,
+      "edgeAbnRawPct": 5.51,
       "extremeCalls": 9,
       "successCI95Cl": [
        37.2,
@@ -11126,17 +11122,17 @@
        46.6
       ],
       "edgeVsBaselinePct": -1.32,
-      "edgeAbnPct": 2.87,
+      "edgeAbnPct": 2.85,
       "edgeAbnCI95": [
-       -8.74,
-       14.47
+       -8.78,
+       14.48
       ],
       "edgeAbnT": 0.6,
       "months": 7,
       "nEff": 14,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.87,
+      "edgeAbnRawPct": 2.85,
       "extremeCalls": 0,
       "successCI95Cl": [
        16.2,
@@ -11169,17 +11165,17 @@
        34.4
       ],
       "edgeVsBaselinePct": 1.28,
-      "edgeAbnPct": 0.61,
+      "edgeAbnPct": 0.59,
       "edgeAbnCI95": [
-       -1.42,
+       -1.44,
        2.63
       ],
-      "edgeAbnT": 0.61,
+      "edgeAbnT": 0.59,
       "months": 36,
-      "nEff": 340,
+      "nEff": 337,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.66,
+      "edgeAbnRawPct": 1.65,
       "extremeCalls": 33,
       "successCI95Cl": [
        37.0,
@@ -11214,17 +11210,17 @@
        22.8
       ],
       "edgeVsBaselinePct": 1.39,
-      "edgeAbnPct": -0.1,
+      "edgeAbnPct": -0.08,
       "edgeAbnCI95": [
-       -2.48,
-       2.29
+       -2.46,
+       2.31
       ],
-      "edgeAbnT": -0.08,
+      "edgeAbnT": -0.06,
       "months": 68,
-      "nEff": 323,
+      "nEff": 322,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.57,
+      "edgeAbnRawPct": 1.59,
       "extremeCalls": 26,
       "successCI95Cl": [
        35.6,
@@ -11257,17 +11253,17 @@
        31.9
       ],
       "edgeVsBaselinePct": 4.9,
-      "edgeAbnPct": 2.42,
+      "edgeAbnPct": 2.35,
       "edgeAbnCI95": [
-       -0.83,
-       5.67
+       -0.88,
+       5.59
       ],
-      "edgeAbnT": 1.49,
+      "edgeAbnT": 1.45,
       "months": 65,
-      "nEff": 174,
+      "nEff": 175,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 4.21,
+      "edgeAbnRawPct": 4.14,
       "extremeCalls": 28,
       "successCI95Cl": [
        45.1,
@@ -11301,17 +11297,17 @@
        31.6
       ],
       "edgeVsBaselinePct": 2.61,
-      "edgeAbnPct": 1.01,
+      "edgeAbnPct": 1.03,
       "edgeAbnCI95": [
-       -1.18,
-       3.2
+       -1.17,
+       3.23
       ],
-      "edgeAbnT": 0.92,
+      "edgeAbnT": 0.94,
       "months": 73,
-      "nEff": 310,
+      "nEff": 306,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 1.72,
+      "edgeAbnRawPct": 1.74,
       "extremeCalls": 25,
       "successCI95Cl": [
        43.2,
@@ -11345,17 +11341,17 @@
        25.2
       ],
       "edgeVsBaselinePct": 2.61,
-      "edgeAbnPct": 1.54,
+      "edgeAbnPct": 1.47,
       "edgeAbnCI95": [
-       -0.41,
-       3.5
+       -0.48,
+       3.42
       ],
-      "edgeAbnT": 1.58,
+      "edgeAbnT": 1.51,
       "months": 58,
-      "nEff": 350,
+      "nEff": 353,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": 2.99,
+      "edgeAbnRawPct": 2.92,
       "extremeCalls": 40,
       "successCI95Cl": [
        37.1,
@@ -11389,17 +11385,17 @@
       67.6
      ],
      "edgeVsBaselinePct": 3.67,
-     "edgeAbnPct": 1.93,
+     "edgeAbnPct": 1.9,
      "edgeAbnCI95": [
-      0.03,
-      3.82
+      0.01,
+      3.79
      ],
-     "edgeAbnT": 2.01,
+     "edgeAbnT": 1.98,
      "months": 167,
-     "nEff": 502,
+     "nEff": 504,
      "edgeVerdict": "earned",
-     "trustEdgePct": 1.93,
-     "edgeAbnRawPct": 3.32,
+     "trustEdgePct": 1.9,
+     "edgeAbnRawPct": 3.29,
      "extremeCalls": 43,
      "successCI95Cl": [
       53.1,
@@ -11431,17 +11427,17 @@
       53.7
      ],
      "edgeVsBaselinePct": 2.74,
-     "edgeAbnPct": 1.23,
+     "edgeAbnPct": 1.2,
      "edgeAbnCI95": [
-      -0.02,
-      2.48
+      -0.05,
+      2.44
      ],
-     "edgeAbnT": 1.94,
+     "edgeAbnT": 1.89,
      "months": 170,
-     "nEff": 885,
+     "nEff": 890,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
-     "edgeAbnRawPct": 2.61,
+     "edgeAbnRawPct": 2.57,
      "extremeCalls": 76,
      "successCI95Cl": [
       38.4,

@@ -1,0 +1,76 @@
+# ============================================================
+#  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/warning.yml
+#  z196 - EARLY WARNING ("the digging"): FRED's long-history loss, lending, funding, labour, collateral, leverage and
+#  growth series (pipeline/warning_series.py) -> the read (pipeline/warning_signals.py): fundamental vs market stress,
+#  fragility, organic growth, market-blindness / seasonal-trap / marginal-buyer flags, bottom-up breadth (8-K red
+#  flags, insiders, short interest, headcount, the options market, credit ratings, 52-week breadth), sector exposures
+#  for the bot, and a backtest against NBER recessions and equity drawdowns.
+#  Weekdays 0920 ET (after the 0830 releases: claims on Thursdays, jobs, CPI, retail sales) and 1840 ET (after SEC's
+#  1810 run and the options broad pass). ET-gated twin crons; pipeline/ontime.py queues it on time.
+#  Secret (optional, recommended): FRED_API_KEY - the same free key TRAPP2-1 uses. Without it FRED's public CSV
+#  download is used.
+# ============================================================
+name: Early warning
+
+on:
+  schedule:
+    - cron: '20 13 * * 1-5'    # 0920 EDT
+    - cron: '20 14 * * 1-5'    # 0920 EST
+    - cron: '40 22 * * 1-5'    # 1840 EDT
+    - cron: '40 23 * * 1-5'    # 1840 EST
+  workflow_dispatch:
+
+concurrency:
+  group: analytics-warning
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        name: Eastern-time gate
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          S="${{ github.event.schedule }}"; OFF=$(TZ=America/New_York date +%z); OFFH=$((10#${OFF:1:2}))
+          UM=$(echo "$S" | awk '{print $1}'); UH=$(echo "$S" | awk '{print $2}')
+          ETH=$(( (10#$UH - OFFH + 24) % 24 )); ETM=$(printf '%02d' "$UM")
+          case " 9:20 18:40 " in *" ${ETH}:${ETM} "*) RUN=true ;; *) RUN=false ;; esac
+          echo "schedule '$S' = ${ETH}:${ETM} ET -> run=${RUN}"
+          echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+
+  warning:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Self-test (offline, < 1 s) - stop before touching data if the engine is broken
+        run: python tests/test_warning.py
+      - name: FRED - long-history series
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python pipeline/warning_series.py
+        continue-on-error: true          # a FRED outage keeps yesterday's files; the read still runs
+      - name: Early-warning read
+        run: python pipeline/warning_signals.py
+      - name: Commit & push
+        run: |
+          git config user.name "valuatio-warning"; git config user.email "actions@github.com"
+          [ -e data/warning ] && git add -A data/warning
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -q -m "early warning: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
+          for k in 1 2 3 4 5; do
+            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
+            git fetch -q origin main; git merge -X ours origin/main --no-edit -q || true; sleep $((k * 3))
+          done
+          echo "::warning::push failed after 5 attempts"

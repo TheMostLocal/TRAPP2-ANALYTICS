@@ -63,6 +63,7 @@ TABLE = {
         S("analytics.yml", ["03:00"], tz="UTC", days="trading", late=420, after="nightlies", force=360),
         S("supabase-sync.yml", ["*:20"], tz="UTC", days="daily", late=30),
         S("ticker-snapshot-sync.yml", ["*:30"], tz="UTC", days="daily", late=30),
+        S("warning.yml", ["09:20", "18:40"], days="weekdays", late=240),     # z196: early warning (light - a late start just runs again)
     ],
     "TRAPP2": [
         S("nightly.yml", ["00:30"], tz="UTC", late=540),

@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-19T04:49:01Z",
+ "asOf": "2026-11-19T05:19:00Z",
  "session": "closed",
  "summary": {
   "ok": 16,
@@ -18,7 +18,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T02:53:21Z",
-   "ageMinutes": 116,
+   "ageMinutes": 146,
    "status": "notDue"
   },
   {
@@ -29,7 +29,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T00:00:06Z",
-   "ageMinutes": 289,
+   "ageMinutes": 319,
    "status": "notDue"
   },
   {
@@ -40,7 +40,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T02:41:04Z",
-   "ageMinutes": 128,
+   "ageMinutes": 158,
    "status": "notDue"
   },
   {
@@ -51,7 +51,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T00:03:06Z",
-   "ageMinutes": 286,
+   "ageMinutes": 316,
    "status": "notDue"
   },
   {
@@ -62,7 +62,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T02:43:22Z",
-   "ageMinutes": 126,
+   "ageMinutes": 156,
    "status": "notDue"
   },
   {
@@ -73,7 +73,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T00:05:06Z",
-   "ageMinutes": 284,
+   "ageMinutes": 314,
    "status": "notDue"
   },
   {
@@ -83,8 +83,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": null,
-   "updated": "2026-11-19T00:55:57Z",
-   "ageMinutes": 233,
+   "updated": "2026-11-19T05:03:29Z",
+   "ageMinutes": 16,
    "status": "notDue"
   },
   {
@@ -95,7 +95,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T00:10:06Z",
-   "ageMinutes": 279,
+   "ageMinutes": 309,
    "status": "notDue"
   },
   {
@@ -106,7 +106,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T02:01:25Z",
-   "ageMinutes": 168,
+   "ageMinutes": 198,
    "status": "notDue"
   },
   {
@@ -117,7 +117,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-19T00:07:05Z",
-   "ageMinutes": 282,
+   "ageMinutes": 312,
    "status": "notDue"
   },
   {
@@ -127,7 +127,7 @@
    "feedsBot": true,
    "rule": "fx",
    "maxMinutes": 45,
-   "updated": "2026-11-19T04:47:02Z",
+   "updated": "2026-11-19T05:17:03Z",
    "ageMinutes": 2,
    "status": "ok"
   },
@@ -138,7 +138,7 @@
    "feedsBot": false,
    "rule": "24h",
    "maxMinutes": 45,
-   "updated": "2026-11-19T04:47:06Z",
+   "updated": "2026-11-19T05:17:06Z",
    "ageMinutes": 2,
    "status": "ok"
   },
@@ -150,7 +150,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-18T23:02:35Z",
-   "ageMinutes": 346,
+   "ageMinutes": 376,
    "status": "ok"
   },
   {
@@ -161,7 +161,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T03:46:49Z",
-   "ageMinutes": 62,
+   "ageMinutes": 92,
    "status": "ok"
   },
   {
@@ -172,7 +172,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T01:29:06Z",
-   "ageMinutes": 200,
+   "ageMinutes": 230,
    "status": "ok"
   },
   {
@@ -183,7 +183,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-18T20:36:37Z",
-   "ageMinutes": 492,
+   "ageMinutes": 522,
    "status": "notDue"
   },
   {
@@ -194,7 +194,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-18T22:00:00Z",
-   "ageMinutes": 409,
+   "ageMinutes": 439,
    "status": "notDue"
   },
   {
@@ -205,7 +205,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-18T20:50:42Z",
-   "ageMinutes": 478,
+   "ageMinutes": 508,
    "status": "notDue"
   },
   {
@@ -216,7 +216,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T02:03:09Z",
-   "ageMinutes": 166,
+   "ageMinutes": 196,
    "status": "ok"
   },
   {
@@ -227,7 +227,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T02:03:09Z",
-   "ageMinutes": 166,
+   "ageMinutes": 196,
    "status": "ok"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-16T21:37:43Z",
-   "ageMinutes": 3311,
+   "ageMinutes": 3341,
    "status": "ok"
   },
   {
@@ -249,7 +249,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T03:01:27Z",
-   "ageMinutes": 108,
+   "ageMinutes": 138,
    "status": "ok"
   },
   {
@@ -260,7 +260,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T03:20:02Z",
-   "ageMinutes": 89,
+   "ageMinutes": 119,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-18T21:02:18Z",
-   "ageMinutes": 467,
+   "ageMinutes": 497,
    "status": "ok"
   },
   {
@@ -282,7 +282,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-18T23:17:58Z",
-   "ageMinutes": 331,
+   "ageMinutes": 361,
    "status": "ok"
   },
   {
@@ -293,7 +293,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-18T23:18:21Z",
-   "ageMinutes": 331,
+   "ageMinutes": 361,
    "status": "ok"
   },
   {
@@ -304,7 +304,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T04:14:28Z",
-   "ageMinutes": 35,
+   "ageMinutes": 65,
    "status": "ok"
   },
   {
@@ -315,7 +315,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T04:14:29Z",
-   "ageMinutes": 35,
+   "ageMinutes": 65,
    "status": "ok"
   },
   {
@@ -326,7 +326,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-19T04:16:25Z",
-   "ageMinutes": 33,
+   "ageMinutes": 63,
    "status": "ok"
   },
   {
@@ -336,17 +336,17 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": null,
-   "updated": "2026-11-19T02:53:21Z",
-   "ageMinutes": 116,
+   "updated": "2026-11-19T05:03:29Z",
+   "ageMinutes": 16,
    "status": "notDue",
    "perBook": {
     "TRAPP2": 0,
     "TRAPP2-1": 0,
     "TRAPP2-2": 0,
-    "TRAPP2-3": 0,
+    "TRAPP2-3": 288,
     "TRAPP2-4": 0
    },
-   "note": "fresh rows per book: TRAPP2 0 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 0 \u00b7 TRAPP2-3 0 \u00b7 TRAPP2-4 0"
+   "note": "fresh rows per book: TRAPP2 0 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 0 \u00b7 TRAPP2-3 288 \u00b7 TRAPP2-4 0"
   }
  ]
 }

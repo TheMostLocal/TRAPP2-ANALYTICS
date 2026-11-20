@@ -1,0 +1,478 @@
+{
+ "asOf": "2026-11-20T12:58:10Z",
+ "series": {
+  "ABCOMP": {
+   "changed": true,
+   "first": "2001-01-03",
+   "last": "2026-11-18",
+   "n": 1351,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "BAA10Y": {
+   "changed": true,
+   "first": "1986-01-02",
+   "last": "2026-11-18",
+   "n": 10220,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "BAMLH0A0HYM2": {
+   "changed": true,
+   "first": "2023-11-20",
+   "last": "2026-11-18",
+   "n": 786,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "BCNSDODNS": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-04-01",
+   "n": 166,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CCSA": {
+   "changed": true,
+   "first": "1985-01-05",
+   "last": "2026-11-07",
+   "n": 2184,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CFNAIMA3": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CORCCACBS": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-04-01",
+   "n": 166,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CORSFRMACBS": {
+   "changed": true,
+   "first": "1991-01-01",
+   "last": "2026-04-01",
+   "n": 142,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CP": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-04-01",
+   "n": 166,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CPIAUCSL": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "CSUSHPINSA": {
+   "changed": true,
+   "first": "1987-01-01",
+   "last": "2026-08-01",
+   "n": 476,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DCPF3M": {
+   "changed": true,
+   "first": "1997-01-02",
+   "last": "2026-11-18",
+   "n": 6770,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DGS10": {
+   "changed": true,
+   "first": "1985-01-02",
+   "last": "2026-11-18",
+   "n": 10474,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRALACBS": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-04-01",
+   "n": 166,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRBLACBS": {
+   "changed": true,
+   "first": "1987-01-01",
+   "last": "2026-04-01",
+   "n": 158,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRCCLACBS": {
+   "changed": true,
+   "first": "1991-01-01",
+   "last": "2026-04-01",
+   "n": 142,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRCLACBS": {
+   "changed": true,
+   "first": "1987-01-01",
+   "last": "2026-04-01",
+   "n": 158,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRCRELEXFACBS": {
+   "changed": true,
+   "first": "1991-01-01",
+   "last": "2026-04-01",
+   "n": 142,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRSDCILM": {
+   "changed": true,
+   "first": "1991-10-01",
+   "last": "2026-10-01",
+   "n": 141,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRSFRMACBS": {
+   "changed": true,
+   "first": "1991-01-01",
+   "last": "2026-04-01",
+   "n": 142,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRTSCILM": {
+   "changed": true,
+   "first": "1990-04-01",
+   "last": "2026-10-01",
+   "n": 147,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRTSCIS": {
+   "changed": true,
+   "first": "1990-04-01",
+   "last": "2026-10-01",
+   "n": 147,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DRTSCLCC": {
+   "changed": true,
+   "first": "1996-01-01",
+   "last": "2026-10-01",
+   "n": 124,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DSPI": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "DTB3": {
+   "changed": true,
+   "first": "1985-01-02",
+   "last": "2026-11-18",
+   "n": 10474,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "FEDFUNDS": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "GDP": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-07-01",
+   "n": 167,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "HDTGPDUSQ163N": {
+   "changed": true,
+   "first": "2005-01-01",
+   "last": "2026-01-01",
+   "n": 85,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "HOUST": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "ICSA": {
+   "changed": true,
+   "first": "1985-01-05",
+   "last": "2026-11-14",
+   "n": 2185,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "INDPRO": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "JTSJOL": {
+   "changed": true,
+   "first": "2000-12-01",
+   "last": "2026-09-01",
+   "n": 310,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "MORTGAGE30US": {
+   "changed": true,
+   "first": "1985-01-04",
+   "last": "2026-11-19",
+   "n": 2186,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "MSACSR": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NASDAQCOM": {
+   "changed": true,
+   "first": "1985-01-02",
+   "last": "2026-11-19",
+   "n": 10554,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NCBEILQ027S": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-04-01",
+   "n": 166,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NEWORDER": {
+   "changed": true,
+   "first": "1992-02-01",
+   "last": "2026-09-01",
+   "n": 416,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NFCI": {
+   "changed": true,
+   "first": "1985-01-04",
+   "last": "2026-11-13",
+   "n": 2185,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NFCICREDIT": {
+   "changed": true,
+   "first": "1985-01-04",
+   "last": "2026-11-13",
+   "n": 2185,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NFCILEVERAGE": {
+   "changed": true,
+   "first": "1985-01-04",
+   "last": "2026-11-13",
+   "n": 2185,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "NFCIRISK": {
+   "changed": true,
+   "first": "1985-01-04",
+   "last": "2026-11-13",
+   "n": 2185,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "OPHNFB": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-07-01",
+   "n": 167,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "PAYEMS": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "PERMIT": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "PSAVERT": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "REVOLSL": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "RSAFS": {
+   "changed": true,
+   "first": "1992-01-01",
+   "last": "2026-10-01",
+   "n": 418,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "SAHMREALTIME": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "STLFSI4": {
+   "changed": true,
+   "first": "1993-12-31",
+   "last": "2026-11-13",
+   "n": 1716,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "T10Y3M": {
+   "changed": true,
+   "first": "1985-01-02",
+   "last": "2026-11-19",
+   "n": 10475,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "TDSP": {
+   "changed": true,
+   "first": "2005-01-01",
+   "last": "2026-04-01",
+   "n": 86,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "TEMPHELPS": {
+   "changed": true,
+   "first": "1990-01-01",
+   "last": "2026-10-01",
+   "n": 442,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "TOTALSL": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "TOTLL": {
+   "changed": true,
+   "first": "1985-01-02",
+   "last": "2026-11-04",
+   "n": 2184,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "UNRATE": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "USREC": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "VIXCLS": {
+   "changed": true,
+   "first": "1990-01-02",
+   "last": "2026-11-18",
+   "n": 9320,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "W875RX1": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-09-01",
+   "n": 501,
+   "ok": true,
+   "source": "fredgraph-csv"
+  },
+  "WTISPLC": {
+   "changed": true,
+   "first": "1985-01-01",
+   "last": "2026-10-01",
+   "n": 502,
+   "ok": true,
+   "source": "fredgraph-csv"
+  }
+ },
+ "source": "fredgraph-csv"
+}

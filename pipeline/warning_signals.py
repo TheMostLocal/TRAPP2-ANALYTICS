@@ -783,8 +783,11 @@ def price_breadth(books):
 
 
 def bottom_up(today, books=None, sec_dir=None, short=None, hc=None, options=None, ratings=None):
+    # z197 fix (11-20): only the inputs given - main() passes DATA / "sec". The old default (sec_dir or DATA / "sec")
+    # read the checkout's own 2,265 SEC docs when a caller passed nothing, so in Actions the self-test's "nothing at
+    # all" case became a read, the self-test failed and data/warning was never written (z196 and z197 alike).
     books = books or {}
-    out = {"sec": sec_breadth(sec_dir or DATA / "sec", books, today), "short": short_breadth(short, books),
+    out = {"sec": sec_breadth(sec_dir, books, today) if sec_dir else None, "short": short_breadth(short, books),
            "headcount": headcount_breadth(hc, today), "credit": credit_breadth(ratings, books), "prices": price_breadth(books),
            "options": None}
     if isinstance(options, dict) and (options.get("breadth") or options.get("appSignal")):

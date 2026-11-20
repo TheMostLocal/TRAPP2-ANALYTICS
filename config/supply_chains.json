@@ -1,7 +1,7 @@
 {
- "asOf": "2026-11-19",
- "build": "z197",
- "note": "The app's 27 chains (re-labelled: 'verified' had no per-link citation) + subsector chains (z197). Confidence: filing (a 10-K / 8-K / S-1 says it), disclosed (company press release / announcement), inferred (industry placement, unverified). Every link is due an audit against a source.",
+ "asOf": "2026-11-20",
+ "build": "z200",
+ "note": "The app's 27 chains (re-labelled: 'verified' had no per-link citation) + subsector chains (z197). Confidence: filing (a 10-K / 8-K / S-1 says it), disclosed (company press release / announcement), inferred (industry placement, unverified). Every link is due an audit against a source. z200: dead / renamed tickers in the app's chains fixed here (chains marked rev replace the app's copy at load); +8 subsector chains (aerospace engines / structures / systems / aftermarket, munitions, nuclear fuel, GLP-1, payments).",
  "chains": [
   {
    "id": "semis_ai",
@@ -213,12 +213,6 @@
      "audit": "pending"
     },
     {
-     "ticker": "PXD",
-     "role": "Permian shale (acquired by XOM 2024)",
-     "confidence": "disclosed",
-     "audit": "pending"
-    },
-    {
      "ticker": "DVN",
      "role": "Multi-basin shale",
      "confidence": "disclosed",
@@ -227,12 +221,6 @@
     {
      "ticker": "FANG",
      "role": "Permian shale",
-     "confidence": "disclosed",
-     "audit": "pending"
-    },
-    {
-     "ticker": "HES",
-     "role": "Guyana offshore E&P",
      "confidence": "disclosed",
      "audit": "pending"
     },
@@ -401,9 +389,11 @@
    "citations": [
     "EIA Refinery Capacity Report (annual)",
     "XOM / CVX / COP 10-K \u2014 production & reserves",
-    "Airline 10-Ks \u2014 fuel as % of operating expense"
+    "Airline 10-Ks \u2014 fuel as % of operating expense",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "ev_battery",
@@ -424,10 +414,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "LTHM",
-     "role": "Livent \u2014 lithium (now Arcadium)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "RIO",
+     "role": "Rio Tinto - lithium (Arcadium, ex-Livent / Allkem; acquired March 2025)",
+     "note": "z200: Arcadium Lithium acquired by Rio Tinto, March 2025"
     },
     {
      "ticker": "FCX",
@@ -619,9 +610,11 @@
    "citations": [
     "Tesla 10-K \u2014 battery supplier disclosures",
     "GM / Ford 10-K \u2014 battery JV announcements (Ultium, BlueOval SK)",
-    "BloombergNEF Battery Price Survey"
+    "BloombergNEF Battery Price Survey",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "cloud",
@@ -847,10 +840,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "X",
-     "role": "US Steel",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "U.S. Steel (Nippon Steel)",
+     "role": "Flat-rolled steel (acquired by Nippon Steel, June 2025)",
+     "note": "z200: no longer listed"
     },
     {
      "ticker": "AA",
@@ -1009,9 +1003,11 @@
    ],
    "citations": [
     "OEM 10-Ks \u2014 supplier list & supplier concentration",
-    "Tier-1 supplier 10-Ks \u2014 customer disclosures"
+    "Tier-1 supplier 10-Ks \u2014 customer disclosures",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "pharma",
@@ -1020,10 +1016,11 @@
    "description": "Active ingredient manufacturers (CMOs) through branded pharma to PBMs and pharmacies.",
    "upstream": [
     {
-     "ticker": "CTLT",
-     "role": "Catalent \u2014 CDMO",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Catalent (Novo Holdings)",
+     "role": "CDMO - fill-finish (private since Dec 2024; three sites sold to Novo Nordisk)",
+     "note": "z200: no longer listed"
     },
     {
      "name": "Lonza",
@@ -1174,10 +1171,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "WBA",
-     "role": "Walgreens \u2014 pharmacy",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Walgreens (Sycamore Partners)",
+     "role": "Pharmacy (private since Aug 2025)",
+     "note": "z200: no longer listed"
     },
     {
      "ticker": "UNH",
@@ -1194,9 +1192,11 @@
    ],
    "citations": [
     "Pharma 10-Ks \u2014 top-product revenue concentration",
-    "PBM 10-Ks \u2014 drug-spend management disclosures"
+    "PBM 10-Ks \u2014 drug-spend management disclosures",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "food_ag",
@@ -1241,10 +1241,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "CNHI",
-     "role": "CNH Industrial",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "CNH",
+     "role": "CNH Industrial - farm equipment (NYSE: CNH)",
+     "note": "z200: ticker change"
     }
    ],
    "midstream": [
@@ -1331,10 +1332,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "K",
-     "role": "Kellanova (was Kellogg)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Kellanova (Mars)",
+     "role": "Snacks and cereal (acquisition by Mars announced Aug 2024)",
+     "note": "z200: Mars deal"
     },
     {
      "ticker": "KHC",
@@ -1424,9 +1426,11 @@
    "citations": [
     "USDA crop production reports",
     "CPG 10-Ks \u2014 input cost commentary",
-    "Restaurant 10-Ks \u2014 food cost as % of revenue"
+    "Restaurant 10-Ks \u2014 food cost as % of revenue",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "consumer_elec",
@@ -1632,10 +1636,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "HAYN",
-     "role": "Haynes \u2014 superalloys",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Haynes International (Acerinox)",
+     "role": "Nickel / cobalt superalloys (acquired by Acerinox, Nov 2024)",
+     "note": "z200: no longer listed"
     },
     {
      "ticker": "CRS",
@@ -1656,10 +1661,11 @@
      "audit": "pending"
     },
     {
-     "name": "Rolls-Royce",
-     "role": "Engines (UK)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "RYCEY",
+     "role": "Rolls-Royce - widebody engines (UK; ADR)",
+     "note": "z200: ADR ticker"
     },
     {
      "ticker": "TXT",
@@ -1682,14 +1688,8 @@
    ],
    "midstream": [
     {
-     "ticker": "L3HRS",
-     "role": "L3Harris \u2014 comms/electronics",
-     "confidence": "disclosed",
-     "audit": "pending"
-    },
-    {
      "ticker": "LHX",
-     "role": "L3Harris (alt ticker)",
+     "role": "L3Harris - comms, electronics, rocket motors (Aerojet)",
      "confidence": "disclosed",
      "audit": "pending"
     },
@@ -1746,9 +1746,11 @@
    ],
    "citations": [
     "DOD prime contractor awards (public)",
-    "Prime 10-Ks \u2014 top program disclosures"
+    "Prime 10-Ks \u2014 top program disclosures",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "ecommerce",
@@ -1799,10 +1801,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "SQ",
-     "role": "Block (Square) \u2014 POS + Cash App",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "XYZ",
+     "role": "Block (Square POS + Cash App; NYSE: XYZ since Jan 2025)",
+     "note": "z200: ticker change"
     },
     {
      "ticker": "ADYEY",
@@ -1919,9 +1922,11 @@
    ],
    "citations": [
     "Visa / Mastercard 10-Ks \u2014 transaction volume",
-    "Amazon / Shopify 10-Ks \u2014 GMV disclosures"
+    "Amazon / Shopify 10-Ks \u2014 GMV disclosures",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "telecom",
@@ -1942,10 +1947,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "JNPR",
-     "role": "Juniper Networks",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "HPE",
+     "role": "HPE - networking incl. Juniper (acquired July 2025)",
+     "note": "z200: Juniper acquired by HPE, July 2025"
     },
     {
      "ticker": "CSCO",
@@ -2010,10 +2016,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "DISH",
-     "role": "DISH Network (now EchoStar)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "SATS",
+     "role": "EchoStar (DISH merged in, Dec 2023)",
+     "note": "z200: DISH merged into EchoStar"
     }
    ],
    "downstream": [
@@ -2042,9 +2049,11 @@
    ],
    "citations": [
     "Carrier 10-Ks \u2014 capex + subscriber metrics",
-    "Tower REIT 10-Ks \u2014 lease counts"
+    "Tower REIT 10-Ks \u2014 lease counts",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "solar",
@@ -2053,10 +2062,11 @@
    "description": "Polysilicon refining and inverter manufacturing through panel assembly and utility-scale developers to residential installers and grid operators.",
    "upstream": [
     {
-     "ticker": "WFRBF",
-     "role": "Wacker Chemie \u2014 polysilicon (Germany)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Wacker Chemie (Germany)",
+     "role": "Polysilicon",
+     "note": "z200: OTC symbol unverified - by name"
     },
     {
      "ticker": "3800.HK",
@@ -2166,12 +2176,6 @@
      "audit": "pending"
     },
     {
-     "ticker": "NOVA",
-     "role": "Sunnova \u2014 residential solar",
-     "confidence": "disclosed",
-     "audit": "pending"
-    },
-    {
      "ticker": "ARRY",
      "role": "Array Technologies \u2014 tracker systems",
      "confidence": "disclosed",
@@ -2201,9 +2205,11 @@
    "citations": [
     "BloombergNEF Solar Module Cost Survey",
     "SEIA US Solar Market Insight (quarterly)",
-    "First Solar / Enphase / SolarEdge 10-Ks"
+    "First Solar / Enphase / SolarEdge 10-Ks",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "banking",
@@ -2607,12 +2613,6 @@
      "role": "CoStar Group \u2014 commercial RE data",
      "confidence": "disclosed",
      "audit": "pending"
-    },
-    {
-     "ticker": "RDFN",
-     "role": "Redfin",
-     "confidence": "disclosed",
-     "audit": "pending"
     }
    ],
    "relatedChains": [
@@ -2621,9 +2621,11 @@
    "citations": [
     "US Census Bureau housing starts",
     "NAHB Wells Fargo Housing Market Index",
-    "Homebuilder 10-Ks \u2014 backlog disclosures"
+    "Homebuilder 10-Ks \u2014 backlog disclosures",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "biotech",
@@ -2686,10 +2688,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "CTLT",
-     "role": "Catalent \u2014 CDMO",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "Catalent (Novo Holdings)",
+     "role": "CDMO (private since Dec 2024)",
+     "note": "z200: no longer listed"
     },
     {
      "name": "Lonza",
@@ -2856,9 +2859,11 @@
    "citations": [
     "Illumina 10-K \u2014 installed base + sequencing volume",
     "Biotech 10-Ks \u2014 Phase 3 readouts + cash runway",
-    "EvaluatePharma World Preview"
+    "EvaluatePharma World Preview",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "ai_software",
@@ -3056,10 +3061,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "PARA",
-     "role": "Paramount Global",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "PSKY",
+     "role": "Paramount Skydance (Paramount + Skydance, Aug 2025)",
+     "note": "z200: merger"
     },
     {
      "ticker": "CMCSA",
@@ -3204,12 +3210,6 @@
      "audit": "pending"
     },
     {
-     "ticker": "IPG",
-     "role": "Interpublic Group",
-     "confidence": "disclosed",
-     "audit": "pending"
-    },
-    {
      "ticker": "PUBGY",
      "role": "Publicis (ADR)",
      "confidence": "disclosed",
@@ -3228,9 +3228,11 @@
    "citations": [
     "Streaming 10-Ks \u2014 subscriber counts + ARPU",
     "MoffettNathanson media research",
-    "Trade Desk / Magnite 10-Ks \u2014 ad spend volumes"
+    "Trade Desk / Magnite 10-Ks \u2014 ad spend volumes",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "cybersecurity",
@@ -3257,10 +3259,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "SPLK",
-     "role": "Splunk \u2014 SIEM (Cisco-owned)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "CSCO",
+     "role": "Cisco - SIEM (Splunk, acquired March 2024)",
+     "note": "z200: Splunk acquired by Cisco"
     }
    ],
    "midstream": [
@@ -3313,9 +3316,10 @@
      "audit": "pending"
     },
     {
-     "ticker": "PFPT",
-     "role": "Proofpoint (taken private 2021)",
-     "confidence": "disclosed"
+     "confidence": "disclosed",
+     "name": "Proofpoint (Thoma Bravo)",
+     "role": "Email security (private since 2021)",
+     "note": "z200: private"
     },
     {
      "ticker": "VRNS",
@@ -3350,9 +3354,10 @@
      "audit": "pending"
     },
     {
-     "ticker": "KNBE",
-     "role": "KnowBe4 (taken private 2023)",
-     "confidence": "disclosed"
+     "confidence": "disclosed",
+     "name": "KnowBe4 (Vista Equity)",
+     "role": "Security awareness training (private since 2023)",
+     "note": "z200: private"
     },
     {
      "ticker": "HACK",
@@ -3377,9 +3382,11 @@
    "citations": [
     "Cybersecurity vendor 10-Ks \u2014 ARR + retention metrics",
     "Gartner Magic Quadrants",
-    "Verizon DBIR (annual incident report)"
+    "Verizon DBIR (annual incident report)",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "gaming",
@@ -3595,10 +3602,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "X",
-     "role": "US Steel",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "name": "U.S. Steel (Nippon Steel)",
+     "role": "Integrated + mini-mill steel (acquired by Nippon Steel, June 2025)",
+     "note": "z200: no longer listed"
     },
     {
      "ticker": "MT",
@@ -3663,9 +3671,11 @@
    "citations": [
     "Company 10-Ks \u2014 segment volumes",
     "World Steel Association",
-    "USGS Mineral Commodity Summaries"
+    "USGS Mineral Commodity Summaries",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "gold_mining",
@@ -3888,14 +3898,14 @@
      "audit": "pending"
     },
     {
-     "ticker": "AIR.PA",
-     "name": "Airbus",
      "alias": [
       "EADSY"
      ],
-     "role": "Airbus \u2014 airframes (France)",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "EADSY",
+     "role": "Airbus - airframes (ADR)",
+     "note": "z200: the ADR the books carry"
     },
     {
      "ticker": "GE",
@@ -3992,9 +4002,11 @@
    "citations": [
     "Airline 10-Ks \u2014 capacity + load factors",
     "Boeing/Airbus order books",
-    "IATA traffic data"
+    "IATA traffic data",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "shipping_maritime",
@@ -4161,10 +4173,11 @@
      "audit": "pending"
     },
     {
-     "ticker": "GPS",
-     "role": "Gap",
      "confidence": "disclosed",
-     "audit": "pending"
+     "audit": "pending",
+     "ticker": "GAP",
+     "role": "Gap Inc. (NYSE: GAP since 2024)",
+     "note": "z200: ticker change"
     },
     {
      "ticker": "9983.T",
@@ -4187,9 +4200,11 @@
    "citations": [
     "Brand 10-Ks \u2014 sourcing disclosures",
     "OEM annual reports",
-    "Cotlook cotton index"
+    "Cotlook cotton index",
+    "z200 audit: dead / renamed tickers replaced by their successors or named as private (see each member's note)"
    ],
-   "level": "chain"
+   "level": "chain",
+   "rev": "z200"
   },
   {
    "id": "luxury_goods",
@@ -6066,6 +6081,702 @@
    "level": "subsector",
    "citations": [
     "z197 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "aero_engines",
+   "parent": "defense",
+   "name": "Aerospace \u00b7 commercial jet engines",
+   "sector": "Industrials",
+   "description": "Engines are sold near cost and paid back over decades of spare parts and shop visits; castings, forgings and superalloys are the bottleneck that sets delivery rates.",
+   "upstream": [
+    {
+     "ticker": "HWM",
+     "role": "Howmet - engine airfoils, seamless rolled rings, fasteners",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "ATI",
+     "role": "ATI - titanium and nickel superalloys, forgings",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CRS",
+     "role": "Carpenter Technology - specialty alloys, powder metal",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Precision Castparts (Berkshire Hathaway)",
+     "role": "Structural castings, forged rings, airfoils",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Haynes International (Acerinox)",
+     "role": "Nickel / cobalt superalloys",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "GE",
+     "role": "GE Aerospace - CFM LEAP (50/50 with Safran), GEnx, GE9X; the largest installed base",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "RTX",
+     "role": "Pratt & Whitney (RTX) - GTF geared turbofan (A320neo, A220, E2)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "RYCEY",
+     "role": "Rolls-Royce - Trent widebody engines (A350, 787, A330neo)",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Safran (Paris: SAF)",
+     "role": "CFM partner (LEAP, CFM56); nacelles, landing gear",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HON",
+     "role": "Honeywell - APUs, engine controls, business-jet engines",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "BA",
+     "role": "Boeing - 737 MAX (LEAP-1B), 787 (GEnx / Trent 1000), 777X (GE9X)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "EADSY",
+     "role": "Airbus - A320neo family (LEAP-1A / GTF), A350 (Trent XWB)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "EMBJ",
+     "role": "Embraer - E2 jets (Pratt GTF)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "AER",
+     "role": "AerCap - the largest aircraft and engine lessor",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "DAL",
+     "role": "Delta - airline + engine overhaul (TechOps)",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "aero_structures",
+   "parent": "defense",
+   "name": "Aerospace \u00b7 airframes, aerostructures & materials",
+   "sector": "Industrials / Materials",
+   "description": "Aluminium, titanium and carbon fibre become fuselages, wings and flight controls; a few sole-source structure suppliers pace airframe output.",
+   "upstream": [
+    {
+     "ticker": "AA",
+     "role": "Alcoa - primary aluminium",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CSTM",
+     "role": "Constellium - aerospace plate, sheet, extrusions",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "ATI",
+     "role": "ATI - titanium mill products",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HXL",
+     "role": "Hexcel - carbon-fibre composites, prepregs",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "name": "Spirit AeroSystems",
+     "role": "737 / 787 fuselages (being folded back into Boeing - deal announced July 2024)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "DCO",
+     "role": "Ducommun - structures, electronic assemblies",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "MOG.A",
+     "role": "Moog - flight-control actuation",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HWM",
+     "role": "Howmet - fasteners, structural forgings",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "WWD",
+     "role": "Woodward - fuel systems, actuation",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "BA",
+     "role": "Boeing - commercial airframes",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "EADSY",
+     "role": "Airbus - commercial airframes",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "EMBJ",
+     "role": "Embraer - regional and business jets",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TXT",
+     "role": "Textron Aviation - Cessna, Beechcraft",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "GD",
+     "role": "General Dynamics - Gulfstream business jets",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "aero_systems",
+   "parent": "defense",
+   "name": "Aerospace \u00b7 avionics, systems & components",
+   "sector": "Industrials / Technology",
+   "description": "The proprietary parts and systems on every aircraft - many sole-source for the aircraft's life, which is where the aftermarket's pricing power comes from.",
+   "upstream": [
+    {
+     "ticker": "APH",
+     "role": "Amphenol - connectors, cable assemblies",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TEL",
+     "role": "TE Connectivity - sensors, connectors, wire",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TDY",
+     "role": "Teledyne - sensors, imaging, avionics data",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CW",
+     "role": "Curtiss-Wright - actuation, controls, defense electronics",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "HON",
+     "role": "Honeywell Aerospace - avionics, APUs, wheels and brakes",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "RTX",
+     "role": "Collins Aerospace (RTX) - avionics, interiors, power",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "LHX",
+     "role": "L3Harris - communications, avionics, sensors",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "PH",
+     "role": "Parker Aerospace - hydraulics, fuel systems (Meggitt since 2022)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TDG",
+     "role": "TransDigm - proprietary sole-source components",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HEI",
+     "role": "HEICO - FAA-approved replacement parts, electronics",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "BA",
+     "role": "Boeing",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "EADSY",
+     "role": "Airbus",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "LMT",
+     "role": "Lockheed Martin - F-35, C-130",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "GD",
+     "role": "General Dynamics - Gulfstream",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "NOC",
+     "role": "Northrop Grumman - B-21",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "aero_aftermarket",
+   "parent": "airlines_travel",
+   "name": "Aerospace \u00b7 aftermarket, MRO & leasing",
+   "sector": "Industrials",
+   "description": "Flight hours drive spare parts and shop visits; older fleets flying longer while new jets arrive late shift money to parts makers, overhaul shops and lessors.",
+   "upstream": [
+    {
+     "ticker": "GE",
+     "role": "GE Aerospace - OEM spare parts and shop visits",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TDG",
+     "role": "TransDigm - aftermarket parts",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HEI",
+     "role": "HEICO - replacement parts",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "PH",
+     "role": "Parker Aerospace - aftermarket",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HON",
+     "role": "Honeywell - aftermarket avionics, APUs",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "AIR",
+     "role": "AAR - parts distribution, MRO, government programs",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "SARO",
+     "role": "StandardAero - engine overhaul (IPO Oct 2024)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "FTAI",
+     "role": "FTAI Aviation - CFM56 / V2500 engine modules and maintenance",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "AER",
+     "role": "AerCap - aircraft and engine leasing",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "DAL",
+     "role": "Delta",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "UAL",
+     "role": "United",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "AAL",
+     "role": "American",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "LUV",
+     "role": "Southwest",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "ALK",
+     "role": "Alaska Air",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "FDX",
+     "role": "FedEx - cargo fleet",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "UPS",
+     "role": "UPS - cargo fleet",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "defense_munitions",
+   "parent": "defense",
+   "name": "Defense \u00b7 missiles, munitions & rocket motors",
+   "sector": "Industrials",
+   "description": "Missile and shell demand outruns capacity: solid-rocket motors, energetics and seekers are the choke points, multi-year procurement contracts set the pace.",
+   "upstream": [
+    {
+     "ticker": "LHX",
+     "role": "L3Harris - Aerojet Rocketdyne solid-rocket motors",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "NOC",
+     "role": "Northrop Grumman - solid-rocket motors, propulsion",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "KTOS",
+     "role": "Kratos - rocket motors, hypersonic test vehicles, drones",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TDY",
+     "role": "Teledyne - seekers, sensors",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "RTX",
+     "role": "Raytheon (RTX) - Patriot, AMRAAM, SM-6, Stinger, Coyote",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "LMT",
+     "role": "Lockheed Martin - PAC-3 MSE, JASSM / LRASM, GMLRS, PrSM, Javelin (with RTX)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "GD",
+     "role": "General Dynamics OTS - 155 mm shells, ammunition",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "BA",
+     "role": "Boeing - JDAM kits, Harpoon",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "name": "U.S. Department of Defense",
+     "role": "Army / Navy / Air Force procurement",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Allied governments",
+     "role": "Foreign military sales and transfers",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "nuclear_fuel",
+   "parent": "water_utilities",
+   "name": "Power \u00b7 nuclear fuel cycle & reactors",
+   "sector": "Energy / Utilities",
+   "description": "Uranium is mined, converted, enriched and fabricated before a reactor burns it; enrichment outside Russia is the tightest link, and new reactor designs are years from power.",
+   "upstream": [
+    {
+     "ticker": "CCJ",
+     "role": "Cameco - uranium mining, conversion; 49 % of Westinghouse",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "NXE",
+     "role": "NexGen Energy - Rook I project (development)",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Kazatomprom (London: KAP)",
+     "role": "The largest uranium producer (Kazakhstan)",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "LEU",
+     "role": "Centrus - LEU and HALEU enrichment",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Urenco / Orano",
+     "role": "Western enrichment (state-owned / private)",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Westinghouse (Brookfield 51 % / Cameco 49 %)",
+     "role": "Reactor designs, fuel fabrication",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "BWXT",
+     "role": "BWX Technologies - naval reactors, fuel, components",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "CEG",
+     "role": "Constellation - the largest U.S. nuclear fleet",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "VST",
+     "role": "Vistra - nuclear and gas fleet",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TLN",
+     "role": "Talen - Susquehanna nuclear plant",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "OKLO",
+     "role": "Oklo - Aurora microreactor (development)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "SMR",
+     "role": "NuScale - small modular reactor design (development)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "NNE",
+     "role": "Nano Nuclear - microreactors (development)",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "glp1_obesity",
+   "parent": "pharma",
+   "name": "Healthcare \u00b7 GLP-1 / obesity drugs",
+   "sector": "Health Care",
+   "description": "Two makers supply most of the market; peptide API, fill-finish and pens are the capacity constraint, and pharmacy-benefit managers and insurers decide who is covered.",
+   "upstream": [
+    {
+     "ticker": "TMO",
+     "role": "Thermo Fisher - contract manufacturing (Patheon), bioprocessing",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "WST",
+     "role": "West Pharmaceutical - components for injectables",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "BDX",
+     "role": "Becton Dickinson - syringes, drug-delivery devices",
+     "confidence": "inferred"
+    },
+    {
+     "name": "Catalent (Novo Holdings)",
+     "role": "Fill-finish sites (three sold to Novo Nordisk, Dec 2024)",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "LLY",
+     "role": "Eli Lilly - Mounjaro / Zepbound (tirzepatide)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "NVO",
+     "role": "Novo Nordisk - Ozempic / Wegovy (semaglutide)",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "MCK",
+     "role": "McKesson - drug distribution",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "COR",
+     "role": "Cencora - drug distribution",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CAH",
+     "role": "Cardinal Health - drug distribution",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CVS",
+     "role": "CVS Health - Caremark PBM, pharmacies, Aetna",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "CI",
+     "role": "Cigna - Express Scripts PBM",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "UNH",
+     "role": "UnitedHealth - Optum Rx PBM, insurer",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "HIMS",
+     "role": "Hims & Hers - telehealth, compounded GLP-1",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
+   ]
+  },
+  {
+   "id": "payments_rails",
+   "parent": "ecommerce",
+   "name": "Payments \u00b7 card networks, issuers & processors",
+   "sector": "Financials / Technology",
+   "description": "A card payment runs consumer \u2192 issuer \u2192 network \u2192 acquirer / processor \u2192 merchant; networks take a small toll on every swipe, issuers carry the credit risk.",
+   "upstream": [
+    {
+     "ticker": "JPM",
+     "role": "JPMorgan Chase - the largest card issuer",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "COF",
+     "role": "Capital One - card issuer; owns the Discover network (May 2025)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "C",
+     "role": "Citi - card issuer",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "SYF",
+     "role": "Synchrony - store cards",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "AXP",
+     "role": "American Express - issuer and closed-loop network",
+     "confidence": "inferred"
+    }
+   ],
+   "midstream": [
+    {
+     "ticker": "V",
+     "role": "Visa - card network",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "MA",
+     "role": "Mastercard - card network",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "FIS",
+     "role": "FIS - bank and card processing",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "GPN",
+     "role": "Global Payments - merchant acquiring",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "PYPL",
+     "role": "PayPal - wallets, Braintree processing",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "XYZ",
+     "role": "Block - Square POS, Cash App",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "ADYEY",
+     "role": "Adyen - global acquiring (ADR)",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "TOST",
+     "role": "Toast - restaurant POS and payments",
+     "confidence": "inferred"
+    }
+   ],
+   "downstream": [
+    {
+     "ticker": "AMZN",
+     "role": "Amazon - the largest U.S. e-commerce merchant",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "WMT",
+     "role": "Walmart - the largest U.S. retailer",
+     "confidence": "inferred"
+    },
+    {
+     "ticker": "COST",
+     "role": "Costco - Visa-only (credit) in the U.S.",
+     "confidence": "inferred"
+    }
+   ],
+   "level": "subsector",
+   "citations": [
+    "z200 placement from public company descriptions - confidence 'inferred' unless a link says otherwise; audit pending"
    ]
   }
  ]

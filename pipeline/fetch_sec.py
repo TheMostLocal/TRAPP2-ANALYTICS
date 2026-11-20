@@ -2,6 +2,8 @@
 # ============================================================
 #  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
 #  >>> FILE PATH:   pipeline/fetch_sec.py
+#  z197 - facts queue: Business Web names first; unreadable companies (ETFs: no XBRL facts) stamped so they stop
+#         jumping the queue every run.
 #
 #  z158 - SEC EDGAR, official and free:
 #    events   - 8-K filings (last 180 days) with their item numbers in words, and red flags:
@@ -275,6 +277,36 @@ def facts_from(cf):
     return out
 
 
+def web_priority(root=None):
+    """z197: the companies the Business Web leans on (config/web_relationships.json edges + config/ipo_watch.json) refresh
+    pre-z187 facts first - money-flow ratios shouldn't wait a week behind the alphabet."""
+    cfg = Path(root or ROOT) / "config"
+    out = set()
+    try:
+        for e in json.loads((cfg / "web_relationships.json").read_text()).get("edges") or []:
+            out.update(str(e.get(k) or "").upper() for k in ("from", "to"))
+    except Exception:
+        pass
+    try:
+        out.update(str(t).upper() for t in (json.loads((cfg / "ipo_watch.json").read_text()).get("ipos") or {}))
+    except Exception:
+        pass
+    out.discard("")
+    return out
+
+
+def facts_queue(tick, old, prio, n):
+    """z197: which companies re-read XBRL facts this run. Pre-z187 docs first (Business Web names first among them), then
+    the oldest read. A company whose facts can't be read (an ETF / trust with no XBRL facts -> 404) is stamped when it
+    fails (factsErr), so it waits its turn instead of jumping the queue every run - from 11-16 to 11-19 SPY, DIA and the
+    other never-read funds took most of the 150 reads each run and MSFT / AVGO / AMD / META still carried 2010-18 revenue."""
+    def key(t):
+        d = old.get(t) or {}
+        done = (d.get("factsV") or 0) >= FACTS_VERSION
+        return (done, done or t not in prio, d.get("factsAt") or "", t)
+    return set(sorted(tick, key=key)[:n])
+
+
 def universe():
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from fetch_headcount import universe as hc_universe
@@ -298,7 +330,8 @@ def main():
     log(f"{len(tick)} companies with a CIK · {len(first)} with new 8-K / Form 4 filings first · {len(order)} this run")
     f4_budget, facts_budget = FORM4_DOCS, FACTS_PER_RUN
     # z187: companies whose facts were read before the concept merge (stale series) refresh first, then the oldest
-    facts_order = set(sorted(tick, key=lambda t: ((old[t].get("factsV") or 0) >= FACTS_VERSION, old[t].get("factsAt") or "", t))[:FACTS_PER_RUN])
+    # z197: Business Web names first among them; unreadable ones stamped (see facts_queue)
+    facts_order = facts_queue(tick, old, web_priority(), FACTS_PER_RUN)
     order = order + [t for t in tick if t in facts_order and t not in set(order)]
     for t in order:
         c = cik[t]
@@ -331,8 +364,13 @@ def main():
                 doc["facts"] = facts_from(get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{c:010d}.json"))
                 doc["factsAt"] = now_iso()
                 doc["factsV"] = FACTS_VERSION
+                doc.pop("factsErr", None)
             except Exception as e:
                 log(f"{t}: facts {e}")
+                doc["factsAt"] = now_iso()                    # z197: to the back of its queue, not the front every run
+                if not doc.get("facts"):
+                    doc["factsV"] = FACTS_VERSION             # nothing to keep fresh (ETF / trust): rotate with the read ones
+                doc["factsErr"] = f"{type(e).__name__}: {e}"[:120]
             facts_budget -= 1
         doc["secAt"] = now_iso()
         write(OUT / f"{t}.json", doc)

@@ -98,6 +98,11 @@ SERIES = {
     "JTSJOL": ("Job openings", "k", "m", 70, "growth"),
     "CP": ("Corporate profits after tax", "$bn SAAR", "q", 150, "growth"),
     "OPHNFB": ("Labour productivity", "index", "q", 130, "growth"),
+    # --- z197: valuation, policy and shocks (the dot-com / 1987 / 1994 / 2022 lessons) -----------------------------
+    "NCBEILQ027S": ("Equity market value of nonfinancial corporations (Z.1)", "$m", "q", 160, "valuation"),
+    "FEDFUNDS": ("Fed funds rate (monthly average)", "%", "m", 32, "shocks"),
+    "WTISPLC": ("WTI crude oil, spot (monthly)", "$/bbl", "m", 15, "shocks"),
+    "DGS10": ("10-year Treasury yield", "%", "d", 1, "shocks"),
     # --- outcomes (backtest only) -----------------------------------------------------------------------------------
     "USREC": ("NBER recession indicator", "0/1", "m", 0, "outcome"),
     "NASDAQCOM": ("Nasdaq Composite (long equity history)", "index", "d", 1, "outcome"),

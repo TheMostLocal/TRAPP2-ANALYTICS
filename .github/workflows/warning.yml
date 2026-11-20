@@ -10,6 +10,9 @@
 #  1810 run and the options broad pass). ET-gated twin crons; pipeline/ontime.py queues it on time.
 #  Secret (optional, recommended): FRED_API_KEY - the same free key TRAPP2-1 uses. Without it FRED's public CSV
 #  download is used.
+#  z197 - the read adds crisis history (episodes, first warnings, rhymes) and the hypothesis lab (data/warning/lab.json);
+#  then the BUSINESS WEB build (pipeline/web_build.py -> data/web: nodes, money web + loops + circularity, chains,
+#  IPO lock-up / quiet-period calendar). The web step can't block the read: its own self-test, continue-on-error.
 # ============================================================
 name: Early warning
 
@@ -63,10 +66,13 @@ jobs:
         continue-on-error: true          # a FRED outage keeps yesterday's files; the read still runs
       - name: Early-warning read
         run: python pipeline/warning_signals.py
+      - name: Business Web - nodes, money web, chains, IPO calendar (z197)
+        run: python tests/test_web.py > /tmp/web_test.log 2>&1 || { tail -20 /tmp/web_test.log; exit 1; }; python pipeline/web_build.py
+        continue-on-error: true          # the warning read above is already on disk; a web failure keeps yesterday's data/web
       - name: Commit & push
         run: |
           git config user.name "valuatio-warning"; git config user.email "actions@github.com"
-          [ -e data/warning ] && git add -A data/warning
+          for p in data/warning data/web; do [ -e "$p" ] && git add -A "$p"; done
           git diff --staged --quiet && echo "No changes" && exit 0
           git commit -q -m "early warning: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
           for k in 1 2 3 4 5; do

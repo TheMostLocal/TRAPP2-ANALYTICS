@@ -2,6 +2,8 @@
 #  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
 #  >>> FILE PATH:   tests/test_web.py
 #  z197 - the Business Web build (pipeline/web_build.py) and the SEC facts queue (pipeline/fetch_sec.py).
+#  z199 - ownership from the filings: filing_edges (corporate 5 %+ stakes in, institutions' client money out, curated
+#         edges confirmed, one ticker per CIK), sec_owners, nodes' own / sic / formerNames.
 #  Offline: python -m pytest tests/test_web.py -q
 # ============================================================
 import json
@@ -215,6 +217,166 @@ def test_backlog_view_tracked_commitments_vs_rpo():
     assert {x["buyer"] for x in b["ORCL"]["from"]} == {"OPENAI", "META"} and "NVDA" not in b
     nb = wb.backlog_view(edges, {})
     assert nb["ORCL"]["shareOfRpo"] is None and nb["ORCL"]["rpo"] is None      # no RPO on file: the $ stand alone
+
+
+# ---- z199: ownership from the filings (Schedule 13D / 13G) ------------------------------------------------------------
+def H(name, pct, cik, kind="13G", typ="CO", **kw):
+    return dict({"name": name, "pct": pct, "cik": cik, "kind": kind, "type": typ, "filed": "2026-10-01", "event": "2026-09-30",
+                 "acc": f"acc-{name}-{pct}"}, **kw)
+
+
+BOOKS199 = {"NVDA": {"industry": "Semiconductors"}, "BLK": {"industry": "Asset Management"}, "KKR": {"industry": "Asset Management"},
+            "BRK-B": {"industry": "Insurance - Diversified"}, "CRWV": {"industry": "Software - Infrastructure"},
+            "GOOG": {"industry": "Internet Content & Information"}, "GOOGL": {"industry": "Internet Content & Information"},
+            "XYZ": {"industry": "Specialty Retail"}, "JPM": {"industry": "Banks - Diversified"}}
+CIKS199 = {"NVDA": 1045810, "BLK": 1364742, "KKR": 1404912, "BRK-B": 1067983, "CRWV": 1769628, "GOOG": 1652044, "GOOGL": 1652044,
+           "XYZ": 777, "JPM": 19617}
+
+
+def test_pick_by_cik_prefers_curated_then_books():
+    m = wb._pick_by_cik({"GOOG": 1, "GOOGL": 1, "BRK-A": 2, "BRK-B": 2, "ZZ": 3}, curated={"GOOGL"}, books={"BRK-B", "GOOG", "GOOGL"})
+    assert m == {1: "GOOGL", 2: "BRK-B", 3: "ZZ"}
+    assert wb._pick_by_cik({"GOOG": 1, "GOOGL": 1})[1] == "GOOG"                    # nothing to prefer: the first
+
+
+def test_filing_edges_corporate_kept_institutions_out_curated_confirmed():
+    holders = {"CRWV": [H("NVIDIA CORPORATION", 6.6, 1045810),                                   # confirms the curated edge
+                        H("BLACKROCK, INC.", 7.0, 1364742, typ="HC", rule="13d-1(b)"),            # client money: out
+                        H("KKR GROUP PARTNERSHIP L.P.", 12.0, 1404912, typ="PN", rule="13d-1(d)"),  # a sponsor's pre-IPO stake: in
+                        H("VANGUARD GROUP INC", 9.0, 102909, typ="IA"),                           # not a company we list: no edge
+                        H("JPMORGAN CHASE & CO", 5.2, 19617, typ="HC/BK")],                       # a bank's client holdings: out
+               "GOOG": [H("BERKSHIRE HATHAWAY INC", 5.5, 1067983, typ="HC/CO")],
+               "GOOGL": [H("BERKSHIRE HATHAWAY INC", 5.5, 1067983, typ="HC/CO")],                 # same company: one edge
+               "XYZ": [H("BLACKROCK, INC.", 10.0, 1364742, kind="13D", typ="HC", purpose="seek board seats"),   # 13D: in
+                       H("NVIDIA CORPORATION", 4.1, 1045810)],                                    # below 5 %: no edge
+               "NVDA": [H("NVIDIA CORPORATION", 9.0, 1045810)]}                                   # itself (a plan / treasury): no
+    curated = [E("c1", "owns", "NVDA", "CRWV", confidence="disclosed", events=[]), E("c2", "owns", "GOOGL", "ANT")]
+    new, confirmed = wb.filing_edges(holders, CIKS199, curated, BOOKS199, {"NVDA", "CRWV", "GOOGL", "ANT"})
+    got = {(e["from"], e["to"]): e for e in new}
+    assert set(got) == {("KKR", "CRWV"), ("BRK-B", "GOOGL"), ("BLK", "XYZ")}, got.keys()
+    assert confirmed == 1 and curated[0]["pctFiled"] == 6.6 and curated[0]["events"][-1]["acc"] == "acc-NVIDIA CORPORATION-6.6"
+    assert curated[0]["holder"] == "NVIDIA CORPORATION" and curated[0]["confidence"] == "disclosed"     # curated stays curated
+    k = got[("KKR", "CRWV")]
+    assert k["confidence"] == "filing" and k["pct"] == 12.0 and k["id"] == "F-KKR-CRWV" and k["kind13"] == "13G"
+    assert got[("BLK", "XYZ")]["purpose"] == "seek board seats" and got[("BLK", "XYZ")]["holder"] == "BLACKROCK, INC."
+    # run twice on the same curated list: the confirmation is not appended again
+    wb.filing_edges(holders, CIKS199, curated, BOOKS199, {"NVDA", "CRWV", "GOOGL", "ANT"})
+    assert len(curated[0]["events"]) == 1
+
+
+def test_passive_rule_beats_type_codes():
+    assert wb._passive({"rule": "13d-1(b)", "type": "CO"}) is True              # a qualified institution, whatever the code
+    assert wb._passive({"rule": "13d-1(d)", "type": "HC"}) is False             # an exempt (pre-IPO) holder holds its own
+    assert wb._passive({"type": "IA"}) is True and wb._passive({"type": "PN"}) is False and wb._passive({}) is True
+
+
+def test_filing_edges_from_the_owners_side_and_latest_wins():
+    """The stake read from the owner's own filing list (NVIDIA's doc) makes the edge before CoreWeave's doc is read; when
+    both sides are on file the latest filing wins; a curated edge records an exit below 5 % rather than dropping it."""
+    stakes = {"NVDA": [dict(H("NVIDIA Corporation", 7.0, None, filed="2025-05-15"), issuerCik=1769628)]}
+    new, _ = wb.filing_edges({}, CIKS199, [], BOOKS199, set(), stakes)
+    assert [(e["from"], e["to"], e["pct"]) for e in new] == [("NVDA", "CRWV", 7.0)]
+    holders = {"CRWV": [H("NVIDIA Corporation", 6.6, 1045810, filed="2026-10-02")]}
+    new, _ = wb.filing_edges(holders, CIKS199, [], BOOKS199, set(), stakes)
+    assert [(e["from"], e["to"], e["pct"]) for e in new] == [("NVDA", "CRWV", 6.6)]          # one edge, the latest filing
+    curated = [E("c1", "owns", "NVDA", "CRWV", events=[])]
+    exit_ = {"CRWV": [H("NVIDIA Corporation", 3.9, 1045810, filed="2026-11-14")]}
+    new, conf = wb.filing_edges(exit_, CIKS199, curated, BOOKS199, {"NVDA", "CRWV"}, stakes)
+    assert new == [] and conf == 1 and curated[0]["pctFiled"] == 3.9
+
+
+def test_filing_edges_feed_loops():
+    """A filed stake closes a loop with a curated commitment back - the circular-financing check sees filed ownership."""
+    holders = {"CRWV": [H("NVIDIA CORPORATION", 6.6, 1045810)]}
+    edges = [E("k", "commits", "CRWV", "NVDA", amountUSD=6.3e9)]
+    new, _ = wb.filing_edges(holders, CIKS199, edges, BOOKS199, set())
+    loops = wb.find_loops(edges + new)
+    assert len(loops) == 1 and set(loops[0]["edges"]) == {"k", "F-NVDA-CRWV"}
+
+
+def test_sec_owners_reads_holders_profiles_and_ciks():
+    with tempfile.TemporaryDirectory() as d:
+        Path(d, "CRWV.json").write_text(json.dumps({"ticker": "CRWV", "cik": 1769628, "holders": [H("NVIDIA CORPORATION", 6.6, 1045810)],
+                                                    "profile": {"sic": "7374", "sicDescription": "Services-Computer Processing"}}))
+        Path(d, "NOCIK.json").write_text(json.dumps({"ticker": "NOCIK", "cik": "n/a"}))
+        Path(d, "index.json").write_text("{}")
+        Path(d, "BAD.json").write_text("{not json")
+        Path(d, "NVDA.json").write_text(json.dumps({"ticker": "NVDA", "cik": 1045810,
+                                                    "stakes": [dict(H("NVIDIA Corporation", 6.6, None), issuerCik=1769628, issuer="CoreWeave, Inc.")]}))
+        Path(d, "cusips.json").write_text(json.dumps({"byCusip": {"21873S108": "CRWV"}}))
+        so = wb.sec_owners(d, TODAY)
+    holders, stakes, profiles, ciks = so["holders"], so["stakes"], so["profiles"], so["ciks"]
+    assert list(holders) == ["CRWV"] and profiles["CRWV"]["sic"] == "7374" and ciks == {"CRWV": 1769628, "NVDA": 1045810}
+    assert stakes["NVDA"][0]["issuerCik"] == 1769628
+    assert wb.sec_owners("/no/such/dir") == {"holders": {}, "stakes": {}, "f13": {}, "profiles": {}, "ciks": {}, "shares": {}}
+
+
+def test_build_carries_filed_ownership_into_nodes_and_money():
+    with tempfile.TemporaryDirectory() as d:
+        Path(d, "CRWV.json").write_text(json.dumps({"ticker": "CRWV", "cik": 1769628, "profile": {"sic": "7374", "sicDescription": "Services-Computer Processing",
+                                                    "formerNames": [{"name": "Atlantic Crypto Corp", "to": "2019-04-01"}]},
+                                                    "holders": [H("KKR GROUP PARTNERSHIP L.P.", 12.0, 1404912, typ="PN"), H("VANGUARD GROUP INC", 4.0, 102909, typ="IA")]}))
+        Path(d, "KKR.json").write_text(json.dumps({"ticker": "KKR", "cik": 1404912}))
+        books = wb.books_from({"TRAPP2": [{"ticker": "CRWV", "name": "CoreWeave", "isetf": "false"},
+                                          {"ticker": "KKR", "name": "KKR & Co", "isetf": "false", "industry": "Asset Management"}]})
+        out = wb.build(TODAY, books, d, None, None)
+    n = out["nodes"]["nodes"]
+    assert n["CRWV"]["own"] == {"n5": 1, "sum5": 12.0, "top": ["KKR GROUP PARTNERSHIP L.P.", 12.0]}
+    assert n["CRWV"]["sic"] == ["7374", "Services-Computer Processing"] and n["CRWV"]["formerNames"] == ["Atlantic Crypto Corp"]
+    assert any(e["id"] == "F-KKR-CRWV" for e in out["money"]["edges"]) and out["stats"]["filingEdges"] == 1
+    assert out["stats"]["withHolders"] == 1 and n["KKR"]["money"]["owns"] >= 1
+
+
+def test_node_own_sums_within_one_class():
+    with tempfile.TemporaryDirectory() as d:
+        Path(d, "GOOGL.json").write_text(json.dumps({"ticker": "GOOGL", "cik": 1652044, "holders": [
+            H("VANGUARD GROUP INC", 7.6, 102909, typ="IA", cusip="02079K305"), H("BLACKROCK, INC.", 6.4, 1364742, typ="HC", cusip="02079K305"),
+            H("VANGUARD GROUP INC", 7.1, 102909, typ="IA", cusip="02079K107")]}))
+        out = wb.build(TODAY, wb.books_from({"TRAPP2": [{"ticker": "GOOGL", "name": "Alphabet", "isetf": "false"}]}), d, None, None)
+    own = out["nodes"]["nodes"]["GOOGL"]["own"]
+    assert own["n5"] == 3 and own["sum5"] == 14.0                    # class A's two holders, not 21.1 across both classes
+
+
+def test_f13_edges_corporate_holdings_mapped_and_attached():
+    books = dict(BOOKS199, **{"BRK-B": {"industry": "Insurance - Diversified", "sector": "Financial Services", "name": "Berkshire Hathaway"},
+                              "AAPL": {"name": "Apple"}, "TINY": {"name": "Tiny Co"}, "ARM": {"name": "Arm Holdings"},
+                              "NVDA": {"industry": "Semiconductors", "name": "NVIDIA"}})
+    ciks = dict(CIKS199, AAPL=320193, TINY=5, ARM=1973239)
+    cus = {"21873S108": "CRWV", "042068205": "ARM", "037833100": "AAPL", "888888888": "TINY", "02079K305": ["GOOG", "GOOGL"], "N97284108": "NBIS"}
+    shares = {"CRWV": 480e6, "AAPL": 15.0e9, "TINY": 1e6, "GOOGL": 12.1e9}
+    f13 = {"NVDA": {"period": "2026-09-30", "acc": "a-nv", "holdings": [
+               {"cusip": "21873S108", "value": 3.6e9, "shares": 24182460},                  # also a 13G edge: attached
+               {"cusip": "042068205", "value": 1.5e8, "shares": 1.1e6},                     # Arm: no share count on file -> no %
+               {"cusip": "N97284108", "value": 2e7, "shares": 2e5, "putCall": "CALL"},      # an option: out
+               {"cusip": "999999999", "value": 5e6, "shares": 1e5}]},                       # not mapped: out
+           "BRK-B": {"period": "2026-09-30", "acc": "a-brk", "holdings": [
+               {"cusip": "037833100", "value": 60e9, "shares": 300e6},                      # 2 %: in
+               {"cusip": "888888888", "value": 5e6, "shares": 5000},                        # 0.5 %, $5M: a float position - out
+               {"cusip": "02079K305", "value": 2e9, "shares": 10e6}]},                      # two classes -> one ticker (GOOGL, curated)
+           "BLK": {"period": "2026-09-30", "acc": "a-blk", "holdings": [{"cusip": "037833100", "value": 1e11, "shares": 1e9}]}}   # institution: out
+    edges = [E("F-NVDA-CRWV", "owns", "NVDA", "CRWV", pct=6.6, confidence="filing", kind13="13G")]
+    new, att = wb.f13_edges(f13, cus, ciks, books, edges, {"GOOGL"}, shares)
+    got = {(e["from"], e["to"]): e for e in new}
+    assert set(got) == {("NVDA", "ARM"), ("BRK-B", "AAPL"), ("BRK-B", "GOOGL")}, got.keys()
+    assert att == 1 and edges[0]["f13"]["valueUSD"] == 3.6e9 and edges[0]["f13"]["pctApprox"] == round(100 * 24182460 / 480e6, 2)
+    a = got[("BRK-B", "AAPL")]
+    assert a["pct"] == 2.0 and a["pctApprox"] is True and a["kind13"] == "13F" and a["valueUSD"] == 60e9 and a["id"] == "F13-BRK-B-AAPL"
+    assert a["label"] == "Berkshire Hathaway: $60.0bn of Apple (13F, 2026-09-30)" and a["events"][0]["acc"] == "a-brk"
+    assert got[("NVDA", "ARM")]["pct"] is None and got[("NVDA", "ARM")]["pctApprox"] is False
+
+
+def test_build_maps_13f_with_the_cusip_file():
+    with tempfile.TemporaryDirectory() as d:
+        Path(d, "NVDA.json").write_text(json.dumps({"ticker": "NVDA", "cik": 1045810, "f13": {"period": "2026-09-30", "acc": "a", "n": 1, "total": 1.5e8,
+                                                    "holdings": [{"cusip": "042068205", "value": 1.5e8, "shares": 1.1e6}]}}))
+        Path(d, "ARM.json").write_text(json.dumps({"ticker": "ARM", "cik": 1973239,
+                                                   "facts": {"dilutedShares": {"quarterly": [{"end": "2026-09-30", "val": 1.06e9}]}}}))
+        Path(d, "cusips.json").write_text(json.dumps({"byCusip": {"042068205": "ARM"}}))
+        books = wb.books_from({"TRAPP2": [{"ticker": "NVDA", "name": "NVIDIA", "isetf": "false"}, {"ticker": "ARM", "name": "Arm", "isetf": "false"}]})
+        out = wb.build(TODAY, books, d, None, None)
+    e = next(x for x in out["money"]["edges"] if x["id"] == "F13-NVDA-ARM")
+    assert e["pct"] == round(100 * 1.1e6 / 1.06e9, 2) and out["stats"]["f13Edges"] == 1 and out["stats"]["cusipsMapped"] == 1
+    assert out["nodes"]["nodes"]["NVDA"]["f13"] == {"period": "2026-09-30", "n": 1, "total": 1.5e8}
 
 
 def test_web_priority_reads_configs():

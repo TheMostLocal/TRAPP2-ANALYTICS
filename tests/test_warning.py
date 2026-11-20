@@ -3,7 +3,7 @@
 #  >>> FILE PATH:   tests/test_warning.py
 #  z196: the early-warning engine (pipeline/warning_signals.py) - publication lags, no-look-ahead scoring, the
 #  seasonal-trap / marginal-buyer / blindness detectors, bottom-up breadth, sector exposures, the backtest, and a
-#  synthetic 2006-09 housing-credit cycle. Offline. Run: python tests/test_warning.py
+#  synthetic 2006-09 housing-credit cycle. Offline and hermetic (no repo data read). Run: python tests/test_warning.py
 # ============================================================
 import json
 import math
@@ -266,8 +266,25 @@ check(f"ledger: graded after the horizon ({led[0]['result']})", rec1["graded"] =
 # 7. degraded: no FRED history on file -> a provisional read from the bottom-up layer -------------------------------
 out2, _, _ = ws.run(date(2026, 11, 19), {}, {"options": {"breadth": {"invertedShare": 0.5}}}, [], None)
 check(f"no series: provisional risk from bottom-up only ({out2['risk']}, {out2['level']})", out2["provisional"] and out2["risk"] is not None)
-out3, _, _ = ws.run(date(2026, 11, 19), {}, {}, [], None)
+# hermetic: a data/ folder full of SEC docs (as in the Actions checkout) must not turn "nothing at all" into a read
+# (z197 fix - in Actions the repo's own data/sec leaked in, this check failed and data/warning was never written)
+fake_root = tempfile.mkdtemp()
+os.makedirs(os.path.join(fake_root, "sec"))
+for i in range(40):
+    json.dump({"ticker": f"Z{i:02d}", "events": [{"date": "2026-11-15", "items": ["1.03"], "red": ["1.03"], "caution": []}]},
+              open(os.path.join(fake_root, "sec", f"Z{i:02d}.json"), "w"))
+json.dump({"tickers": {f"Z{i:02d}": {"insider": {"buyers": 3, "sellers": 0, "cluster": True}} for i in range(40)}},
+          open(os.path.join(fake_root, "sec", "index.json"), "w"))
+_saved_data = ws.DATA
+ws.DATA = ws.Path(fake_root)
+try:
+    out3, _, _ = ws.run(date(2026, 11, 19), {}, {}, [], None)
+    leak = ws.bottom_up(date(2026, 11, 19))
+finally:
+    ws.DATA = _saved_data
+    shutil.rmtree(fake_root, ignore_errors=True)
 check("nothing at all: no read, no crash", out3["risk"] is None and out3["level"] == "unknown")
+check("a checkout's own data/sec is never read unless passed (the Actions self-test failure, 11-20)", leak["sec"] is None)
 
 print(f"\n{ok} passed, {fail} failed")
 sys.exit(1 if fail else 0)

@@ -13,27 +13,49 @@
 #    first_warnings(...)  - which indicators crossed into their top fifth first, and how many months ahead
 #    rhymes(now, eps)     - which past run-ups today's pillar readings most resemble, and on what
 #  "History doesn't repeat, it rhymes": regulation closes the last gap; the next one sits inside the new rules.
+#
+#  z198 - the panel reaches back to 1955, so 1962, 1966, 1969-70, 1973-74, 1980-82 and 1987 are read from data too
+#  (each episode names the pillars its readings rest on), and track_records() asks the scientist's question of every
+#  first warning: how often has a crossing like this one been followed by a 20 % fall or a recession - and how often not?
 # ============================================================
+import bisect
 import math
 from datetime import date, timedelta
 
 # peak / trough: equity peak and trough months (or the stress onset for a non-equity episode); rec: NBER recession months
 EPISODES = [
+    dict(id="1962", name="1962 'Kennedy slide'", kind="valuation / policy shock", peak="1961-12", trough="1962-06", rec=None,
+         broke="The S&P 500 fell 28 % in six months without a recession: richly valued growth stocks met the April 1962 steel-price confrontation and a May 28 one-day break.",
+         warnings=["S&P 500 at ~22x earnings after the 1950s re-rating", "speculation in new issues and 'electronics' stocks (the 1961 IPO boom)"],
+         policy="The Fed cut the margin requirement from 70 % to 50 % (July 1962); no rescues.", gap="New-issue promotion and thin disclosure for small IPOs - the SEC's Special Study of the Securities Markets (1963) followed.",
+         lesson="An IPO boom on stretched multiples can fall 25 %+ with no recession at all - valuation was the fuel, a shock was the match.", data=True),
+    dict(id="1966", name="1966 credit crunch", kind="rates / disintermediation", peak="1966-02", trough="1966-10", rec=None,
+         broke="The Fed tightened into a capped deposit market: money left banks and savings & loans for market rates, mortgage credit seized, housing starts fell by half; S&P 500 -22 %.",
+         warnings=["market rates above the Regulation Q deposit ceilings (money leaving banks and thrifts)", "Fed tightening into an overheating, war-time economy", "falling housing starts"],
+         policy="The Fed asked banks to slow business lending, then eased; Congress extended deposit-rate ceilings to thrifts (1966).",
+         gap="Rate ceilings left thrifts funding 30-year mortgages with short deposits - the maturity mismatch that broke the S&L industry in the 1980s.",
+         lesson="Capping the price of funding doesn't stop the run - it moves it; the fix sowed the 1980s S&L crisis.", data=True),
+    dict(id="1970", name="1969-70 bear market and the Penn Central failure", kind="credit / funding / speculation", peak="1968-11", trough="1970-05", rec=("1969-12", "1970-11"),
+         broke="The 'go-go' fund and conglomerate boom unwound (S&P 500 -36 %); Penn Central's bankruptcy (June 1970) defaulted on $82 M of commercial paper and the CP market froze for weaker issuers.",
+         warnings=["go-go funds and conglomerates priced on accounting growth", "inflation and Fed tightening (fed funds ~9 % in 1969)", "inverted curve (1969)", "a railroad funding itself with short-term paper"],
+         policy="The Fed opened the discount window for banks lending to firms shut out of CP and suspended deposit-rate ceilings on large CDs - the first backstop of a non-bank funding market.",
+         gap="Non-bank short-term funding had no lender of last resort - until the Fed became one, an implicit promise later markets priced in (2008's CP facility).",
+         lesson="When a big issuer fails, the marginal buyer of short-term paper vanishes overnight; the rescue became a precedent.", data=True),
     dict(id="1973", name="1973-74 oil shock and stagflation", kind="oil / inflation", peak="1973-01", trough="1974-10", rec=("1973-11", "1975-03"),
          broke="OPEC embargo quadrupled oil; inflation above 10 %; the Nifty Fifty de-rated; S&P 500 -48 %.",
          warnings=["oil supply shock", "inflation running ahead of policy", "Nifty Fifty valuations (one-decision stocks at 50x+)"],
          policy="Price controls (failed), then the Fed tightened into the downturn.", gap="Inflation expectations were not anchored - policy credibility, not a rule, was missing.",
-         lesson="Valuation on 'can't-miss' growth stocks does not survive an inflation and rate shock.", data=False),
+         lesson="Valuation on 'can't-miss' growth stocks does not survive an inflation and rate shock.", data=True),
     dict(id="1980", name="1980-82 Volcker tightening", kind="rates / inflation", peak="1980-11", trough="1982-08", rec=("1981-07", "1982-11"),
          broke="Fed funds near 20 %; double-dip recession; LDC (Latin-American) debt crisis followed in 1982.",
          warnings=["fed funds +10 pts", "inverted curve", "bank lending to developing countries (petrodollar recycling)"],
          policy="Volcker held rates high; banks' LDC losses were forborne for years (regulatory forbearance).", gap="Bank capital on sovereign loans - Basel I came in 1988.",
-         lesson="Disinflation by recession; forbearance hid bank losses for a decade.", data=False),
+         lesson="Disinflation by recession; forbearance hid bank losses for a decade.", data=True),
     dict(id="1987", name="1987 crash", kind="rates / market structure", peak="1987-08", trough="1987-12", rec=None,
          broke="The Dow fell 22.6 % on 10-19-87; portfolio insurance sold into a falling market.",
          warnings=["10-year yield up ~3 pts in 1987", "falling dollar, trade deficit", "a 40 % rally into August"],
          policy="Fed liquidity statement on 10-20; no firm bail-outs.", gap="Market structure (portfolio insurance, no circuit breakers) - circuit breakers came in 1988.",
-         lesson="A rate shock into stretched prices can crash a market without a recession.", data=False),
+         lesson="A rate shock into stretched prices can crash a market without a recession.", data=True),
     dict(id="1990", name="1990-91 recession: S&L, real estate, oil", kind="credit / real estate / oil", peak="1990-07", trough="1990-10", rec=("1990-07", "1991-03"),
          broke="Savings & loans failed on bad real-estate loans; oil doubled after Iraq invaded Kuwait; bank credit crunch.",
          warnings=["S&L and commercial real-estate losses (1986-89)", "Fed tightening 1988-89", "inverted curve 1989", "oil +100 % (Aug-Oct 1990)"],
@@ -169,6 +191,82 @@ def first_warnings(rows, ep, labels, window=24, level=80, top=6):
                              "month": _key(rows[i]["t"]), "lead": end - i, "score": round(v, 1)})
     hits.sort(key=lambda h: (-h["lead"], -h["score"]))
     return hits[:top]
+
+
+def track_records(rows, market, labels, level=80, horizon=730, dd=-0.20):
+    """z198 - each indicator's record as a WARNING over the whole panel. A warning = the same crossing first_warnings()
+    looks for (from below 70 into the top fifth, 2 of the next 3 months still >= 70; the next one only after it has
+    cooled below 70 again). A hit = a 20 % fall in the S&P 500 or a recession start within `horizon` days. Compared
+    with the base rate - the share of all months followed by such an event - so a noisy series can't pass as a prophet.
+    -> {"byKey": {key: {n, hits, rate, lift, lead (median months to the event)}}, "base", "rule", "horizon"}"""
+    ts = [r["t"] for r in rows]
+
+    def event_after(t):
+        """months from t to the first event within the horizon, or None"""
+        w = market.window(t, horizon) if market and market.d else None
+        best = None
+        if w and w[0] > 0:
+            p0 = w[0]
+            i0 = bisect.bisect_right(market.d, t)
+            for j, v in enumerate(w[1]):
+                if v / p0 - 1 <= dd:
+                    best = (market.d[i0 + j] - t).days / 30.44
+                    break
+        for s0 in getattr(market, "rec", []) or []:
+            if t < s0 <= t + timedelta(days=horizon):
+                m = (s0 - t).days / 30.44
+                best = m if best is None else min(best, m)
+                break
+        return best
+
+    def known(t):
+        return bool(market and market.d and market.d[-1] >= t + timedelta(days=horizon))
+
+    base_n = base_hits = 0
+    ev_cache = {}
+    for t in ts:
+        if not known(t):
+            continue
+        e = event_after(t)
+        ev_cache[t] = e
+        base_n += 1
+        base_hits += e is not None
+    base = base_hits / base_n if base_n else None
+    by = {}
+    keys = {k for r in rows for k in (r.get("scores") or {})}
+    for k in keys:
+        if labels.get(k, ("", ""))[1] == "growth":
+            continue
+        armed, n, hits, leads = False, 0, 0, []
+        for i, r in enumerate(rows):
+            v = (r.get("scores") or {}).get(k)
+            if v is None:
+                continue
+            if v < 70:
+                armed = True
+                continue
+            if not armed or v < level:
+                continue
+            nxt = [((rows[j].get("scores") or {}).get(k) or 0) >= 70 for j in range(i + 1, min(i + 4, len(rows)))]
+            if len(nxt) < 2 or sum(nxt) < 2:
+                continue
+            armed = False
+            t = r["t"]
+            if t not in ev_cache:
+                continue                      # horizon not over yet: an open warning, not graded
+            n += 1
+            e = ev_cache[t]
+            if e is not None:
+                hits += 1
+                leads.append(e)
+        if n:
+            leads.sort()
+            by[k] = {"n": n, "hits": hits, "rate": round(hits / n, 3),
+                     "lift": round((hits / n) / base, 2) if base else None,
+                     "lead": round(leads[len(leads) // 2], 1) if leads else None}
+    return {"byKey": by, "base": None if base is None else round(base, 3), "horizon": horizon,
+            "rule": (f"a warning = a crossing from below 70 into the top fifth (>= {level}) that holds 2 of the next 3 months; "
+                     f"hit = a {abs(dd) * 100:.0f} % fall or a recession start within {round(horizon / 365)} years")}
 
 
 def fingerprint(rows, ep, k=6):

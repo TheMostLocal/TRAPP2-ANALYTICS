@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-18",
+ "asOf": "2026-11-19",
  "rule": "bad print = a one-day jump beyond x2.5 back within 25% of the prior close inside 3 bars (dropped); break = any other one-day jump beyond x2.5 (kept; calls spanning it are left out of the statistics)",
  "tickers": {
   "VELO": {
@@ -344,20 +344,6 @@
     [
      "2010-06-24",
      0.092
-    ]
-   ]
-  },
-  "ANTH.PVT": {
-   "book": "TRAPP2-1",
-   "badPrints": [],
-   "breaks": [
-    [
-     "2023-01-04",
-     0.0997
-    ],
-    [
-     "2025-08-07",
-     2.7492
     ]
    ]
   },
@@ -709,6 +695,10 @@
     [
      "2026-09-29",
      0.2087
+    ],
+    [
+     "2026-11-19",
+     0.2047
     ]
    ]
   },
@@ -815,6 +805,16 @@
     [
      "2025-01-08",
      2.6061
+    ]
+   ]
+  },
+  "SOS": {
+   "book": "TRAPP2-3",
+   "badPrints": [],
+   "breaks": [
+    [
+     "2026-11-19",
+     0.0477
     ]
    ]
   },

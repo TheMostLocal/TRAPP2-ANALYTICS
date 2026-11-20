@@ -28,6 +28,8 @@
 #         The stakes a company files about others count too (its own doc), and a company's corporate 13F holdings
 #         (mapped CUSIP -> ticker with data/sec/cusips.json) become owns edges with value, shares and an approximate %
 #         (or attach their 13F figures to the edge that already links the pair).
+#  z200 - one holder summary per company (GOOG / GOOGL: the chosen ticker carries `own`); chains.json carries the config's
+#         revised chains (`rev`: dead / renamed tickers fixed) and 8 more subsector chains - the app swaps them in at load.
 #  Env: WEB_OFFLINE=1 (no raw fetches) · WEB_NOW=YYYY-MM-DD (tests)
 # ============================================================
 import json
@@ -45,7 +47,7 @@ OWNER = os.environ.get("GITHUB_REPOSITORY_OWNER") or "TheMostLocal"
 RAW = f"https://raw.githubusercontent.com/{OWNER}"
 BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")
 STAGES = (("upstream", "up"), ("midstream", "mid"), ("downstream", "down"))
-BUILD = "z199"
+BUILD = "z200"
 
 
 def _get_json(url, timeout=60):
@@ -520,6 +522,7 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
     cus = (_read(Path(sec_dir or DATA / "sec") / "cusips.json", {}) or {}).get("byCusip") or {}
     f13e, f13_att = f13_edges(so["f13"], cus, ciks, books, edges, curated_names, so["shares"])
     edges += f13e
+    one_class = _pick_by_cik(ciks, curated_names, set(books))         # z200: GOOG / GOOGL - one carries the holder summary
     loops = find_loops(edges)
     circ = circularity(edges, loops, facts)
     backlog = backlog_view(edges, facts)
@@ -565,6 +568,8 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
         if pf.get("formerNames"):
             n["formerNames"] = [f.get("name") for f in pf["formerNames"]][:3]
         hs = [h for h in holders.get(t) or [] if (h.get("pct") or 0) >= 5]
+        if hs and one_class.get(ciks.get(t)) not in (None, t):
+            hs = []                                                   # the other share class: summarised once, on the chosen ticker
         if hs:
             cls = {}
             for h in hs:                                # sum within one class: the one most holders filed on

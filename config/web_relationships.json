@@ -1,0 +1,841 @@
+{
+ "asOf": "2026-11-19",
+ "build": "z197",
+ "note": "Curated, sourced relationships (the Business Web's first slice: the AI complex). One edge per (type, from, to); each dated event carries its source and confidence - filing (a filing says it), disclosed (company announcement), reported (press / analysis of filings). K-sources were recorded from knowledge of public announcements and are due a URL / accession in the P3 audit. z197 audit: the six K sources (recorded from knowledge) now carry URLs - Microsoft's announcement, an SEC 8-K, Reuters / AP / SCMP / Futuriom reports.",
+ "types": {
+  "owns": "from holds equity / warrants in to",
+  "funds": "from lends to or backstops to",
+  "commits": "from has committed to buy from to",
+  "supplies": "from sells to to",
+  "underwrites": "from underwrote to's securities (fees; research conflict)"
+ },
+ "sources": {
+  "S1": {
+   "title": "Anthropic sets IPO range and adds $26 billion private placement (S-1/A, 11-10-2026)",
+   "url": "https://letsdatascience.com/news/anthropic-sets-ipo-range-and-adds-26-billion-private-placeme-f6c67619"
+  },
+  "S2": {
+   "title": "Anthropic's IPO comes with a $26 billion side deal",
+   "url": "https://finimize.com/content/anthropics-ipo-comes-with-a-26-billion-side-deal"
+  },
+  "S3": {
+   "title": "Bloomberg: Amazon and Google to hold about 28% of Anthropic",
+   "url": "https://letsdatascience.com/news/bloomberg-amazon-and-google-to-hold-about-28-of-anthropic-6163f39b"
+  },
+  "S4": {
+   "title": "Anthropic's $26B supplier placement is in non-voting stock (S-1/A analysis)",
+   "url": "https://fourweekmba.com/ai-anthropics-26b-supplier-placement-is-in-non-voting-stock/"
+  },
+  "S5": {
+   "title": "Anthropic gives Google an option to buy up to $10 billion in Class N stock",
+   "url": "https://cryptobriefing.com/anthropic-google-option-10b-class-n-stock/"
+  },
+  "S6": {
+   "title": "Google plans up to $40bn investment in Anthropic",
+   "url": "https://www.computing.co.uk/news/2026/ai/google-plans-up-to-40bn-investment-in-anthropic"
+  },
+  "S7": {
+   "title": "Google once again ramps up funding for Anthropic (Amazon $5bn + up to $20bn, 5 GW)",
+   "url": "https://www.itpro.com/infrastructure/google-once-again-ramps-up-funding-for-anthropic"
+  },
+  "S8": {
+   "title": "Google to invest up to $40bn in Anthropic (The Information: up to $200bn Google Cloud commitment)",
+   "url": "https://penchan.co/en/market/ai/google/google-invests-anthropic/"
+  },
+  "S9": {
+   "title": "NVIDIA tops $40bn in AI equity bets in 2026, anchored by $30bn OpenAI investment",
+   "url": "https://thenextweb.com/news/nvidia-40bn-ai-equity-investments-2026"
+  },
+  "S10": {
+   "title": "Nvidia deploys $40B in AI equity stakes (Corning, IREN, CoreWeave, Nebius)",
+   "url": "https://www.pulse.bot/ai/news/nvidia-deploys-40-b-in-ai-equity-stakes-led-by-30-b-openai-investment-ba35c928-a30a-4d27-a404-038f97b693e4/"
+  },
+  "S11": {
+   "title": "Nvidia throws CoreWeave $2bn lifeline (second-largest shareholder)",
+   "url": "https://capacityglobal.com/news/nvidia-throws-coreweave-2bn-lifeline-huang-blasts-critics/"
+  },
+  "S12": {
+   "title": "Nvidia's $100 billion question mark ($6.3bn CoreWeave capacity backstop; OpenAI-Oracle $300bn)",
+   "url": "https://www.implicator.ai/nvidias-100-billion-question-mark/"
+  },
+  "S13": {
+   "title": "OpenAI, AMD strike landmark partnership (warrant for 160M shares; Oracle $300bn / 4.5 GW)",
+   "url": "https://www.techspot.com/news/109749-openai-amd-strike-landmark-partnership-worth-tens-billions.html"
+  },
+  "S14": {
+   "title": "How AMD's OpenAI and Meta deals work: 12 GW, up to 320M shares (AMD 8-Ks 10-06-2025, 02-24-2026)",
+   "url": "https://fourweekmba.com/ai-how-amds-openai-meta-deals-work-12-gw-up-to-320m-shares/"
+  },
+  "S15": {
+   "title": "OpenAI's AMD deal; Broadcom 10 GW custom chips from H2 2026 (The Batch)",
+   "url": "https://www.deeplearning.ai/the-batch/openais-latest-multi-billion-dollar-chip-deal-would-give-it-six-gigawatts-of-computing-power-and-up-to-10-of-amd"
+  },
+  "S16": {
+   "title": "AMD and OpenAI announce compute deal; NVIDIA-OpenAI 10 GW (09-22-2025)",
+   "url": "https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/amd-openai-ai-compute-deal-billions"
+  },
+  "S17": {
+   "title": "NVIDIA's $99 billion investment portfolio and the circular financing loop",
+   "url": "https://fourweekmba.com/ai-nvidia-99-billion-investment-portfolio-circular-financing-ai/"
+  },
+  "S18": {
+   "title": "SpaceX (SPCX) token unlock / lock-up schedule; S-1: Alphabet ~7 %",
+   "url": "https://tokenomist.ai/stock/spcx"
+  },
+  "S19": {
+   "title": "Anthropic's IPO filing implies $636M in fees for its 22 banks",
+   "url": "https://fourweekmba.com/ai-anthropic-ipo-filing-implies-636m-in-fees-for-its-22-banks/"
+  },
+  "S20": {
+   "title": "Anthropic IPO filing: lead underwriters Morgan Stanley, Goldman Sachs, JPMorgan",
+   "url": "https://www.digitalapplied.com/blog/anthropic-ipo-filing-2026-claude-stack-analysis"
+  },
+  "K1": {
+   "title": "Microsoft holds 27% of OpenAI in revamped partnership; OpenAI commits $250bn of Azure (SCMP, 10-28-2025, citing OpenAI's post)",
+   "url": "https://www.scmp.com/tech/big-tech/article/3330714/microsoft-holds-27-openai-revamped-partnership"
+  },
+  "K2": {
+   "title": "Microsoft, NVIDIA and Anthropic announce strategic partnerships (Microsoft, 11-18-2025)",
+   "url": "https://blogs.microsoft.com/blog/2025/11/18/microsoft-nvidia-and-anthropic-announce-strategic-partnerships/"
+  },
+  "K3": {
+   "title": "CoreWeave IPO filing: Microsoft 62 % of 2024 revenue (Futuriom on the S-1, 03-2025)",
+   "url": "https://www.futuriom.com/articles/news/coreweave-files-for-ipo/2025/03"
+  },
+  "K4": {
+   "title": "CoreWeave, Inc. Form 8-K (event 09-25-2025, filed 09-30-2025): Meta order under the master services agreement",
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000050/crwv-20250925.htm"
+  },
+  "K5": {
+   "title": "Nebius signs $17.4bn AI infrastructure deal with Microsoft, up to $19.4bn (Reuters, 09-08-2025)",
+   "url": "https://www-web.itiger.com/news/2566263048"
+  },
+  "K6": {
+   "title": "Nvidia to invest $5 billion in Intel at $23.28 a share (AP, 09-18-2025)",
+   "url": "https://abc7news.com/post/nvidia-invest-5-billion-intel-companies-will-work-together-ai-infrastructure-pcs/17841300/"
+  }
+ },
+ "entities": {
+  "OPENAI": {
+   "name": "OpenAI Group PBC",
+   "kind": "private",
+   "sector": "Technology",
+   "industry": "AI model lab"
+  },
+  "XAI": {
+   "name": "xAI",
+   "kind": "private",
+   "sector": "Technology",
+   "industry": "AI model lab"
+  },
+  "ANT": {
+   "name": "Anthropic PBC",
+   "kind": "public",
+   "sector": "Technology",
+   "industry": "AI model lab",
+   "note": "Nasdaq ANT since 11-19-2026"
+  }
+ },
+ "nodeNotes": {
+  "NVDA": {
+   "investments": "~$99bn of investments on the balance sheet: ~$51.2bn non-marketable / equity-method, ~$42.8bn marketable equity, ~$5bn long-term public equity",
+   "src": "S17"
+  },
+  "ANT": {
+   "computeContracts": "S-1/A: seven compute contracts with stated amounts; Broadcom + Google + Microsoft = $327.4bn = 50.9 % (=> ~$643bn in total, computed)",
+   "src": "S4",
+   "placement": "$26.0bn concurrent private placement of non-voting Class N at the IPO price - AMD, Broadcom, Google, Micron, Microsoft, NVIDIA, TSMC Partners",
+   "placementSrc": "S1"
+  }
+ },
+ "edges": [
+  {
+   "type": "owns",
+   "from": "GOOGL",
+   "to": "ANT",
+   "label": "Alphabet owns ~14 % of Anthropic (post-IPO)",
+   "events": [
+    {
+     "date": "2026-04-24",
+     "text": "Up to $40bn: $10bn cash now, $30bn on milestones",
+     "src": "S6",
+     "confidence": "reported",
+     "amountUSD": 10000000000.0
+    },
+    {
+     "date": "2026-11-19",
+     "text": "$10.0bn of non-voting Class N stock at the IPO price (concurrent placement; exercises its option)",
+     "src": "S2",
+     "confidence": "filing",
+     "amountUSD": 10000000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 20000000000.0,
+   "pct": 14.0,
+   "instrument": "common + Class N (non-voting)",
+   "id": "R001"
+  },
+  {
+   "type": "funds",
+   "from": "GOOGL",
+   "to": "ANT",
+   "label": "Alphabet: undrawn $20bn debt facility (reduced by any Class N purchase)",
+   "events": [
+    {
+     "date": "2026-11",
+     "text": "$20bn undrawn facility; shrinks by the amount used to buy Class N",
+     "src": "S5",
+     "confidence": "filing",
+     "amountUSD": 20000000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 20000000000.0,
+   "instrument": "debt facility (undrawn)",
+   "id": "R002"
+  },
+  {
+   "type": "owns",
+   "from": "AMZN",
+   "to": "ANT",
+   "label": "Amazon owns ~15 % of Anthropic (post-IPO)",
+   "events": [
+    {
+     "date": "2026-04",
+     "text": "$5bn now + up to $20bn more on commercial milestones",
+     "src": "S7",
+     "confidence": "reported",
+     "amountUSD": 5000000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 5000000000.0,
+   "pct": 15.0,
+   "note": "Earlier investments (2023-24) not itemised here; stake per Bloomberg citing the S-1/A",
+   "id": "R003"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "ANT",
+   "label": "NVIDIA: $10bn of Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2025-11-18",
+     "text": "Up to $10bn commitment (partnership announcement)",
+     "src": "K2",
+     "confidence": "disclosed"
+    },
+    {
+     "date": "2026-11-19",
+     "text": "$10.0bn of Class N at the IPO price",
+     "src": "S2",
+     "confidence": "filing",
+     "amountUSD": 10000000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 10000000000.0,
+   "instrument": "Class N (non-voting)",
+   "id": "R004"
+  },
+  {
+   "type": "owns",
+   "from": "MSFT",
+   "to": "ANT",
+   "label": "Microsoft: Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2025-11-18",
+     "text": "Up to $5bn commitment (partnership announcement)",
+     "src": "K2",
+     "confidence": "disclosed"
+    },
+    {
+     "date": "2026-11-19",
+     "text": "Class N at the IPO price (part of the $26.0bn; not itemised in our sources)",
+     "src": "S1",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "instrument": "Class N (non-voting)",
+   "id": "R005"
+  },
+  {
+   "type": "owns",
+   "from": "AMD",
+   "to": "ANT",
+   "label": "AMD: ~$2.5bn of Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2026-11-19",
+     "text": "~$2.5bn of Class N at the IPO price",
+     "src": "S2",
+     "confidence": "filing",
+     "amountUSD": 2500000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 2500000000.0,
+   "instrument": "Class N (non-voting)",
+   "id": "R006"
+  },
+  {
+   "type": "owns",
+   "from": "AVGO",
+   "to": "ANT",
+   "label": "Broadcom: Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2026-11-19",
+     "text": "Class N at the IPO price (part of the $26.0bn; not itemised in our sources)",
+     "src": "S1",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "instrument": "Class N (non-voting)",
+   "id": "R007"
+  },
+  {
+   "type": "owns",
+   "from": "MU",
+   "to": "ANT",
+   "label": "Micron: Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2026-11-19",
+     "text": "Class N at the IPO price (part of the $26.0bn; not itemised in our sources)",
+     "src": "S1",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "instrument": "Class N (non-voting)",
+   "id": "R008"
+  },
+  {
+   "type": "owns",
+   "from": "TSM",
+   "to": "ANT",
+   "label": "TSMC Partners: Anthropic Class N (placement)",
+   "events": [
+    {
+     "date": "2026-11-19",
+     "text": "Class N at the IPO price (part of the $26.0bn; not itemised in our sources)",
+     "src": "S1",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "instrument": "Class N (non-voting)",
+   "id": "R009"
+  },
+  {
+   "type": "commits",
+   "from": "ANT",
+   "to": "GOOGL",
+   "label": "Anthropic -> Google Cloud: up to $200bn of compute (reported)",
+   "events": [
+    {
+     "date": "2026-04",
+     "text": "Up to $200bn of Google Cloud compute over coming years (The Information)",
+     "src": "S8",
+     "confidence": "reported",
+     "amountUSD": 200000000000.0
+    },
+    {
+     "date": "2026-04-24",
+     "text": "5 GW of Google Cloud capacity",
+     "src": "S6",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 200000000000.0,
+   "gw": 5,
+   "id": "R010"
+  },
+  {
+   "type": "commits",
+   "from": "ANT",
+   "to": "AMZN",
+   "label": "Anthropic -> AWS: ~5 GW of compute (reported up to $100bn)",
+   "events": [
+    {
+     "date": "2026-04",
+     "text": "~5 GW of AWS compute; reported up to $100bn over time",
+     "src": "S7",
+     "confidence": "reported",
+     "amountUSD": 100000000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 100000000000.0,
+   "gw": 5,
+   "id": "R011"
+  },
+  {
+   "type": "commits",
+   "from": "ANT",
+   "to": "MSFT",
+   "label": "Anthropic -> Azure: $30bn of compute (+ up to 1 GW more)",
+   "events": [
+    {
+     "date": "2025-11-18",
+     "text": "$30bn of Azure compute capacity committed, and additional capacity up to 1 GW (Grace Blackwell / Vera Rubin)",
+     "src": "K2",
+     "confidence": "disclosed",
+     "amountUSD": 30000000000.0
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 30000000000.0,
+   "id": "R012",
+   "gw": 1
+  },
+  {
+   "type": "commits",
+   "from": "ANT",
+   "to": "AVGO",
+   "label": "Anthropic -> Broadcom: custom-silicon compute contract (S-1/A)",
+   "events": [
+    {
+     "date": "2026-11-02",
+     "text": "One of seven compute contracts with stated amounts; Broadcom + Google + Microsoft = $327.4bn (50.9 %)",
+     "src": "S4",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "id": "R013"
+  },
+  {
+   "type": "underwrites",
+   "from": "MS",
+   "to": "ANT",
+   "label": "Morgan Stanley: lead underwriter, Anthropic IPO",
+   "events": [
+    {
+     "date": "2026-11-18",
+     "text": "Lead left of 22 banks",
+     "src": "S20",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "filing",
+   "id": "R014"
+  },
+  {
+   "type": "underwrites",
+   "from": "GS",
+   "to": "ANT",
+   "label": "Goldman Sachs: lead underwriter, Anthropic IPO",
+   "events": [
+    {
+     "date": "2026-11-18",
+     "text": "Lead underwriter",
+     "src": "S20",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "filing",
+   "id": "R015"
+  },
+  {
+   "type": "underwrites",
+   "from": "JPM",
+   "to": "ANT",
+   "label": "JPMorgan: lead underwriter, Anthropic IPO",
+   "events": [
+    {
+     "date": "2026-11-18",
+     "text": "Lead underwriter",
+     "src": "S20",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "filing",
+   "id": "R016"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "OPENAI",
+   "label": "NVIDIA: $30bn in OpenAI's $110bn round",
+   "events": [
+    {
+     "date": "2026-02",
+     "text": "$30bn equity",
+     "src": "S9",
+     "confidence": "reported",
+     "amountUSD": 30000000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 30000000000.0,
+   "id": "R017"
+  },
+  {
+   "type": "commits",
+   "from": "OPENAI",
+   "to": "NVDA",
+   "label": "OpenAI -> NVIDIA: at least 10 GW of systems",
+   "events": [
+    {
+     "date": "2025-09-22",
+     "text": "Letter of intent: 10 GW of NVIDIA systems",
+     "src": "S16",
+     "confidence": "disclosed"
+    }
+   ],
+   "confidence": "disclosed",
+   "gw": 10,
+   "id": "R018"
+  },
+  {
+   "type": "owns",
+   "from": "MSFT",
+   "to": "OPENAI",
+   "label": "Microsoft owns ~27 % of OpenAI Group PBC",
+   "events": [
+    {
+     "date": "2025-10-28",
+     "text": "Recapitalisation: ~27 % of OpenAI Group PBC (as-converted, diluted), valued ~$135bn",
+     "src": "K1",
+     "confidence": "disclosed"
+    }
+   ],
+   "confidence": "disclosed",
+   "pct": 27.0,
+   "id": "R019"
+  },
+  {
+   "type": "commits",
+   "from": "OPENAI",
+   "to": "MSFT",
+   "label": "OpenAI -> Azure: incremental $250bn",
+   "events": [
+    {
+     "date": "2025-10-28",
+     "text": "Incremental $250bn of Azure services",
+     "src": "K1",
+     "confidence": "disclosed",
+     "amountUSD": 250000000000.0
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 250000000000.0,
+   "id": "R020"
+  },
+  {
+   "type": "owns",
+   "from": "OPENAI",
+   "to": "AMD",
+   "label": "OpenAI: warrant for up to 160M AMD shares (~10 %) at $0.01",
+   "events": [
+    {
+     "date": "2025-10-06",
+     "text": "Warrant vests on deployment milestones and AMD share-price targets",
+     "src": "S13",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "pct": 10.0,
+   "instrument": "warrant",
+   "id": "R021"
+  },
+  {
+   "type": "commits",
+   "from": "OPENAI",
+   "to": "AMD",
+   "label": "OpenAI -> AMD: 6 GW of Instinct GPUs from H2 2026",
+   "events": [
+    {
+     "date": "2025-10-06",
+     "text": "6 GW multi-year deployment (AMD 8-K)",
+     "src": "S14",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "gw": 6,
+   "id": "R022"
+  },
+  {
+   "type": "owns",
+   "from": "META",
+   "to": "AMD",
+   "label": "Meta: warrant for up to 160M AMD shares",
+   "events": [
+    {
+     "date": "2026-02-24",
+     "text": "Same structure as OpenAI's (AMD 8-K)",
+     "src": "S14",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "instrument": "warrant",
+   "id": "R023"
+  },
+  {
+   "type": "commits",
+   "from": "META",
+   "to": "AMD",
+   "label": "Meta -> AMD: up to 6 GW of Instinct GPUs",
+   "events": [
+    {
+     "date": "2026-02-24",
+     "text": "Up to 6 GW (AMD 8-K)",
+     "src": "S14",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "gw": 6,
+   "id": "R024"
+  },
+  {
+   "type": "commits",
+   "from": "OPENAI",
+   "to": "ORCL",
+   "label": "OpenAI -> Oracle: $300bn / 4.5 GW over five years",
+   "events": [
+    {
+     "date": "2025-09",
+     "text": "$300bn cloud agreement, 4.5 GW over five years",
+     "src": "S13",
+     "confidence": "reported",
+     "amountUSD": 300000000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 300000000000.0,
+   "gw": 4.5,
+   "id": "R025"
+  },
+  {
+   "type": "commits",
+   "from": "OPENAI",
+   "to": "AVGO",
+   "label": "OpenAI -> Broadcom: 10 GW of custom accelerators from H2 2026",
+   "events": [
+    {
+     "date": "2025-10",
+     "text": "10 GW custom chips and racks",
+     "src": "S15",
+     "confidence": "disclosed"
+    }
+   ],
+   "confidence": "disclosed",
+   "gw": 10,
+   "id": "R026"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "CRWV",
+   "label": "NVIDIA: CoreWeave's second-largest shareholder",
+   "events": [
+    {
+     "date": "2026-01-26",
+     "text": "$2bn more at $87.20 a share",
+     "src": "S11",
+     "confidence": "reported",
+     "amountUSD": 2000000000.0
+    },
+    {
+     "date": "2026-05",
+     "text": "Stake valued ~$4.4bn (~28 % of NVIDIA's listed equity portfolio)",
+     "src": "S9",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 2000000000.0,
+   "id": "R027"
+  },
+  {
+   "type": "funds",
+   "from": "NVDA",
+   "to": "CRWV",
+   "label": "NVIDIA: $6.3bn capacity backstop (buys CoreWeave capacity customers don't)",
+   "events": [
+    {
+     "date": "2025-09",
+     "text": "$6.3bn capacity agreement",
+     "src": "S12",
+     "confidence": "disclosed",
+     "amountUSD": 6300000000.0
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 6300000000.0,
+   "instrument": "capacity backstop",
+   "id": "R028"
+  },
+  {
+   "type": "supplies",
+   "from": "NVDA",
+   "to": "CRWV",
+   "label": "NVIDIA -> CoreWeave: GPUs (first to deploy new generations)",
+   "events": [
+    {
+     "date": "2026-01-26",
+     "text": "CoreWeave among the first to deploy each new NVIDIA generation",
+     "src": "S11",
+     "confidence": "reported"
+    }
+   ],
+   "confidence": "disclosed",
+   "id": "R029"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "NBIS",
+   "label": "NVIDIA: $2bn in Nebius",
+   "events": [
+    {
+     "date": "2026",
+     "text": "$2bn equity",
+     "src": "S10",
+     "confidence": "reported",
+     "amountUSD": 2000000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 2000000000.0,
+   "id": "R030"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "GLW",
+   "label": "NVIDIA: $3.2bn in Corning",
+   "events": [
+    {
+     "date": "2026",
+     "text": "$3.2bn equity",
+     "src": "S10",
+     "confidence": "reported",
+     "amountUSD": 3200000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 3200000000.0,
+   "id": "R031"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "IREN",
+   "label": "NVIDIA: $2.1bn in IREN",
+   "events": [
+    {
+     "date": "2026",
+     "text": "$2.1bn equity",
+     "src": "S10",
+     "confidence": "reported",
+     "amountUSD": 2100000000.0
+    }
+   ],
+   "confidence": "reported",
+   "amountUSD": 2100000000.0,
+   "id": "R032"
+  },
+  {
+   "type": "owns",
+   "from": "NVDA",
+   "to": "INTC",
+   "label": "NVIDIA: $5bn in Intel (~4 %)",
+   "events": [
+    {
+     "date": "2025-09-18",
+     "text": "$5bn of Intel common stock at $23.28 a share (subject to regulatory approval)",
+     "src": "K6",
+     "confidence": "disclosed",
+     "amountUSD": 5000000000.0
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 5000000000.0,
+   "pct": 4.0,
+   "id": "R033"
+  },
+  {
+   "type": "supplies",
+   "from": "CRWV",
+   "to": "MSFT",
+   "label": "CoreWeave -> Microsoft: 62 % of CoreWeave's 2024 revenue",
+   "events": [
+    {
+     "date": "2025-03",
+     "text": "Customer concentration (S-1)",
+     "src": "K3",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "revenueShare": 62.0,
+   "id": "R034"
+  },
+  {
+   "type": "commits",
+   "from": "META",
+   "to": "CRWV",
+   "label": "Meta -> CoreWeave: up to $14.2bn",
+   "events": [
+    {
+     "date": "2025-09-30",
+     "text": "Order under the master services agreement: ~$14.2bn of payments through 12-14-2031, option to expand through 2032 (8-K)",
+     "src": "K4",
+     "confidence": "filing",
+     "amountUSD": 14200000000.0
+    }
+   ],
+   "confidence": "filing",
+   "amountUSD": 14200000000.0,
+   "id": "R035"
+  },
+  {
+   "type": "commits",
+   "from": "MSFT",
+   "to": "NBIS",
+   "label": "Microsoft -> Nebius: $17.4bn (up to $19.4bn)",
+   "events": [
+    {
+     "date": "2025-09-08",
+     "text": "5-year GPU capacity agreement (Vineland, NJ): $17.4bn, up to $19.4bn with additional services",
+     "src": "K5",
+     "confidence": "disclosed",
+     "amountUSD": 17400000000.0
+    }
+   ],
+   "confidence": "disclosed",
+   "amountUSD": 17400000000.0,
+   "id": "R036"
+  },
+  {
+   "type": "owns",
+   "from": "GOOGL",
+   "to": "SPCX",
+   "label": "Alphabet owns ~7 % of SpaceX",
+   "events": [
+    {
+     "date": "2026-06",
+     "text": "S-1 disclosure",
+     "src": "S18",
+     "confidence": "filing"
+    }
+   ],
+   "confidence": "filing",
+   "pct": 7.0,
+   "id": "R037"
+  }
+ ]
+}

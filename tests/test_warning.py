@@ -204,6 +204,65 @@ check("plain-English notes per pillar", any(n.startswith("Loss data") for n in o
 s = json.dumps(out)
 check(f"output is JSON and compact ({len(s) // 1024} KB)", len(s) < 400_000)
 
+# 6b. z197 - crises the system knows: first warnings, rhymes; the hypothesis lab
+import warning_history as wh  # noqa: E402
+import warning_lab as wl  # noqa: E402
+e08 = next(e for e in out["episodes"] if e["id"] == "2008")
+fw = [w["key"] for w in e08["firstWarnings"]]
+check(f"2008: the first warnings were the loss data (mortgage / card delinquencies) - {fw[:4]}", fw and fw[0] in ("mtg_dq", "mtg_dq_lvl", "cc_dq", "cc_co", "hpi")
+      and e08["firstWarnings"][0]["lead"] >= 9)
+e20 = next(e for e in out["episodes"] if e["id"] == "2020")
+check(f"2020 (exogenous): no credit indicator crossed first ({[w['key'] for w in e20['firstWarnings']]})",
+      not any(w["pillar"] in ("loss", "lenders") for w in e20["firstWarnings"]))
+check("every episode carries its story (what broke, the policy / bail-out, the regulatory gap, the lesson)",
+      all(e.get("broke") and e.get("policy") and e.get("gap") and e.get("lesson") for e in out["episodes"]) and len(out["episodes"]) >= 14)
+fp08 = e08["fingerprint"]
+sim, shared = wh.similarity(fp08, fp08)
+check(f"rhymes: a run-up compared with itself = 1.0 ({sim})", sim == 1.0)
+rh = wh.analyze(rows, fp08, {spec[0]: (spec[2], spec[1]) for spec in ws.IND}, {})[1]
+check(f"today = the 2007 run-up -> the closest rhyme is 2008 ({rh[0]['id'] if rh else None})", rh and rh[0]["id"] == "2008")
+check(f"lab: blindness (H01) supported on the synthetic cycle ({next(h for h in out['lab']['seeded'] if h['id'] == 'H01')['status']})",
+      next(h for h in out["lab"]["seeded"] if h["id"] == "H01")["status"] == "supported")
+check("lab: hypotheses without data are 'untestable', never 'supported'", all(h["status"] == "untestable" for h in out["lab"]["seeded"] if h["n"] == 0))
+# bitset rotation = the naive shift
+import random as _rnd
+rr = _rnd.Random(3)
+sgl = [rr.random() < 0.2 for _ in range(150)]
+ygl = [rr.random() < 0.3 for _ in range(150)]
+sb, yb, n = wl._bits(sgl), wl._bits(ygl), 150
+ok_rot = all((((sb << sh) | (sb >> (n - sh))) & ((1 << n) - 1) & yb).bit_count() ==
+             sum(1 for k in range(n) if sgl[(k - sh) % n] and ygl[k]) for sh in range(1, n))
+check("permutation: bitset rotations equal the naive circular shift", ok_rot)
+# a signal that always fires 6 months before a drawdown is supported; a shuffled one isn't
+mk_d = [date(1990, 1, 1) + timedelta(days=i) for i in range(0, 13000, 7)]
+crash = {2000, 2008, 2015, 2020}
+mk_v = []
+lvl = 100.0
+for d in mk_d:
+    lvl *= 1.0015
+    mk_v.append(lvl * (0.7 if (d.year in crash and d.month >= 6) else 1.0))
+mkt = wl.Market(mk_d, mk_v, [])
+rows_t = []
+for i in range(400):
+    t = date(1991 + i // 12, i % 12 + 1, 1)
+    rows_t.append({"t": t, "flagx": (t.year in crash and t.month <= 4) or (t.year + 1 in crash and t.month >= 11)})
+pnl = wl.Panel(rows_t, mkt)
+good = wl.test(pnl, [("flag", "flagx", "==", 1)], "DD20_12")
+check(f"lab: a signal that fired before every crash -> supported (lift {good['lift']}, p {good['p']}, caught {good['caught']}/{good['events']})", good["status"] == "supported")
+for r in rows_t:
+    r["flagy"] = rr.random() < 0.12
+bad = wl.test(pnl, [("flag", "flagy", "==", 1)], "DD20_12")
+check(f"lab: a random signal is not supported ({bad['status']}, lift {bad['lift']}, p {bad['p']})", bad["status"] != "supported")
+# the ledger: an 'on' signal is a dated prediction, graded when its horizon passes
+led = []
+hyps = [{"id": "HX", "signal": [["flag", "flagx", "==", 1]], "outcome": "DD20_12"}]
+rec0 = wl.update_ledger(led, hyps, {"flagx": True}, date(2015, 3, 1), mkt)
+check("ledger: an 'on' signal opens one prediction a month", rec0["opened"] == 1 and led[0]["due"] == "2016-02-29" and led[0]["result"] is None)
+wl.update_ledger(led, hyps, {"flagx": True}, date(2015, 3, 20), mkt)
+check("ledger: no duplicate in the same month", len(led) == 1)
+rec1 = wl.update_ledger(led, hyps, {"flagx": False}, date(2016, 3, 1), mkt)
+check(f"ledger: graded after the horizon ({led[0]['result']})", rec1["graded"] == 1 and led[0]["result"] == "right")
+
 # 7. degraded: no FRED history on file -> a provisional read from the bottom-up layer -------------------------------
 out2, _, _ = ws.run(date(2026, 11, 19), {}, {"options": {"breadth": {"invertedShare": 0.5}}}, [], None)
 check(f"no series: provisional risk from bottom-up only ({out2['risk']}, {out2['level']})", out2["provisional"] and out2["risk"] is not None)

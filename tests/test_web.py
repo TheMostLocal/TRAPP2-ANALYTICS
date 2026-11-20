@@ -183,14 +183,38 @@ def test_facts_queue_web_names_first_then_oldest_and_failures_rotate():
     old = {"AAA": {"factsAt": "2026-11-01T00:00:00Z"},                 # v1, old
            "MSFT": {"factsAt": "2026-11-05T00:00:00Z"},                # v1, web name
            "SPY": {},                                                  # never read (an ETF that 404s)
-           "ZZZ": {"factsV": 2, "factsAt": "2026-10-01T00:00:00Z"},    # already v2 - after every v1
-           "NEW": {"factsV": 2, "factsAt": "2026-11-18T00:00:00Z", "factsErr": "HTTPError: 404"}}
+           "ZZZ": {"factsV": fs.FACTS_VERSION, "factsAt": "2026-10-01T00:00:00Z"},    # already current - after every older doc
+           "NEW": {"factsV": fs.FACTS_VERSION, "factsAt": "2026-11-18T00:00:00Z", "factsErr": "HTTPError: 404"}}
     q = sorted(fs.facts_queue(list(old), old, {"MSFT"}, 1))
     assert q == ["MSFT"]
     q3 = fs.facts_queue(list(old), old, {"MSFT"}, 3)
     assert q3 == {"MSFT", "SPY", "AAA"}
     q4 = fs.facts_queue(list(old), old, set(), 4)
     assert "ZZZ" in q4 and "NEW" not in q4                    # a stamped failure waits its turn
+
+
+def test_facts_from_money_structure_items():
+    """z198: RPO, purchase obligations and equity stakes come through as instants with a 'latest', a year of trend."""
+    def pt(end, val, form="10-Q"):
+        return {"end": end, "val": val, "form": form, "filed": end, "fy": int(end[:4]), "fp": "Q3"}
+    us = {"RevenueRemainingPerformanceObligation": {"units": {"USD": [pt(f"20{y}-{m:02d}-30", 100e9 + y * 1e9 + m) for y in range(20, 27) for m in (3, 6, 9)]
+                                                               + [pt("2025-12-31", 400e9, "10-K")]}},
+          "EquitySecuritiesWithoutReadilyDeterminableFairValueAmount": {"units": {"USD": [pt("2026-09-30", 37e9), pt("2025-12-31", 20e9, "10-K")]}},
+          "PurchaseObligation": {"units": {"USD": [pt("2026-09-30", 50e9)]}}}
+    f = fs.facts_from({"facts": {"us-gaap": us}})
+    assert f["rpo"]["latest"]["end"] == "2026-09-30" and len(f["rpo"]["quarterly"]) == 4 and len(f["rpo"]["annual"]) <= 4
+    assert f["equityPrivate"]["latest"]["val"] == 37e9 and f["purchaseObligations"]["latest"]["val"] == 50e9
+    assert fs.FACTS_VERSION >= 3 and "rpo" in fs.INSTANT
+
+
+def test_backlog_view_tracked_commitments_vs_rpo():
+    edges = [E("o", "commits", "OPENAI", "ORCL", amountUSD=300e9, gw=4.5), E("m", "commits", "META", "ORCL", amountUSD=20e9),
+             E("x", "owns", "NVDA", "OPENAI", amountUSD=30e9)]
+    b = wb.backlog_view(edges, {"ORCL": {"rpo": 455e9, "rev": 60e9}})
+    assert b["ORCL"]["commitIn"] == 320e9 and b["ORCL"]["shareOfRpo"] == round(320 / 455, 3) and b["ORCL"]["yearsOfRevenue"] == round(320 / 60, 2)
+    assert {x["buyer"] for x in b["ORCL"]["from"]} == {"OPENAI", "META"} and "NVDA" not in b
+    nb = wb.backlog_view(edges, {})
+    assert nb["ORCL"]["shareOfRpo"] is None and nb["ORCL"]["rpo"] is None      # no RPO on file: the $ stand alone
 
 
 def test_web_priority_reads_configs():

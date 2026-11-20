@@ -10,6 +10,12 @@
 #  Loan Officer survey, the funding markets, the labour market, house prices and household / corporate leverage - all
 #  on FRED, most of them back to the 1980s-90s, so every signal can be checked against 2001, 2008 and 2020.
 #
+#  z198 - DEEP HISTORY: from 1947 (was 1985), so 1962, 1966, 1969-70, 1973-74, 1980-82, 1987 and 1990 are read from
+#  data, not described. Long-history splices (Baa spread monthly from 1953, the curve from 1953, VXO for 1986-89, the
+#  commercial-paper rate 1971-97, FHFA house prices from 1975, C&I loans from 1947) carry each pillar back as far as the
+#  public record goes; the S&P 500's whole daily history (Yahoo ^GSPC, 1927+) and Shiller's monthly S&P 500 and CAPE
+#  (github.com/datasets/s-and-p-500, 1871+) give the drawdown outcomes and the valuation lesson of 1929 / 1966 / 2000.
+#
 #  Writes data/warning/series/<ID>.json  {"id", "fetchedAt", "source", "obs": [[YYYY-MM-DD, value], ...]}
 #         data/warning/series/_fetch.json (per series: ok / error, observations, last date)
 #  Source: the FRED API when FRED_API_KEY is set (Actions secret - the same free key TRAPP2-1 uses), else FRED's
@@ -31,8 +37,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "warning" / "series"
-START = os.environ.get("WARNING_START", "1985-01-01")
+START = os.environ.get("WARNING_START", "1947-01-01")         # z198: was 1985 - the full post-war record
 UA = "TRAPP2-ANALYTICS warning-signals (github.com/TheMostLocal)"
+BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+SHILLER_URL = os.environ.get("WARNING_SHILLER_URL") or "https://raw.githubusercontent.com/datasets/s-and-p-500/main/data/data.csv"
 
 # id -> (label, unit, frequency, publication lag in days after the observation date, group)
 # The lag keeps the backtest honest: a value counts from the day it was published, not from the period it describes
@@ -103,6 +111,18 @@ SERIES = {
     "FEDFUNDS": ("Fed funds rate (monthly average)", "%", "m", 32, "shocks"),
     "WTISPLC": ("WTI crude oil, spot (monthly)", "$/bbl", "m", 15, "shocks"),
     "DGS10": ("10-year Treasury yield", "%", "d", 1, "shocks"),
+    # --- z198: long history - the splices that carry each pillar back to the 1950s-70s -------------------------------
+    "BAA10YM": ("Baa spread over 10-year Treasury (monthly, 1953+)", "pts", "m", 2, "funding"),
+    "GS10": ("10-year Treasury yield (monthly, 1953+)", "%", "m", 2, "fragility"),
+    "TB3MS": ("3-month Treasury bill (monthly, 1934+)", "%", "m", 2, "funding"),
+    "CP3M": ("3-month commercial paper rate (monthly, 1971-97)", "%", "m", 2, "funding"),
+    "VXOCLS": ("VXO - S&P 100 implied volatility (1986-2021)", "pts", "d", 1, "funding"),
+    "USSTHPI": ("FHFA all-transactions house prices (1975+)", "index", "q", 60, "collateral"),
+    "BUSLOANS": ("Commercial & industrial bank loans (monthly, 1947+)", "$bn", "m", 10, "fragility"),
+    # --- z198: not FRED (fetched by fetch_other below) -------------------------------------------------------------
+    "CAPE": ("Shiller CAPE - price / 10-year average real earnings (1881+)", "x", "m", 90, "valuation"),
+    "SPXM": ("S&P 500, monthly average (Shiller, 1871+)", "index", "m", 0, "outcome"),
+    "GSPC": ("S&P 500, daily close (Yahoo ^GSPC, 1927+)", "index", "d", 0, "outcome"),
     # --- outcomes (backtest only) -----------------------------------------------------------------------------------
     "USREC": ("NBER recession indicator", "0/1", "m", 0, "outcome"),
     "NASDAQCOM": ("Nasdaq Composite (long equity history)", "index", "d", 1, "outcome"),
@@ -151,10 +171,69 @@ def fetch_csv(sid):
     return _clean((r[0], r[1]) for r in rd if len(r) >= 2)
 
 
+# ------------------------------------------------------------------------------------------------------------------
+#  z198: the two long market histories that aren't on FRED (FRED keeps only 10 years of the S&P 500)
+# ------------------------------------------------------------------------------------------------------------------
+OTHER = {"GSPC", "SPXM", "CAPE"}
+_SHILLER = {}
+
+
+def _pos(v):
+    try:
+        return float(v) > 0
+    except (TypeError, ValueError):
+        return False
+
+
+def fetch_shiller():
+    """Shiller's monthly S&P 500 (monthly average of daily closes) and CAPE, as kept by github.com/datasets/s-and-p-500.
+    The price runs to the latest month; CAPE stops where Shiller's earnings stop (rows with 0 are 'not yet')."""
+    if not _SHILLER:
+        rows = list(csv.DictReader(io.StringIO(_get(SHILLER_URL, timeout=60))))
+        if not rows or "SP500" not in rows[0]:
+            raise ValueError("unexpected CSV (no SP500 column)")
+        _SHILLER["SPXM"] = _clean((r.get("Date"), r.get("SP500")) for r in rows if _pos(r.get("SP500")))
+        _SHILLER["CAPE"] = _clean((r.get("Date"), r.get("PE10")) for r in rows if _pos(r.get("PE10")))
+    return _SHILLER
+
+
+def fetch_yahoo(symbol="^GSPC"):
+    """The index's whole daily history from Yahoo's chart API (1927+ for the S&P 500): closes by trading date."""
+    last = None
+    p2 = int(time.time()) + 86400
+    for host in ("query1", "query2"):
+        url = (f"https://{host}.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(symbol)}"
+               f"?period1=-1325635200&period2={p2}&interval=1d&includePrePost=false")
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA, "Accept": "application/json"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                d = json.loads(r.read().decode("utf-8", "replace"))
+            res = d["chart"]["result"][0]
+            ts = res.get("timestamp") or []
+            cl = (res.get("indicators") or {}).get("quote", [{}])[0].get("close") or []
+            obs = [(datetime.fromtimestamp(t, timezone.utc).strftime("%Y-%m-%d"), c) for t, c in zip(ts, cl) if c is not None]
+            if len(obs) < 1000:
+                raise ValueError(f"only {len(obs)} daily closes")
+            return _clean(obs)
+        except Exception as e:                    # rate limit / host down: try the other host
+            last = e
+            time.sleep(2.0)
+    raise RuntimeError(f"{type(last).__name__}: {str(last)[:120]}")
+
+
+def fetch_other(sid):
+    if sid == "GSPC":
+        return fetch_yahoo("^GSPC"), "yahoo-chart"
+    return fetch_shiller()[sid], "shiller (github.com/datasets/s-and-p-500)"
+
+
 def fetch(sid, key, tries=3):
     last = None
+    tries = 1 if sid in OTHER else tries          # Yahoo / GitHub: fetch_yahoo already tries both hosts
     for k in range(tries):
         try:
+            if sid in OTHER:
+                return fetch_other(sid)
             return (fetch_api(sid, key), "fred-api") if key else (fetch_csv(sid), "fredgraph-csv")
         except urllib.error.HTTPError as e:
             last = e
@@ -177,7 +256,8 @@ def main(argv):
         rep = {}
     rep.setdefault("series", {})
     ok = bad = 0
-    log(f"FRED: {len(want)} series from {START} via {'the API (FRED_API_KEY)' if key else 'the public CSV download (no key)'}")
+    log(f"FRED: {len(want)} series from {START} via {'the API (FRED_API_KEY)' if key else 'the public CSV download (no key)'}"
+        f" (+ {', '.join(sorted(OTHER & set(want)))} from Yahoo / Shiller)")
     for sid in want:
         try:
             obs, src = fetch(sid, key)
@@ -200,7 +280,7 @@ def main(argv):
             rep["series"][sid] = dict(prev, ok=False, error=str(e)[:160], at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
             bad += 1
             log(f"  {sid:15s} FAILED ({e}) - previous file kept" if (OUT / f"{sid}.json").exists() else f"  {sid:15s} FAILED ({e})")
-        time.sleep(0.6 if key else 1.0)          # FRED API: 120 requests / minute
+        time.sleep(0.2 if sid in OTHER else 0.6 if key else 1.0)          # FRED API: 120 requests / minute
     rep["asOf"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rep["source"] = "fred-api" if key else "fredgraph-csv"
     rep_p.write_text(json.dumps(rep, indent=1, sort_keys=True))

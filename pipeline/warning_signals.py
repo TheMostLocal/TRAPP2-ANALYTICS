@@ -49,12 +49,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from warning_series import SERIES  # noqa: E402
+import warning_history  # noqa: E402
+import warning_lab  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SER_DIR = DATA / "warning" / "series"
 OUT_P = DATA / "warning" / "signals.json"
 DAILY_P = DATA / "warning" / "daily.json"
+LAB_P = DATA / "warning" / "lab.json"          # z197: the hypothesis lab (every test, discoveries, the prediction ledger)
 OWNER = os.environ.get("GITHUB_REPOSITORY_OWNER") or "TheMostLocal"
 RAW = f"https://raw.githubusercontent.com/{OWNER}"
 BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")
@@ -132,21 +135,32 @@ IND = [
     ("productivity", "growth", "Productivity", "OPHNFB", "yoy_pct", 1, 0.4, None),
     ("starts", "growth", "Housing starts", "HOUST", "yoy_pct", 1, 0.3, None),
     ("income_led", "growth", "Income growth minus consumer-credit growth", ("DSPI", "TOTALSL"), "yoy_gap", 1, 0.6, None),
+    # z197 - valuation & speculation (what's priced for perfection): the dot-com lesson; policy & shocks (what pops it)
+    ("val_gdp", "valuation", "Stock market value / GDP", "EQ_GDP", "level", 1, 1.0, None),
+    ("val_profits", "valuation", "Stock market value / corporate profits", "EQ_PROFIT", "level", 1, 0.8, None),
+    ("euphoria", "valuation", "Nasdaq, 12-month change", "NASDAQCOM", "yoy_pct", 1, 0.6, None),
+    ("fed_tight", "shocks", "Fed funds, 12-month change", "FEDFUNDS", "yoy_diff", 1, 1.0, "funding"),
+    ("oil_shock", "shocks", "Oil price, 12-month change", "WTISPLC", "yoy_pct", 1, 0.8, "consumer"),
+    ("rate_shock", "shocks", "10-year yield, 6-month change", "DGS10", "chg6", 1, 0.8, "housing"),
 ]
 # derived series: (kind, a, b, scale)  ratio: a / b x scale · diff: a - b
 DERIVED = {
     "CPSPREAD": ("diff", "DCPF3M", "DTB3", 1.0),
     "CORPDEBT_GDP": ("ratio", "BCNSDODNS", "GDP", 0.1),      # $m / $bn SAAR -> % of GDP
     "REAL_RETAIL": ("ratio", "RSAFS", "CPIAUCSL", 1.0),
+    "EQ_GDP": ("ratio", "NCBEILQ027S", "GDP", 0.1),         # $m / $bn SAAR -> % of GDP (the "Buffett indicator", nonfinancial corporates)
+    "EQ_PROFIT": ("ratio", "NCBEILQ027S", "CP", 0.001),     # $m / $bn SAAR -> times after-tax profits
 }
-DERIVED_UNIT = {"CPSPREAD": "pts", "CORPDEBT_GDP": "% of GDP", "REAL_RETAIL": "index"}
+DERIVED_UNIT = {"CPSPREAD": "pts", "CORPDEBT_GDP": "% of GDP", "REAL_RETAIL": "index", "EQ_GDP": "% of GDP", "EQ_PROFIT": "x"}
 PILLARS = {
     "loss": ("Loss data", "what borrowers are failing to pay", "fundamental", 0.30),
     "lenders": ("Lenders", "who is pulling back", "fundamental", 0.20),
     "labor": ("Borrowers (jobs)", "can they pay", "fundamental", 0.30),
     "collateral": ("Collateral", "what backs the loans", "fundamental", 0.20),
     "funding": ("Funding & markets", "is the marginal buyer still buying", "market", 1.0),
-    "fragility": ("Leverage & late cycle", "how much rides on it", "fragility", 1.0),
+    "fragility": ("Leverage & late cycle", "how much rides on it", "fragility", 0.4),
+    "valuation": ("Valuation & speculation", "what's priced for perfection", "fragility", 0.3),     # z197
+    "shocks": ("Policy & shocks", "what could pop it", "fragility", 0.3),                          # z197
     "growth": ("Organic growth", "income, jobs, output, orders, profits", "growth", 1.0),
 }
 COMPOSITE_W = {"fundamental": 0.40, "market": 0.40, "fragility": 0.20}
@@ -349,11 +363,12 @@ def build_history(S, today, months=None):
     gauges_hist = {k: Expanding() for k in ("fundamental", "market", "fragility", "growth", "composite")}
     rows = []
     for t in months:
-        scores = {}
+        scores, xs = {}, {}
         for spec in IND:
             k, x = spec[0], transformed(spec, S, t)
             if x is None:
                 continue
+            xs[k] = x
             first.setdefault(k, t)
             if counts[k] >= MIN_MONTHS:
                 p = ind_hist[k].pct(x)
@@ -361,7 +376,7 @@ def build_history(S, today, months=None):
             ind_hist[k].add(x)
             counts[k] += 1
         g = gauges(scores)
-        row = {"t": t, "scores": scores, **g}
+        row = {"t": t, "scores": scores, "xs": xs, **g}
         for k in gauges_hist:
             row[k + "P"] = gauges_hist[k].pct(g.get(k)) if len(gauges_hist[k].xs) >= MIN_MONTHS else None
             gauges_hist[k].add(g.get(k))
@@ -379,8 +394,8 @@ def pillar_scores(scores):
 
 def gauges(scores):
     ps = pillar_scores(scores)
-    fund = _wmean([(ps[p], PILLARS[p][3]) for p in PILLARS if PILLARS[p][2] == "fundamental"])
-    out = {"pillars": ps, "fundamental": fund, "market": ps["funding"], "fragility": ps["fragility"], "growth": ps["growth"]}
+    by = {g: _wmean([(ps[p], PILLARS[p][3]) for p in PILLARS if PILLARS[p][2] == g]) for g in ("fundamental", "market", "fragility", "growth")}
+    out = {"pillars": ps, "fundamental": by["fundamental"], "market": by["market"], "fragility": by["fragility"], "growth": by["growth"]}
     out["composite"] = _wmean([(out[k], w) for k, w in COMPOSITE_W.items()])
     return out
 
@@ -992,7 +1007,29 @@ def _round(v, k=1):
     return None if v is None else round(v, k)
 
 
-def run(today=None, S=None, bu_inputs=None, daily=None, spy=None):
+def _lab_summary(lab):
+    hs = (lab.get("hypotheses") or []) + (lab.get("auto") or [])
+    sup = sorted([h for h in hs if h.get("status") == "supported"], key=lambda h: -(h.get("lift") or 0))
+    rej = [h for h in hs if h.get("status") == "rejected"]
+    lean = lambda h: {k: h.get(k) for k in ("id", "statement", "lesson", "outcome", "status", "lift", "p", "n", "n1", "p0", "p1", "caught", "events", "nowOn", "kind")}
+    return {"counts": lab.get("counts"), "record": lab.get("record"), "rules": lab.get("rules"),
+            "supported": [lean(h) for h in sup[:8]], "rejected": [lean(h) for h in rej[:8]],
+            "nowOn": [lean(h) for h in hs if h.get("nowOn")][:10],
+            "seeded": [lean(h) for h in lab.get("hypotheses") or []],
+            "discoveries": [{k: d.get(k) for k in ("id", "statement", "lift", "p", "n1", "caught", "events")} for d in (lab.get("exploration") or {}).get("discoveries", [])[:8]],
+            "explored": {k: (lab.get("exploration") or {}).get(k) for k in ("tested", "candidates", "fdr")}}
+
+
+def _episode_compact(e):
+    out = {k: e.get(k) for k in ("id", "name", "kind", "peak", "trough", "recession", "broke", "warnings", "policy", "gap", "lesson")}
+    rd = e.get("readings") or {}
+    out["readings"] = {k: {kk: v.get(kk) for kk in ("risk", "fund", "mkt", "frag", "growth", "regime", "blind")} for k, v in rd.items()}
+    out["firstWarnings"] = (e.get("firstWarnings") or [])[:6]
+    out["fingerprint"] = e.get("fingerprint") or {}
+    return out
+
+
+def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None):
     today = today or date.today()
     S = load_series() if S is None else S
     rows, ind_hist, g_hist = build_history(S, today)
@@ -1114,6 +1151,28 @@ def run(today=None, S=None, bu_inputs=None, daily=None, spy=None):
 
     exp = exposures(now_scores, bu)
     bt = backtest(rows, S, spy)
+    # z197 - the crises the system knows, and the lab that tests what they taught
+    labels = {spec[0]: (spec[2], spec[1]) for spec in IND}
+    pnames = {p: PILLARS[p][0] for p in PILLARS}
+    eps, rhymes = warning_history.analyze(rows, g["pillars"], labels, pnames)
+    rec_s, _ = recession_starts(S, [r["t"] for r in rows])
+    ed, ev, _ = equity_series(S, spy)
+    market = warning_lab.Market(ed or [], ev or [], rec_s)
+    now_row = {"t": today, "scores": now_scores, "xs": now_x, "pillars": g["pillars"], "compositeP": gp["composite"],
+               "fundamentalP": gp["fundamental"], "marketP": gp["market"], "fragilityP": gp["fragility"], "growthP": gp["growth"],
+               "regime": regime, "blind": blind}
+    lab = warning_lab.run_lab(rows, market, now_row, today, labels, [(k, v[1]) for k, v in labels.items()], lab_prev)
+    lab_sum = _lab_summary(lab)
+    for h in lab_sum["nowOn"]:
+        if h.get("status") == "supported":
+            flags.append({"kind": "hypothesis", "severity": "medium",
+                          "text": f"Supported hypothesis {h['id']} is ON: {h['statement']} (lift {h.get('lift')}x, p {h.get('p')}, "
+                                  f"caught {h.get('caught')} of {h.get('events')} episodes)."})
+    if rhymes and rhymes[0]["similarity"] >= 0.6:
+        r0 = rhymes[0]
+        flags.append({"kind": "rhyme", "severity": "info",
+                      "text": f"History rhymes: today's pillar readings most resemble the run-up to {r0['name']} (similarity {r0['similarity']:.2f}"
+                              + (f"; shared: {', '.join(r0['shared'])}" if r0["shared"] else "") + f"). Lesson: {r0['lesson']}"})
     hist = [[r["t"].isoformat()[:7], _round(r.get("compositeP")), _round(r.get("fundamental")), _round(r.get("market")),
              _round(r.get("fragility")), _round(r.get("growth")), r.get("regime"), 1 if r.get("blind") else 0]
             for r in rows if r.get("composite") is not None]
@@ -1129,6 +1188,7 @@ def run(today=None, S=None, bu_inputs=None, daily=None, spy=None):
                         "of": sum(1 for spec in IND if spec[1] == p)} for p in PILLARS},
         "indicators": ind_rows, "flags": flags, "notes": notes, "traps": traps,
         "bottomUp": bu, "exposures": exp, "backtest": bt, "history": hist,
+        "episodes": [_episode_compact(e) for e in eps], "rhymes": rhymes, "lab": lab_sum, "_lab": lab,
         "coverage": {"series": len(have), "of": len([s for s in SERIES if SERIES[s][4] != "outcome"]) + 2,
                      "missing": sorted(s for s in SERIES if s not in S), "scored": len(now_scores), "indicators": len(IND)},
         "method": ("Each indicator is scored against its own history (expanding window, publication lags respected: no hindsight); "
@@ -1166,10 +1226,18 @@ def main():
     ratings = _get_json(f"{RAW}/TRAPP2-CREDIT/main/data/ratings.json", 60)
     spy_raw = _get_json(f"{RAW}/TRAPP2-1/main/data/history/SPY.json", 60) or []
     spy = sorted((_d(b["date"]), float(b["close"])) for b in spy_raw if isinstance(b, dict) and b.get("date") and b.get("close"))
+    lab_prev = {}
+    try:
+        lab_prev = json.loads(LAB_P.read_text())
+    except Exception:
+        pass
     out, rows, bu = run(today, S, {"books": books, "sec_dir": DATA / "sec", "short": short, "headcount": hc, "options": options,
-                                   "ratings": ratings}, daily, spy)
+                                   "ratings": ratings}, daily, spy, lab_prev)
+    lab = out.pop("_lab", None)
     OUT_P.parent.mkdir(parents=True, exist_ok=True)
     OUT_P.write_text(json.dumps(out, separators=(",", ":")))
+    if lab:
+        LAB_P.write_text(json.dumps(lab, separators=(",", ":"), default=str))
     row = {"d": today.isoformat(), "risk": out["risk"], "level": out["level"], "regime": out["regime"],
            "g": {k: v["score"] for k, v in out["gauges"].items()}, "bu": bu.get("raw") or {}}
     daily = [r for r in daily if r.get("d") != row["d"]] + [row]
@@ -1184,6 +1252,12 @@ def main():
         print(f"  backtest: risk >= 75th pct -> hit {b['hit']['hitRate']}% vs base {b['hit']['baseRate']}% ({b['hit']['signalMonths']} months)")
     for r in b.get("recessions") or []:
         print(f"  recession {r['start']}: risk 12m before {r['riskAt12m']}, 6m {r['riskAt6m']}, lead {r['leadMonths']} months")
+    lb = out.get("lab") or {}
+    print(f"  lab: {lb.get('counts')} · explored {lb.get('explored')} · record {lb.get('record')}")
+    for h in (lb.get("seeded") or []):
+        print(f"    {h['id']} {h['status']:12s} lift {h.get('lift')} p {h.get('p')} n1 {h.get('n1')} caught {h.get('caught')}/{h.get('events')} - {h['statement'][:90]}")
+    for r in (out.get("rhymes") or [])[:3]:
+        print(f"  rhyme: {r['name']} {r['similarity']} shared {r['shared']}")
     _step_summary(out)
     return 0
 

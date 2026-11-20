@@ -37,6 +37,15 @@
 #       TRAPP2-OPTIONS data/options/market.json, TRAPP2-CREDIT data/ratings.json, the five books' master.json (raw)
 #  Out: data/warning/signals.json (the read), data/warning/daily.json (one row a day: the live gauges + raw breadth)
 #  Env: WARNING_NOW (YYYY-MM-DD, tests) · WARNING_OFFLINE=1 (no raw fetches)
+#
+#  z198 - DEEP HISTORY: the monthly panel starts in 1955 (was 1990), each pillar carried back by long-history splices
+#  (ALTS: the modern series where it exists, its long ancestor before - Baa monthly to 1953, the curve from GS10 - TB3MS,
+#  VXO before VIX, the CP rate before 1997, FHFA before Case-Shiller, C&I loans before total loans) and Shiller's CAPE
+#  (1881-2023) as the long valuation series. Pillars that weren't published yet (loss data 1985+, the loan-officer survey
+#  1990+) are simply absent - each episode names what its readings rest on. Outcomes: the S&P 500 (Yahoo's daily history,
+#  else Shiller's monthly averages spliced with TRAPP2-1's daily ^GSPC), so the lab and the backtest span 1960-2026, and
+#  every indicator's TRACK RECORD (how often its crossings into the top fifth were followed by a 20 % fall or a
+#  recession within two years) says which first warnings deserve the name.
 # ============================================================
 import bisect
 import json
@@ -61,9 +70,9 @@ LAB_P = DATA / "warning" / "lab.json"          # z197: the hypothesis lab (every
 OWNER = os.environ.get("GITHUB_REPOSITORY_OWNER") or "TheMostLocal"
 RAW = f"https://raw.githubusercontent.com/{OWNER}"
 BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")
-BUILD = "z196"
+BUILD = "z198"
 MIN_MONTHS = 60          # 5 years of a transformed series before it is scored
-BACKTEST_FROM = "1990-01"
+BACKTEST_FROM = "1955-01"        # z198: was 1990 - the panel now spans every post-war cycle with data
 DAILY_KEEP = 800
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -97,20 +106,20 @@ IND = [
     ("temps", "labor", "Temporary-help jobs", "TEMPHELPS", "yoy_pct", -1, 0.7, "labor"),
     ("payrolls_s", "labor", "Nonfarm payrolls", "PAYEMS", "yoy_pct", -1, 0.5, "labor"),
     # collateral - what backs the loans
-    ("hpi", "collateral", "Home prices", "CSUSHPINSA", "yoy_pct", -1, 1.0, "housing"),
+    ("hpi", "collateral", "Home prices", "HPI_L", "yoy_pct", -1, 1.0, "housing"),
     ("supply", "collateral", "Months' supply of new homes", "MSACSR", "level", 1, 0.6, "housing"),
     ("supply_d", "collateral", "New-home supply, change", "MSACSR", "yoy_diff", 1, 0.5, "housing"),
     ("permits", "collateral", "Building permits", "PERMIT", "yoy_pct", -1, 0.6, "housing"),
     ("mrate", "collateral", "30-year mortgage rate, change", "MORTGAGE30US", "yoy_diff", 1, 0.4, "housing"),
     # funding & markets - is the marginal buyer still buying
-    ("baa", "funding", "Baa corporate spread", "BAA10Y", "level", 1, 1.0, "funding"),
-    ("baa_d", "funding", "Baa spread, 6-month change", "BAA10Y", "chg6", 1, 0.6, "funding"),
+    ("baa", "funding", "Baa corporate spread", "BAA_L", "level", 1, 1.0, "funding"),
+    ("baa_d", "funding", "Baa spread, 6-month change", "BAA_L", "chg6", 1, 0.6, "funding"),
     ("nfci", "funding", "Financial conditions (NFCI)", "NFCI", "level", 1, 1.0, "funding"),
     ("nfci_cr", "funding", "NFCI credit", "NFCICREDIT", "level", 1, 0.6, "funding"),
     ("nfci_risk", "funding", "NFCI risk", "NFCIRISK", "level", 1, 0.6, "funding"),
     ("stlfsi", "funding", "St. Louis Fed stress index", "STLFSI4", "level", 1, 0.8, "funding"),
-    ("vix", "funding", "VIX", "VIXCLS", "level", 1, 0.8, "funding"),
-    ("cp", "funding", "Commercial-paper funding spread", "CPSPREAD", "level", 1, 0.8, "funding"),
+    ("vix", "funding", "VIX", "VOL_L", "level", 1, 0.8, "funding"),
+    ("cp", "funding", "Commercial-paper funding spread", "CP_L", "level", 1, 0.8, "funding"),
     ("abcp", "funding", "Asset-backed commercial paper outstanding", "ABCOMP", "yoy_pct", -1, 0.8, "funding"),
     ("hy", "funding", "High-yield spread", "BAMLH0A0HYM2", "level", 1, 0.8, "funding"),
     # leverage & late cycle - how much rides on it
@@ -118,9 +127,9 @@ IND = [
     ("revol_gap", "fragility", "Revolving credit growth minus income growth", ("REVOLSL", "DSPI"), "yoy_gap", 1, 0.6, "consumer"),
     ("corp_debt", "fragility", "Corporate debt / GDP, change", "CORPDEBT_GDP", "yoy_diff", 1, 0.8, "business"),
     ("hh_debt", "fragility", "Household debt / GDP, change", "HDTGPDUSQ163N", "yoy_diff", 1, 0.6, "consumer"),
-    ("bank_credit", "fragility", "Bank loan growth", "TOTLL", "yoy_pct", 1, 0.6, "business"),
+    ("bank_credit", "fragility", "Bank loan growth", "LOANS_L", "yoy_pct", 1, 0.6, "business"),
     ("nfci_lev", "fragility", "NFCI leverage", "NFCILEVERAGE", "level", 1, 0.8, "funding"),
-    ("curve", "fragility", "Yield curve (10y - 3m)", "T10Y3M", "level", -1, 0.8, "funding"),
+    ("curve", "fragility", "Yield curve (10y - 3m)", "CURVE_L", "level", -1, 0.8, "funding"),
     ("saving", "fragility", "Personal saving rate", "PSAVERT", "level", -1, 0.5, "consumer"),
     ("dsr", "fragility", "Household debt-service ratio", "TDSP", "level", 1, 0.5, "consumer"),
     # organic growth - income, jobs, output, orders, profits; credit not outrunning income
@@ -139,6 +148,7 @@ IND = [
     ("val_gdp", "valuation", "Stock market value / GDP", "EQ_GDP", "level", 1, 1.0, None),
     ("val_profits", "valuation", "Stock market value / corporate profits", "EQ_PROFIT", "level", 1, 0.8, None),
     ("euphoria", "valuation", "Nasdaq, 12-month change", "NASDAQCOM", "yoy_pct", 1, 0.6, None),
+    ("cape", "valuation", "Shiller CAPE (price / 10-year real earnings)", "CAPE", "level", 1, 0.8, None),        # z198
     ("fed_tight", "shocks", "Fed funds, 12-month change", "FEDFUNDS", "yoy_diff", 1, 1.0, "funding"),
     ("oil_shock", "shocks", "Oil price, 12-month change", "WTISPLC", "yoy_pct", 1, 0.8, "consumer"),
     ("rate_shock", "shocks", "10-year yield, 6-month change", "DGS10", "chg6", 1, 0.8, "housing"),
@@ -150,8 +160,22 @@ DERIVED = {
     "REAL_RETAIL": ("ratio", "RSAFS", "CPIAUCSL", 1.0),
     "EQ_GDP": ("ratio", "NCBEILQ027S", "GDP", 0.1),         # $m / $bn SAAR -> % of GDP (the "Buffett indicator", nonfinancial corporates)
     "EQ_PROFIT": ("ratio", "NCBEILQ027S", "CP", 0.001),     # $m / $bn SAAR -> times after-tax profits
+    "CURVE_M": ("diff", "GS10", "TB3MS", 1.0),              # z198: the curve before T10Y3M (1982)
+    "CPSPREAD_M": ("diff", "CP3M", "TB3MS", 1.0),           # z198: commercial paper vs bills, 1971-97
 }
-DERIVED_UNIT = {"CPSPREAD": "pts", "CORPDEBT_GDP": "% of GDP", "REAL_RETAIL": "index", "EQ_GDP": "% of GDP", "EQ_PROFIT": "x"}
+DERIVED_UNIT = {"CPSPREAD": "pts", "CORPDEBT_GDP": "% of GDP", "REAL_RETAIL": "index", "EQ_GDP": "% of GDP", "EQ_PROFIT": "x",
+                "CURVE_M": "pts", "CPSPREAD_M": "pts"}
+# z198: long-history splices - the modern series where it can compute the indicator, else its long ancestor. The
+# TRANSFORMED value is spliced (a 12-month change never divides one index by another).
+ALTS = {
+    "BAA_L": ("BAA10Y", "BAA10YM"),        # daily from 1986 · monthly from 1953
+    "CURVE_L": ("T10Y3M", "CURVE_M"),      # daily from 1982 · GS10 - TB3MS from 1953
+    "VOL_L": ("VIXCLS", "VXOCLS"),         # VIX from 1990 · VXO 1986-2021 (the 1987 crash)
+    "CP_L": ("CPSPREAD", "CPSPREAD_M"),    # AA financial CP from 1997 · CP3M 1971-97 (Penn Central, Franklin National, Drysdale)
+    "HPI_L": ("CSUSHPINSA", "USSTHPI"),    # Case-Shiller from 1987 · FHFA all-transactions from 1975
+    "LOANS_L": ("TOTLL", "BUSLOANS"),      # all loans & leases from 1973 · C&I loans from 1947
+}
+ALT_UNIT = {"BAA_L": "pts", "CURVE_L": "pts", "VOL_L": "pts", "CP_L": "pts", "HPI_L": "index", "LOANS_L": "$bn"}
 PILLARS = {
     "loss": ("Loss data", "what borrowers are failing to pay", "fundamental", 0.30),
     "lenders": ("Lenders", "who is pulling back", "fundamental", 0.20),
@@ -280,6 +304,12 @@ def value_at(src, S, t, lag0=False):
 def transformed(spec, S, t, lag0=False):
     """The scored number for one indicator on date t."""
     src, tf = spec[3], spec[4]
+    if isinstance(src, str) and src in ALTS:              # z198: the first source that can compute it on date t
+        for alt in ALTS[src]:
+            x = transformed(spec[:3] + (alt,) + spec[4:], S, t, lag0)
+            if x is not None:
+                return x
+        return None
     year_ago = t - timedelta(days=365)
     if tf == "yoy_gap":
         a, b = src
@@ -308,6 +338,13 @@ def transformed(spec, S, t, lag0=False):
 def _raw_now(spec, S):
     """The latest published value of the indicator's (first) series and its date - for the plain-English line."""
     src = spec[3][0] if isinstance(spec[3], tuple) else spec[3]
+    if src in ALTS:                                        # z198: the newest source that has data
+        best = (None, None)
+        for alt in ALTS[src]:
+            v, d = _raw_now(spec[:3] + (alt,) + spec[4:], S)
+            if d is not None and (best[1] is None or d > best[1]):
+                best = (v, d)
+        return best
     if src in DERIVED:
         kind, a, b, k = DERIVED[src]
         sa, sb = S.get(a), S.get(b)
@@ -396,7 +433,10 @@ def gauges(scores):
     ps = pillar_scores(scores)
     by = {g: _wmean([(ps[p], PILLARS[p][3]) for p in PILLARS if PILLARS[p][2] == g]) for g in ("fundamental", "market", "fragility", "growth")}
     out = {"pillars": ps, "fundamental": by["fundamental"], "market": by["market"], "fragility": by["fragility"], "growth": by["growth"]}
-    out["composite"] = _wmean([(out[k], w) for k, w in COMPOSITE_W.items()])
+    # z198: a composite needs at least two of its three gauges - in the deep panel a month with only (say) valuation on
+    # file is not a risk reading, and its percentile history would start on one gauge
+    have = sum(1 for k in COMPOSITE_W if out[k] is not None)
+    out["composite"] = _wmean([(out[k], w) for k, w in COMPOSITE_W.items()]) if have >= 2 else None
     return out
 
 
@@ -461,8 +501,26 @@ def recession_starts(S, months):
     return [month_end(int(x[:4]), int(x[5:7])) for x in NBER_PEAKS], "NBER dates (built in)"
 
 
-def equity_series(S, spy=None):
-    """Daily closes for the drawdown test: FRED's Nasdaq Composite (1971+), else TRAPP2-1's SPY history (2006+)."""
+def equity_series(S, spy=None, gspc=None):
+    """The broad market for drawdowns and returns - z198: the S&P 500, as far back as it goes:
+      1. Yahoo's whole daily ^GSPC history (warning_series GSPC, 1927+)
+      2. else Shiller's monthly averages (SPXM, each dated at its month's end - complete only then) until TRAPP2-1's daily
+         ^GSPC starts (2006-09), daily closes after (a monthly average smooths a fast crash: Feb-Mar 2020 reads -19 %, not
+         -34 % - so the daily tail matters)
+      3. else FRED's Nasdaq Composite (1971+) · 4. else TRAPP2-1's SPY (2006+)"""
+    g = S.get("GSPC")
+    if g and len(g.dates) > 10000 and g.dates[0] <= date(1960, 1, 1):
+        return g.dates, g.vals, f"S&P 500 daily closes (Yahoo ^GSPC, {g.dates[0].year}+)"
+    m = S.get("SPXM")
+    if m and len(m.dates) > 600:
+        daily = sorted((d, float(v)) for d, v in (gspc or []) if d and v)
+        cut = daily[0][0] if daily else None
+        mon = [(month_end(d.year, d.month), v) for d, v in zip(m.dates, m.vals) if cut is None or month_end(d.year, d.month) < cut]
+        if mon:
+            pts = mon + daily
+            name = (f"S&P 500: Shiller monthly averages {m.dates[0].year}-{mon[-1][0]:%Y-%m}"
+                    + (f", daily closes (^GSPC) from {cut:%Y-%m-%d}" if cut else ""))
+            return [x[0] for x in pts], [x[1] for x in pts], name
     s = S.get("NASDAQCOM")
     if s and len(s.dates) > 2000:
         return s.dates, s.vals, "Nasdaq Composite (FRED)"
@@ -484,9 +542,9 @@ def forward_stats(dates, vals, t, horizon=365):
     return vals[j] / p0 - 1, min(window) / p0 - 1
 
 
-def backtest(rows, S, spy=None):
+def backtest(rows, S, spy=None, gspc=None):
     rec, rec_src = recession_starts(S, [r["t"] for r in rows])
-    ed, ev, eq_src = equity_series(S, spy)
+    ed, ev, eq_src = equity_series(S, spy, gspc)
     scored = [r for r in rows if r.get("compositeP") is not None]
     out = {"from": scored[0]["t"].isoformat()[:7] if scored else None, "months": len(scored), "recessionSource": rec_src,
            "equity": eq_src, "recessions": [], "buckets": [], "regimes": {}, "hit": None, "earned": {}}
@@ -884,9 +942,12 @@ def indicator_rows(S, now_scores, now_x, first=None):
         sid = src[0] if isinstance(src, tuple) else src
         meta = SERIES.get(sid) or SERIES.get(DERIVED.get(sid, (None, sid))[1]) or ("", "", "", 0, "")
         v, d = _raw_now(spec, S)
-        out.append({"key": k, "pillar": pillar, "label": label, "series": src if isinstance(src, str) else "/".join(src),
+        series = src if isinstance(src, str) else "/".join(src)
+        if sid in ALTS:                                    # z198: "BAA10Y (BAA10YM before)"
+            series = f"{ALTS[sid][0]} (before it: {ALTS[sid][1]})"
+        out.append({"key": k, "pillar": pillar, "label": label, "series": series,
                     "transform": tf, "dir": dr, "w": w, "group": grp, "value": None if v is None else round(v, 4),
-                    "unit": meta[1] if sid not in DERIVED else DERIVED_UNIT.get(sid, ""),
+                    "unit": ALT_UNIT.get(sid) if sid in ALTS else meta[1] if sid not in DERIVED else DERIVED_UNIT.get(sid, ""),
                     "date": d.isoformat() if d else None, "x": None if now_x.get(k) is None else round(now_x[k], 4),
                     "score": None if now_scores.get(k) is None else round(now_scores[k], 1),
                     "since": first[k].year if first.get(k) else None})
@@ -1014,7 +1075,7 @@ def _lab_summary(lab):
     hs = (lab.get("hypotheses") or []) + (lab.get("auto") or [])
     sup = sorted([h for h in hs if h.get("status") == "supported"], key=lambda h: -(h.get("lift") or 0))
     rej = [h for h in hs if h.get("status") == "rejected"]
-    lean = lambda h: {k: h.get(k) for k in ("id", "statement", "lesson", "outcome", "status", "lift", "p", "n", "n1", "p0", "p1", "caught", "events", "nowOn", "kind")}
+    lean = lambda h: {k: h.get(k) for k in ("id", "statement", "lesson", "outcome", "expect", "status", "lift", "p", "n", "n1", "p0", "p1", "caught", "events", "nowOn", "kind")}
     return {"counts": lab.get("counts"), "record": lab.get("record"), "rules": lab.get("rules"),
             "supported": [lean(h) for h in sup[:8]], "rejected": [lean(h) for h in rej[:8]],
             "nowOn": [lean(h) for h in hs if h.get("nowOn")][:10],
@@ -1029,10 +1090,32 @@ def _episode_compact(e):
     out["readings"] = {k: {kk: v.get(kk) for kk in ("risk", "fund", "mkt", "frag", "growth", "regime", "blind")} for k, v in rd.items()}
     out["firstWarnings"] = (e.get("firstWarnings") or [])[:6]
     out["fingerprint"] = e.get("fingerprint") or {}
+    # z198: what the readings rest on - the pillars that existed at the peak (loss data begin 1985, loan officers 1990)
+    last = rd.get("t-0") or rd.get("t-3") or rd.get("t-6") or rd.get("t-12") or {}
+    out["basis"] = sorted((last.get("pillars") or {}).keys())
     return out
 
 
-def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None):
+def coverage_history(rows):
+    """z198: how many indicators each gauge stood on, each January from the first scored year - the panel is thinner the
+    further back it goes, and the reader should see that."""
+    gauge_of = {p: PILLARS[p][2] for p in PILLARS}
+    out = []
+    for r in rows:
+        if r["t"].month != 1 or r["t"].year % 5:
+            continue
+        sc = r.get("scores") or {}
+        if not sc:
+            continue
+        c = {"year": r["t"].year}
+        for g in ("fundamental", "market", "fragility", "growth"):
+            c[g] = sum(1 for spec in IND if spec[0] in sc and gauge_of[spec[1]] == g)
+        c["pillars"] = sorted({spec[1] for spec in IND if spec[0] in sc})
+        out.append(c)
+    return out
+
+
+def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None, gspc=None):
     today = today or date.today()
     S = load_series() if S is None else S
     rows, ind_hist, g_hist = build_history(S, today)
@@ -1153,14 +1236,26 @@ def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None)
         notes.append(f"{label} ({what}): {ps:.0f}/100 - {drivers_text(ind_rows, p) or 'no scored series'}.")
 
     exp = exposures(now_scores, bu)
-    bt = backtest(rows, S, spy)
+    bt = backtest(rows, S, spy, gspc)
     # z197 - the crises the system knows, and the lab that tests what they taught
     labels = {spec[0]: (spec[2], spec[1]) for spec in IND}
     pnames = {p: PILLARS[p][0] for p in PILLARS}
     eps, rhymes = warning_history.analyze(rows, g["pillars"], labels, pnames)
     rec_s, _ = recession_starts(S, [r["t"] for r in rows])
-    ed, ev, _ = equity_series(S, spy)
+    ed, ev, eq_src = equity_series(S, spy, gspc)
     market = warning_lab.Market(ed or [], ev or [], rec_s)
+    # z198: every indicator's record as a warning - its crossings into the top fifth, and how many were followed by a
+    # 20 % S&P 500 fall or a recession within two years (vs the same odds for any month)
+    track = warning_history.track_records(rows, market, labels)
+    for r in ind_rows:
+        tr = (track.get("byKey") or {}).get(r["key"])
+        if tr:
+            r["track"] = [tr["n"], tr["hits"], tr.get("lead")]
+    for e in eps:
+        for w in e.get("firstWarnings") or []:
+            tr = (track.get("byKey") or {}).get(w["key"])
+            if tr:
+                w["track"] = [tr["n"], tr["hits"]]
     now_row = {"t": today, "scores": now_scores, "xs": now_x, "pillars": g["pillars"], "compositeP": gp["composite"],
                "fundamentalP": gp["fundamental"], "marketP": gp["market"], "fragilityP": gp["fragility"], "growthP": gp["growth"],
                "regime": regime, "blind": blind}
@@ -1192,6 +1287,8 @@ def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None)
         "indicators": ind_rows, "flags": flags, "notes": notes, "traps": traps,
         "bottomUp": bu, "exposures": exp, "backtest": bt, "history": hist,
         "episodes": [_episode_compact(e) for e in eps], "rhymes": rhymes, "lab": lab_sum, "_lab": lab,
+        "track": {"base": track.get("base"), "rule": track.get("rule"), "horizon": track.get("horizon"), "market": eq_src},
+        "coverageHistory": coverage_history(rows),
         "coverage": {"series": len(have), "of": len([s for s in SERIES if SERIES[s][4] != "outcome"]) + 2,
                      "missing": sorted(s for s in SERIES if s not in S), "scored": len(now_scores), "indicators": len(IND)},
         "method": ("Each indicator is scored against its own history (expanding window, publication lags respected: no hindsight); "
@@ -1199,7 +1296,8 @@ def run(today=None, S=None, bu_inputs=None, daily=None, spy=None, lab_prev=None)
                    "history. Bottom-up readings are scored against our daily history once 40 days exist (provisional anchors before)."),
         "caveats": ["Backtest uses today's revised data, not what was published at the time (revisions can be large around turns).",
                     "Publication lags are approximations per series.",
-                    "Few recessions in the sample (1990, 2001, 2008, 2020): hit rates are indicative, not statistics.",
+                    "Nine recessions since 1960 - eight once the composite has five years of its own history (1969, 1973, 1980, 1981, 1990, 2001, 2007, 2020): hit rates are evidence, not certainty.",
+                    "The panel thins going back: loss data begin in 1985, the loan-officer survey in 1990, VIX in 1990 (VXO 1986) - earlier readings rest on jobs, collateral, Baa spreads, the curve, leverage, valuation and policy (see coverageHistory and each episode's basis).",
                     "The 2020 recession was an exogenous shock - no credit indicator could have led it.",
                     "A warning is a probability shift, not a timing call: 2006's data were early by a year."],
     }
@@ -1229,13 +1327,15 @@ def main():
     ratings = _get_json(f"{RAW}/TRAPP2-CREDIT/main/data/ratings.json", 60)
     spy_raw = _get_json(f"{RAW}/TRAPP2-1/main/data/history/SPY.json", 60) or []
     spy = sorted((_d(b["date"]), float(b["close"])) for b in spy_raw if isinstance(b, dict) and b.get("date") and b.get("close"))
+    gspc_raw = _get_json(f"{RAW}/TRAPP2-1/main/data/history/%5EGSPC.json", 60) or []          # z198: the S&P 500 itself, daily
+    gspc = sorted((_d(b["date"]), float(b["close"])) for b in gspc_raw if isinstance(b, dict) and b.get("date") and b.get("close"))
     lab_prev = {}
     try:
         lab_prev = json.loads(LAB_P.read_text())
     except Exception:
         pass
     out, rows, bu = run(today, S, {"books": books, "sec_dir": DATA / "sec", "short": short, "headcount": hc, "options": options,
-                                   "ratings": ratings}, daily, spy, lab_prev)
+                                   "ratings": ratings}, daily, spy, lab_prev, gspc)
     lab = out.pop("_lab", None)
     OUT_P.parent.mkdir(parents=True, exist_ok=True)
     OUT_P.write_text(json.dumps(out, separators=(",", ":")))

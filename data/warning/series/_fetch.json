@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-20T14:22:22Z",
+ "asOf": "2026-11-20T21:52:41Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -18,7 +18,7 @@
    "source": "fredgraph-csv"
   },
   "BAA10YM": {
-   "changed": true,
+   "changed": false,
    "first": "1953-04-01",
    "last": "2026-10-01",
    "n": 883,
@@ -26,15 +26,15 @@
    "source": "fredgraph-csv"
   },
   "BAMLH0A0HYM2": {
-   "changed": false,
-   "first": "2023-11-20",
-   "last": "2026-11-18",
+   "changed": true,
+   "first": "2023-11-21",
+   "last": "2026-11-19",
    "n": 786,
    "ok": true,
    "source": "fredgraph-csv"
   },
   "BCNSDODNS": {
-   "changed": true,
+   "changed": false,
    "first": "1947-10-01",
    "last": "2026-04-01",
    "n": 303,
@@ -50,7 +50,7 @@
    "source": "fredgraph-csv"
   },
   "CAPE": {
-   "changed": true,
+   "changed": false,
    "first": "1881-01-01",
    "last": "2023-09-01",
    "n": 1713,
@@ -58,7 +58,7 @@
    "source": "shiller (github.com/datasets/s-and-p-500)"
   },
   "CCSA": {
-   "changed": true,
+   "changed": false,
    "first": "1967-01-07",
    "last": "2026-11-07",
    "n": 3123,
@@ -66,7 +66,7 @@
    "source": "fredgraph-csv"
   },
   "CFNAIMA3": {
-   "changed": true,
+   "changed": false,
    "first": "1967-05-01",
    "last": "2026-09-01",
    "n": 713,
@@ -90,7 +90,7 @@
    "source": "fredgraph-csv"
   },
   "CP": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-04-01",
    "n": 318,
@@ -98,7 +98,7 @@
    "source": "fredgraph-csv"
   },
   "CP3M": {
-   "changed": true,
+   "changed": false,
    "first": "1971-04-01",
    "last": "1997-08-01",
    "n": 317,
@@ -106,7 +106,7 @@
    "source": "fredgraph-csv"
   },
   "CPIAUCSL": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 957,
@@ -132,8 +132,8 @@
   "DGS10": {
    "changed": true,
    "first": "1962-01-02",
-   "last": "2026-11-18",
-   "n": 16205,
+   "last": "2026-11-19",
+   "n": 16206,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -218,7 +218,7 @@
    "source": "fredgraph-csv"
   },
   "DSPI": {
-   "changed": true,
+   "changed": false,
    "first": "1959-01-01",
    "last": "2026-09-01",
    "n": 813,
@@ -228,13 +228,13 @@
   "DTB3": {
    "changed": true,
    "first": "1954-01-04",
-   "last": "2026-11-18",
-   "n": 18211,
+   "last": "2026-11-19",
+   "n": 18212,
    "ok": true,
    "source": "fredgraph-csv"
   },
   "FEDFUNDS": {
-   "changed": true,
+   "changed": false,
    "first": "1954-07-01",
    "last": "2026-10-01",
    "n": 868,
@@ -242,7 +242,7 @@
    "source": "fredgraph-csv"
   },
   "GDP": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-07-01",
    "n": 319,
@@ -250,7 +250,7 @@
    "source": "fredgraph-csv"
   },
   "GS10": {
-   "changed": true,
+   "changed": false,
    "first": "1953-04-01",
    "last": "2026-10-01",
    "n": 883,
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-20T14:22:17Z",
+   "at": "2026-11-20T21:52:34Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },
@@ -271,7 +271,7 @@
    "source": "fredgraph-csv"
   },
   "HOUST": {
-   "changed": true,
+   "changed": false,
    "first": "1959-01-01",
    "last": "2026-10-01",
    "n": 814,
@@ -279,7 +279,7 @@
    "source": "fredgraph-csv"
   },
   "ICSA": {
-   "changed": true,
+   "changed": false,
    "first": "1967-01-07",
    "last": "2026-11-14",
    "n": 3124,
@@ -287,7 +287,7 @@
    "source": "fredgraph-csv"
   },
   "INDPRO": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,
@@ -303,7 +303,7 @@
    "source": "fredgraph-csv"
   },
   "MORTGAGE30US": {
-   "changed": true,
+   "changed": false,
    "first": "1971-04-02",
    "last": "2026-11-19",
    "n": 2904,
@@ -311,7 +311,7 @@
    "source": "fredgraph-csv"
   },
   "MSACSR": {
-   "changed": true,
+   "changed": false,
    "first": "1963-01-01",
    "last": "2026-09-01",
    "n": 765,
@@ -319,7 +319,7 @@
    "source": "fredgraph-csv"
   },
   "NASDAQCOM": {
-   "changed": true,
+   "changed": false,
    "first": "1971-02-05",
    "last": "2026-11-19",
    "n": 14067,
@@ -327,7 +327,7 @@
    "source": "fredgraph-csv"
   },
   "NCBEILQ027S": {
-   "changed": true,
+   "changed": false,
    "first": "1947-10-01",
    "last": "2026-04-01",
    "n": 303,
@@ -343,7 +343,7 @@
    "source": "fredgraph-csv"
   },
   "NFCI": {
-   "changed": true,
+   "changed": false,
    "first": "1971-01-08",
    "last": "2026-11-13",
    "n": 2915,
@@ -351,7 +351,7 @@
    "source": "fredgraph-csv"
   },
   "NFCICREDIT": {
-   "changed": true,
+   "changed": false,
    "first": "1971-01-08",
    "last": "2026-11-13",
    "n": 2915,
@@ -359,7 +359,7 @@
    "source": "fredgraph-csv"
   },
   "NFCILEVERAGE": {
-   "changed": true,
+   "changed": false,
    "first": "1971-01-08",
    "last": "2026-11-13",
    "n": 2915,
@@ -367,7 +367,7 @@
    "source": "fredgraph-csv"
   },
   "NFCIRISK": {
-   "changed": true,
+   "changed": false,
    "first": "1971-01-08",
    "last": "2026-11-13",
    "n": 2915,
@@ -375,7 +375,7 @@
    "source": "fredgraph-csv"
   },
   "OPHNFB": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-07-01",
    "n": 319,
@@ -383,7 +383,7 @@
    "source": "fredgraph-csv"
   },
   "PAYEMS": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,
@@ -391,7 +391,7 @@
    "source": "fredgraph-csv"
   },
   "PERMIT": {
-   "changed": true,
+   "changed": false,
    "first": "1960-01-01",
    "last": "2026-10-01",
    "n": 802,
@@ -399,7 +399,7 @@
    "source": "fredgraph-csv"
   },
   "PSAVERT": {
-   "changed": true,
+   "changed": false,
    "first": "1959-01-01",
    "last": "2026-09-01",
    "n": 813,
@@ -407,7 +407,7 @@
    "source": "fredgraph-csv"
   },
   "REVOLSL": {
-   "changed": true,
+   "changed": false,
    "first": "1968-01-01",
    "last": "2026-09-01",
    "n": 705,
@@ -423,7 +423,7 @@
    "source": "fredgraph-csv"
   },
   "SAHMREALTIME": {
-   "changed": true,
+   "changed": false,
    "first": "1959-12-01",
    "last": "2026-10-01",
    "n": 802,
@@ -431,7 +431,7 @@
    "source": "fredgraph-csv"
   },
   "SPXM": {
-   "changed": true,
+   "changed": false,
    "first": "1871-01-01",
    "last": "2026-09-01",
    "n": 1869,
@@ -447,7 +447,7 @@
    "source": "fredgraph-csv"
   },
   "T10Y3M": {
-   "changed": true,
+   "changed": false,
    "first": "1982-01-04",
    "last": "2026-11-19",
    "n": 11223,
@@ -455,7 +455,7 @@
    "source": "fredgraph-csv"
   },
   "TB3MS": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,
@@ -479,7 +479,7 @@
    "source": "fredgraph-csv"
   },
   "TOTALSL": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-09-01",
    "n": 957,
@@ -489,13 +489,13 @@
   "TOTLL": {
    "changed": true,
    "first": "1973-01-03",
-   "last": "2026-11-04",
-   "n": 2810,
+   "last": "2026-11-11",
+   "n": 2811,
    "ok": true,
    "source": "fredgraph-csv"
   },
   "UNRATE": {
-   "changed": true,
+   "changed": false,
    "first": "1948-01-01",
    "last": "2026-10-01",
    "n": 945,
@@ -503,7 +503,7 @@
    "source": "fredgraph-csv"
   },
   "USREC": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,
@@ -511,7 +511,7 @@
    "source": "fredgraph-csv"
   },
   "USSTHPI": {
-   "changed": true,
+   "changed": false,
    "first": "1975-01-01",
    "last": "2026-04-01",
    "n": 206,
@@ -519,15 +519,15 @@
    "source": "fredgraph-csv"
   },
   "VIXCLS": {
-   "changed": false,
+   "changed": true,
    "first": "1990-01-02",
-   "last": "2026-11-18",
-   "n": 9320,
+   "last": "2026-11-19",
+   "n": 9321,
    "ok": true,
    "source": "fredgraph-csv"
   },
   "VXOCLS": {
-   "changed": true,
+   "changed": false,
    "first": "1986-01-02",
    "last": "2021-09-23",
    "n": 9002,
@@ -535,7 +535,7 @@
    "source": "fredgraph-csv"
   },
   "W875RX1": {
-   "changed": true,
+   "changed": false,
    "first": "1959-01-01",
    "last": "2026-09-01",
    "n": 813,
@@ -543,7 +543,7 @@
    "source": "fredgraph-csv"
   },
   "WTISPLC": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,

@@ -5,6 +5,9 @@
 #  volume; short interest when the API tier allows). Weekdays 0705 ET (overnight filings) and 1810 ET (the
 #  day's filings + FINRA's daily short-volume file, posted ~1800 ET). ET-gated twin crons.
 #  Secrets: SEC_USER_AGENT (already set), FINRA_CLIENT_ID / FINRA_CLIENT_SECRET (add to this repo for short interest).
+#  z199 - Schedule 13D / 13G (who owns 5 %+ of each company) and the SEC profile ride the same run. Their offline
+#  self-test runs first: if it fails, the ownership read is switched off for that run (SEC_SCHED13_DOCS=0) - the rest
+#  of the SEC refresh still runs.
 # ============================================================
 name: SEC filings + short selling
 
@@ -67,7 +70,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: SEC - 8-K events, Form 4 insiders, XBRL facts
+      - name: Self-test - Schedule 13D / 13G reader (offline, < 1 s; a failure switches the ownership read off, not the run)
+        run: python tests/test_sec.py || { echo "::warning::13D/13G self-test failed - ownership read off this run"; echo "SEC_SCHED13_DOCS=0" >> "$GITHUB_ENV"; }
+      - name: SEC - 8-K events, Form 4 insiders, XBRL facts, 13D / 13G holders
         env:
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
         run: python pipeline/fetch_sec.py

@@ -20,6 +20,14 @@
 #                              origin), per-company circularity (who it funds that buys from it, and how much)
 #       data/web/chains.json  - every chain (the app merges the ones it doesn't have)
 #       data/web/ipo.json     - upcoming lock-up releases / quiet-period ends (the bot avoids new longs into big unlocks)
+#  z199 - OWNERSHIP FROM THE FILINGS: data/sec/<T>.json now carries each company's 5 %+ holders (Schedule 13D / 13G) and
+#         its SEC profile. A holder that is itself a company in the universe (matched by CIK) becomes an 'owns' edge with
+#         confidence 'filing' - or confirms the curated edge it duplicates. Passive 13G stakes of asset managers, banks,
+#         brokers and life insurers filing as institutions (IA / HC / BK / BD / IC ...) are client money, not cross-
+#         ownership, and are left out; a 13D (activist / control) from anyone, and a sponsor's own stake, stay in.
+#         The stakes a company files about others count too (its own doc), and a company's corporate 13F holdings
+#         (mapped CUSIP -> ticker with data/sec/cusips.json) become owns edges with value, shares and an approximate %
+#         (or attach their 13F figures to the edge that already links the pair).
 #  Env: WEB_OFFLINE=1 (no raw fetches) · WEB_NOW=YYYY-MM-DD (tests)
 # ============================================================
 import json
@@ -37,7 +45,7 @@ OWNER = os.environ.get("GITHUB_REPOSITORY_OWNER") or "TheMostLocal"
 RAW = f"https://raw.githubusercontent.com/{OWNER}"
 BOOKS = ("TRAPP2", "TRAPP2-1", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")
 STAGES = (("upstream", "up"), ("midstream", "mid"), ("downstream", "down"))
-BUILD = "z197"
+BUILD = "z199"
 
 
 def _get_json(url, timeout=60):
@@ -260,6 +268,182 @@ def circularity(edges, loops, facts):
     return out
 
 
+# z199: 13G holders whose business is holding other people's money - their passive 5 % stakes are client assets, not
+# corporate cross-ownership (BlackRock, State Street, the banks' asset-management arms). A 13D (active / control) from
+# anyone - a private-equity sponsor, Berkshire, a strategic buyer - is always a relationship.
+INSTITUTIONAL = {"Asset Management", "Banks - Diversified", "Banks - Regional", "Capital Markets", "Insurance - Life"}
+# the Schedule 13G type codes of a filer holding for clients (13d-1(b) institutions); CO / PN / OO / IN hold their own
+PASSIVE_TYPES = {"IA", "HC", "BK", "BD", "IC", "IV", "EP", "SA", "FI", "CP"}
+
+
+def sec_owners(sec_dir, today=None):
+    """z199: one pass over the SEC docs - each company's 5 %+ holders and the 5 %+ stakes it holds in others (Schedule
+    13D / 13G), its corporate 13F holdings, its SEC profile, CIK, and shares (the latest diluted count, for an
+    approximate % of a 13F stake). -> {"holders", "stakes", "f13", "profiles", "ciks", "shares"} keyed by ticker"""
+    out = {k: {} for k in ("holders", "stakes", "f13", "profiles", "ciks", "shares")}
+    today = today or date.today()
+    sec_dir = Path(sec_dir)
+    for p in sorted(sec_dir.glob("*.json")) if sec_dir.exists() else []:
+        if p.name in ("index.json", "cusips.json"):
+            continue
+        try:
+            j = json.loads(p.read_text())
+        except Exception:
+            continue
+        if not isinstance(j, dict):
+            continue
+        t = str(j.get("ticker") or p.stem).upper()
+        try:
+            if j.get("cik"):
+                out["ciks"][t] = int(j["cik"])
+        except (TypeError, ValueError):
+            pass
+        for k, src in (("holders", "holders"), ("stakes", "stakes"), ("profiles", "profile")):
+            if j.get(src):
+                out[k][t] = j[src]
+        if (j.get("f13") or {}).get("holdings"):
+            out["f13"][t] = j["f13"]
+        ds = ((j.get("facts") or {}).get("dilutedShares") or {})
+        pts = [x for x in (ds.get("quarterly") or []) + (ds.get("annual") or []) if x.get("val") and x.get("end")]
+        if pts:
+            last = max(pts, key=lambda x: x["end"])
+            try:
+                if (today - date.fromisoformat(str(last["end"])[:10])).days <= 460:
+                    out["shares"][t] = float(last["val"])
+            except (TypeError, ValueError):
+                pass
+    return out
+
+
+def _pick_by_cik(ciks, curated=(), books=()):
+    """One ticker per CIK (GOOG / GOOGL, BRK-A / BRK-B share one): the one the curated web uses, else one in the books,
+    else the first alphabetically."""
+    out = {}
+    for t, c in ciks.items():
+        cur = out.get(c)
+        if cur is None or (t not in curated, t not in books, t) < (cur not in curated, cur not in books, cur):
+            out[c] = t
+    return out
+
+
+def _passive(h):
+    """A 13G filed as an institution holding for clients: under Rule 13d-1(b) (qualified institutions) when the filing
+    says which rule; otherwise by its type codes (IA / HC / BK ...), or no type at all."""
+    if h.get("rule"):
+        return "13d-1(b)" in str(h["rule"])
+    types = {x.strip().upper() for x in str(h.get("type") or "").split("/") if x.strip()}
+    return not types or bool(types & PASSIVE_TYPES)
+
+
+def filing_edges(holders, ciks, edges, books, curated=(), stakes=None):
+    """z199: a 5 %+ stake one company in the universe holds in another, straight from its Schedule 13D / 13G -> an 'owns'
+    edge with confidence 'filing'. Both sides of a filing count: the holders filed about a company (the owner matched by
+    its CIK) and the stakes a company filed about others (the issuer matched by its CIK) - whichever doc was read first;
+    where both have it, the latest filing wins. Where the curated web already has that owner -> company pair, the filing
+    CONFIRMS it (an event on the curated edge, pctFiled - under 5 % when the filing reports an exit) instead of a
+    duplicate. Passive 13G stakes of asset managers / banks are skipped. -> (new edges, confirmations)"""
+    by_cik = _pick_by_cik(ciks, set(curated), set(books))
+    have = {(e["from"], e["to"]): e for e in edges if e.get("type") == "owns"}
+    best = {}                                          # (owner, subject) -> its latest filing row
+
+    def offer(owner, t, h):
+        if not owner or not t or owner == t:
+            return
+        k = (owner, t)
+        if k not in best or (h.get("filed") or "", h.get("pct") or 0) > (best[k].get("filed") or "", best[k].get("pct") or 0):
+            best[k] = h
+    for t, hs in holders.items():
+        if by_cik.get(ciks.get(t)) in (None, t):       # skip the other share class of the same company
+            for h in hs or []:
+                offer(by_cik.get(h.get("cik")), t, h)
+    for t, ss in (stakes or {}).items():
+        if by_cik.get(ciks.get(t)) in (None, t):
+            for h in ss or []:
+                offer(t, by_cik.get(h.get("issuerCik")), h)
+    out, confirmed = [], 0
+    for (owner, t), h in sorted(best.items()):
+        if h.get("kind") != "13D" and (books.get(owner) or {}).get("industry") in INSTITUTIONAL and _passive(h):
+            continue
+        ev = {"date": h.get("event") or h.get("filed"), "text": f"Schedule {h.get('kind')}: {h.get('pct')} % of the class"
+              + (f" ({h.get('type')})" if h.get("type") else "") + (f", Rule {h.get('rule')}" if h.get("rule") else ""),
+              "src": "SEC", "acc": h.get("acc"), "confidence": "filing"}
+        cur = have.get((owner, t))
+        if cur is not None:
+            if not any(x.get("acc") == h.get("acc") for x in cur.get("events") or []):
+                cur.setdefault("events", []).append(ev)
+            cur["pctFiled"] = h.get("pct")
+            cur["holder"] = h.get("name")
+            confirmed += 1
+            continue
+        if (h.get("pct") or 0) < 5:
+            continue                                   # below 5 %: an exit, not a stake
+        out.append({"id": f"F-{owner}-{t}", "type": "owns", "from": owner, "to": t, "pct": h.get("pct"), "confidence": "filing",
+                    "label": f"{(books.get(owner) or {}).get('name') or owner}: {h.get('pct')} % of {(books.get(t) or {}).get('name') or t}"
+                             f" (Schedule {h.get('kind')})", "events": [ev],
+                    "kind13": h.get("kind"), "holder": h.get("name"), "rule": h.get("rule"), "purpose": h.get("purpose")})
+    return out, confirmed
+
+
+def _usd(v):
+    v = float(v or 0)
+    return f"${v / 1e9:.1f}bn" if v >= 1e9 else f"${v / 1e6:.0f}M"
+
+
+def f13_edges(f13, cusip_by, ciks, books, edges, curated=(), shares=None):
+    """z199: corporate 13F holdings -> 'owns' edges with confidence 'filing' (kind13 '13F'): every listed equity a
+    company in the universe reports holding at quarter end, mapped from CUSIP to ticker (data/sec/cusips.json), its value
+    and shares, and an approximate % of the issuer (shares / the issuer's latest diluted count; ≈). A holding the web
+    already links (curated or a 13D / 13G edge) gets the 13F figures attached (`f13`) instead of a second edge. Left
+    out: institutions (INSTITUTIONAL industries - client money), options, unmapped CUSIPs, and for financial-sector
+    holders (Berkshire, insurers' float portfolios) positions under ~1 % of the issuer and under $1 bn.
+    -> (new edges, attached)"""
+    by_cik = _pick_by_cik(ciks, set(curated), set(books))
+
+    def tick(cu):
+        t = (cusip_by or {}).get(cu)
+        if isinstance(t, list):
+            t = t[0] if t else None
+        if not t:
+            return None
+        return by_cik.get(ciks.get(t), t) if ciks.get(t) else t
+    have = {(e["from"], e["to"]): e for e in edges if e.get("type") == "owns"}
+    out, attached = [], 0
+    for owner, f in sorted((f13 or {}).items()):
+        if by_cik.get(ciks.get(owner)) not in (None, owner):
+            continue                                         # BRK-A / BRK-B: one filer
+        b = books.get(owner) or {}
+        if b.get("industry") in INSTITUTIONAL:
+            continue
+        fin = b.get("sector") in ("Financial Services", "Financials")
+        for h in f.get("holdings") or []:
+            if h.get("putCall"):
+                continue
+            t = tick(h.get("cusip"))
+            if not t or t == owner:
+                continue
+            so = (shares or {}).get(t)
+            pct = round(100.0 * h["shares"] / so, 2) if so and h.get("shares") else None
+            if pct is not None and pct > 100:
+                pct = None                                   # ADS vs ordinary shares, or a bad count - no %
+            if fin and not ((pct or 0) >= 1 or (h.get("value") or 0) >= 1e9):
+                continue
+            info = {"valueUSD": h.get("value"), "shares": h.get("shares"), "period": f.get("period"), "acc": f.get("acc"), "pctApprox": pct}
+            cur = have.get((owner, t))
+            if cur is not None:
+                cur["f13"] = info
+                attached += 1
+                continue
+            oname, tname = b.get("name") or owner, (books.get(t) or {}).get("name") or t
+            e = {"id": f"F13-{owner}-{t}", "type": "owns", "from": owner, "to": t, "confidence": "filing", "kind13": "13F",
+                 "valueUSD": h.get("value"), "shares": h.get("shares"), "pct": pct, "pctApprox": pct is not None,
+                 "label": f"{oname}: {_usd(h.get('value'))} of {tname} (13F, {f.get('period')})",
+                 "events": [{"date": f.get("period"), "text": f"13F-HR: {int(h.get('shares') or 0):,} shares, {_usd(h.get('value'))} at quarter end",
+                             "src": "SEC", "acc": f.get("acc"), "confidence": "filing"}]}
+            out.append(e)
+            have[(owner, t)] = e
+    return out, attached
+
+
 def backlog_view(edges, facts):
     """z198 - for each company that tracked buyers have committed to: the commitments in our web vs the backlog it
     reports (RPO), and vs a year's revenue. A commitment from a buyer that is itself funded by this company (or by its
@@ -325,7 +509,17 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
     facts = sec_facts(sec_dir or DATA / "sec", today)
     idxw = index_weights(universe if universe is not None else _read(DATA / "earnings" / "universe.json", {}))
     rt = (ratings or {}).get("ratings") if isinstance(ratings, dict) else None
-    edges = rel.get("edges") or []
+    edges = list(rel.get("edges") or [])
+    # z199: 5 %+ stakes from Schedule 13D / 13G - corporate cross-ownership straight from the filings
+    so = sec_owners(sec_dir or DATA / "sec", today)
+    holders, stakes, profiles, ciks = so["holders"], so["stakes"], so["profiles"], so["ciks"]
+    curated_names = {x for e in edges for x in (e["from"], e["to"])}
+    f_edges, f_confirmed = filing_edges(holders, ciks, edges, books, curated_names, stakes)
+    edges += f_edges
+    # z199: corporate 13F holdings, CUSIPs mapped with the map the SEC run builds from the same filings
+    cus = (_read(Path(sec_dir or DATA / "sec") / "cusips.json", {}) or {}).get("byCusip") or {}
+    f13e, f13_att = f13_edges(so["f13"], cus, ciks, books, edges, curated_names, so["shares"])
+    edges += f13e
     loops = find_loops(edges)
     circ = circularity(edges, loops, facts)
     backlog = backlog_view(edges, facts)
@@ -365,6 +559,25 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
             n["backlog"] = backlog[t]
         if notes.get(t):
             n["notes"] = notes[t]
+        pf = profiles.get(t) or {}
+        if pf.get("sic"):
+            n["sic"] = [pf.get("sic"), pf.get("sicDescription")]
+        if pf.get("formerNames"):
+            n["formerNames"] = [f.get("name") for f in pf["formerNames"]][:3]
+        hs = [h for h in holders.get(t) or [] if (h.get("pct") or 0) >= 5]
+        if hs:
+            cls = {}
+            for h in hs:                                # sum within one class: the one most holders filed on
+                cls[h.get("cusip") or ""] = cls.get(h.get("cusip") or "", 0) + 1
+            main = max(cls, key=cls.get)
+            n["own"] = {"n5": len(hs), "sum5": round(sum(h.get("pct") or 0 for h in hs if (h.get("cusip") or "") == main), 1),
+                        "top": [hs[0].get("name"), hs[0].get("pct")]}
+        st = [h for h in stakes.get(t) or [] if (h.get("pct") or 0) >= 5]
+        if st:
+            n["stakes"] = {"n5": len(st), "top": [st[0].get("issuer"), st[0].get("pct")]}
+        f3 = so["f13"].get(t)
+        if f3:
+            n["f13"] = {"period": f3.get("period"), "n": f3.get("n"), "total": f3.get("total")}
         up = [e for e in ipos if e["ticker"] == t]
         if up:
             n["ipo"] = up
@@ -379,7 +592,10 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
     stats = {"tickers": len(nodes), "inBooks": len(in_books), "withChains": sum(1 for t in nodes if nodes[t].get("chains")),
              "withFacts": sum(1 for t in nodes if nodes[t].get("facts")), "withIndexWeight": sum(1 for t in nodes if nodes[t].get("idx")),
              "chains": len(chains), "subsectorChains": sum(1 for c in chains if c.get("level") == "subsector"),
-             "moneyEdges": len(edges), "loops": len(loops), "chainNamesNotInBooks": missing}
+             "moneyEdges": len(edges), "filingEdges": len(f_edges), "filingConfirmed": f_confirmed,
+             "withHolders": len(holders), "withStakes": len(stakes), "withSic": sum(1 for t in nodes if nodes[t].get("sic")),
+             "f13Filers": len(so["f13"]), "f13Edges": len(f13e), "f13Attached": f13_att, "cusipsMapped": len(cus),
+             "loops": len(loops), "chainNamesNotInBooks": missing}
     return {"nodes": {"asOf": asof, "build": BUILD, "stats": stats, "nodes": nodes},
             "money": money,
             "chains": {"asOf": asof, "build": BUILD, "note": chains_doc.get("note"), "chains": chains},
@@ -398,7 +614,9 @@ def main():
     s = out["stats"]
     print(f"business web {today}: {s['tickers']} tickers ({s['inBooks']} in the books) · {s['withChains']} placed in {s['chains']} chains "
           f"({s['subsectorChains']} subsector) · {s['withFacts']} with SEC facts · {s['withIndexWeight']} with index weights · "
-          f"{s['moneyEdges']} money edges, {s['loops']} loops")
+          f"{s['moneyEdges']} money edges ({s['filingEdges']} from 13D / 13G filings, {s['filingConfirmed']} curated confirmed by one; "
+          f"{s['withHolders']} companies with 5 %+ holders on file; {s['f13Edges']} from {s['f13Filers']} corporate 13Fs, "
+          f"{s['f13Attached']} attached; {s['cusipsMapped']} CUSIPs mapped), {s['loops']} loops")
     for L in out["money"]["loops"]:
         print("  loop:", " -> ".join(L["path"]), L["edges"])
     if s["chainNamesNotInBooks"]:

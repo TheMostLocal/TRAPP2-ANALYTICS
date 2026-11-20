@@ -379,6 +379,35 @@ def test_build_maps_13f_with_the_cusip_file():
     assert out["nodes"]["nodes"]["NVDA"]["f13"] == {"period": "2026-09-30", "n": 1, "total": 1.5e8}
 
 
+def test_node_own_once_per_company_across_share_classes():
+    with tempfile.TemporaryDirectory() as d:
+        for t in ("GOOG", "GOOGL"):
+            Path(d, f"{t}.json").write_text(json.dumps({"ticker": t, "cik": 1652044, "holders": [H("VANGUARD GROUP INC", 7.6, 102909, typ="IA")]}))
+        books = wb.books_from({"TRAPP2": [{"ticker": "GOOG", "name": "Alphabet C", "isetf": "false"}, {"ticker": "GOOGL", "name": "Alphabet A", "isetf": "false"}]})
+        out = wb.build(TODAY, books, d, None, None)
+    n = out["nodes"]["nodes"]
+    assert "own" in n["GOOGL"] and "own" not in n["GOOG"]           # the curated web uses GOOGL
+
+
+def test_chain_audit_z200_no_dead_tickers_new_subsectors():
+    chains = json.loads((ROOT / "config" / "supply_chains.json").read_text())["chains"]
+    ids = {c["id"] for c in chains}
+    dead = {"PXD", "HES", "LTHM", "X", "CTLT", "WBA", "CNHI", "K", "HAYN", "L3HRS", "SQ", "JNPR", "DISH", "NOVA", "RDFN", "PARA", "IPG",
+            "SPLK", "PFPT", "KNBE", "GPS", "AIR.PA", "Rolls-Royce", "WFRBF"}
+    left = [(c["id"], m.get("ticker")) for c in chains for k, _ in wb.STAGES for m in c.get(k) or [] if m.get("ticker") in dead]
+    assert not left, left
+    new = {"aero_engines", "aero_structures", "aero_systems", "aero_aftermarket", "defense_munitions", "nuclear_fuel", "glp1_obesity", "payments_rails"}
+    assert new <= ids and sum(1 for c in chains if c.get("level") == "subsector") >= 24
+    for c in chains:
+        if c.get("level") == "subsector":
+            assert c.get("parent") in ids and c.get("citations"), c["id"]
+        for k, _ in wb.STAGES:
+            for m in c.get(k) or []:
+                assert not (m.get("ticker") and " " in m["ticker"]), (c["id"], m)          # a name in the ticker field
+    revised = [c for c in chains if c.get("rev")]
+    assert len(revised) >= 16 and all(any("z200 audit" in x for x in c.get("citations") or []) for c in revised)   # each says what changed
+
+
 def test_web_priority_reads_configs():
     p = fs.web_priority(ROOT)
     assert {"NVDA", "GOOGL", "MSFT", "ANT", "AMD"} <= p and "" not in p

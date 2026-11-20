@@ -3,7 +3,8 @@
 #  >>> FILE PATH:   tests/test_warning.py
 #  z196: the early-warning engine (pipeline/warning_signals.py) - publication lags, no-look-ahead scoring, the
 #  seasonal-trap / marginal-buyer / blindness detectors, bottom-up breadth, sector exposures, the backtest, and a
-#  synthetic 2006-09 housing-credit cycle. Offline and hermetic (no repo data read). Run: python tests/test_warning.py
+#  synthetic 2006-09 housing-credit cycle; z198: long-history splices, the S&P 500 market, track records, 18 episodes.
+#  Offline and hermetic (no repo data read). Run: python tests/test_warning.py
 # ============================================================
 import json
 import math
@@ -253,6 +254,17 @@ for r in rows_t:
     r["flagy"] = rr.random() < 0.12
 bad = wl.test(pnl, [("flag", "flagy", "==", 1)], "DD20_12")
 check(f"lab: a random signal is not supported ({bad['status']}, lift {bad['lift']}, p {bad['p']})", bad["status"] != "supported")
+# z198: track records - the crossing that came before every crash has a record; noise doesn't
+rows_tr = []
+for r in rows_t:
+    rows_tr.append({"t": r["t"], "scores": {"good": 85.0 if r["flagx"] else 40.0, "noise": 85.0 if rr.random() < 0.15 else 40.0}})
+tr = wh.track_records(rows_tr, mkt, {"good": ("Good", "loss"), "noise": ("Noise", "funding")}, horizon=548)
+g_, n_ = tr["byKey"].get("good"), tr["byKey"].get("noise")
+check(f"track record: the warning before every crash ({g_}) beats the base rate {tr['base']} - noise doesn't ({n_})",
+      g_ and g_["rate"] >= 0.9 and g_["lift"] >= 1.5 and n_ and n_["rate"] < g_["rate"])
+check("track record: a warning counts once until it cools below 70 again", g_["n"] <= len(crash) + 1)
+check("track records ride on the indicators and the episodes' first warnings",
+      any(r.get("track") for r in out["indicators"]) and any(w.get("track") for e in out["episodes"] for w in e.get("firstWarnings") or []))
 # the ledger: an 'on' signal is a dated prediction, graded when its horizon passes
 led = []
 hyps = [{"id": "HX", "signal": [["flag", "flagx", "==", 1]], "outcome": "DD20_12"}]
@@ -262,6 +274,38 @@ wl.update_ledger(led, hyps, {"flagx": True}, date(2015, 3, 20), mkt)
 check("ledger: no duplicate in the same month", len(led) == 1)
 rec1 = wl.update_ledger(led, hyps, {"flagx": False}, date(2016, 3, 1), mkt)
 check(f"ledger: graded after the horizon ({led[0]['result']})", rec1["graded"] == 1 and led[0]["result"] == "right")
+
+# 6c. z198 - deep history: long-history splices, the S&P 500 market, track records, the 1960s episodes ----------------
+S9 = {"BAA10Y": mk("BAA10Y", [(date(1986, 1, 2) + timedelta(days=i), 2.0) for i in range(0, 3000)]),
+      "BAA10YM": mk("BAA10YM", [(date(1953 + i // 12, i % 12 + 1, 1), 1.0) for i in range(0, 12 * 40)])}
+spec_of = {sp[0]: sp for sp in ws.IND}
+check("splice: before BAA10Y exists (1970) the Baa spread comes from BAA10YM", ws.transformed(spec_of["baa"], S9, date(1970, 6, 30)) == 1.0)
+check("... and from the daily series once it can compute it (1990)", ws.transformed(spec_of["baa"], S9, date(1990, 6, 30)) == 2.0)
+check("splice: a 6-month change never mixes the two series (1986-03 -> from BAA10YM alone: 0.0, not 1.0)",
+      ws.transformed(spec_of["baa_d"], S9, date(1986, 3, 31)) == 0.0)
+S9["CSUSHPINSA"] = mk("CSUSHPINSA", [(date(1987 + i // 12, i % 12 + 1, 1), 100.0 * 1.10 ** (i / 12)) for i in range(0, 12 * 10)])
+S9["USSTHPI"] = mk("USSTHPI", [(date(1975 + i // 4, 3 * (i % 4) + 1, 1), 50.0 * 1.02 ** (i / 4)) for i in range(0, 4 * 30)])
+x87, x92 = ws.transformed(spec_of["hpi"], S9, date(1987, 9, 30)), ws.transformed(spec_of["hpi"], S9, date(1992, 9, 30))
+check(f"splice: a 12-month change comes from ONE index (1987: FHFA {x87:+.1f} %, 1992: Case-Shiller {x92:+.1f} %)",
+      x87 is not None and abs(x87 - 2.0) < 0.3 and x92 is not None and abs(x92 - 10.0) < 0.5)
+iv = {r["key"]: r for r in ws.indicator_rows(S9, {}, {})}
+check(f"spliced series are labelled with their ancestor ({iv['baa']['series']})", iv["baa"]["series"] == "BAA10Y (before it: BAA10YM)" and iv["baa"]["unit"] == "pts")
+S10 = {"SPXM": mk("SPXM", [(date(1871 + i // 12, i % 12 + 1, 1), 10.0 + i) for i in range(0, 12 * 150)])}
+gd = [(date(2006, 9, 29) + timedelta(days=i), 1300.0 + i) for i in range(0, 7000)]
+ed, ev, src = ws.equity_series(S10, None, gd)
+check(f"market: Shiller's monthly averages, each at its month's end, until the daily closes begin ({src})",
+      ed[0] == date(1871, 1, 31) and max(d for d in ed if d < date(2006, 9, 29)) == date(2006, 8, 31) and ed[-1] == gd[-1][0] and "Shiller" in src)
+S10["GSPC"] = mk("GSPC", [(date(1950, 1, 3) + timedelta(days=i), 17.0 + i * 0.01) for i in range(0, 27000)])
+ed2, _, src2 = ws.equity_series(S10, None, gd)
+check(f"market: Yahoo's whole daily S&P 500 wins when it's on file ({src2})", ed2[0] == date(1950, 1, 3) and "Yahoo" in src2)
+check("the panel starts in 1955 (was 1990)", ws.BACKTEST_FROM == "1955-01" and rows[0]["t"] == date(1955, 1, 31))
+ids = [e["id"] for e in out["episodes"]]
+check(f"18 episodes since 1962, oldest first ({ids[0]} .. {ids[-1]})", len(ids) == 18 and ids[:4] == ["1962", "1966", "1970", "1973"]
+      and all(e.get("readings") is not None for e in out["episodes"]))
+check("each episode names the pillars its readings rest on", all(isinstance(e.get("basis"), list) for e in out["episodes"])
+      and "loss" in next(e for e in out["episodes"] if e["id"] == "2008")["basis"])
+check(f"coverage history every 5 years ({[(c['year'], c['fundamental']) for c in out['coverageHistory']][:3]})",
+      out["coverageHistory"] and all(c["year"] % 5 == 0 for c in out["coverageHistory"]))
 
 # 7. degraded: no FRED history on file -> a provisional read from the bottom-up layer -------------------------------
 out2, _, _ = ws.run(date(2026, 11, 19), {}, {"options": {"breadth": {"invertedShare": 0.5}}}, [], None)

@@ -4,6 +4,8 @@
 #  >>> FILE PATH:   pipeline/fetch_sec.py
 #  z197 - facts queue: Business Web names first; unreadable companies (ETFs: no XBRL facts) stamped so they stop
 #         jumping the queue every run.
+#  z198 - five money-structure items (RPO / backlog, purchase obligations, equity-method, listed and private equity
+#         stakes); FACTS_VERSION 3 re-reads every company over ~a week, Business Web names first.
 #
 #  z158 - SEC EDGAR, official and free:
 #    events   - 8-K filings (last 180 days) with their item numbers in words, and red flags:
@@ -62,10 +64,20 @@ CONCEPTS = {
     "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"],
     "longTermDebt": ["LongTermDebtNoncurrent", "LongTermDebt", "LongTermDebtAndCapitalLeaseObligations"],
     "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
-    "dilutedShares": ["WeightedAverageNumberOfDilutedSharesOutstanding"]}
+    "dilutedShares": ["WeightedAverageNumberOfDilutedSharesOutstanding"],
+    # z198 - THE BUSINESS WEB, P1: the money structure behind the relationships (owner 11-19: "how much of a company is
+    # tied into another … understood for their profits and their debts"). Non-dimensional us-gaap facts only - the
+    # companyfacts API carries no axis members, so customer concentration (ConcentrationRiskPercentage by customer)
+    # needs the filing itself (a later build).
+    "rpo": ["RevenueRemainingPerformanceObligation"],                       # contracted backlog not yet recognised
+    "purchaseObligations": ["PurchaseObligation", "UnrecordedUnconditionalPurchaseObligationBalanceSheetAmount"],
+    "equityMethod": ["EquityMethodInvestments"],                            # stakes with significant influence
+    "equitySecurities": ["EquitySecuritiesFvNi", "MarketableSecuritiesEquitySecurities"],   # listed stakes at fair value
+    "equityPrivate": ["EquitySecuritiesWithoutReadilyDeterminableFairValueAmount"]}          # private stakes (measurement alternative)
 FLOW_USD = {"revenue", "netIncome", "operatingIncome", "operatingCashFlow", "capex"}    # quarters derivable from YTD
-INSTANT = {"cash", "longTermDebt", "equity"}
-FACTS_VERSION = 2
+INSTANT = {"cash", "longTermDebt", "equity", "rpo", "purchaseObligations", "equityMethod", "equitySecurities", "equityPrivate"}
+SHORT_KEEP = {"rpo", "purchaseObligations", "equityMethod", "equitySecurities", "equityPrivate"}   # z198: latest + a year of trend
+FACTS_VERSION = 3          # z198: +the five money-structure items -> every company re-reads (Business Web names first)
 
 
 def log(*a):
@@ -257,8 +269,8 @@ def facts_from(cf):
                         break
         if not (ann or qtr):
             continue
-        a = sorted(ann.values(), key=lambda x: x["end"])[-10:]
-        q = sorted(qtr.values(), key=lambda x: x["end"])[-12:]
+        a = sorted(ann.values(), key=lambda x: x["end"])[-(4 if key in SHORT_KEEP else 10):]
+        q = sorted(qtr.values(), key=lambda x: x["end"])[-(4 if key in SHORT_KEEP else 12):]
         latest_end = max([x["end"] for x in a] + [x["end"] for x in q])
         doc = {"concept": used.get(("concept", latest_end)) or names[0], "annual": a, "quarterly": q}
         if key in FLOW_USD and len(q) >= 4:

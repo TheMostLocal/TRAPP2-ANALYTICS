@@ -97,7 +97,10 @@ def load_books():
 
 # ---- money structure from SEC XBRL facts ---------------------------------------------------------------------------
 FACT_KEYS = {"revenue": "rev", "operatingIncome": "opInc", "netIncome": "ni", "operatingCashFlow": "ocf", "capex": "capex",
-             "cash": "cash", "longTermDebt": "debt", "equity": "eq"}
+             "cash": "cash", "longTermDebt": "debt", "equity": "eq",
+             # z198 (fetch_sec FACTS_VERSION 3): the money structure behind the relationships
+             "rpo": "rpo", "purchaseObligations": "purchOb", "equityMethod": "eqMethod", "equitySecurities": "eqListed",
+             "equityPrivate": "eqPrivate"}
 
 
 def latest_annual(fact):
@@ -257,6 +260,31 @@ def circularity(edges, loops, facts):
     return out
 
 
+def backlog_view(edges, facts):
+    """z198 - for each company that tracked buyers have committed to: the commitments in our web vs the backlog it
+    reports (RPO), and vs a year's revenue. A commitment from a buyer that is itself funded by this company (or by its
+    suppliers) is the circular part of the backlog. Indicative: an announced commitment may not be in RPO yet (signed
+    later, conditional, capacity-based), so a share above 100 % means 'announced beyond what's booked'.
+    -> {ticker: {"commitIn": $, "commitGW", "from": [...], "rpo", "rpoEnd", "shareOfRpo", "yearsOfRevenue"}}"""
+    out = {}
+    for e in edges:
+        if e.get("type") != "commits":
+            continue
+        b = out.setdefault(e["to"], {"commitIn": 0.0, "commitGW": 0.0, "from": []})
+        b["commitIn"] += e.get("amountUSD") or 0.0
+        b["commitGW"] += e.get("gw") or 0.0
+        b["from"].append({"buyer": e["from"], "usd": e.get("amountUSD"), "gw": e.get("gw"), "edge": e["id"]})
+    for t, b in out.items():
+        f = facts.get(t) or {}
+        rpo, rev = f.get("rpo"), f.get("rev")
+        b["rpo"] = rpo
+        b["shareOfRpo"] = round(b["commitIn"] / rpo, 3) if rpo and b["commitIn"] else None
+        b["yearsOfRevenue"] = round(b["commitIn"] / rev, 2) if rev and b["commitIn"] else None
+        b["commitIn"] = b["commitIn"] or None
+        b["commitGW"] = b["commitGW"] or None
+    return out
+
+
 def ipo_events(ipo_cfg, today, horizon=400):
     ev = []
     for t, v in ((ipo_cfg or {}).get("ipos") or {}).items():
@@ -300,6 +328,7 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
     edges = rel.get("edges") or []
     loops = find_loops(edges)
     circ = circularity(edges, loops, facts)
+    backlog = backlog_view(edges, facts)
     cidx = chain_index(chains)
     ipos = ipo_events(ipo_cfg, today)
     # nodes: every ticker in the books + every web / chain participant
@@ -332,6 +361,8 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
                           "edges": [e["id"] for e in mine]}
         if circ.get(t):
             n["circularity"] = {k: circ[t][k] for k in ("investedUSD", "committedBackUSD", "committedBackGW", "committedBackToRevenue", "loops")}
+        if backlog.get(t):
+            n["backlog"] = backlog[t]
         if notes.get(t):
             n["notes"] = notes[t]
         up = [e for e in ipos if e["ticker"] == t]
@@ -342,7 +373,7 @@ def build(today=None, books=None, sec_dir=None, universe=None, ratings=None):
     missing = sorted(t for t in cidx if books and t not in in_books and t.replace(".", "").isalnum() and "." not in t)
     asof = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     money = {"asOf": asof, "build": BUILD, "types": rel.get("types"), "sources": rel.get("sources"), "entities": ents,
-             "edges": edges, "loops": loops, "circularity": circ, "nodeNotes": notes,
+             "edges": edges, "loops": loops, "circularity": circ, "backlog": backlog, "nodeNotes": notes,
              "names": {t: nodes[t]["name"] for t in nodes if any(t in (e["from"], e["to"]) for e in edges)},
              "sectors": {t: nodes[t].get("sector") for t in nodes if any(t in (e["from"], e["to"]) for e in edges)}}
     stats = {"tickers": len(nodes), "inBooks": len(in_books), "withChains": sum(1 for t in nodes if nodes[t].get("chains")),

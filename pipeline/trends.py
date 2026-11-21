@@ -50,7 +50,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-BUILD = "z201"
+BUILD = "z202"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "trends"
@@ -753,9 +753,16 @@ def strip(c, lean=False):
 
 
 def phase_of(tape):
-    """premarket / session / after-close on a trading day; closed on a weekend or holiday."""
+    """premarket / session / after-close on a trading day; closed on a weekend or holiday (z202: and once the tape is
+    from an earlier ET day - Friday's last tape read on Saturday is not "after the close")."""
     if not tape or tape.get("session") not in ("regular", "early-close"):
         return "closed"
+    try:
+        from zoneinfo import ZoneInfo
+        if str(tape.get("date") or "") < now_utc().astimezone(ZoneInfo("America/New_York")).date().isoformat():
+            return "closed"
+    except Exception:
+        pass
     m = int(tape.get("etMinute") or 0)
     if m < OPEN_MIN:
         return "premarket"
@@ -937,7 +944,9 @@ def main():
             rec.update(state="final", backfilled=True, members=past["_members"])
             _write(daily / f"{d}.json", rec)
             log(f"backfilled {d}: {len(past['_members'])} members")
-    doc = build(hist, tape, member_tapes, universe, sectors, base, prior, macro_context())
+    # z202: a day read from the history (a weekend / after-hours run, once the history holds the close) still gets its
+    # official opens - the gap and the move from the open - from TRAPP2-1's day tape (the 11-20 final lost them)
+    doc = build(hist, tape, member_tapes, universe, sectors, base, prior, macro_context(), book_tape(MACRO_BOOK, ds[-1]))
     if not doc:
         log("no read")
         return 0

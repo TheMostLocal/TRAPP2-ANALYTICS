@@ -8,6 +8,8 @@
 #  z199 - Schedule 13D / 13G (who owns 5 %+ of each company) and the SEC profile ride the same run. Their offline
 #  self-test runs first: if it fails, the ownership read is switched off for that run (SEC_SCHED13_DOCS=0) - the rest
 #  of the SEC refresh still runs.
+#  z202 - market cap by the formula (pipeline/shares.py): the SEC's own share counts (XBRL frames, 3 requests) x the
+#  books' price, checked against Yahoo -> data/sec/shares.json (the app's market caps; Yahoo kept where they disagree).
 # ============================================================
 name: SEC filings + short selling
 
@@ -76,6 +78,13 @@ jobs:
         env:
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
         run: python pipeline/fetch_sec.py
+        continue-on-error: true
+      - name: Market cap by the formula - price x the SEC's share count, checked against Yahoo (z202; self-test first)
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
+        run: |
+          if python tests/test_shares.py; then python pipeline/shares.py || echo "::warning::shares run failed - data/sec/shares.json kept as it was"
+          else echo "::warning::shares self-test failed - data/sec/shares.json kept as it was"; fi
         continue-on-error: true
       - name: FINRA - short volume and short interest
         env:

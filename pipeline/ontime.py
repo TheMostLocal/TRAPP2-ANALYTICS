@@ -15,7 +15,8 @@
 #  GitHub's schedule stays as the backstop. The heavy workflows' gates (the books' Nightly; Analytics, SEC, earnings,
 #  headcount) let a late scheduled start stand down when an on-time or manual run has started since that slot -
 #  unless it failed or was cancelled (then the late start is the retry). The light ones (mid-day, TRAPP2-1's extras /
-#  Fed / quad / trade / nowcast, the hourly Supabase syncs) simply run again when GitHub gets to them - same result.
+#  Fed / quad / trade / nowcast, the hourly Supabase syncs, today's trends (z201)) simply run again when GitHub gets to
+#  them - same result.
 #
 #  A slot counts as started when ANY run of the workflow (on-time, manual, an on-time cron) was created from 10 min
 #  before it on - then nothing is queued. A slot is only queued inside its `late` window; past that the cron backstop
@@ -64,6 +65,11 @@ TABLE = {
         S("supabase-sync.yml", ["*:20"], tz="UTC", days="daily", late=30),
         S("ticker-snapshot-sync.yml", ["*:30"], tz="UTC", days="daily", late=30),
         S("warning.yml", ["09:20", "18:40"], days="weekdays", late=240),     # z196: early warning (light - a late start just runs again)
+        # z201: today's trends - every 30 min in the session (0945 the first read after the open ... 1615 / 1645 the
+        # official close), 1845 once more for late member closes. Light: a late cron start just runs again (no commit
+        # when nothing changed). late 25: a slot never overlaps the next.
+        S("trends.yml", ["09:45", "10:15", "10:45", "11:15", "11:45", "12:15", "12:45", "13:15", "13:45", "14:15", "14:45",
+                         "15:15", "15:45", "16:15", "16:45", "18:45"], days="trading", late=25),
     ],
     "TRAPP2": [
         S("nightly.yml", ["00:30"], tz="UTC", late=540),

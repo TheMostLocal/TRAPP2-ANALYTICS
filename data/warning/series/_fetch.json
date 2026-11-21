@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-20T23:42:30Z",
+ "asOf": "2026-11-21T04:18:08Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -10,7 +10,7 @@
    "source": "fredgraph-csv"
   },
   "BAA10Y": {
-   "changed": true,
+   "changed": false,
    "first": "1986-01-02",
    "last": "2026-11-19",
    "n": 10221,
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-20T23:42:24Z",
+   "at": "2026-11-21T04:18:05Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },
@@ -447,7 +447,7 @@
    "source": "fredgraph-csv"
   },
   "T10Y3M": {
-   "changed": true,
+   "changed": false,
    "first": "1982-01-04",
    "last": "2026-11-20",
    "n": 11224,

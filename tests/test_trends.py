@@ -93,6 +93,15 @@ def test_tape_point_states():
     assert late["final"] is True                                                             # well after the bell, the last price
     assert tr.phase_of(t) == "session" and tr.phase_of(tape(et_min=540, open_=False)) == "premarket"
     assert tr.phase_of(tape(et_min=990, open_=False)) == "after-close" and tr.phase_of(tape(session="holiday")) == "closed"
+    old = os.environ.get("TRENDS_NOW")
+    os.environ["TRENDS_NOW"] = "2026-11-21T15:00:00Z"                          # z202: Friday's tape read on Saturday
+    try:
+        assert tr.phase_of(tape(et_min=1170, open_=False)) == "closed"
+    finally:
+        if old is None:
+            os.environ.pop("TRENDS_NOW", None)
+        else:
+            os.environ["TRENDS_NOW"] = old
 
 
 def spx_like():
@@ -230,6 +239,7 @@ def test_main_writes_latest_daily_history_and_redoes_provisional_records():
         hist.setdefault(s, rows(wave(300, 50)))
     live = tape(p={"^GSPC": 7012.27}, prev={"^GSPC": 7175.83}, op={"^GSPC": 7150.39})
     day19 = {"date": "2026-11-19", "close": {"NVDA": 145.98}, "prevClose": {"NVDA": 150.96}, "open": {"^GSPC": 7389.26}}
+    day20 = {"date": "2026-11-20", "close": {"NVDA": 135.0, "^GSPC": 7001.1}, "prevClose": {"NVDA": 145.98}, "open": {"^GSPC": 7150.39}}
 
     def fake(url, tries=3, timeout=40):
         if "/data/history/" in url:
@@ -239,6 +249,8 @@ def test_main_writes_latest_daily_history_and_redoes_provisional_records():
             return live
         if url.endswith("/data/intraday/2026-11-19.json"):
             return day19
+        if url.endswith("/data/intraday/2026-11-20.json"):
+            return day20
         if url.endswith("TRAPP2/main/data/intraday/latest.json"):
             return {"date": "2026-11-20", "p": {"NVDA": 135.1}, "prevClose": {"NVDA": 145.98}}
         return None
@@ -286,6 +298,20 @@ def test_main_writes_latest_daily_history_and_redoes_provisional_records():
             finally:
                 os.environ["TRENDS_NOW"] = "2026-11-20T18:05:00Z"
             assert all((tr.OUT / f).read_bytes() == b for f, b in snap.items())
+            # z202 - the weekend: the history now holds the 20th and the tape is closed - the day is read from the
+            # history, and its official open (the gap, the move from the open) still comes from TRAPP2-1's day tape
+            hist["^GSPC"] = hist["^GSPC"] + [{"date": "2026-11-20", "close": 7001.1, "volume": 6e9}]
+            live.update(session="closed", marketOpen=False)
+            os.environ["TRENDS_NOW"] = "2026-11-21T15:00:00Z"
+            try:
+                assert tr.main() == 0
+            finally:
+                os.environ["TRENDS_NOW"] = "2026-11-20T18:05:00Z"
+            sat = json.loads((tr.OUT / "latest.json").read_text())
+            g = sat["indices"]["^GSPC"]
+            assert sat["date"] == "2026-11-20" and sat["state"] == "final" and g["streak"]["n"] == 7, (sat["date"], sat["state"])
+            assert abs(g["gap"] - (7150.39 / 7012.27 - 1) * 100) < 0.01 or abs(g["gap"] - (7150.39 / hist["^GSPC"][-2]["close"] - 1) * 100) < 0.01, g.get("gap")
+            assert json.loads((tr.OUT / "daily" / "2026-11-20.json").read_text())["indices"]["^GSPC"]["gap"] == g["gap"]
         finally:
             tr.fetch_json, tr.DATA, tr.OUT = real
 

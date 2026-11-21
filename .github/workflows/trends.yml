@@ -1,0 +1,62 @@
+# ============================================================
+#  >>> DESTINATION: TheMostLocal/TRAPP2-ANALYTICS
+#  >>> FILE PATH:   .github/workflows/trends.yml
+#  z201 - TODAY'S TRENDS (pipeline/trends.py): close-to-close runs for the indices, sectors, the VIX and cross-asset
+#  markers (how rare, since when, what a red or green close today would make it), gaps and moves from the open,
+#  extremes, the S&P 500 from the inside (each member's move x its weight), the run attributed, the sell-off read, what
+#  happened next. Writes data/trends/latest.json, data/trends/daily/YYYY-MM-DD.json (one per session, kept) and
+#  data/trends/history.json. The app's "Today's Trends" tab (Macro Data) and the bot (trendsAtEntry, sizing) read them.
+#  On time: TRAPP2-ANALYTICS' health loop queues it (pipeline/ontime.py: every 30 min 0945-1645 ET + 1845 ET on trading
+#  days - GitHub starts this account's crons hours late); the cron below is only the backstop, gated to 0930-1900 ET
+#  weekdays (an ET gate over UTC crons, so daylight saving needs no edit). In the session the day is provisional; after
+#  1600 the tape's official close makes it final. No commit when nothing changed. No secrets: public data only.
+# ============================================================
+name: Today's trends
+
+on:
+  schedule:
+    - cron: '15,45 13-23 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: analytics-trends
+  cancel-in-progress: false
+
+jobs:
+  trends:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - id: gate
+        name: Eastern-time gate (weekdays 0930-1900 ET)
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          HM=$((10#$(TZ=America/New_York date +%H) * 60 + 10#$(TZ=America/New_York date +%M))); DOW=$(TZ=America/New_York date +%u)
+          if [ "$DOW" -le 5 ] && [ "$HM" -ge 570 ] && [ "$HM" -le 1140 ]; then RUN=true; else RUN=false; fi
+          echo "ET $(TZ=America/New_York date +%a\ %H:%M) -> run=${RUN}"; echo "run=${RUN}" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: '3.12'
+      - name: Self-test (offline, < 2 s) - stop before touching data if the engine is broken
+        if: steps.gate.outputs.run == 'true'
+        run: python tests/test_trends.py
+      - name: Today's trends
+        if: steps.gate.outputs.run == 'true'
+        run: python pipeline/trends.py
+      - name: Commit & push
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "valuatio-trends"; git config user.email "actions@github.com"
+          [ -e data/trends ] && git add -A data/trends
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -q -m "trends: $(TZ=America/New_York date +%Y-%m-%d\ %H%M) ET [skip ci]"
+          for k in 1 2 3 4 5; do
+            if git push -q origin HEAD:main; then echo "pushed (attempt $k)"; exit 0; fi
+            git fetch -q origin main; git merge -X ours origin/main --no-edit -q || true; sleep $((k * 3))
+          done
+          echo "::warning::push failed after 5 attempts"

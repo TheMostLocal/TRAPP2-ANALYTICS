@@ -6,6 +6,14 @@
 #         jumping the queue every run.
 #  z198 - five money-structure items (RPO / backlog, purchase obligations, equity-method, listed and private equity
 #         stakes); FACTS_VERSION 3 re-reads every company over ~a week, Business Web names first.
+#  z204 - FUNDAMENTALS BY THE FORMULA (owner 11-21: "rely on the formulas"): FACTS_VERSION 4 - the inputs every
+#         multiple needs, as filed: D&A (EBITDA = operating income + D&A), gross profit, interest expense, dividends
+#         declared per share (dividend yield by the formula), net revenue for banks, and the whole of debt and cash -
+#         current maturities, short-term borrowings / commercial paper, short-term investments, operating and finance
+#         lease liabilities, preferred stock (P/B on common equity). Revenue now takes "Revenues" (the total) before the contract-revenue names: a REIT's,
+#         insurer's or lender's RevenueFromContractWithCustomer... is one component of its revenue (REXR 0.2 M vs
+#         ~1 B, CPT, OSCR on 11-21), and the merge picked it first. New items keep a short history (a TTM needs a
+#         fiscal year + 3 quarters + the 3 a year earlier). pipeline/fundamentals.py reads them.
 #  z199 - WHO OWNS 5 %+ OF EVERY COMPANY, from the filings: Schedule 13D / 13G (structured XML since Dec 2024) filed
 #         about each company - each reporting person's name, CIK (13D), percent of the class, shares, type (IA / CO /
 #         IN …), the 13G rule (13d-1(b) institution / (c) passive / (d) pre-IPO), the event date, and a 13D's stated
@@ -54,7 +62,7 @@ OUT = ROOT / "data" / "sec"
 UA = (os.environ.get("SEC_USER_AGENT") or "").strip()
 PER_RUN = int(os.environ.get("SEC_COMPANIES_PER_RUN", "400"))
 FORM4_DOCS = int(os.environ.get("SEC_FORM4_DOCS", "700"))
-FACTS_PER_RUN = int(os.environ.get("SEC_FACTS_PER_RUN", "150"))
+FACTS_PER_RUN = int(os.environ.get("SEC_FACTS_PER_RUN", "250"))   # z204: 150 -> 250 - the v4 re-read of ~2,270 companies in ~9 runs
 SCHED13_DOCS = int(os.environ.get("SEC_SCHED13_DOCS", "600"))          # z199: 13D / 13G XML reads per run
 SCHED13_DAYS = 500                                                      # filings older than this aren't read
 SCHED13_PER_CO = 40                                                     # unread filings kept queued per company (s13Pend)
@@ -77,7 +85,8 @@ CAUTION = {"5.02", "2.05", "1.05", "5.01"}
 # z187: every name a company may file the line item under, in priority order - merged by period, so a company that
 # switched names (ASC 606 moved most revenue to RevenueFromContractWithCustomer... in 2018) keeps a current series
 CONCEPTS = {
-    "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "RevenueFromContractWithCustomerIncludingAssessedTax",
+    # z204: "Revenues" (the total) first - where a company tags both, the contract-revenue figure is a component
+    "revenue": ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "RevenueFromContractWithCustomerIncludingAssessedTax",
                 "SalesRevenueNet", "RevenuesNetOfInterestExpense", "SalesRevenueGoodsNet", "SalesRevenueServicesNet"],
     "netIncome": ["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"],
     "epsDiluted": ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"],
@@ -96,11 +105,29 @@ CONCEPTS = {
     "purchaseObligations": ["PurchaseObligation", "UnrecordedUnconditionalPurchaseObligationBalanceSheetAmount"],
     "equityMethod": ["EquityMethodInvestments"],                            # stakes with significant influence
     "equitySecurities": ["EquitySecuritiesFvNi", "MarketableSecuritiesEquitySecurities"],   # listed stakes at fair value
-    "equityPrivate": ["EquitySecuritiesWithoutReadilyDeterminableFairValueAmount"]}          # private stakes (measurement alternative)
-FLOW_USD = {"revenue", "netIncome", "operatingIncome", "operatingCashFlow", "capex"}    # quarters derivable from YTD
-INSTANT = {"cash", "longTermDebt", "equity", "rpo", "purchaseObligations", "equityMethod", "equitySecurities", "equityPrivate"}
+    "equityPrivate": ["EquitySecuritiesWithoutReadilyDeterminableFairValueAmount"],          # private stakes (measurement alternative)
+    # z204 - what the multiples need, as filed (pipeline/fundamentals.py)
+    "revenueNet": ["RevenuesNetOfInterestExpense"],                          # a bank's revenue as the market quotes it
+    "grossProfit": ["GrossProfit"],
+    "da": ["DepreciationDepletionAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationAndAmortization",
+           "Depreciation"],                                                  # cash-flow statement: EBITDA = operating income + D&A
+    "interestExpense": ["InterestExpense", "InterestExpenseNonoperating", "InterestExpenseDebt"],
+    "dps": ["CommonStockDividendsPerShareDeclared", "CommonStockDividendsPerShareCashPaid"],     # USD per share, additive
+    "debtCurrent": ["LongTermDebtCurrent", "DebtCurrent", "LongTermDebtAndCapitalLeaseObligationsCurrent"],
+    "shortDebt": ["ShortTermBorrowings", "CommercialPaper", "OtherShortTermBorrowings"],
+    "stInvest": ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent"],
+    "opLease": ["OperatingLeaseLiability"],
+    "finLease": ["FinanceLeaseLiability"],
+    "preferred": ["PreferredStockValue", "PreferredStockValueOutstanding", "PreferredStockIncludingAdditionalPaidInCapital"]}   # P/B on COMMON equity
+FLOW_USD = {"revenue", "netIncome", "operatingIncome", "operatingCashFlow", "capex",     # quarters derivable from YTD
+            "revenueNet", "grossProfit", "da", "interestExpense", "dps"}
+INSTANT = {"cash", "longTermDebt", "equity", "rpo", "purchaseObligations", "equityMethod", "equitySecurities", "equityPrivate",
+           "debtCurrent", "shortDebt", "stInvest", "opLease", "finLease", "preferred"}
 SHORT_KEEP = {"rpo", "purchaseObligations", "equityMethod", "equitySecurities", "equityPrivate"}   # z198: latest + a year of trend
-FACTS_VERSION = 3          # z198: +the five money-structure items -> every company re-reads (Business Web names first)
+KEEP = {k: (4, 4) for k in SHORT_KEEP}                                     # (annual, quarterly) records kept; default (10, 12)
+KEEP.update({k: (3, 7) for k in ("revenueNet", "grossProfit", "da", "interestExpense", "dps")})   # z204: FY + 3 quarters + 3 prior
+KEEP.update({k: (2, 3) for k in ("debtCurrent", "shortDebt", "stInvest", "opLease", "finLease", "preferred")})  # z204: the latest balance sheet
+FACTS_VERSION = 4          # z204: +the multiples' inputs, revenue's total first -> every company re-reads (Business Web names first)
 
 
 def log(*a):
@@ -491,8 +518,9 @@ def facts_from(cf):
                         break
         if not (ann or qtr):
             continue
-        a = sorted(ann.values(), key=lambda x: x["end"])[-(4 if key in SHORT_KEEP else 10):]
-        q = sorted(qtr.values(), key=lambda x: x["end"])[-(4 if key in SHORT_KEEP else 12):]
+        ka, kq = KEEP.get(key, (10, 12))
+        a = sorted(ann.values(), key=lambda x: x["end"])[-ka:]
+        q = sorted(qtr.values(), key=lambda x: x["end"])[-kq:]
         latest_end = max([x["end"] for x in a] + [x["end"] for x in q])
         doc = {"concept": used.get(("concept", latest_end)) or names[0], "annual": a, "quarterly": q}
         if key in FLOW_USD and len(q) >= 4:

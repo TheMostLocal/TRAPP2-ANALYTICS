@@ -11,6 +11,7 @@
 #  it shows up here, on the app's Home page and in the bot's log.
 #    -> data/health.json { asOf, summary: {ok, stale, missing, notDue}, checks: [...] }
 #  z189: a book whose quotes are stale while the other books are live gets a note saying what to do (its loop isn't running).
+#  z203: + data/derived/market.json (market statistics from the books' own histories), weekly.
 # ============================================================
 import json
 import sys
@@ -102,6 +103,9 @@ CHECKS += [
     ("Earnings calendar", "TRAPP2-ANALYTICS", "data/earnings/calendar.json", "doc", "daily", True),
     ("Headcount", "TRAPP2-ANALYTICS", "data/headcount/summary.json", "doc", "weekly", True),
     ("Research grades", "TRAPP2-ANALYTICS", "data/research_grades.json", "doc", "daily", True),
+    # z203: market statistics from the books' histories - rewritten only when a close changed, so a holiday leaves it
+    # a day older: checked weekly (a run that stopped shows within the week, a holiday never reads as stale)
+    ("Market statistics (from our closes)", "TRAPP2-ANALYTICS", "data/derived/market.json", "doc", "weekly", False),
     ("News", "TRAPP2-ANALYTICS", "data/news/latest.json", "doc", "daily", False),
     ("Credit index (bonds / CDS)", "TRAPP2-CREDIT", "data/credit_index.json", "doc", "daily", False),
     # z158: the new official sources

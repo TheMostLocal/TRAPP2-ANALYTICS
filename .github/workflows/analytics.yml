@@ -10,6 +10,7 @@
 #  the run instead of waiting for their hourly schedule.
 #  (Push logic: `git fetch` + `git merge -X ours`, never leaves unmerged files.)
 #  z203 - + market statistics from the books' own histories (pipeline/derived.py -> data/derived/market.json).
+#  z204 - + fundamentals and multiples as filed, checked against Yahoo (pipeline/fundamentals.py -> data/derived/fundamentals.json).
 # ============================================================
 
 # .github/workflows/analytics.yml  →  goes in the NEW TRAPP2-ANALYTICS repo
@@ -120,6 +121,19 @@ jobs:
             python pipeline/derived.py || echo "::warning::derived.py failed - data/derived/market.json not refreshed"
           else
             echo "::warning::derived self-test failed - data/derived/market.json not refreshed"
+          fi
+
+      # z204: fundamentals and multiples AS FILED - the trailing twelve months and the latest balance sheet from the
+      # SEC filings (data/sec, this repo), checked against Yahoo's figures in the books' masters on the same period,
+      # with the pick the bot and the app follow -> data/derived/fundamentals.json. Self-test first; never blocks.
+      - name: Fundamentals as filed (z204)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: |
+          if python tests/test_fundamentals.py; then
+            python pipeline/fundamentals.py || echo "::warning::fundamentals.py failed - data/derived/fundamentals.json not refreshed"
+          else
+            echo "::warning::fundamentals self-test failed - data/derived/fundamentals.json not refreshed"
           fi
 
       # Human grades (XTRAPP, 3-month TTL) outrank computed grades. The machine

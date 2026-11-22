@@ -12,6 +12,7 @@
 #    -> data/health.json { asOf, summary: {ok, stale, missing, notDue}, checks: [...] }
 #  z189: a book whose quotes are stale while the other books are live gets a note saying what to do (its loop isn't running).
 #  z203: + data/derived/market.json (market statistics from the books' own histories), weekly.
+#  z204: + data/derived/fundamentals.json (fundamentals as filed, checked against Yahoo), weekly; it feeds the bot.
 # ============================================================
 import json
 import sys
@@ -106,6 +107,8 @@ CHECKS += [
     # z203: market statistics from the books' histories - rewritten only when a close changed, so a holiday leaves it
     # a day older: checked weekly (a run that stopped shows within the week, a holiday never reads as stale)
     ("Market statistics (from our closes)", "TRAPP2-ANALYTICS", "data/derived/market.json", "doc", "weekly", False),
+    # z204: fundamentals as filed (SEC) checked against Yahoo - the bot's valuation step reads it (an old file is not used)
+    ("Fundamentals as filed (SEC)", "TRAPP2-ANALYTICS", "data/derived/fundamentals.json", "doc", "weekly", True),
     ("News", "TRAPP2-ANALYTICS", "data/news/latest.json", "doc", "daily", False),
     ("Credit index (bonds / CDS)", "TRAPP2-CREDIT", "data/credit_index.json", "doc", "daily", False),
     # z158: the new official sources

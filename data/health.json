@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-23T10:19:00Z",
+ "asOf": "2026-11-23T10:19:27Z",
  "session": "extended",
  "summary": {
   "ok": 25,
@@ -109,7 +109,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-23T08:57:39Z",
-   "ageMinutes": 81,
+   "ageMinutes": 82,
    "status": "stale",
    "note": "TRAPP2-4's session loop isn't running while 4 other books are live - Actions \u2192 TRAPP2-4 \u2192 Intraday Quotes + 15-min Tape \u2192 Run workflow; weekday 0807 UTC starts come from the Supabase heartbeat (is this repo in valuatio-intraday? re-run supabase/heartbeat.sql)"
   },
@@ -154,7 +154,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-20T22:47:36Z",
-   "ageMinutes": 3571,
+   "ageMinutes": 3572,
    "status": "ok"
   },
   {
@@ -165,7 +165,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-21T03:23:41Z",
-   "ageMinutes": 3295,
+   "ageMinutes": 3296,
    "status": "ok"
   },
   {
@@ -253,7 +253,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-22T10:38:46Z",
-   "ageMinutes": 1420,
+   "ageMinutes": 1421,
    "status": "ok"
   },
   {
@@ -285,7 +285,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-22T10:55:40Z",
-   "ageMinutes": 1403,
+   "ageMinutes": 1404,
    "status": "ok"
   },
   {
@@ -296,7 +296,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-21T19:52:36Z",
-   "ageMinutes": 2306,
+   "ageMinutes": 2307,
    "status": "ok"
   },
   {
@@ -318,7 +318,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-20T23:18:43Z",
-   "ageMinutes": 3540,
+   "ageMinutes": 3541,
    "status": "ok"
   },
   {

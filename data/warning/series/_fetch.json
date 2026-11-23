@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-21T04:18:08Z",
+ "asOf": "2026-11-23T14:22:38Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -66,10 +66,10 @@
    "source": "fredgraph-csv"
   },
   "CFNAIMA3": {
-   "changed": false,
+   "changed": true,
    "first": "1967-05-01",
-   "last": "2026-09-01",
-   "n": 713,
+   "last": "2026-10-01",
+   "n": 714,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-21T04:18:05Z",
+   "at": "2026-11-23T14:22:32Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },

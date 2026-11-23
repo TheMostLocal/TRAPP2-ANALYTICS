@@ -1,14 +1,20 @@
 {
- "asOf": "2026-11-23T20:19:01Z",
+ "asOf": "2026-11-23T20:19:36Z",
  "session": "regular",
  "summary": {
-  "ok": 32,
+  "ok": 26,
   "stale": 0,
-  "missing": 0,
+  "missing": 6,
   "notDue": 0,
   "unknown": 0
  },
- "botInputsDown": [],
+ "botInputsDown": [
+  "Regime certainty",
+  "Macro quad",
+  "Fed monitor",
+  "Bot journal",
+  "Option chains"
+ ],
  "checks": [
   {
    "name": "TRAPP2 quotes",
@@ -18,7 +24,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-23T20:15:06Z",
-   "ageMinutes": 4,
+   "ageMinutes": 5,
    "status": "ok"
   },
   {
@@ -62,7 +68,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-23T20:05:05Z",
-   "ageMinutes": 14,
+   "ageMinutes": 15,
    "status": "ok"
   },
   {
@@ -73,7 +79,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-23T20:05:06Z",
-   "ageMinutes": 14,
+   "ageMinutes": 15,
    "status": "ok"
   },
   {
@@ -149,9 +155,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 4680,
-   "updated": "2026-11-23T16:33:42Z",
-   "ageMinutes": 225,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Macro quad",
@@ -160,9 +165,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 4680,
-   "updated": "2026-11-23T14:15:29Z",
-   "ageMinutes": 364,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Fed monitor",
@@ -171,9 +175,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 4680,
-   "updated": "2026-11-23T19:45:21Z",
-   "ageMinutes": 34,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Bot journal",
@@ -182,9 +185,8 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-23T20:06:00Z",
-   "ageMinutes": 13,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Bot equity tape",
@@ -193,9 +195,8 @@
    "feedsBot": false,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-23T20:00:00Z",
-   "ageMinutes": 19,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Option chains",
@@ -204,9 +205,8 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-23T20:06:15Z",
-   "ageMinutes": 13,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Earnings season",
@@ -216,7 +216,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-23T14:03:43Z",
-   "ageMinutes": 375,
+   "ageMinutes": 376,
    "status": "ok"
   },
   {
@@ -227,7 +227,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-23T14:03:43Z",
-   "ageMinutes": 375,
+   "ageMinutes": 376,
    "status": "ok"
   },
   {
@@ -260,7 +260,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T14:31:43Z",
-   "ageMinutes": 347,
+   "ageMinutes": 348,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T14:31:44Z",
-   "ageMinutes": 347,
+   "ageMinutes": 348,
    "status": "ok"
   },
   {
@@ -282,7 +282,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-23T14:48:04Z",
-   "ageMinutes": 331,
+   "ageMinutes": 332,
    "status": "ok"
   },
   {
@@ -293,7 +293,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-21T19:52:36Z",
-   "ageMinutes": 2906,
+   "ageMinutes": 2907,
    "status": "ok"
   },
   {
@@ -315,7 +315,7 @@
    "rule": "daily",
    "maxMinutes": 4680,
    "updated": "2026-11-23T12:13:02Z",
-   "ageMinutes": 486,
+   "ageMinutes": 487,
    "status": "ok"
   },
   {

@@ -1188,8 +1188,8 @@
    "entry": 8592.5996,
    "target": 7952.241166,
    "stop": 9271.5996,
-   "volConfirmed": null,
-   "volRatio": null,
+   "volConfirmed": false,
+   "volRatio": 1.16,
    "track": {
     "successRate": 21.4,
     "ci95": [
@@ -1230,8 +1230,8 @@
    "entry": 8592.5996,
    "target": 8016.4009,
    "stop": 9271.5996,
-   "volConfirmed": null,
-   "volRatio": null,
+   "volConfirmed": false,
+   "volRatio": 1.16,
    "track": {
     "successRate": 37.6,
     "ci95": [
@@ -1515,6 +1515,48 @@
    }
   },
   {
+   "ticker": "OJ=F",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-11-20",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 153.6,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 37.6,
+    "ci95": [
+     36.9,
+     38.3
+    ],
+    "n": 16953,
+    "edgeVsBaselinePct": -0.02,
+    "edgeAbnPct": -0.06,
+    "edgeAbnCI95": [
+     -0.3,
+     0.18
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 37.8,
+    "n": 2384,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.41,
+    "edgeAbnCI95": [
+     -1.03,
+     0.21
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
    "ticker": "SOXL",
    "template": "bear_flag",
    "direction": "bearish",
@@ -1761,48 +1803,6 @@
     "edgeAbnCI95": [
      -1.87,
      -0.22
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ZO=F",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-11-20",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 332.75,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.6
-    ],
-    "n": 26001,
-    "edgeVsBaselinePct": -0.28,
-    "edgeAbnPct": 0.1,
-    "edgeAbnCI95": [
-     -0.14,
-     0.34
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.2,
-    "n": 1909,
-    "edgeVsBaselinePct": -0.11,
-    "edgeAbnPct": 0.13,
-    "edgeAbnCI95": [
-     -0.51,
-     0.78
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -27759,6 +27759,48 @@
     "edgeAbnCI95": [
      -2.54,
      -0.09
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SOS",
+   "template": "bear_flag",
+   "direction": "bearish",
+   "identDate": "2026-10-30",
+   "confirmDate": "2026-11-05",
+   "status": "confirmed",
+   "entry": 3.688,
+   "target": 0.008,
+   "stop": 4.604,
+   "volConfirmed": false,
+   "volRatio": 0.11,
+   "track": {
+    "successRate": 12.4,
+    "ci95": [
+     11.6,
+     13.2
+    ],
+    "n": 7278,
+    "edgeVsBaselinePct": -1.4,
+    "edgeAbnPct": -0.44,
+    "edgeAbnCI95": [
+     -1.12,
+     0.25
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 12.1,
+    "n": 1319,
+    "edgeVsBaselinePct": -4.63,
+    "edgeAbnPct": -2.29,
+    "edgeAbnCI95": [
+     -3.85,
+     -0.74
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0

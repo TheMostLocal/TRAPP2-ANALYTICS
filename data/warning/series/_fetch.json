@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-23T14:22:38Z",
+ "asOf": "2026-11-23T23:42:24Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -10,10 +10,10 @@
    "source": "fredgraph-csv"
   },
   "BAA10Y": {
-   "changed": false,
+   "changed": true,
    "first": "1986-01-02",
-   "last": "2026-11-19",
-   "n": 10221,
+   "last": "2026-11-20",
+   "n": 10222,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -26,10 +26,10 @@
    "source": "fredgraph-csv"
   },
   "BAMLH0A0HYM2": {
-   "changed": false,
-   "first": "2023-11-21",
-   "last": "2026-11-19",
-   "n": 786,
+   "changed": true,
+   "first": "2023-11-24",
+   "last": "2026-11-20",
+   "n": 784,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -66,7 +66,7 @@
    "source": "fredgraph-csv"
   },
   "CFNAIMA3": {
-   "changed": true,
+   "changed": false,
    "first": "1967-05-01",
    "last": "2026-10-01",
    "n": 714,
@@ -122,18 +122,18 @@
    "source": "fredgraph-csv"
   },
   "DCPF3M": {
-   "changed": false,
+   "changed": true,
    "first": "1997-01-02",
-   "last": "2026-11-18",
-   "n": 6770,
+   "last": "2026-11-20",
+   "n": 6771,
    "ok": true,
    "source": "fredgraph-csv"
   },
   "DGS10": {
-   "changed": false,
+   "changed": true,
    "first": "1962-01-02",
-   "last": "2026-11-19",
-   "n": 16206,
+   "last": "2026-11-20",
+   "n": 16207,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -226,10 +226,10 @@
    "source": "fredgraph-csv"
   },
   "DTB3": {
-   "changed": false,
+   "changed": true,
    "first": "1954-01-04",
-   "last": "2026-11-19",
-   "n": 18212,
+   "last": "2026-11-20",
+   "n": 18213,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-23T14:22:32Z",
+   "at": "2026-11-23T23:42:19Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },
@@ -447,10 +447,10 @@
    "source": "fredgraph-csv"
   },
   "T10Y3M": {
-   "changed": false,
+   "changed": true,
    "first": "1982-01-04",
-   "last": "2026-11-20",
-   "n": 11224,
+   "last": "2026-11-23",
+   "n": 11225,
    "ok": true,
    "source": "fredgraph-csv"
   },
@@ -519,10 +519,10 @@
    "source": "fredgraph-csv"
   },
   "VIXCLS": {
-   "changed": false,
+   "changed": true,
    "first": "1990-01-02",
-   "last": "2026-11-19",
-   "n": 9321,
+   "last": "2026-11-20",
+   "n": 9322,
    "ok": true,
    "source": "fredgraph-csv"
   },

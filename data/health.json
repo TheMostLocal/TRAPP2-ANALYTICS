@@ -1,14 +1,21 @@
 {
- "asOf": "2026-11-24T09:19:01Z",
+ "asOf": "2026-11-24T09:49:01Z",
  "session": "extended",
  "summary": {
-  "ok": 28,
+  "ok": 18,
   "stale": 1,
-  "missing": 0,
+  "missing": 10,
   "notDue": 3,
   "unknown": 0
  },
- "botInputsDown": [],
+ "botInputsDown": [
+  "TRAPP2-1 quotes",
+  "FX rates",
+  "Regime certainty",
+  "Macro quad",
+  "Fed monitor",
+  "CBOE volatility"
+ ],
  "checks": [
   {
    "name": "TRAPP2 quotes",
@@ -17,7 +24,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:15:04Z",
+   "updated": "2026-11-24T09:45:04Z",
    "ageMinutes": 4,
    "status": "ok"
   },
@@ -28,7 +35,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:15:05Z",
+   "updated": "2026-11-24T09:45:04Z",
    "ageMinutes": 4,
    "status": "ok"
   },
@@ -39,9 +46,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:18:05Z",
-   "ageMinutes": 1,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "TRAPP2-1 15-min tape",
@@ -50,9 +56,8 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:18:06Z",
-   "ageMinutes": 1,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "TRAPP2-2 quotes",
@@ -61,7 +66,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:05:08Z",
+   "updated": "2026-11-24T09:35:08Z",
    "ageMinutes": 14,
    "status": "ok"
   },
@@ -72,7 +77,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:05:09Z",
+   "updated": "2026-11-24T09:35:09Z",
    "ageMinutes": 14,
    "status": "ok"
   },
@@ -83,7 +88,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:10:05Z",
+   "updated": "2026-11-24T09:40:05Z",
    "ageMinutes": 9,
    "status": "ok"
   },
@@ -94,7 +99,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:10:06Z",
+   "updated": "2026-11-24T09:40:06Z",
    "ageMinutes": 9,
    "status": "ok"
   },
@@ -105,7 +110,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:07:10Z",
+   "updated": "2026-11-24T09:37:10Z",
    "ageMinutes": 12,
    "status": "ok"
   },
@@ -116,7 +121,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:07:11Z",
+   "updated": "2026-11-24T09:37:11Z",
    "ageMinutes": 12,
    "status": "ok"
   },
@@ -127,9 +132,8 @@
    "feedsBot": true,
    "rule": "fx",
    "maxMinutes": 45,
-   "updated": "2026-11-24T09:17:03Z",
-   "ageMinutes": 2,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Crypto prices",
@@ -138,9 +142,8 @@
    "feedsBot": false,
    "rule": "24h",
    "maxMinutes": 45,
-   "updated": "2026-11-24T09:17:07Z",
-   "ageMinutes": 2,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Regime certainty",
@@ -149,9 +152,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T03:10:04Z",
-   "ageMinutes": 369,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Macro quad",
@@ -160,9 +162,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T06:18:25Z",
-   "ageMinutes": 181,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Fed monitor",
@@ -171,9 +172,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T04:26:29Z",
-   "ageMinutes": 293,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Bot journal",
@@ -183,7 +183,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-23T20:35:26Z",
-   "ageMinutes": 764,
+   "ageMinutes": 794,
    "status": "notDue"
   },
   {
@@ -194,7 +194,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-23T22:00:00Z",
-   "ageMinutes": 679,
+   "ageMinutes": 709,
    "status": "notDue"
   },
   {
@@ -205,7 +205,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-24T08:27:07Z",
-   "ageMinutes": 52,
+   "ageMinutes": 82,
    "status": "notDue"
   },
   {
@@ -216,7 +216,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T02:03:09Z",
-   "ageMinutes": 436,
+   "ageMinutes": 466,
    "status": "ok"
   },
   {
@@ -227,7 +227,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T02:03:09Z",
-   "ageMinutes": 436,
+   "ageMinutes": 466,
    "status": "ok"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T11:58:15Z",
-   "ageMinutes": 1281,
+   "ageMinutes": 1311,
    "status": "ok"
   },
   {
@@ -249,7 +249,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:01:40Z",
-   "ageMinutes": 377,
+   "ageMinutes": 407,
    "status": "ok"
   },
   {
@@ -260,7 +260,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:53Z",
-   "ageMinutes": 377,
+   "ageMinutes": 407,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:55Z",
-   "ageMinutes": 377,
+   "ageMinutes": 407,
    "status": "ok"
   },
   {
@@ -282,7 +282,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:16:21Z",
-   "ageMinutes": 363,
+   "ageMinutes": 393,
    "status": "ok"
   },
   {
@@ -293,7 +293,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-21T19:52:36Z",
-   "ageMinutes": 3686,
+   "ageMinutes": 3716,
    "status": "stale"
   },
   {
@@ -304,7 +304,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-23T23:19:29Z",
-   "ageMinutes": 600,
+   "ageMinutes": 630,
    "status": "ok"
   },
   {
@@ -315,7 +315,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-23T23:19:59Z",
-   "ageMinutes": 599,
+   "ageMinutes": 629,
    "status": "ok"
   },
   {
@@ -325,9 +325,8 @@
    "feedsBot": true,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T06:58:46Z",
-   "ageMinutes": 140,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Treasury auctions",
@@ -336,9 +335,8 @@
    "feedsBot": false,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T06:58:47Z",
-   "ageMinutes": 140,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "FX / crypto cross-checks",
@@ -347,9 +345,8 @@
    "feedsBot": false,
    "rule": "daily",
    "maxMinutes": 1800,
-   "updated": "2026-11-24T06:59:53Z",
-   "ageMinutes": 139,
-   "status": "ok"
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Supabase live quotes",
@@ -358,7 +355,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 50,
-   "updated": "2026-11-24T09:18:05Z",
+   "updated": "2026-11-24T09:48:05Z",
    "ageMinutes": 1,
    "status": "ok",
    "perBook": {

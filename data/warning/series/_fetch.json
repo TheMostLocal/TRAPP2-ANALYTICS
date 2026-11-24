@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-24T07:07:09Z",
+ "asOf": "2026-11-24T14:22:21Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-24T07:07:06Z",
+   "at": "2026-11-24T14:22:18Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },

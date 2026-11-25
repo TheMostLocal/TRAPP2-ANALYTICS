@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-25T05:19:00Z",
+ "asOf": "2026-11-25T05:49:00Z",
  "session": "closed",
  "summary": {
   "ok": 10,
@@ -25,7 +25,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T04:38:53Z",
-   "ageMinutes": 40,
+   "ageMinutes": 70,
    "status": "notDue"
   },
   {
@@ -36,7 +36,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T00:00:05Z",
-   "ageMinutes": 319,
+   "ageMinutes": 349,
    "status": "notDue"
   },
   {
@@ -67,7 +67,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T02:09:29Z",
-   "ageMinutes": 190,
+   "ageMinutes": 220,
    "status": "notDue"
   },
   {
@@ -78,7 +78,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T00:05:11Z",
-   "ageMinutes": 314,
+   "ageMinutes": 344,
    "status": "notDue"
   },
   {
@@ -89,7 +89,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T04:33:39Z",
-   "ageMinutes": 45,
+   "ageMinutes": 75,
    "status": "notDue"
   },
   {
@@ -100,7 +100,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T00:10:06Z",
-   "ageMinutes": 309,
+   "ageMinutes": 339,
    "status": "notDue"
   },
   {
@@ -110,8 +110,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": null,
-   "updated": "2026-11-25T01:09:00Z",
-   "ageMinutes": 250,
+   "updated": "2026-11-25T05:30:40Z",
+   "ageMinutes": 18,
    "status": "notDue"
   },
   {
@@ -122,7 +122,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-25T00:07:09Z",
-   "ageMinutes": 312,
+   "ageMinutes": 342,
    "status": "notDue"
   },
   {
@@ -183,7 +183,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-24T20:35:27Z",
-   "ageMinutes": 524,
+   "ageMinutes": 554,
    "status": "notDue"
   },
   {
@@ -194,7 +194,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-24T22:00:00Z",
-   "ageMinutes": 439,
+   "ageMinutes": 469,
    "status": "notDue"
   },
   {
@@ -205,7 +205,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-24T20:51:11Z",
-   "ageMinutes": 508,
+   "ageMinutes": 538,
    "status": "notDue"
   },
   {
@@ -216,7 +216,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T02:03:23Z",
-   "ageMinutes": 196,
+   "ageMinutes": 226,
    "status": "ok"
   },
   {
@@ -227,7 +227,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T02:03:23Z",
-   "ageMinutes": 196,
+   "ageMinutes": 226,
    "status": "ok"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T11:58:15Z",
-   "ageMinutes": 2481,
+   "ageMinutes": 2511,
    "status": "ok"
   },
   {
@@ -249,7 +249,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:01:40Z",
-   "ageMinutes": 1577,
+   "ageMinutes": 1607,
    "status": "ok"
   },
   {
@@ -260,7 +260,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:53Z",
-   "ageMinutes": 1577,
+   "ageMinutes": 1607,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:55Z",
-   "ageMinutes": 1577,
+   "ageMinutes": 1607,
    "status": "ok"
   },
   {
@@ -282,7 +282,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:16:21Z",
-   "ageMinutes": 1563,
+   "ageMinutes": 1593,
    "status": "ok"
   },
   {
@@ -293,7 +293,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T22:56:25Z",
-   "ageMinutes": 383,
+   "ageMinutes": 413,
    "status": "ok"
   },
   {
@@ -304,7 +304,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T23:18:36Z",
-   "ageMinutes": 360,
+   "ageMinutes": 390,
    "status": "ok"
   },
   {
@@ -315,7 +315,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T23:19:10Z",
-   "ageMinutes": 360,
+   "ageMinutes": 390,
    "status": "ok"
   },
   {
@@ -355,17 +355,17 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": null,
-   "updated": "2026-11-25T04:38:53Z",
-   "ageMinutes": 40,
+   "updated": "2026-11-25T05:30:40Z",
+   "ageMinutes": 18,
    "status": "notDue",
    "perBook": {
-    "TRAPP2": 332,
+    "TRAPP2": 0,
     "TRAPP2-1": 0,
     "TRAPP2-2": 0,
-    "TRAPP2-3": 206,
-    "TRAPP2-4": 0
+    "TRAPP2-3": 0,
+    "TRAPP2-4": 1644
    },
-   "note": "fresh rows per book: TRAPP2 332 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 0 \u00b7 TRAPP2-3 206 \u00b7 TRAPP2-4 0"
+   "note": "fresh rows per book: TRAPP2 0 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 0 \u00b7 TRAPP2-3 0 \u00b7 TRAPP2-4 1644"
   }
  ]
 }

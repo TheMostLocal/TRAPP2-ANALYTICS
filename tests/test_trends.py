@@ -6,6 +6,7 @@
 #  the inside (weight x move, drifted weights, data checks), the run's attribution, the sell-off read, what happened
 #  next, the notable list, and the files written each session. Offline, < 2 s.
 #  z207: the flows card carries FINRA's reported short interest and the day's short volume, each a notable.
+#  z209: and dealer gamma from the index ETFs' open interest (TRAPP2-OPTIONS market.json), a notable.
 #  Run: python tests/test_trends.py   (or python -m pytest tests/test_trends.py -q)
 # ============================================================
 import json
@@ -404,6 +405,28 @@ def test_flows_carry_finras_reported_short_interest_and_short_volume():
     # too few names priced: no label, the FINRA blocks still carried
     few = tr.day_flows(fac, {"N0": (101, 100)}, spx, {"^GSPC": spx}, None, None, [])
     assert few["label"] is None and few["reported"]["settle"] == "2026-11-13"
+
+
+def test_dealer_gamma_beside_the_price_signature():
+    # z209: TRAPP2-OPTIONS market.json's dealer block -> flows.dealer (index ETFs, fresh reads only) and a notable
+    mk = {"dealer": {"SPY": {"spot": 717.28, "asOf": "2026-11-25T20:51:13Z", "gex": -6181258143, "flip": 727.85, "flipPct": 1.47,
+                             "callWall": 730.0, "putWall": 700.0, "byTenor": {"0dte": -9.2e8, "1-7": -3.05e9, "8-35": 0, "36+": -2.2e9},
+                             "change": {"callChgPct": 2.0, "putChgPct": -6.3, "common": 7, "prior": "2026-11-24"}},
+                     "QQQ": {"spot": 633.57, "asOf": "2026-11-18T20:51:13Z", "gex": 1.2e9},          # a week old: left out
+                     "XLE": {"spot": 90.0, "asOf": "2026-11-25T20:51:13Z", "gex": 1e8}}}           # not an index ETF
+    dv = tr.dealer_view(mk, "2026-11-25")
+    assert sorted(dv) == ["SPY"] and dv["SPY"]["flip"] == 727.85 and dv["SPY"]["change"]["putChgPct"] == -6.3
+    assert tr.dealer_view({"dealer": None}, "2026-11-25") is None and tr.dealer_view(None, "2026-11-25") is None
+    spx = {"name": "S&P 500", "sigma": 1.0}
+    n = [x for x in tr.flow_notes({"date": "2026-11-25", "label": None, "dealer": dv}, spx) if x["kind"] == "dealer gamma"][0]
+    assert n["sev"] == 2 and n["text"].startswith("Dealer gamma (SPY options, open interest x gamma): -$6.2B per 1% move - negative: dealers' hedging adds to moves")
+    assert "above ~$728 (the flip, +1.5%) it turns positive; call wall $730, put wall $700." in n["text"]
+    assert "Put open interest -6.3%, calls +2.0% on the 7 expiries both days hold (the prior session's trading) - hedges closed." in n["text"]
+    assert "assumes dealers are long the calls customers sell" in n["text"]
+    pos = dict(dv["SPY"], gex=2.4e9, flip=700.5, flipPct=-2.34, change={"callChgPct": 1.0, "putChgPct": 1.1, "common": 7})
+    n2 = [x for x in tr.flow_notes({"dealer": {"SPY": pos}}, spx) if x["kind"] == "dealer gamma"][0]
+    assert n2["sev"] == 1 and "+$2.4B per 1% move - positive: dealers' hedging damps moves; below ~$700 (the flip, -2.3%) it turns negative" in n2["text"]
+    assert "hedges" not in n2["text"].split("(the prior session's trading)")[1]
 
 
 def test_relief_base_counts_big_up_days_in_drawdowns():

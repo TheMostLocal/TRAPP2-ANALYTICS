@@ -30,6 +30,23 @@
 #  close (for the next session's live read), the crowded shorts (10 %+ of float, for the bot), every |z| >= 2 day.
 #  WHEN: .github/workflows/analytics.yml, after market statistics (03:00 UTC after a trading day + 14:30 UTC weekdays).
 #  Env: FACTORS_NOW=ISO (tests) · DERIVED_BOOKS / DERIVED_OFFLINE as pipeline/derived.py
+#
+#  z207 - THE OFFICIAL SHORT INTEREST. Yahoo's "short % of float" (z206) turned out unreliable against FINRA's own
+#  numbers: WHR 0.1 % on Yahoo vs 32 % of its shares on FINRA's 11-13 report; CHTR 45 % vs 8.8 %; KMB 18 % vs 4.4 %;
+#  FIG 17 % vs 5.6 %. The most-shorted 50 now rank on FINRA's consolidated short interest (data/short/index.json,
+#  pipeline/fetch_short.py) as a share of the shares outstanding this system trusts (data/sec/shares.json - the SEC's
+#  cover count where it agrees), with FINRA's days to cover beside it; Yahoo's figure only where FINRA has nothing (and
+#  only if FINRA covers under 80 % of the universe does the basket rank on Yahoo). New blocks:
+#    reported     what FINRA's latest settlement says shorts DID (lagged ~2 weeks): the basket's shares short vs the
+#                 settlement before, the universe's (value-weighted at today's prices), names adding / covering 10 %+,
+#                 the largest moves among 5 %+-shorted names
+#    shortVolume  Reg SHO short sales as a share of volume on FINRA's latest day: the universe vs its 20-day average,
+#                 the basket's average z, how many names are 2 sd+ above their own 20 days
+#    crowded      {ticker: {si (% of shares), dtc (days to cover), chg (% change in shares short), settle, src}} for names
+#                 at 8 %+ of shares, or 7+ days to cover with 5 %+ (FINRA), or 10 %+ of float where only Yahoo has one -
+#                 the candidates; each reader applies its own bar (the quant book: 15 % / 10 days, 8 % / 7 while covering)
+#  A settlement FINRA's pull left part-way (fetch_short.py before z207 stopped at 60,000 rows) is flagged "partial" and the
+#  basket ranks on each name's newest settlement; a stock split between settlements leaves that name's change out.
 # ============================================================
 import json
 import os
@@ -43,7 +60,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import derived as dv  # noqa: E402
 
-BUILD = "z206"
+BUILD = "z207"
 OUT = dv.DATA / "derived" / "factors.json"
 EQUITY_BOOKS = ("TRAPP2", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4")
 BENCHES = (("^GSPC", "TRAPP2-1"), ("SPY", "TRAPP2-1"), ("SPY", "TRAPP2"))   # the macro book first; SPY in TRAPP2 if it's out
@@ -53,6 +70,11 @@ MOM_LONG, MOM_SKIP = 252, 21     # 12-1: from 252 sessions back to 21 sessions b
 REV_DAYS = 5
 BETA_DAYS, BETA_EVERY, BETA_MIN = 252, 21, 200
 SI_TOP, SI_CROWDED = 50, 0.10
+SI_LIST_PCT = 0.08                        # z207: the crowded list - 8 %+ of shares outstanding short (FINRA; the bot's and
+                                          # the quant book's bar while shorts are being covered) ...
+SI_LIST_DTC, SI_LIST_DTC_PCT = 7.0, 0.05  # ... or 7+ days to cover with 5 %+ short
+SETTLE_WHOLE = 0.8                        # the newest settlement must cover 80 %+ of the names FINRA reports for a whole read
+SI_MIN_COVER = 0.8                        # FINRA must cover 80 %+ of the universe for the basket to rank on it
 QUINTILE = 0.2
 MAX_UP, MAX_DOWN = 1.0, -0.5     # beyond: a missed split / bad print, not a return
 DV_DAYS, DV_MIN_OBS = 20, 15
@@ -108,6 +130,79 @@ def universe_rows(read=dv.read_book_file):
             out[t] = {"book": b, "si": si if si is not None and 0 < si <= 1.0 else None,
                       "siRaw": si, "cap": _num(r.get("marketcap") or r.get("marketCap"))}
     return out
+
+
+def load_short(read=None):
+    """z207: FINRA's latest short interest and Reg SHO short volume (data/short/index.json) with the share count this
+    system trusts (data/sec/shares.json "s") -> ({t: {pct, dtc, chg, settle, shares, prev}}, {t: {r1, r20, z, date}})."""
+    read = read or (lambda rel: dv._read(dv.DATA / rel))
+    doc, sh = read("short/index.json") or {}, (read("sec/shares.json") or {}).get("tickers") or {}
+    out, vol = {}, {}
+    for t, e in ((doc.get("interest") or {}) if isinstance(doc, dict) else {}).items():
+        n = _num((e or {}).get("shares"))
+        so = _num((sh.get(t) or {}).get("s"))
+        if n is None or n < 0 or not so:
+            continue
+        pct = n / so
+        if pct > 1.0:                                     # more short than outstanding: a class / unit mix-up, not a reading
+            continue
+        out[t] = {"pct": pct, "dtc": _num(e.get("daysToCover")), "chg": None if e.get("split") else _num(e.get("changePct")),
+                  "settle": str(e.get("settlementDate") or "")[:10], "shares": n, "prev": None if e.get("split") else _num(e.get("prevShares"))}
+    for t, e in ((doc.get("volume") or {}) if isinstance(doc, dict) else {}).items():
+        if isinstance(e, dict) and _num(e.get("ratio1d")) is not None:
+            vol[t] = {"r1": _num(e.get("ratio1d")), "r20": _num(e.get("ratio20d")), "z": _num(e.get("z")), "date": e.get("date")}
+    return out, vol
+
+
+def reported_block(si_basket, official, prices, universe):
+    """What FINRA's latest settlement says shorts did (vs the settlement before): the basket's shares short, the
+    universe's value at today's prices, names adding / covering 10 %+, and the largest moves among 5 %+-shorted names."""
+    latest = max((v["settle"] for t, v in official.items() if t in universe and v.get("settle")), default=None)
+    if not latest:
+        return None
+    reported = sum(1 for t in official if t in universe)
+    on_latest = sum(1 for t, v in official.items() if t in universe and v.get("settle") == latest)
+    cur = {t: v for t, v in official.items() if t in universe and v.get("settle") == latest and v.get("prev")}
+
+    def agg(names, weight=None):
+        a = b = 0.0
+        for t in names:
+            v = cur.get(t)
+            if not v:
+                continue
+            w = (weight or {}).get(t, 1.0)
+            a += v["shares"] * w
+            b += v["prev"] * w
+        return round((a / b - 1) * 100, 2) if b > 0 else None
+    dtcs = [cur[t]["dtc"] for t in si_basket if t in cur and cur[t].get("dtc") is not None]
+    chgs = [cur[t]["chg"] for t in si_basket if t in cur and cur[t].get("chg") is not None]
+    px = {t: prices.get(t) or 0 for t in cur}               # dollars short at today's price: a change in shares, not in price
+    big = sorted(((v["chg"], t) for t, v in cur.items() if v.get("chg") is not None and v["pct"] >= 0.05), key=lambda x: x[0])
+    return {"settle": latest, "names": len(cur), "partial": on_latest < SETTLE_WHOLE * reported,
+            "cover": round(on_latest / reported, 3) if reported else None,
+            "basket": {"chg": agg(si_basket, px), "median": round(statistics.median(chgs), 1) if chgs else None,
+                       "dtc": round(statistics.median(dtcs), 2) if dtcs else None, "n": sum(1 for t in si_basket if t in cur)},
+            "universe": {"chg": agg(cur, px),
+                         "adding": sum(1 for v in cur.values() if (v.get("chg") or 0) >= 10),
+                         "covering": sum(1 for v in cur.values() if (v.get("chg") or 0) <= -10)},
+            "covered": [{"t": t, "chg": c, "pct": round(cur[t]["pct"] * 100, 1)} for c, t in big[:5] if c < 0],
+            "added": [{"t": t, "chg": c, "pct": round(cur[t]["pct"] * 100, 1)} for c, t in big[::-1][:5] if c > 0]}
+
+
+def short_volume_block(vol, si_basket, universe):
+    """Reg SHO short sales as a share of volume on FINRA's latest day, for the universe and the basket."""
+    days = [v.get("date") for t, v in vol.items() if t in universe and v.get("date")]
+    if not days:
+        return None
+    d = max(days)
+    cur = {t: v for t, v in vol.items() if t in universe and v.get("date") == d}
+    r1 = [v["r1"] for v in cur.values() if v.get("r1") is not None]
+    r20 = [v["r20"] for v in cur.values() if v.get("r20") is not None]
+    bz = [cur[t]["z"] for t in si_basket if t in cur and cur[t].get("z") is not None]
+    return {"date": d, "names": len(cur), "ratio": round(statistics.median(r1), 1) if r1 else None,
+            "ratio20": round(statistics.median(r20), 1) if r20 else None,
+            "basketZ": round(statistics.fmean(bz), 2) if bz else None,
+            "high": sum(1 for v in cur.values() if (v.get("z") or 0) >= 2)}
 
 
 def load_bench(hist=dv.history):
@@ -366,7 +461,7 @@ def character(z, legs=None, idx=None):
 
 
 # ------------------------------------------------------------------------------------------------------ build ---
-def build(rows, bench, data, today=None):
+def build(rows, bench, data, today=None, official=None, vol=None):
     bsym, bds, bcs = bench
     keep = WINDOW + MOM_LONG + 2
     dates, bclose = bds[-keep:], bcs[-keep:]
@@ -376,9 +471,16 @@ def build(rows, bench, data, today=None):
     if start < MOM_LONG + 1:
         return None
     last = n - 1
-    # the crowded shorts: today's report, among names tradable at the last close
+    # the crowded shorts: FINRA's latest report as a share of the shares outstanding (z207), among names tradable at
+    # the last close - Yahoo's short % of float only if FINRA covers under 80 % of them
+    official = official or {}
     elig_last = set(P.eligible(last))
-    si_ranked = sorted(((rows[t]["si"], t) for t in elig_last if rows[t].get("si") is not None), reverse=True)
+    cover = sum(1 for t in elig_last if t in official) / len(elig_last) if elig_last else 0
+    si_src = "finra" if cover >= SI_MIN_COVER else "yahoo"
+    if si_src == "finra":
+        si_ranked = sorted(((official[t]["pct"], t) for t in elig_last if t in official), reverse=True)
+    else:
+        si_ranked = sorted(((rows[t]["si"], t) for t in elig_last if rows[t].get("si") is not None), reverse=True)
     si_basket = [t for _, t in si_ranked[:SI_TOP]]
     beta_anchor = start - 1
     ser = {k: [] for k in ("dates", "ew", "si", "mom", "rev", "beta", "siL", "momL", "momS", "n")}
@@ -422,7 +524,16 @@ def build(rows, bench, data, today=None):
     # the baskets for the NEXT session: formed on the last close
     nf = last - ((last - beta_anchor) % BETA_EVERY)
     nxt = P.form(last, nf)
-    crowded = {t: round(rows[t]["si"] * 100, 1) for t in P.names if rows[t].get("si") is not None and rows[t]["si"] >= SI_CROWDED}
+    crowded = {}
+    for t in P.names:
+        o = official.get(t)
+        if o and (o["pct"] >= SI_LIST_PCT or ((o.get("dtc") or 0) >= SI_LIST_DTC and o["pct"] >= SI_LIST_DTC_PCT)):
+            crowded[t] = {"si": round(o["pct"] * 100, 1), "dtc": o.get("dtc"), "chg": o.get("chg"), "settle": o.get("settle"), "src": "finra"}
+        elif not o and rows[t].get("si") is not None and rows[t]["si"] >= SI_CROWDED:
+            crowded[t] = {"si": round(rows[t]["si"] * 100, 1), "src": "yahoo"}
+    last_px = {t: P.c[t][last] for t in P.names if P.c[t][last]}
+    reported = reported_block(si_basket, official, last_px, set(elig_last)) if official else None
+    short_vol = short_volume_block(vol or {}, si_basket, set(elig_last)) if vol else None
     odd = sorted(t for t in rows if rows[t].get("siRaw") is not None and rows[t]["siRaw"] > 1.0)
     doc = {
         "build": BUILD, "at": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "date": dates[-1], "bench": bsym,
@@ -430,12 +541,14 @@ def build(rows, bench, data, today=None):
                    "stocks in the four equity books, close >= $5, 20-session dollar volume >= $5M, market cap >= $1B (today's), "
                    "260+ sessions; mom = 12-1 month top minus bottom fifth; rev = the week's bottom fifth minus its top fifth; "
                    "beta = top minus bottom fifth of 252-session daily beta vs the benchmark, re-formed every 21 sessions; si = the "
-                   "50 highest short % of float (Yahoo, the latest report, used for the whole year) minus the average stock; "
+                   "50 highest short interest as a share of shares outstanding (FINRA's latest settlement / the SEC count; Yahoo's "
+                   "short % of float only without FINRA coverage; used for the whole year) minus the average stock; "
                    "z = (day - mean) / sd over 252 sessions; moves beyond +100 % / -50 % left out as data errors"),
         "units": "% a session",
         "labels": LABEL,
         "counts": {"universeRows": len(rows), "withHistory": len(P.names), "eligibleLast": len(elig_last),
-                   "quintile": len(nxt["mom"][1]), "siBasket": len(si_basket), "crowded": len(crowded), "siOver100": odd[:20]},
+                   "quintile": len(nxt["mom"][1]), "siBasket": len(si_basket), "crowded": len(crowded), "siOver100": odd[:20],
+                   "siSource": si_src, "finraCover": round(cover, 3)},
         "stats": stats,
         "last": {"date": dates[-1], "ret": lastv, "z": lastz, "legs": legs, "spx": {"chg": round(bchg, 3) if bchg is not None else None,
                  "sigma": round(bsig, 2) if bsig is not None else None, "sym": bsym}, "character": ch},
@@ -443,8 +556,12 @@ def build(rows, bench, data, today=None):
                     "mom": {"bottom": nxt["mom"][0], "top": nxt["mom"][1]},
                     "rev": {"bottom": nxt["rev"][0], "top": nxt["rev"][1]},
                     "beta": {"bottom": nxt["beta"][0], "top": nxt["beta"][1], "formedOn": dates[nf]},
-                    "si": si_basket, "siPct": {t: round(rows[t]["si"] * 100, 1) for t in si_basket}},
+                    "si": si_basket, "siSource": si_src,
+                    "siPct": {t: round((official[t]["pct"] if si_src == "finra" else rows[t]["si"]) * 100, 1) for t in si_basket},
+                    "siDtc": {t: official[t].get("dtc") for t in si_basket if t in official}},
         "crowded": crowded,
+        "reported": reported,
+        "shortVolume": short_vol,
         "series": ser,
         "events": events[:EVENTS_KEEP],
     }
@@ -471,16 +588,22 @@ def main():
     patched = patch_from_tapes(data, rows, bench[1][-keep:])
     if patched:
         log("factors: closes missing from the histories, taken from the books' day tapes: " + ", ".join(f"{d} {n}" for d, n in sorted(patched.items())))
-    doc = build(rows, bench, data)
+    official, vol = load_short()
+    doc = build(rows, bench, data, official=official, vol=vol)
     if not doc:
         log("factors: not enough sessions - nothing written")
         return 0
     doc["counts"]["patchedFromTapes"] = patched
     L, c = doc["last"], doc["counts"]
     zs = " · ".join(f"{k} {L['ret'][k]:+.2f}% ({L['z'][k]:+.1f} sd)" for k in FACTORS if L["ret"].get(k) is not None and L["z"].get(k) is not None)
+    rp = doc.get("reported") or {}
     log(f"factors {BUILD}: {doc['date']} (bench {doc['bench']}) · {c['eligibleLast']} names, fifths of {c['quintile']}, the "
-        f"{c['siBasket']} most-shorted · {zs} · the day: {L['character']['label'] or 'no positioning signal'} · "
-        f"{len(doc['events'])} days at 2 sd+ in the year · {time.time() - t0:.1f}s")
+        f"{c['siBasket']} most-shorted ({c['siSource']}, FINRA covers {c['finraCover']:.0%}) · {zs} · the day: "
+        f"{L['character']['label'] or 'no positioning signal'} · {len(doc['events'])} days at 2 sd+ in the year"
+        + (f" · FINRA settled {rp['settle']}" + (f" (PARTIAL - {rp['cover']:.0%} of the names)" if rp.get("partial") else "")
+           + f": the 50 {rp['basket']['chg']:+.1f}% dollars short, the universe {rp['universe']['chg']:+.1f}%"
+           if rp.get("basket", {}).get("chg") is not None and rp.get("universe", {}).get("chg") is not None else "")
+        + f" · {time.time() - t0:.1f}s")
     prior = dv._read(OUT)
     if same(prior, doc):
         log("factors: unchanged since the last run - not rewritten")

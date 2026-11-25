@@ -316,6 +316,132 @@ def test_main_writes_latest_daily_history_and_redoes_provisional_records():
             tr.fetch_json, tr.DATA, tr.OUT = real
 
 
+# ---- z206: who was forced to trade -------------------------------------------------------------------------------
+def fake_factors(formed="2026-11-19"):
+    """factors.json as pipeline/factors.py writes it: 10 names, fifths of 2, a year of spreads with sd 1 %."""
+    uni = [f"N{k}" for k in range(10)]
+    return {"build": "z206", "date": formed,
+            "stats": {"ew": {"mean": 0.0, "sd": 1.0, "n": 252}, "si": {"mean": 0.0, "sd": 1.0, "n": 252},
+                      "mom": {"mean": 0.0, "sd": 1.0, "n": 252}, "rev": {"mean": 0.0, "sd": 1.0, "n": 252},
+                      "beta": {"mean": 0.0, "sd": 1.0, "n": 252}},
+            "baskets": {"formedOn": formed, "universe": uni,
+                        "mom": {"bottom": ["N0", "N1"], "top": ["N8", "N9"]}, "rev": {"bottom": ["N0", "N1"], "top": ["N8", "N9"]},
+                        "beta": {"bottom": ["N4", "N5"], "top": ["N0", "N1"]}, "si": ["N0", "N2"]},
+            "series": {"dates": ["2026-11-18", formed], "ew": [0.1, -2.0], "si": [0.2, 0.5], "mom": [0.1, -2.6], "rev": [0.0, 0.3],
+                       "beta": [0.2, -1.0], "siL": [0.3, -1.5], "momL": [0.1, -3.0], "momS": [0.0, -0.4], "n": [10, 10]},
+            "last": {"date": formed, "character": {"label": "de-grossing"}}}
+
+
+def test_flows_from_the_tapes_label_relief_and_notes():
+    # an up day (+3 % on a calm series: many sd): the week's losers (N0, N1) +12 %, its winners +1 %, the rest +3 %
+    hist = {"^GSPC": rows(wave(300, 5000))}
+    last = hist["^GSPC"][-1]["close"]
+    spx = tr.card("^GSPC", "S&P 500", hist["^GSPC"], tape(p={"^GSPC": last * 1.03}, prev={"^GSPC": last}, op={"^GSPC": last * 1.028}))
+    prices = {f"N{k}": (100 * (1.12 if k < 2 else 1.01 if k >= 8 else 1.03), 100.0) for k in range(10)}
+    read = {"state": "sell-off", "overlay": None}
+    fl = tr.day_flows(fake_factors(), prices, spx, {"^GSPC": spx}, {"cw": 3.6, "ew": 4.2, "pctUp": 90}, read, [])
+    assert fl["source"] == "tapes" and fl["formedOn"] == "2026-11-19" and fl["coverage"] == {"priced": 10, "of": 10}
+    assert abs(fl["ret"]["rev"] - 11.0) < 1e-6 and fl["z"]["rev"] == 11.0 and fl["z"]["mom"] == -11.0
+    assert fl["label"] == "short-covering rally" and fl["flags"]["bounce"] and fl["flags"]["unwind"]
+    assert fl["idx"]["gapShare"] > 0.9 and fl["provisional"] is True
+    assert fl["relief"] is not None and fl["relief"]["n"] == 0                  # a calm record: no day like it before
+    notes = tr.flow_notes(fl, spx)
+    assert notes[0]["kind"] == "flows" and notes[0]["sev"] == 3 and notes[0]["text"].startswith("Positioning so far: short-covering rally")
+    assert "not reported flows" in notes[0]["text"]
+    # too few of the baskets' names priced yet: no label
+    few = tr.day_flows(fake_factors(), {"N0": (101, 100)}, spx, {"^GSPC": spx}, None, read, [])
+    assert few["label"] is None and few["coverage"] == {"priced": 1, "of": 10}
+
+
+def test_flows_for_a_day_the_nightly_series_already_holds_and_the_day_after():
+    hist = {"^GSPC": rows(wave(300, 5000))}
+    spx = tr.card("^GSPC", "S&P 500", hist["^GSPC"], None)                        # the 19th, final, from the history
+    fl = tr.day_flows(fake_factors(formed="2026-11-19"), {}, spx, {"^GSPC": spx}, None, None, [])
+    assert fl["source"] == "history" and fl["z"]["mom"] == -2.6 and fl["ret"]["ew"] == -2.0
+    # the session after a short-covering rally, down: no follow-through
+    last = hist["^GSPC"][-1]["close"]
+    spx2 = tr.card("^GSPC", "S&P 500", hist["^GSPC"], tape(p={"^GSPC": last * 0.988}, prev={"^GSPC": last}, op={"^GSPC": last * 0.99}))
+    prior = [{"date": "2026-11-19", "chg": 4.73, "flow": "short-covering rally"}]
+    fl2 = tr.day_flows(fake_factors(), {f"N{k}": (99.0, 100.0) for k in range(10)}, spx2, {"^GSPC": spx2}, None, None, prior)
+    assert fl2["after"] == {"prior": "2026-11-19", "priorChg": 4.73, "chg": spx2["chg"]}
+    t = [n["text"] for n in tr.flow_notes(fl2, spx2)]
+    assert any(x.startswith("No follow-through so far: S&P 500 -1.20% the session after the short-covering rally of Nov 19, 2026 (+4.73%)") for x in t), t
+    # the prior session's label from factors.json when the history row has none (the first z206 day)
+    fac = fake_factors()
+    fac["last"] = {"date": "2026-11-19", "character": {"label": "short-covering rally"}}
+    fl3 = tr.day_flows(fac, {f"N{k}": (99.0, 100.0) for k in range(10)}, spx2, {"^GSPC": spx2}, None, None, [{"date": "2026-11-19", "chg": 4.7}])
+    assert fl3["after"]["prior"] == "2026-11-19"
+    # baskets formed too long before the session (a stale nightly file) and the day not in its series: no flows
+    assert tr.day_flows(fake_factors(formed="2026-11-10"), {"N0": (1, 1)}, spx2, {"^GSPC": spx2}, None, None, []) is None
+
+
+def test_relief_base_counts_big_up_days_in_drawdowns():
+    c, x = [], 100.0
+    for i in range(400):                                   # calm, then a 12 % fall, a 2-sd+ jump, and the tape after it
+        x *= 1.001 if i % 2 else 0.9995
+        c.append(x)
+    for _ in range(12):
+        x *= 0.99
+        c.append(x)
+    pre = x
+    x *= 1.05
+    c.append(x)
+    for _ in range(25):
+        x *= 0.995
+        c.append(x)
+    ds = sessions(len(c))
+    rb = tr.relief_base(ds, c)
+    assert rb["n"] == 1 and rb["last"] == [ds[412]] and rb["nextDown"] == 1.0 and rb["retest"] == 1.0 and c[413] < c[412]
+    assert pre == c[411]
+
+
+def test_main_reads_the_etfs_when_the_macro_book_is_out():
+    """z206 - 11-24: every TRAPP2-1 file 404. The read goes on from TRAPP2's SPY / QQQ / DIA / IWM / sector SPDRs /
+    HYG / TLT and its tape; the history keeps the index's rows; every card says where it came from."""
+    spy = rows(wave(300, 500))
+    etf = {"SPY": spy}
+    for s in ("QQQ", "DIA", "IWM", "HYG", "TLT") + tuple(x for x, _ in tr.SECTORS):
+        etf[s] = rows(wave(300, 80))
+    last = spy[-1]["close"]
+    trapp2_tape = tape(p={"SPY": last * 0.988, "XLK": 79.0, "NVDA": 130.0}, prev={"SPY": last, "XLK": 80.0, "NVDA": 135.0},
+                       op={"SPY": last * 0.99})
+
+    def fake(url, tries=3, timeout=40):
+        if "TRAPP2-1/" in url:
+            return None                                                         # the macro book: 404
+        if "/TRAPP2/main/data/history/" in url:
+            return etf.get(url.rsplit("/", 1)[1][:-5])
+        if url.endswith("TRAPP2/main/data/intraday/latest.json"):
+            return trapp2_tape
+        return None
+    real = (tr.fetch_json, tr.DATA, tr.OUT)
+    with tempfile.TemporaryDirectory() as d:
+        tr.DATA, tr.OUT = Path(d), Path(d) / "trends"
+        (Path(d) / "earnings").mkdir()
+        (Path(d) / "earnings" / "universe.json").write_text(json.dumps({"indices": {"SPY": {"updatedAt": "2026-10-21", "members": [{"ticker": "NVDA", "weight": 0.08}]}}}))
+        (tr.OUT / "daily").mkdir(parents=True)
+        for k, dd in enumerate(sessions(12)):
+            (tr.OUT / "daily" / f"{dd}.json").write_text(json.dumps({"state": "final", "date": dd, "members": {}}))
+        old_rows = [{"date": "2026-11-18", "spx": 7400.0, "chg": -0.1, "run": -5}, {"date": "2026-11-19", "spx": 7175.83, "chg": -2.0, "run": -6}]
+        (tr.OUT / "history.json").write_text(json.dumps({"build": "z202", "rows": old_rows}))
+        (tr.OUT / "weights_base.json").write_text(json.dumps({"asOf": "2026-10-21", "prices": {"NVDA": 200.0}}))
+        tr.fetch_json = fake
+        try:
+            assert tr.main() == 0
+            doc = json.loads((tr.OUT / "latest.json").read_text())
+            g = doc["indices"]["^GSPC"]
+            assert doc["proxy"]["^GSPC"] == "SPY" and doc["proxy"]["XLK"] == "XLK" and g["name"] == "S&P 500 (SPY)"
+            assert doc["date"] == "2026-11-20" and abs(g["chg"] + 1.2) < 1e-6 and abs(g["gap"] + 1.0) < 1e-6
+            assert doc["indices"]["^IXIC"]["name"] == "Nasdaq-100 (QQQ)" and doc["indices"]["^NYA"] is None and doc["vol"]["^VIX"] is None
+            assert doc["notable"][0]["id"] == "data:macro" and "S&P 500 = SPY" in doc["notable"][0]["text"] and "no VIX" in doc["notable"][0]["text"]
+            r = doc["read"]
+            assert [c["on"] for c in r["criteria"] if c["k"] == "fear"] == [None] and r["of"] == 6       # no VIX: 6 criteria known
+            h = json.loads((tr.OUT / "history.json").read_text())
+            assert h["proxy"]["^GSPC"] == "SPY" and h["rows"] == old_rows                 # intraday: the index's rows kept as they were
+        finally:
+            tr.fetch_json, tr.DATA, tr.OUT = real
+
+
 if __name__ == "__main__":                       # plain-python runner (the workflow has no pytest)
     ok = fail = 0
     for name, fn in sorted((k, v) for k, v in dict(globals()).items() if k.startswith("test_") and callable(v)):

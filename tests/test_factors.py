@@ -5,6 +5,9 @@
 #  (0, 100 %]), a close missing from the history taken from the book's day tape, the baskets formed on the PRIOR close
 #  only (no look-ahead), the spreads and their z-scores, the day's label (short-covering rally, de-grossing, risk-off
 #  rotation, mega-cap selling ...) and the file written once (an unchanged re-run writes nothing). Offline, < 5 s.
+#  z207 - the official short interest: FINRA's shares short / the SEC share count (a share over 100 % dropped, a split
+#  leaving the change out), the basket ranked on it (Yahoo only under 80 % FINRA coverage), the crowded rule, the
+#  reported block (dollars short at today's prices, a part-way settlement flagged), the short-volume block.
 #  Run: python tests/test_factors.py   (or python -m pytest tests/test_factors.py -q)
 # ============================================================
 import json
@@ -220,9 +223,11 @@ def test_main_writes_once():
             fx.load_bench.__defaults__ = (fx.dv.history,)
             fx.load_panel.__defaults__ = (fx.dv.history, 8)
             fx.patch_from_tapes.__defaults__ = (read, fx.TAPE_PATCH_DAYS)
+            fx.load_short.__defaults__ = (lambda rel: None,)
             assert fx.main() == 0
             doc = json.loads(fx.OUT.read_text())
-            assert doc["build"] == "z206" and doc["counts"]["eligibleLast"] == 40 and doc["bench"] == "SPY"
+            assert doc["build"] == "z207" and doc["counts"]["eligibleLast"] == 40 and doc["bench"] == "SPY"
+            assert doc["baskets"]["siSource"] == "yahoo" and doc["reported"] is None
             before = fx.OUT.stat().st_mtime_ns
             os.environ["FACTORS_NOW"] = "2026-11-24T14:30:00Z"           # a later run, nothing new: not rewritten
             try:
@@ -237,6 +242,77 @@ def test_main_writes_once():
             fx.load_bench.__defaults__ = (old_hist,)
             fx.load_panel.__defaults__ = (old_hist, 8)
             fx.patch_from_tapes.__defaults__ = (real[0], fx.TAPE_PATCH_DAYS)
+            fx.load_short.__defaults__ = (None,)
+
+
+# ---- z207: the official short interest -----------------------------------------------------------------------------
+def official_for(names, pct, dtc=None, chg=None, settle="2026-11-13"):
+    out = {}
+    for k, t in enumerate(names):
+        p = pct(k)
+        prev = 1e6 / (1 + (chg(k) if chg else 0) / 100)
+        out[t] = {"pct": p, "dtc": dtc(k) if dtc else 3.0, "chg": chg(k) if chg else 0.0, "settle": settle, "shares": 1e6, "prev": prev}
+    return out
+
+
+def test_load_short_is_finra_over_the_sec_count():
+    idx = {"interest": {"AAA": {"settlementDate": "2026-11-13", "shares": 1_200_000, "prevShares": 1_000_000, "changePct": 20.0, "daysToCover": 8.1},
+                        "BBB": {"settlementDate": "2026-11-13", "shares": 5_000_000, "prevShares": 4_000_000, "changePct": 25.0},
+                        "CCC": {"settlementDate": "2026-11-13", "shares": 300_000, "prevShares": 100_000, "changePct": 200.0, "split": True},
+                        "DDD": {"settlementDate": "2026-11-13", "shares": 300_000}},
+           "volume": {"AAA": {"date": "2026-11-24", "ratio1d": 61.0, "ratio20d": 50.0, "z": 2.4}, "EEE": {"date": "2026-11-24"}}}
+    shares = {"tickers": {"AAA": {"s": 10_000_000}, "BBB": {"s": 4_000_000}, "CCC": {"s": 3_000_000}}}
+    off, vol = fx.load_short(lambda rel: idx if rel == "short/index.json" else shares if rel == "sec/shares.json" else None)
+    assert sorted(off) == ["AAA", "CCC"]                                        # BBB: more short than outstanding; DDD: no count
+    assert abs(off["AAA"]["pct"] - 0.12) < 1e-12 and off["AAA"]["dtc"] == 8.1 and off["AAA"]["chg"] == 20.0 and off["AAA"]["prev"] == 1e6
+    assert off["CCC"]["chg"] is None and off["CCC"]["prev"] is None             # split between settlements: no change
+    assert vol == {"AAA": {"r1": 61.0, "r20": 50.0, "z": 2.4, "date": "2026-11-24"}}
+
+
+def test_the_basket_ranks_on_finra_and_the_crowded_rule():
+    data, rows, b = make_world(60)
+    pdata = panel_data(data, DATES)
+    names = sorted(rows)
+    # FINRA's ranking is the reverse of Yahoo's: S00 the most shorted (29.5 %); 8 %+ = S00 .. S43; S45 7 % short with
+    # 8 days to cover (listed); S50 4.5 % with 9 days (not: under 5 %)
+    off = official_for(names, lambda k: (59 - k) / 200, dtc=lambda k: {45: 8.0, 50: 9.0}.get(k, 3.0))
+    doc = fx.build(rows, ("SPY", DATES, b), pdata, official=off)
+    bk = doc["baskets"]
+    assert bk["siSource"] == "finra" and doc["counts"]["finraCover"] == 1.0
+    assert bk["si"][:3] == ["S00", "S01", "S02"] and len(bk["si"]) == fx.SI_TOP and bk["siPct"]["S00"] == 29.5 and bk["siDtc"]["S00"] == 3.0
+    assert set(doc["crowded"]) == {f"S{k:02d}" for k in range(44)} | {"S45"}
+    assert doc["crowded"]["S45"] == {"si": 7.0, "dtc": 8.0, "chg": 0.0, "settle": "2026-11-13", "src": "finra"}
+    # FINRA on only 10 of the 60: the basket ranks on Yahoo; a Yahoo-only name at 10 %+ is listed as Yahoo's
+    few = {t: off[t] for t in names[:10]}
+    doc2 = fx.build(rows, ("SPY", DATES, b), pdata, official=few)
+    assert doc2["baskets"]["siSource"] == "yahoo"
+    yahoo_crowded = {t for t in names[10:] if rows[t]["si"] >= fx.SI_CROWDED}
+    assert {t for t, v in doc2["crowded"].items() if v["src"] == "yahoo"} == yahoo_crowded
+
+
+def test_reported_block_dollars_short_and_a_partial_settlement():
+    off = {"A": {"pct": 0.20, "dtc": 9.0, "chg": -20.0, "settle": "2026-11-13", "shares": 800.0, "prev": 1000.0},
+           "B": {"pct": 0.06, "dtc": 2.0, "chg": 50.0, "settle": "2026-11-13", "shares": 300.0, "prev": 200.0},
+           "C": {"pct": 0.02, "dtc": 1.0, "chg": 10.0, "settle": "2026-11-13", "shares": 110.0, "prev": 100.0},
+           "D": {"pct": 0.30, "dtc": 4.0, "chg": 5.0, "settle": "2026-10-30", "shares": 105.0, "prev": 100.0}}
+    px = {"A": 10.0, "B": 100.0, "C": 50.0, "D": 20.0}
+    r = fx.reported_block(["A", "B", "D"], off, px, {"A", "B", "C", "D"})
+    assert r["settle"] == "2026-11-13" and r["names"] == 3 and r["cover"] == 0.75 and r["partial"] is True
+    # the basket, in dollars at today's prices: A 8,000 vs 10,000, B 30,000 vs 20,000 (D is on the older settlement)
+    assert r["basket"]["chg"] == round((38000 / 30000 - 1) * 100, 2) and r["basket"]["n"] == 2 and r["basket"]["dtc"] == 5.5
+    assert r["basket"]["median"] == 15.0
+    assert r["universe"]["chg"] == round(((8000 + 30000 + 5500) / (10000 + 20000 + 5000) - 1) * 100, 2)
+    assert r["universe"]["adding"] == 2 and r["universe"]["covering"] == 1
+    assert r["covered"] == [{"t": "A", "chg": -20.0, "pct": 20.0}] and r["added"] == [{"t": "B", "chg": 50.0, "pct": 6.0}]   # C under 5 %
+    whole = fx.reported_block(["A"], {k: v for k, v in off.items() if k != "D"}, px, {"A", "B", "C"})
+    assert whole["partial"] is False and whole["cover"] == 1.0
+
+
+def test_short_volume_block():
+    vol = {"A": {"r1": 60.0, "r20": 50.0, "z": 2.5, "date": "2026-11-24"}, "B": {"r1": 40.0, "r20": 45.0, "z": -1.0, "date": "2026-11-24"},
+           "C": {"r1": 55.0, "r20": 52.0, "z": 0.5, "date": "2026-11-24"}, "D": {"r1": 90.0, "r20": 50.0, "z": 9.0, "date": "2026-11-20"}}
+    v = fx.short_volume_block(vol, ["A", "B"], {"A", "B", "C", "D"})
+    assert v == {"date": "2026-11-24", "names": 3, "ratio": 55.0, "ratio20": 50.0, "basketZ": 0.75, "high": 1}   # D: an older day
 
 
 if __name__ == "__main__":                       # plain-python runner (the workflow has no pytest)

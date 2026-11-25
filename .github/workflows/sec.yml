@@ -86,11 +86,13 @@ jobs:
           if python tests/test_shares.py; then python pipeline/shares.py || echo "::warning::shares run failed - data/sec/shares.json kept as it was"
           else echo "::warning::shares self-test failed - data/sec/shares.json kept as it was"; fi
         continue-on-error: true
-      - name: FINRA - short volume and short interest
+      - name: FINRA - short volume and short interest (z207; self-test first - paging, newest settlement, split, z)
         env:
           FINRA_CLIENT_ID: ${{ secrets.FINRA_CLIENT_ID }}
           FINRA_CLIENT_SECRET: ${{ secrets.FINRA_CLIENT_SECRET }}
-        run: python pipeline/fetch_short.py
+        run: |
+          if python tests/test_short.py; then python pipeline/fetch_short.py
+          else echo "::warning::short self-test failed - data/short/index.json kept as it was"; fi
         continue-on-error: true
       - name: Commit & push
         run: |

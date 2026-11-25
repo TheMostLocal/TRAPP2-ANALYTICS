@@ -275,6 +275,15 @@ def test_no_benchmark_writes_nothing():
             os.environ.pop("DERIVED_BOOKS", None)
 
 
+def test_bench_falls_back_to_spy_in_trapp2():
+    """z206 - 11-24: every TRAPP2-1 file 404 - the benchmark is TRAPP2's SPY, not nothing."""
+    import derived as dv2
+    ds = [f"2025-{m:02d}-{d:02d}" for m in range(1, 13) for d in range(1, 29)][:320]
+    spy = [{"date": d, "close": 500 + i, "volume": 1e8} for i, d in enumerate(ds)]
+    sym, bds, bcs = dv2.load_bench(lambda book, s: spy if (book, s) == ("TRAPP2", "SPY") else None)
+    assert sym == "SPY" and len(bds) == 320 and bcs[-1] == 819
+
+
 if __name__ == "__main__":
     ok = fail = 0
     for name, fn in sorted((k, v) for k, v in dict(globals()).items() if k.startswith("test_") and callable(v)):

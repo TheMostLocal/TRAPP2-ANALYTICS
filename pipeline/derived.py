@@ -36,6 +36,8 @@
 #  WHEN: .github/workflows/analytics.yml, after the research grades (03:00 UTC after a trading day + 14:30 UTC on
 #  weekdays). The file is rewritten only when something other than its time stamp changed.
 #  Env: DERIVED_NOW=ISO (tests) · DERIVED_OFFLINE=1 (no fetches) · DERIVED_BOOKS=<dir> (checkouts; default ./books)
+#  z206: the benchmark falls back to SPY in TRAPP2 when the macro book can't be read (11-24: every TRAPP2-1 file 404 -
+#  without it nothing was computed); the file says which ("bench").
 # ============================================================
 import calendar
 import gzip
@@ -61,6 +63,7 @@ RAW = "https://raw.githubusercontent.com/TheMostLocal"
 BOOKS = ("TRAPP2", "TRAPP2-2", "TRAPP2-3", "TRAPP2-4", "TRAPP2-1")   # the first book listing a ticker wins (as shares.py)
 BENCH = ("^GSPC", "TRAPP2-1")
 BENCH_FALLBACK = ("SPY", "TRAPP2-1")
+BENCH_LAST = ("SPY", "TRAPP2")                                       # z206: the macro book out
 ET = ZoneInfo("America/New_York")
 UA = {"User-Agent": "Mozilla/5.0 (valuatio derived)", "Accept-Encoding": "gzip"}
 STALE_DAYS = 10                 # no session for this long while the benchmark traded = stale
@@ -467,7 +470,7 @@ def us_equity(t, m):
 
 
 def load_bench(hist=history):
-    for sym, book in (BENCH, BENCH_FALLBACK):
+    for sym, book in (BENCH, BENCH_FALLBACK, BENCH_LAST):
         ds, cs, _ = series(hist(book, sym))
         if len(ds) > 300:
             return sym, ds, cs

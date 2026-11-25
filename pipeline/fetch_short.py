@@ -10,6 +10,14 @@
 #               shares short, change, average daily volume, days to cover. Probed like the bond data -
 #               if the free API tier doesn't include it the log says so and the rest still runs.
 #  Our universe only (S&P members + the books' US stocks).  -> data/short/index.json
+#
+#  z207 - THE NEWEST SETTLEMENT, WHOLE. The interest pull pages through every settlement of the last 45 days, and FINRA
+#  returns about 20,000 issues a settlement in settlement / symbol order - three settlements filled the old 12-page
+#  (60,000-row) cap, so the newest one stopped part-way through the alphabet (11-25: A-O on 11-13, P-Z still on 10-30).
+#  Now: up to 40 pages, stopping at FINRA's own Record-Total; a log line if the cap is ever reached; a "settlements"
+#  summary (the newest date, how many of our companies it covers, the one before); FINRA's stock-split flag carried
+#  (a split between settlements makes the change in shares short meaningless, so it is not computed); today's short share
+#  of volume scored against the 20 sessions BEFORE it (today was inside its own baseline, which shrank every z).
 # ============================================================
 import base64
 import json
@@ -40,10 +48,15 @@ def sym(s):
     return str(s or "").upper().replace(".", "-").replace("/", "-").strip()
 
 
-def http(url, data=None, headers=None, method=None, timeout=60):
+MAX_PAGES, PAGE = 40, 5000
+SPLIT_FLAGS = {"S", "Y", "T", "1", "TRUE"}
+
+
+def http(url, data=None, headers=None, method=None, timeout=60, want_headers=False):
     req = urllib.request.Request(url, data=data, method=method, headers=dict({"User-Agent": "valuatio-short"}, **(headers or {})))
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read()
+        body = r.read()
+        return (body, r.headers) if want_headers else body
 
 
 def daily_file(d):
@@ -69,7 +82,7 @@ def daily_file(d):
 def short_volume(tickers, days=20):
     files, d = [], date.today()
     tries = 0
-    while len(files) < days and tries < 40:
+    while len(files) < days + 1 and tries < 45:
         if d.weekday() < 5:
             f = daily_file(d)
             if f:
@@ -83,11 +96,11 @@ def short_volume(tickers, days=20):
         if not ser:
             continue
         r = [x[1] for x in ser]
-        r20 = r[:20]
-        mu = statistics.mean(r20)
-        sd = statistics.pstdev(r20) if len(r20) >= 5 else 0
+        base = r[1:days + 1]                                  # z207: the sessions before today, not including it
+        mu, sd = (statistics.mean(base), statistics.stdev(base)) if len(base) >= 5 else (None, 0)
         out[t] = {"date": ser[0][0], "ratio1d": round(r[0] * 100, 1), "ratio5d": round(statistics.mean(r[:5]) * 100, 1),
-                  "ratio20d": round(mu * 100, 1), "z": round((r[0] - mu) / sd, 2) if sd > 0 else None, "totalVolume": int(ser[0][2])}
+                  "ratio20d": round(statistics.mean(r[:days]) * 100, 1),
+                  "z": round((r[0] - mu) / sd, 2) if sd > 0 else None, "totalVolume": int(ser[0][2])}
     log(f"daily short volume: {len(files)} sessions read ({files[-1][0] if files else '—'} … {files[0][0] if files else '—'}) · {len(out)} of our companies")
     return out
 
@@ -103,22 +116,40 @@ def short_interest(tickers):
         log(f"short interest: FINRA sign-in failed ({e})")
         return {}
     start, end = (date.today() - timedelta(days=45)).isoformat(), date.today().isoformat()
-    rows, offset = [], 0
-    for _ in range(12):
-        body = {"limit": 5000, "offset": offset, "dateRangeFilters": [{"fieldName": "settlementDate", "startDate": start, "endDate": end}]}
+    rows, offset, total = [], 0, None
+    for _ in range(MAX_PAGES):
+        body = {"limit": PAGE, "offset": offset, "dateRangeFilters": [{"fieldName": "settlementDate", "startDate": start, "endDate": end}]}
         try:
-            b = http(f"{API}/data/group/otcMarket/name/consolidatedShortInterest", data=json.dumps(body).encode(), method="POST",
-                     headers={"Authorization": f"Bearer {tok}", "Accept": "application/json", "Content-Type": "application/json"})
+            b, hdr = http(f"{API}/data/group/otcMarket/name/consolidatedShortInterest", data=json.dumps(body).encode(), method="POST",
+                          headers={"Authorization": f"Bearer {tok}", "Accept": "application/json", "Content-Type": "application/json"},
+                          want_headers=True)
         except urllib.error.HTTPError as e:
             log(f"short interest: FINRA answered {e.code} for consolidatedShortInterest - {'not on this API tier' if e.code in (401, 403, 404) else 'error'}; skipped")
             return {}
+        if total is None:
+            try:
+                total = int(str(hdr.get("Record-Total") or "").strip())
+            except ValueError:
+                total = None
         page = json.loads(b.decode() or "[]")
         page = page if isinstance(page, list) else (page.get("data") or [])
         rows += page
-        if len(page) < 5000:
+        if len(page) < PAGE or (total is not None and len(rows) >= total):
             break
-        offset += 5000
-    tset = set(tickers)
+        offset += PAGE
+    else:
+        log(f"short interest: WARNING - stopped at the {MAX_PAGES}-page cap ({len(rows)} rows"
+            + (f" of {total}" if total else "") + ") - the newest settlement may be incomplete")
+    latest = pick_latest(rows, set(tickers))
+    s = settlements(latest)
+    log(f"short interest: {len(rows)} rows" + (f" (FINRA: {total})" if total is not None else "") + f" · {len(latest)} of our companies · "
+        f"newest settlement {s.get('latest') or '—'} covers {s.get('names', 0)} of them"
+        + (f", the one before ({s['previous']}) {s['previousNames']}" if s.get("previous") else ""))
+    return latest
+
+
+def pick_latest(rows, tset):
+    """Each of our companies at its newest settlement in the rows FINRA returned."""
     latest = {}
     for r in rows:
         t = sym(r.get("symbolCode") or r.get("issueSymbolIdentifier"))
@@ -127,11 +158,26 @@ def short_interest(tickers):
         sd = str(r.get("settlementDate") or "")[:10]
         if t not in latest or sd > latest[t]["settlementDate"]:
             cur, prev = r.get("currentShortPositionQuantity"), r.get("previousShortPositionQuantity")
+            split = str(r.get("stockSplitFlag") or "").strip().upper() in SPLIT_FLAGS
             latest[t] = {"settlementDate": sd, "shares": cur, "prevShares": prev,
-                         "changePct": round((cur - prev) / prev * 100, 1) if (cur is not None and prev) else r.get("changePercent"),
+                         "changePct": None if split else (round((cur - prev) / prev * 100, 1) if (cur is not None and prev) else r.get("changePercent")),
                          "avgDailyVolume": r.get("averageDailyVolumeQuantity"), "daysToCover": r.get("daysToCoverQuantity")}
-    log(f"short interest: {len(rows)} rows · {len(latest)} of our companies · latest settlement {max((v['settlementDate'] for v in latest.values()), default='—')}")
+            if split:
+                latest[t]["split"] = True
     return latest
+
+
+def settlements(latest):
+    """{latest, names, previous, previousNames} - how much of our universe the newest settlement covers."""
+    from collections import Counter
+    c = Counter(v["settlementDate"] for v in latest.values() if v.get("settlementDate"))
+    if not c:
+        return {}
+    ds = sorted(c, reverse=True)
+    out = {"latest": ds[0], "names": c[ds[0]]}
+    if len(ds) > 1:
+        out.update(previous=ds[1], previousNames=c[ds[1]])
+    return out
 
 
 def main():
@@ -146,8 +192,9 @@ def main():
     except Exception:
         pass
     OUT.mkdir(parents=True, exist_ok=True)
+    interest = si or old.get("interest") or {}
     (OUT / "index.json").write_text(json.dumps({"asOf": now_iso(), "volume": vol or old.get("volume") or {},
-                                                "interest": si or old.get("interest") or {},
+                                                "interest": interest, "settlements": settlements(interest),
                                                 "note": "short share of volume = Reg SHO short volume ÷ total reported volume (FINRA consolidated NMS); interest = FINRA consolidated short interest"},
                                                separators=(",", ":")))
     return 0

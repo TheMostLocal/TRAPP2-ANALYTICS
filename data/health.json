@@ -1,10 +1,10 @@
 {
- "asOf": "2026-11-25T20:19:00Z",
+ "asOf": "2026-11-25T20:49:01Z",
  "session": "regular",
  "summary": {
   "ok": 19,
   "stale": 3,
-  "missing": 10,
+  "missing": 11,
   "notDue": 0,
   "unknown": 0
  },
@@ -15,6 +15,7 @@
   "Macro quad",
   "Fed monitor",
   "Research grades",
+  "Factor monitor (positioning)",
   "CBOE volatility"
  ],
  "checks": [
@@ -25,7 +26,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:15:03Z",
+   "updated": "2026-11-25T20:45:03Z",
    "ageMinutes": 4,
    "status": "ok"
   },
@@ -36,7 +37,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:15:03Z",
+   "updated": "2026-11-25T20:45:04Z",
    "ageMinutes": 4,
    "status": "ok"
   },
@@ -67,7 +68,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:05:07Z",
+   "updated": "2026-11-25T20:35:07Z",
    "ageMinutes": 14,
    "status": "ok"
   },
@@ -78,7 +79,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:05:08Z",
+   "updated": "2026-11-25T20:35:07Z",
    "ageMinutes": 14,
    "status": "ok"
   },
@@ -89,8 +90,8 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:18:09Z",
-   "ageMinutes": 1,
+   "updated": "2026-11-25T20:40:07Z",
+   "ageMinutes": 9,
    "status": "ok"
   },
   {
@@ -100,8 +101,8 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:18:10Z",
-   "ageMinutes": 1,
+   "updated": "2026-11-25T20:40:08Z",
+   "ageMinutes": 9,
    "status": "ok"
   },
   {
@@ -111,7 +112,7 @@
    "feedsBot": true,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:07:02Z",
+   "updated": "2026-11-25T20:37:05Z",
    "ageMinutes": 12,
    "status": "ok"
   },
@@ -122,7 +123,7 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:07:03Z",
+   "updated": "2026-11-25T20:37:05Z",
    "ageMinutes": 12,
    "status": "ok"
   },
@@ -183,7 +184,7 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-25T20:05:13Z",
+   "updated": "2026-11-25T20:35:14Z",
    "ageMinutes": 14,
    "status": "ok"
   },
@@ -194,7 +195,7 @@
    "feedsBot": false,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-25T20:00:00Z",
+   "updated": "2026-11-25T20:30:00Z",
    "ageMinutes": 19,
    "status": "ok"
   },
@@ -205,8 +206,8 @@
    "feedsBot": true,
    "rule": "session",
    "maxMinutes": 50,
-   "updated": "2026-11-25T20:06:33Z",
-   "ageMinutes": 12,
+   "updated": "2026-11-25T20:36:31Z",
+   "ageMinutes": 13,
    "status": "ok"
   },
   {
@@ -217,7 +218,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T14:03:42Z",
-   "ageMinutes": 375,
+   "ageMinutes": 405,
    "status": "ok"
   },
   {
@@ -228,7 +229,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T14:03:42Z",
-   "ageMinutes": 375,
+   "ageMinutes": 405,
    "status": "ok"
   },
   {
@@ -239,7 +240,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T11:58:15Z",
-   "ageMinutes": 3381,
+   "ageMinutes": 3411,
    "status": "ok"
   },
   {
@@ -250,7 +251,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:01:40Z",
-   "ageMinutes": 2477,
+   "ageMinutes": 2507,
    "status": "stale"
   },
   {
@@ -261,8 +262,18 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:53Z",
-   "ageMinutes": 2477,
+   "ageMinutes": 2507,
    "status": "ok"
+  },
+  {
+   "name": "Factor monitor (positioning)",
+   "repo": "TRAPP2-ANALYTICS",
+   "path": "data/derived/factors.json",
+   "feedsBot": true,
+   "rule": "weekly",
+   "maxMinutes": 7200,
+   "status": "missing",
+   "note": "HTTP Error 404: Not Found"
   },
   {
    "name": "Fundamentals as filed (SEC)",
@@ -272,7 +283,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-24T03:01:55Z",
-   "ageMinutes": 2477,
+   "ageMinutes": 2507,
    "status": "ok"
   },
   {
@@ -283,7 +294,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T03:16:21Z",
-   "ageMinutes": 2463,
+   "ageMinutes": 2493,
    "status": "stale"
   },
   {
@@ -294,7 +305,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-24T22:56:25Z",
-   "ageMinutes": 1283,
+   "ageMinutes": 1313,
    "status": "ok"
   },
   {
@@ -305,7 +316,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T12:12:43Z",
-   "ageMinutes": 486,
+   "ageMinutes": 516,
    "status": "ok"
   },
   {
@@ -316,7 +327,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T12:13:17Z",
-   "ageMinutes": 486,
+   "ageMinutes": 516,
    "status": "ok"
   },
   {
@@ -356,17 +367,17 @@
    "feedsBot": false,
    "rule": "intraday",
    "maxMinutes": 35,
-   "updated": "2026-11-25T20:18:09Z",
-   "ageMinutes": 1,
+   "updated": "2026-11-25T20:45:03Z",
+   "ageMinutes": 4,
    "status": "stale",
    "perBook": {
-    "TRAPP2": 251,
+    "TRAPP2": 332,
     "TRAPP2-1": 0,
     "TRAPP2-2": 204,
-    "TRAPP2-3": 287,
+    "TRAPP2-3": 206,
     "TRAPP2-4": 1563
    },
-   "note": "fresh rows per book: TRAPP2 251 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 204 \u00b7 TRAPP2-3 287 \u00b7 TRAPP2-4 1563 - not pushing: TRAPP2-1"
+   "note": "fresh rows per book: TRAPP2 332 \u00b7 TRAPP2-1 0 \u00b7 TRAPP2-2 204 \u00b7 TRAPP2-3 206 \u00b7 TRAPP2-4 1563 - not pushing: TRAPP2-1"
   }
  ]
 }

@@ -37,6 +37,22 @@
 #  compact row per session), data/trends/weights_base.json (holdings-date prices). A file is rewritten only when
 #  something other than its time stamp changed (no empty commits after the close).
 #  Env: TRENDS_OFFLINE=1 (no fetches; tests) · TRENDS_NOW=ISO (tests)
+#
+#  z206 - WHO WAS FORCED TO TRADE (owner 11-24 1100 ET: "the last few market days / week have been a major sell off and
+#  yesterday was covering shorts for major hedges ... make sure things like this are being noticed"):
+#    * flows: the factor baskets pipeline/factors.py formed at the last close (the most-shorted 50, 12-1 momentum, the
+#      week's losers vs winners, high vs low beta), priced from the books' tapes every run -> each spread in sd of its own
+#      year, plus the index tells held here (how much of the S&P's move came at the open, the VIX, high-yield credit vs
+#      what its beta implies, cap- vs equal-weighted, defensives vs cyclicals) -> the day's label: short-covering rally,
+#      risk-on rally, broad rally, de-grossing, momentum unwind, losers liquidated, shorts pressing ... with the numbers
+#      behind it. A PRICE SIGNATURE of covering / de-grossing - no positioning data is fetched.
+#    * relief: a 2 sd+ up day while the read is a sell-off or the S&P 500 is 5 %+ below its 52-week high - how such days
+#      went in the record (the next session, five sessions on, how often the prior low was retested within 20 sessions)
+#    * the session after a short-covering rally, if it is down: no follow-through, said so
+#    * THE MACRO BOOK OUT: TRAPP2-1 (indices, VIX, sectors, cross-asset) unreadable (404 on 11-24 - the read froze at
+#      Monday's close): the S&P 500, Nasdaq-100, Dow and Russell 2000 read from their ETFs in TRAPP2 (SPY / QQQ / DIA /
+#      IWM), the sector SPDRs, HYG and TLT from TRAPP2 too, with TRAPP2's tape; no VIX / 10-year / dollar / oil / gold /
+#      copper / bitcoin / NYSE until it is back - every card and the history say which symbol they came from.
 # ============================================================
 import json
 import math
@@ -50,7 +66,10 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-BUILD = "z202"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import factors as fct  # noqa: E402  (z206: the factor baskets and the day's label)
+
+BUILD = "z206"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "trends"
@@ -74,6 +93,15 @@ SUSPECT = 0.40            # a member "moving" more than 40 % in a session is a d
 KEEP_HISTORY = 400        # rows in history.json
 BACKFILL = 12             # recent sessions given a daily record when missing (tapes kept ~15 sessions)
 FWD = (1, 5, 20)
+FACTORS_PATH = DATA / "derived" / "factors.json"     # z206: pipeline/factors.py (nightly)
+FLOW_MAX_AGE = 5                 # calendar days from the baskets' formation close to the session read with them
+FLOW_MIN_COVER = 0.5             # priced share of the baskets' universe below which no label is given
+PROXY_BOOK = "TRAPP2"            # z206: when the macro book can't be read
+PROXIES = {"^GSPC": ("SPY", "S&P 500 (SPY)"), "^IXIC": ("QQQ", "Nasdaq-100 (QQQ)"), "^DJI": ("DIA", "Dow Jones Industrial Average (DIA)"),
+           "^RUT": ("IWM", "Russell 2000 (IWM)")}
+PROXY_SAME = tuple(s for s, _ in SECTORS) + ("HYG", "TLT")
+DEFENSIVE, CYCLICAL = ("XLP", "XLU", "XLV"), ("XLK", "XLY", "XLI", "XLF", "XLB", "XLC")
+RELIEF_SIGMA, RELIEF_DD, RELIEF_LOOK = 2.0, -5.0, 20
 
 
 def log(*a):
@@ -679,8 +707,16 @@ def notables(cards, ins, read, attrib=None, nxt=None):
     for x in out:
         if x.get("sym") not in (SPX, None) and x["kind"] != "fear":
             x["sev"] = min(x["sev"], 2)
-    out.sort(key=lambda x: (-x["sev"], ["provisional", "streak", "move", "regime", "drawdown", "breadth", "attribution", "fear", "distribution", "trend", "sectors", "history", "data"].index(x["kind"]) if x["kind"] in ("provisional", "streak", "move", "regime", "drawdown", "breadth", "attribution", "fear", "distribution", "trend", "sectors", "history", "data") else 99))
+    out.sort(key=note_key)
     return out
+
+
+KIND_ORDER = ("provisional", "flows", "follow-through", "relief", "streak", "move", "regime", "drawdown", "breadth",
+              "attribution", "fear", "distribution", "trend", "sectors", "history", "data")    # z206: + the positioning kinds
+
+
+def note_key(x):
+    return (-x["sev"], KIND_ORDER.index(x["kind"]) if x["kind"] in KIND_ORDER else 99)
 
 
 # ---------------------------------------------------------------------------------------------- data access ---
@@ -738,6 +774,192 @@ def sector_map():
     return {t: n.get("sector") for t, n in nodes.items() if n.get("sector")}
 
 
+
+# ------------------------------------------------------------------------------- z206: who was forced to trade ---
+def _beta_on(xd, xc, yd, yc, n=252):
+    """OLS beta of y's returns on x's over the last n consecutive common sessions (None under 60)."""
+    xm, ym = dict(zip(xd, xc)), dict(zip(yd, yc))
+    ds = [d for d in xd if d in ym and xm.get(d) and ym.get(d)]
+    pairs = [(xm[b] / xm[a] - 1, ym[b] / ym[a] - 1) for a, b in zip(ds[:-1], ds[1:])][-n:]
+    if len(pairs) < 60:
+        return None
+    mx, my = sum(p[0] for p in pairs) / len(pairs), sum(p[1] for p in pairs) / len(pairs)
+    vx = sum((p[0] - mx) ** 2 for p in pairs)
+    return sum((p[0] - mx) * (p[1] - my) for p in pairs) / vx if vx > 0 else None
+
+
+def relief_base(dates, closes, sigma=RELIEF_SIGMA, dd=RELIEF_DD, look=RELIEF_LOOK):
+    """Past days like today in the record: a gain of `sigma` sd+ of the prior 20 daily moves with the prior close
+    `dd` % or more below its 252-session high. -> {n, since, nextDown, next1, next5, retest, look, last} - next1 / next5
+    medians in %, nextDown / retest shares (retest = a close below the pre-rally close within `look` sessions)."""
+    n = len(closes)
+    if n < 300:
+        return None
+    rets = [None] + [closes[k] / closes[k - 1] - 1 for k in range(1, n)]
+    hi = roll_max(closes, 252)
+    hits = []
+    for k in range(21, n):
+        prev = rets[k - 20:k]
+        if any(x is None for x in prev) or rets[k] is None:
+            continue
+        sd = statistics.stdev(prev)
+        if sd <= 0 or rets[k] / sd < sigma or not hi[k - 1] or closes[k - 1] / hi[k - 1] - 1 > dd / 100:
+            continue
+        hits.append(k)
+    nx1 = [rets[k + 1] * 100 for k in hits if k + 1 < n]
+    nx5 = [(closes[k + 5] / closes[k] - 1) * 100 for k in hits if k + 5 < n]
+    rt = [any(closes[j] < closes[k - 1] for j in range(k + 1, k + look + 1)) for k in hits if k + look < n]
+    share = lambda xs: round(sum(1 for x in xs if x) / len(xs), 3) if xs else None
+    return {"n": len(hits), "since": dates[0], "look": look,
+            "nextDown": share([x < 0 for x in nx1]), "next1": round(statistics.median(nx1), 2) if nx1 else None,
+            "next5": round(statistics.median(nx5), 2) if nx5 else None, "retest": share(rt),
+            "last": [dates[k] for k in hits[-6:]]}
+
+
+def day_flows(fac, prices, spx, cards, ins, read, prior_rows=None):
+    """The day's factor spreads (factors.json's baskets, formed at the last close, priced from the tapes - or the
+    nightly series for a day it already holds), z-scored on their year, with the index tells -> the label."""
+    if not fac or not spx:
+        return None
+    B, ser, D = fac.get("baskets") or {}, fac.get("series") or {}, spx["date"]
+    formed = B.get("formedOn")
+    keys = ("ew", "si", "mom", "rev", "beta", "siL", "momL", "momS")
+    n_priced = n_uni = None
+    if formed and formed < D and (date.fromisoformat(D) - date.fromisoformat(formed)).days <= FLOW_MAX_AGE and prices:
+        ret = {}
+        for t, (cur, prev) in prices.items():
+            if cur and prev:
+                x = cur / prev - 1
+                if fct.MAX_DOWN < x < fct.MAX_UP:
+                    ret[t] = x
+        form = {"universe": B.get("universe") or [],
+                "mom": ((B.get("mom") or {}).get("bottom") or [], (B.get("mom") or {}).get("top") or []),
+                "rev": ((B.get("rev") or {}).get("bottom") or [], (B.get("rev") or {}).get("top") or []),
+                "beta": ((B.get("beta") or {}).get("bottom") or [], (B.get("beta") or {}).get("top") or [])}
+        sp = fct.spreads(ret, form, B.get("si") or [])
+        n_uni, n_priced = len(form["universe"]), sp.get("n") or 0
+        if not n_uni or n_priced / n_uni < FLOW_MIN_COVER:
+            return {"date": D, "formedOn": formed, "source": "tapes", "coverage": {"priced": n_priced, "of": n_uni},
+                    "label": None, "note": "too few of the baskets' names priced yet"}
+        vals = {k: (sp[k] * 100 if sp.get(k) is not None else None) for k in keys}
+        src = "tapes"
+    elif D in (ser.get("dates") or []):
+        i = ser["dates"].index(D)
+        vals = {k: ((ser.get(k) or [None] * (i + 1))[i] if len(ser.get(k) or []) > i else None) for k in keys}
+        n_priced = (ser.get("n") or [None] * (i + 1))[i] if len(ser.get("n") or []) > i else None
+        src, formed = "history", None
+    else:
+        return None
+    st = fac.get("stats") or {}
+    z = {}
+    for k in fct.FACTORS:
+        zz = fct.zscore(vals.get(k), st.get(k))
+        z[k] = round(zz, 2) if zz is not None else None
+    legs = {"ew": vals.get("ew"), "siL": vals.get("siL"), "momL": vals.get("momL"), "momS": vals.get("momS"),
+            "rev": vals.get("rev"), "beta": vals.get("beta")}
+    chg, sig = spx.get("chg"), spx.get("sigma")
+    idx = {"chg": chg, "sigma": sig, "gap": spx.get("gap")}
+    if chg is not None and spx.get("gap") is not None and abs(chg) >= 0.5 and (spx["gap"] > 0) == (chg > 0):
+        idx["gapShare"] = round(min(1.5, spx["gap"] / chg), 2)
+    if cards.get("^VIX"):
+        idx["vixChg"] = cards["^VIX"].get("chg")
+    hyg = cards.get("HYG")
+    if hyg and chg is not None and hyg.get("_series") and spx.get("_series"):
+        idx["credit"] = hyg.get("chg")
+        b = _beta_on(*spx["_series"], *hyg["_series"])
+        if b is not None:
+            idx["creditBeta"] = round(b, 3)
+            idx["creditImplied"] = round(b * chg, 3)
+    if ins:
+        idx["cwEw"] = round(ins["cw"] - ins["ew"], 2)
+        idx["pctUp"] = ins["pctUp"]
+    dfs = [cards[x]["chg"] for x in DEFENSIVE if cards.get(x)]
+    cys = [cards[x]["chg"] for x in CYCLICAL if cards.get(x)]
+    if dfs and cys:
+        idx["defCyc"] = round(sum(dfs) / len(dfs) - sum(cys) / len(cys), 2)
+    ch = fct.character(z, legs, idx)
+    out = {"date": D, "formedOn": formed, "source": src, "provisional": not spx.get("final"),
+           "coverage": {"priced": n_priced, "of": n_uni},
+           "ret": {k: round(vals[k], 3) for k in ("ew",) + fct.FACTORS if vals.get(k) is not None}, "z": z,
+           "legs": {k: round(v, 3) for k, v in legs.items() if v is not None}, "idx": idx,
+           "label": ch["label"], "signals": ch["signals"], "flags": ch["flags"],
+           "basis": "a price signature of covering / de-grossing from long-short baskets - no positioning data is fetched"}
+    in_sell = bool(read) and (read.get("state") in ("sell-off", "heavy sell-off") or read.get("overlay") in ("correction", "bear market"))
+    dd = (spx.get("high52") or {}).get("dd")
+    if sig is not None and sig >= RELIEF_SIGMA and (in_sell or (dd is not None and dd <= RELIEF_DD)):
+        sd_, sc_ = spx["_series"]
+        hd, hc = (sd_[:-1], sc_[:-1]) if sd_ and sd_[-1] == D else (sd_, sc_)
+        rb = relief_base(hd, hc)
+        if rb:
+            out["relief"] = rb
+    prev = [r for r in (prior_rows or []) if str(r.get("date") or "") < D]
+    if prev and chg is not None and chg < 0:
+        p = prev[-1]
+        lab = p.get("flow")
+        if not lab and ((fac.get("last") or {}).get("date") == p.get("date")):
+            lab = ((fac.get("last") or {}).get("character") or {}).get("label")
+        if lab == "short-covering rally":
+            out["after"] = {"prior": p["date"], "priorChg": p.get("chg"), "chg": chg}
+    return out
+
+
+def flow_notes(fl, spx):
+    """The flows as notables: the label with its numbers, the relief base rate, a missing follow-through."""
+    out = []
+    if not fl:
+        return out
+    so_far = " so far" if fl.get("provisional") else ""
+    sig = fl.get("signals") or []
+    if fl.get("label"):
+        zmax = max([abs(x.get("z") or 0) for x in sig] or [0])
+        body = "; ".join(x["text"] for x in sig[:4])
+        out.append({"id": "flows", "sym": SPX, "kind": "flows", "sev": 3 if zmax >= fct.Z_EXTREME else 2 if sig else 1,
+                    "text": f"Positioning{so_far}: {fl['label']}" + (f" - {body}" if body else "") + ". (A price signature from long-short baskets, not reported flows.)"})
+    rel = fl.get("relief")
+    if rel and rel.get("n"):
+        out.append({"id": "flows:relief", "sym": SPX, "kind": "relief", "sev": 2,
+                    "text": f"A {spx.get('sigma', 0):+.1f} sd gain inside a sell-off. In {spx['name']}'s record since {rel['since'][:4]}, {rel['n']} days like it "
+                            f"(a {RELIEF_SIGMA:.0f} sd+ gain with the index {abs(RELIEF_DD):.0f}%+ below its 52-week high): the next session was down "
+                            f"{(rel['nextDown'] or 0) * 100:.0f}% of the time (median {rel['next1']:+.2f}%), five sessions on the median was {rel['next5']:+.2f}%, "
+                            f"and {(rel['retest'] or 0) * 100:.0f}% closed below the pre-rally close within {rel['look']} sessions - the biggest up days come inside sell-offs."})
+    aft = fl.get("after")
+    if aft:
+        out.append({"id": "flows:after", "sym": SPX, "kind": "follow-through", "sev": 2,
+                    "text": f"No follow-through{so_far}: {spx['name']} {aft['chg']:+.2f}% the session after the short-covering rally of "
+                            f"{_when(aft['prior'])}" + (f" ({aft['priorChg']:+.2f}%)." if aft.get("priorChg") is not None else ".")})
+    return out
+
+
+def proxy_tape(src, proxy):
+    """z206: the macro book's tape rebuilt from TRAPP2's - each proxied symbol takes its ETF's price, prior close, open
+    and close (the same symbol for the sector SPDRs, HYG and TLT)."""
+    if not src or not proxy:
+        return None
+    t = {k: v for k, v in src.items() if k not in ("p", "close", "open", "prevClose", "snapshots")}
+    for f in ("p", "close", "open", "prevClose"):
+        m = src.get(f) or {}
+        t[f] = {s: m[e] for s, e in proxy.items() if e in m}
+    if not t["p"] and src.get("snapshots"):                 # a day file: the last snapshot's prices
+        last = src["snapshots"][-1].get("p") or {}
+        t["p"] = {s: last[e] for s, e in proxy.items() if e in last}
+    t["proxyOf"] = PROXY_BOOK
+    return t
+
+
+def load_proxies(hist):
+    """z206: the macro book unreadable -> the indices' ETFs and the same-symbol series from TRAPP2 (in place). -> {sym: ETF}"""
+    want = {s: e for s, (e, _) in PROXIES.items()}
+    want.update({s: s for s in PROXY_SAME})
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        got = dict(zip(want, ex.map(lambda s: fetch_json(hist_url(want[s], PROXY_BOOK)), want)))
+    out = {}
+    for s, rows in got.items():
+        if rows and not hist.get(s):
+            hist[s] = rows
+            out[s] = want[s]
+    return out
+
+
 # ---------------------------------------------------------------------------------------------------- build ---
 def strip(c, lean=False):
     """A card as written. lean (sectors, VIX, cross-asset): the next-close scenarios are dropped - the notables already
@@ -778,13 +1000,16 @@ def macro_context():
             "headline": w.get("headline"), "provisional": bool(w.get("provisional"))}
 
 
-def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, macro=None, day_tape=None):
+def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, macro=None, day_tape=None,
+          names=None, proxy=None, factors=None, prior_rows=None):
     """hist {sym: rows}; tape: TRAPP2-1's latest; member_tapes: [the equity books' latest]; prior_days {date: members}
-    for the streak attribution. -> the latest.json document (with a members map for the daily file)."""
+    for the streak attribution. z206: names {sym: label} / proxy {sym: ETF} when the macro book is out; factors = the
+    factors.json document; prior_rows = history.json rows (the session before). -> the latest.json document (with a
+    members map for the daily file)."""
     cards = {}
     for sym, name in INDICES + VOLS + SECTORS + CROSS:
         try:
-            cards[sym] = card(sym, name, hist.get(sym), tape, with_volume=(sym == SPX))
+            cards[sym] = card(sym, (names or {}).get(sym, name), hist.get(sym), tape, with_volume=(sym == SPX))
         except Exception as e:
             log(f"{sym}: {type(e).__name__}: {e}")
             cards[sym] = None
@@ -800,8 +1025,8 @@ def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, ma
                 c["fromOpen"] = round((c["close"] / o - 1) * 100, 3)
     weights, wdate = spx_weights(universe)
     ins = None
+    prices = load_member_prices(spx["date"], member_tapes)
     if weights:
-        prices = load_member_prices(spx["date"], member_tapes)
         ser_d, ser_c = spx["_series"]
         k0 = max((i for i, d in enumerate(ser_d) if d <= wdate), default=None) if wdate else None
         drift = (spx["prevClose"] / ser_c[k0]) if k0 is not None else 1.0
@@ -828,6 +1053,18 @@ def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, ma
         nxt["ifToday"] = not spx["final"]
     read = sell_off_read(spx, cards.get("^VIX"), ins, cards.get("HYG"))
     notes = notables([cards.get(s) for s, _ in INDICES + VOLS + SECTORS + CROSS], ins, read, attrib, nxt)
+    flows = None
+    try:                                                 # z206: who was forced to trade
+        flows = day_flows(factors, prices, spx, cards, ins, read, prior_rows)
+        notes = sorted(notes + flow_notes(flows, spx), key=note_key)
+    except Exception as e:                               # noqa: BLE001 - the read must not fail on the flows
+        log(f"flows: {type(e).__name__}: {e}")
+    if proxy:
+        gone = [n for s, n in VOLS + CROSS + [("^NYA", "NYSE Composite")] if s not in proxy and not cards.get(s)]
+        notes.insert(0, {"id": "data:macro", "sym": SPX, "kind": "data", "sev": 2,
+                         "text": "The macro book (TRAPP2-1) can't be read - the indices come from their ETFs in TRAPP2 ("
+                                 + ", ".join(f"{PROXIES[k][1].split(' (')[0]} = {v}" for k, v in proxy.items() if k in PROXIES)
+                                 + ")" + (f"; no {', '.join(gone)} until it is back." if gone else ".")})
     if macro and read:
         notes.append({"id": "macro", "sym": SPX, "kind": "history", "sev": 1,
                       "text": f"The slower read (early warning: credit, lending, labour and valuation data, {macro.get('date')}): {str(macro.get('level') or '').upper()} risk"
@@ -838,7 +1075,7 @@ def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, ma
     doc = {"build": BUILD, "asOf": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "date": spx["date"],
            "state": "final" if spx["final"] else "intraday", "phase": phase_of(tape), "etTime": (tape or {}).get("etTime"), "macro": macro,
            "tape": {"asOf": (tape or {}).get("asOf"), "session": (tape or {}).get("session"), "marketOpen": (tape or {}).get("marketOpen")},
-           "read": read, "notable": notes, "next": nxt,
+           "read": read, "notable": notes, "next": nxt, "flows": flows, "proxy": proxy or None,
            "indices": {s: strip(cards.get(s)) for s, _ in INDICES},
            "vol": {s: strip(cards.get(s), lean=True) for s, _ in VOLS},
            "sectors": {s: strip(cards.get(s), lean=True) for s, _ in SECTORS},
@@ -882,6 +1119,9 @@ def history_rows(spx_rows, vix_rows, daily_dir, keep=KEEP_HISTORY):
             row.update(gap=g["gap"], fromOpen=g.get("fromOpen"))
         if rec and rec.get("read"):
             row.update(read=rec["read"].get("label"), on=rec["read"].get("on"))
+        fl = (rec or {}).get("flows") or {}
+        if fl.get("date") == ds[k]:
+            row.update(flow=fl.get("label"), fz=fl.get("z"))
         out.append(row)
     return out
 
@@ -902,6 +1142,11 @@ def today_row(doc):
         row.update(gap=spx["gap"], fromOpen=spx.get("fromOpen"))
     if doc.get("read"):
         row.update(read=doc["read"].get("label"), on=doc["read"].get("on"))
+    fl = doc.get("flows") or {}
+    if fl.get("date") == spx["date"]:
+        row.update(flow=fl.get("label"), fz=fl.get("z"))
+    if doc.get("proxy"):
+        row.update(spx=None, src=doc["proxy"].get(SPX))      # z206: an ETF's level is not the index's
     return row
 
 
@@ -911,10 +1156,20 @@ def main():
     syms = [s for s, _ in INDICES + VOLS + SECTORS + CROSS]
     with ThreadPoolExecutor(max_workers=8) as ex:
         hist = dict(zip(syms, ex.map(lambda s: fetch_json(hist_url(s)), syms)))
-    if not hist.get(SPX):
-        log("no S&P 500 history - nothing to read (kept the last files)")
-        return 0
+    proxy, names = {}, {}
+    if not hist.get(SPX):                                # z206: the macro book can't be read - its ETFs in TRAPP2
+        proxy = load_proxies(hist)
+        names = {s: PROXIES[s][1] for s in proxy if s in PROXIES}
+        if not hist.get(SPX):
+            log("no S&P 500 history (TRAPP2-1 ^GSPC, TRAPP2 SPY) - nothing to read (kept the last files)")
+            return 0
+        log("the macro book (TRAPP2-1) can't be read - from TRAPP2: " + ", ".join(f"{k} = {v}" for k, v in proxy.items()))
     member_tapes = [book_tape(b) for b in BOOKS]
+    if proxy and not tape:
+        tape = proxy_tape(member_tapes[BOOKS.index(PROXY_BOOK)], proxy)
+    macro_day = (lambda d: proxy_tape(book_tape(PROXY_BOOK, d), proxy)) if proxy else (lambda d: book_tape(MACRO_BOOK, d))
+    fac = _read(DATA / "derived" / "factors.json")      # z206: pipeline/factors.py's baskets and year of spreads
+    old = _read(OUT / "history.json") or {}
     universe = _read(DATA / "earnings" / "universe.json", {})
     weights, wdate = spx_weights(universe)
     cached = _read(OUT / "weights_base.json", {})
@@ -937,7 +1192,8 @@ def main():
             continue
         k = ds.index(d)
         sub = {s: [r for r in (hist.get(s) or []) if str(r.get("date"))[:10] <= d] for s in syms}
-        past = build(sub, None, tapes, universe, sectors, base, prior, None, book_tape(MACRO_BOOK, d))
+        past = build(sub, None, tapes, universe, sectors, base, prior, None, macro_day(d),
+                     names=names, proxy=proxy, factors=fac, prior_rows=old.get("rows"))
         if past and past.get("_members"):
             prior[d] = past["_members"]
             rec = {k2: v for k2, v in past.items() if k2 != "_members"}
@@ -946,7 +1202,8 @@ def main():
             log(f"backfilled {d}: {len(past['_members'])} members")
     # z202: a day read from the history (a weekend / after-hours run, once the history holds the close) still gets its
     # official opens - the gap and the move from the open - from TRAPP2-1's day tape (the 11-20 final lost them)
-    doc = build(hist, tape, member_tapes, universe, sectors, base, prior, macro_context(), book_tape(MACRO_BOOK, ds[-1]))
+    doc = build(hist, tape, member_tapes, universe, sectors, base, prior, macro_context(), macro_day(ds[-1]),
+                names=names, proxy=proxy, factors=fac, prior_rows=old.get("rows"))
     if not doc:
         log("no read")
         return 0
@@ -960,18 +1217,25 @@ def main():
             _write(daily / f"{doc['date']}.json", rec)
     if same(_read(OUT / "latest.json")) != same(doc):
         _write(OUT / "latest.json", doc)                    # unchanged since the last run (after the close, a re-run): no commit
-    rows = history_rows(hist[SPX], hist.get("^VIX"), daily)
     today = today_row(doc)
-    if today and (not rows or rows[-1]["date"] < today["date"]):
-        rows = (rows + [today])[-KEEP_HISTORY:]            # the final close before the index history has the day
-    old = _read(OUT / "history.json") or {}
+    if proxy:                                            # z206: keep the index's rows; an ETF's level is not the index's
+        rows = list(old.get("rows") or [])
+        if today:
+            rows = ([r for r in rows if r.get("date") != today["date"]] + [today])[-KEEP_HISTORY:]
+    else:
+        rows = history_rows(hist[SPX], hist.get("^VIX"), daily)
+        if today and (not rows or rows[-1]["date"] < today["date"]):
+            rows = (rows + [today])[-KEEP_HISTORY:]        # the final close before the index history has the day
     if old.get("rows") != rows or old.get("build") != BUILD:
-        _write(OUT / "history.json", {"build": BUILD, "asOf": doc["asOf"], "rows": rows})
+        _write(OUT / "history.json", dict({"build": BUILD, "asOf": doc["asOf"], "rows": rows}, **({"proxy": proxy} if proxy else {})))
     spx = doc["indices"][SPX]
     st = spx.get("streak") or {}
-    log(f"trends {doc['date']} {doc['state']} {doc.get('etTime') or ''}: S&P 500 {spx['chg']:+.2f}% · run {st.get('dir')} {st.get('n')} "
-        f"(through {st.get('through')}) · read {(doc.get('read') or {}).get('label')} · {len(doc['notable'])} notable · "
-        f"members {((doc.get('internals') or {}).get('priced'))} · {time.time() - t0:.1f}s")
+    fl = doc.get("flows") or {}
+    log(f"trends {doc['date']} {doc['state']} {doc.get('etTime') or ''}: {spx['name']} {spx['chg']:+.2f}% · run {st.get('dir')} {st.get('n')} "
+        f"(through {st.get('through')}) · read {(doc.get('read') or {}).get('label')} · flows {fl.get('label') or '-'} "
+        + (" ".join(f"{k} {v:+.1f}sd" for k, v in (fl.get("z") or {}).items() if v is not None) if fl else "")
+        + f" · {len(doc['notable'])} notable · members {((doc.get('internals') or {}).get('priced'))}"
+        + (f" · PROXIES {proxy}" if proxy else "") + f" · {time.time() - t0:.1f}s")
     return 0
 
 

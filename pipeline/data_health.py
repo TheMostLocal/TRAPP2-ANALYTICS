@@ -107,6 +107,9 @@ CHECKS += [
     # z203: market statistics from the books' histories - rewritten only when a close changed, so a holiday leaves it
     # a day older: checked weekly (a run that stopped shows within the week, a holiday never reads as stale)
     ("Market statistics (from our closes)", "TRAPP2-ANALYTICS", "data/derived/market.json", "doc", "weekly", False),
+    # z206: the factor monitor (who was forced to trade) - the trends read prices its baskets live and the bot reads the
+    # crowded shorts; rewritten each session, checked weekly like market statistics
+    ("Factor monitor (positioning)", "TRAPP2-ANALYTICS", "data/derived/factors.json", "doc", "weekly", True),
     # z204: fundamentals as filed (SEC) checked against Yahoo - the bot's valuation step reads it (an old file is not used)
     ("Fundamentals as filed (SEC)", "TRAPP2-ANALYTICS", "data/derived/fundamentals.json", "doc", "weekly", True),
     ("News", "TRAPP2-ANALYTICS", "data/news/latest.json", "doc", "daily", False),

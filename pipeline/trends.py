@@ -69,7 +69,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import factors as fct  # noqa: E402  (z206: the factor baskets and the day's label)
 
-BUILD = "z206"
+BUILD = "z207"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "trends"
@@ -102,6 +102,8 @@ PROXIES = {"^GSPC": ("SPY", "S&P 500 (SPY)"), "^IXIC": ("QQQ", "Nasdaq-100 (QQQ)
 PROXY_SAME = tuple(s for s, _ in SECTORS) + ("HYG", "TLT")
 DEFENSIVE, CYCLICAL = ("XLP", "XLU", "XLV"), ("XLK", "XLY", "XLI", "XLF", "XLB", "XLC")
 RELIEF_SIGMA, RELIEF_DD, RELIEF_LOOK = 2.0, -5.0, 20
+REPORTED_BIG = 5.0          # z207: the 50 most-shorted's dollars short moving 5 %+ between settlements (all names 2.5 %+)
+SHORT_VOL_Z = 1.0           # the 50's short share of volume 1 sd+ off their own 20 sessions
 
 
 def log(*a):
@@ -711,8 +713,8 @@ def notables(cards, ins, read, attrib=None, nxt=None):
     return out
 
 
-KIND_ORDER = ("provisional", "flows", "follow-through", "relief", "streak", "move", "regime", "drawdown", "breadth",
-              "attribution", "fear", "distribution", "trend", "sectors", "history", "data")    # z206: + the positioning kinds
+KIND_ORDER = ("provisional", "flows", "follow-through", "relief", "short interest", "short volume", "streak", "move", "regime", "drawdown", "breadth",
+              "attribution", "fear", "distribution", "trend", "sectors", "history", "data")    # z206: + the positioning kinds (z207: FINRA's)
 
 
 def note_key(x):
@@ -816,6 +818,18 @@ def relief_base(dates, closes, sigma=RELIEF_SIGMA, dd=RELIEF_DD, look=RELIEF_LOO
             "last": [dates[k] for k in hits[-6:]]}
 
 
+def reported_of(fac):
+    """z207: factors.json's FINRA blocks for the flows card - what shorts DID at the latest settlement (lagged ~2
+    weeks) and the latest day's short share of volume. {} when the nightly file has neither."""
+    out = {}
+    rp, sv = (fac or {}).get("reported"), (fac or {}).get("shortVolume")
+    if rp and rp.get("settle"):
+        out["reported"] = {k: rp.get(k) for k in ("settle", "partial", "cover", "names", "basket", "universe", "covered", "added")}
+    if sv and sv.get("date"):
+        out["shortVolume"] = {k: sv.get(k) for k in ("date", "names", "ratio", "ratio20", "basketZ", "high")}
+    return out
+
+
 def day_flows(fac, prices, spx, cards, ins, read, prior_rows=None):
     """The day's factor spreads (factors.json's baskets, formed at the last close, priced from the tapes - or the
     nightly series for a day it already holds), z-scored on their year, with the index tells -> the label."""
@@ -839,8 +853,8 @@ def day_flows(fac, prices, spx, cards, ins, read, prior_rows=None):
         sp = fct.spreads(ret, form, B.get("si") or [])
         n_uni, n_priced = len(form["universe"]), sp.get("n") or 0
         if not n_uni or n_priced / n_uni < FLOW_MIN_COVER:
-            return {"date": D, "formedOn": formed, "source": "tapes", "coverage": {"priced": n_priced, "of": n_uni},
-                    "label": None, "note": "too few of the baskets' names priced yet"}
+            return dict({"date": D, "formedOn": formed, "source": "tapes", "coverage": {"priced": n_priced, "of": n_uni},
+                         "label": None, "note": "too few of the baskets' names priced yet"}, **reported_of(fac))
         vals = {k: (sp[k] * 100 if sp.get(k) is not None else None) for k in keys}
         src = "tapes"
     elif D in (ser.get("dates") or []):
@@ -883,7 +897,9 @@ def day_flows(fac, prices, spx, cards, ins, read, prior_rows=None):
            "ret": {k: round(vals[k], 3) for k in ("ew",) + fct.FACTORS if vals.get(k) is not None}, "z": z,
            "legs": {k: round(v, 3) for k, v in legs.items() if v is not None}, "idx": idx,
            "label": ch["label"], "signals": ch["signals"], "flags": ch["flags"],
-           "basis": "a price signature of covering / de-grossing from long-short baskets - no positioning data is fetched"}
+           "basis": "the label is a price signature of covering / de-grossing from long-short baskets; FINRA's reported short "
+                    "interest (as of its settlement, ~2 weeks behind) and Reg SHO short volume sit beside it, not inside it"}
+    out.update(reported_of(fac))
     in_sell = bool(read) and (read.get("state") in ("sell-off", "heavy sell-off") or read.get("overlay") in ("correction", "bear market"))
     dd = (spx.get("high52") or {}).get("dd")
     if sig is not None and sig >= RELIEF_SIGMA and (in_sell or (dd is not None and dd <= RELIEF_DD)):
@@ -922,6 +938,27 @@ def flow_notes(fl, spx):
                             f"(a {RELIEF_SIGMA:.0f} sd+ gain with the index {abs(RELIEF_DD):.0f}%+ below its 52-week high): the next session was down "
                             f"{(rel['nextDown'] or 0) * 100:.0f}% of the time (median {rel['next1']:+.2f}%), five sessions on the median was {rel['next5']:+.2f}%, "
                             f"and {(rel['retest'] or 0) * 100:.0f}% closed below the pre-rally close within {rel['look']} sessions - the biggest up days come inside sell-offs."})
+    rp = fl.get("reported")
+    b, u = (rp or {}).get("basket") or {}, (rp or {}).get("universe") or {}
+    if rp and b.get("chg") is not None and u.get("chg") is not None:
+        cov = ", ".join(f"{x['t']} {x['chg']:+.0f}% ({x['pct']:.0f}% short)" for x in (rp.get("covered") or [])[:3])
+        add = ", ".join(f"{x['t']} {x['chg']:+.0f}% ({x['pct']:.0f}% short)" for x in (rp.get("added") or [])[:3])
+        big = abs(b["chg"]) >= REPORTED_BIG or abs(u["chg"]) >= REPORTED_BIG / 2
+        out.append({"id": "flows:reported", "sym": SPX, "kind": "short interest", "sev": 2 if big else 1,
+                    "text": f"Reported short interest (FINRA, settled {_when(rp['settle'])}"
+                            + (f"; only {rp['cover'] * 100:.0f}% of names on it yet" if rp.get("partial") and rp.get("cover") is not None else "")
+                            + f"): the 50 most-shorted names {b['chg']:+.1f}% in dollars short vs the settlement before"
+                            + (f" (median name {b['median']:+.1f}%" + (f", {b['dtc']:.1f} days to cover)" if b.get("dtc") is not None else ")")
+                               if b.get("median") is not None else "")
+                            + f"; all names {u['chg']:+.1f}% - {u.get('adding', 0)} added 10%+, {u.get('covering', 0)} covered 10%+."
+                            + (f" Covered most: {cov}." if cov else "") + (f" Added most: {add}." if add else "")
+                            + " As of the settlement date, about two weeks before FINRA publishes it."})
+    sv = fl.get("shortVolume")
+    if sv and sv.get("ratio") is not None and sv.get("basketZ") is not None and abs(sv["basketZ"]) >= SHORT_VOL_Z:
+        out.append({"id": "flows:shortvol", "sym": SPX, "kind": "short volume", "sev": 1,
+                    "text": f"Short sales {_when(sv['date'])}: the most-shorted 50 averaged {sv['basketZ']:+.1f} sd against their own 20 sessions "
+                            f"({sv.get('high', 0)} names 2 sd+ above theirs; the median name {sv['ratio']:.0f}% of volume vs {sv.get('ratio20') or 0:.0f}%). "
+                            "Reg SHO short volume includes market makers' hedging - read the change, not the level."})
     aft = fl.get("after")
     if aft:
         out.append({"id": "flows:after", "sym": SPX, "kind": "follow-through", "sev": 2,
@@ -1190,7 +1227,6 @@ def main():
         tapes = [book_tape(b, d) for b in BOOKS]
         if not any(tapes):
             continue
-        k = ds.index(d)
         sub = {s: [r for r in (hist.get(s) or []) if str(r.get("date"))[:10] <= d] for s in syms}
         past = build(sub, None, tapes, universe, sectors, base, prior, None, macro_day(d),
                      names=names, proxy=proxy, factors=fac, prior_rows=old.get("rows"))

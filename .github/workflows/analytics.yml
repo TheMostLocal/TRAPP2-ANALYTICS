@@ -89,7 +89,11 @@ jobs:
       # which is what powers technicals + non-equity grading.
       - uses: actions/checkout@v4
         with: { repository: "${{ github.repository_owner }}/TRAPP2", path: books/TRAPP2 }
+      # z206: the macro book may be unreadable (11-24: every TRAPP2-1 file 404) - the other four books' grades, market
+      # statistics, fundamentals and factors still run (the research grades read TRAPP2-1 over HTTP when it isn't
+      # checked out, market statistics take TRAPP2's SPY as the benchmark).
       - uses: actions/checkout@v4
+        continue-on-error: true
         with: { repository: "${{ github.repository_owner }}/TRAPP2-1", path: books/TRAPP2-1 }
       - uses: actions/checkout@v4
         with: { repository: "${{ github.repository_owner }}/TRAPP2-2", path: books/TRAPP2-2 }
@@ -121,6 +125,19 @@ jobs:
             python pipeline/derived.py || echo "::warning::derived.py failed - data/derived/market.json not refreshed"
           else
             echo "::warning::derived self-test failed - data/derived/market.json not refreshed"
+          fi
+
+      # z206: the factor monitor - who was forced to trade: the most-shorted 50, 12-1 momentum, the week's losers vs
+      # winners, high vs low beta, each session's spread over a year from the books' own histories, the baskets for the
+      # next session (pipeline/trends.py prices them live) and the crowded shorts the bot reads -> data/derived/factors.json.
+      - name: Factor monitor (z206)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: |
+          if python tests/test_factors.py; then
+            python pipeline/factors.py || echo "::warning::factors.py failed - data/derived/factors.json not refreshed"
+          else
+            echo "::warning::factors self-test failed - data/derived/factors.json not refreshed"
           fi
 
       # z204: fundamentals and multiples AS FILED - the trailing twelve months and the latest balance sheet from the

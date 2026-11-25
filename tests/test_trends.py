@@ -5,6 +5,7 @@
 #  makes it N" while the market is open, opens used for the gap and the move from the open, extremes, the S&P 500 from
 #  the inside (weight x move, drifted weights, data checks), the run's attribution, the sell-off read, what happened
 #  next, the notable list, and the files written each session. Offline, < 2 s.
+#  z207: the flows card carries FINRA's reported short interest and the day's short volume, each a notable.
 #  Run: python tests/test_trends.py   (or python -m pytest tests/test_trends.py -q)
 # ============================================================
 import json
@@ -373,6 +374,36 @@ def test_flows_for_a_day_the_nightly_series_already_holds_and_the_day_after():
     assert fl3["after"]["prior"] == "2026-11-19"
     # baskets formed too long before the session (a stale nightly file) and the day not in its series: no flows
     assert tr.day_flows(fake_factors(formed="2026-11-10"), {"N0": (1, 1)}, spx2, {"^GSPC": spx2}, None, None, []) is None
+
+
+def test_flows_carry_finras_reported_short_interest_and_short_volume():
+    # z207: factors.json's FINRA blocks ride on the flows card (both return paths) and become notables
+    fac = fake_factors()
+    fac["reported"] = {"settle": "2026-11-13", "partial": False, "cover": 0.99, "names": 1490,
+                       "basket": {"chg": -8.4, "median": -6.0, "dtc": 5.0, "n": 50},
+                       "universe": {"chg": 1.2, "adding": 152, "covering": 173},
+                       "covered": [{"t": "FCN", "chg": -31.5, "pct": 6.6}, {"t": "AAL", "chg": -19.6, "pct": 11.9}],
+                       "added": [{"t": "CTRE", "chg": 121.4, "pct": 8.1}]}
+    fac["shortVolume"] = {"date": "2026-11-24", "names": 1492, "ratio": 51.1, "ratio20": 52.1, "basketZ": 1.4, "high": 35}
+    hist = {"^GSPC": rows(wave(300, 5000))}
+    last = hist["^GSPC"][-1]["close"]
+    spx = tr.card("^GSPC", "S&P 500", hist["^GSPC"], tape(p={"^GSPC": last * 1.01}, prev={"^GSPC": last}, op={"^GSPC": last * 1.005}))
+    fl = tr.day_flows(fac, {f"N{k}": (101.0, 100.0) for k in range(10)}, spx, {"^GSPC": spx}, None, None, [])
+    assert fl["reported"]["basket"]["chg"] == -8.4 and fl["shortVolume"]["basketZ"] == 1.4 and "FINRA" in fl["basis"]
+    t = {n["kind"]: n for n in tr.flow_notes(fl, spx)}
+    rp = t["short interest"]
+    assert rp["sev"] == 2 and rp["text"].startswith("Reported short interest (FINRA, settled Nov 13, 2026): the 50 most-shorted names -8.4% in dollars short")
+    assert "median name -6.0%, 5.0 days to cover" in rp["text"] and "152 added 10%+, 173 covered 10%+" in rp["text"]
+    assert "Covered most: FCN -32% (7% short), AAL -20% (12% short)." in rp["text"] and "Added most: CTRE +121% (8% short)." in rp["text"]
+    assert t["short volume"]["text"].startswith("Short sales Nov 24, 2026: the most-shorted 50 averaged +1.4 sd") and "market makers" in t["short volume"]["text"]
+    # a small move between settlements: context (sev 1); a quiet short-volume day: no line; a part-way settlement says so
+    fac["reported"]["basket"]["chg"], fac["reported"]["partial"], fac["reported"]["cover"], fac["shortVolume"]["basketZ"] = 1.0, True, 0.67, 0.3
+    fl2 = tr.day_flows(fac, {f"N{k}": (101.0, 100.0) for k in range(10)}, spx, {"^GSPC": spx}, None, None, [])
+    t2 = {n["kind"]: n for n in tr.flow_notes(fl2, spx)}
+    assert t2["short interest"]["sev"] == 1 and "only 67% of names on it yet" in t2["short interest"]["text"] and "short volume" not in t2
+    # too few names priced: no label, the FINRA blocks still carried
+    few = tr.day_flows(fac, {"N0": (101, 100)}, spx, {"^GSPC": spx}, None, None, [])
+    assert few["label"] is None and few["reported"]["settle"] == "2026-11-13"
 
 
 def test_relief_base_counts_big_up_days_in_drawdowns():

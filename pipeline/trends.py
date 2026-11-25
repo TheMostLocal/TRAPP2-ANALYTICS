@@ -69,7 +69,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import factors as fct  # noqa: E402  (z206: the factor baskets and the day's label)
 
-BUILD = "z207"
+BUILD = "z209"
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = DATA / "trends"
@@ -94,6 +94,12 @@ KEEP_HISTORY = 400        # rows in history.json
 BACKFILL = 12             # recent sessions given a daily record when missing (tapes kept ~15 sessions)
 FWD = (1, 5, 20)
 FACTORS_PATH = DATA / "derived" / "factors.json"     # z206: pipeline/factors.py (nightly)
+# z209: dealer gamma from the index ETFs' open interest (TRAPP2-OPTIONS market.json, every options pass) - next to the
+# price signature on the flows card; OI is the prior session's close, the gamma is at the latest chain's spot and IVs
+OPTIONS_MARKET_URL = f"{RAW}/TRAPP2-OPTIONS/main/data/options/market.json"
+DEALER_SHOW = ("SPY", "QQQ", "IWM")
+DEALER_MAX_AGE_D = 3                                  # a dealer read older than this (calendar days) is not shown
+DEALER_OI_BIG = 5.0                                   # put / call OI moving 5 %+ on the common expiries is notable
 FLOW_MAX_AGE = 5                 # calendar days from the baskets' formation close to the session read with them
 FLOW_MIN_COVER = 0.5             # priced share of the baskets' universe below which no label is given
 PROXY_BOOK = "TRAPP2"            # z206: when the macro book can't be read
@@ -713,7 +719,7 @@ def notables(cards, ins, read, attrib=None, nxt=None):
     return out
 
 
-KIND_ORDER = ("provisional", "flows", "follow-through", "relief", "short interest", "short volume", "streak", "move", "regime", "drawdown", "breadth",
+KIND_ORDER = ("provisional", "flows", "follow-through", "relief", "dealer gamma", "short interest", "short volume", "streak", "move", "regime", "drawdown", "breadth",
               "attribution", "fear", "distribution", "trend", "sectors", "history", "data")    # z206: + the positioning kinds (z207: FINRA's)
 
 
@@ -919,6 +925,30 @@ def day_flows(fac, prices, spx, cards, ins, read, prior_rows=None):
     return out
 
 
+def dealer_view(mk, day):
+    """z209: TRAPP2-OPTIONS market.json -> {sym: {gex, flip, flipPct, spot, callWall, putWall, byTenor, change, asOf}} for
+    the index ETFs whose read is at most DEALER_MAX_AGE_D days before `day`, or None."""
+    dl = (mk or {}).get("dealer") if isinstance(mk, dict) else None
+    if not isinstance(dl, dict):
+        return None
+    out = {}
+    for t in DEALER_SHOW:
+        g = dl.get(t)
+        if not isinstance(g, dict) or g.get("gex") is None:
+            continue
+        try:
+            age = (date.fromisoformat(str(day)[:10]) - date.fromisoformat(str(g.get("asOf"))[:10])).days
+        except ValueError:
+            continue
+        if 0 <= age <= DEALER_MAX_AGE_D:
+            out[t] = {k: g.get(k) for k in ("gex", "flip", "flipPct", "spot", "callWall", "putWall", "byTenor", "change", "asOf")}
+    return out or None
+
+
+def _bn(v):
+    return f"{'+' if v >= 0 else '-'}${abs(v) / 1e9:.1f}B" if abs(v) >= 1e8 else f"{'+' if v >= 0 else '-'}${abs(v) / 1e6:.0f}M"
+
+
 def flow_notes(fl, spx):
     """The flows as notables: the label with its numbers, the relief base rate, a missing follow-through."""
     out = []
@@ -959,6 +989,23 @@ def flow_notes(fl, spx):
                     "text": f"Short sales {_when(sv['date'])}: the most-shorted 50 averaged {sv['basketZ']:+.1f} sd against their own 20 sessions "
                             f"({sv.get('high', 0)} names 2 sd+ above theirs; the median name {sv['ratio']:.0f}% of volume vs {sv.get('ratio20') or 0:.0f}%). "
                             "Reg SHO short volume includes market makers' hedging - read the change, not the level."})
+    dl = (fl.get("dealer") or {}).get("SPY")
+    if dl and dl.get("gex") is not None:
+        neg = dl["gex"] < 0
+        ch = dl.get("change") or {}
+        flip = dl.get("flip")
+        txt = (f"Dealer gamma (SPY options, open interest x gamma): {_bn(dl['gex'])} per 1% move - {'negative' if neg else 'positive'}: "
+               f"dealers' hedging {'adds to moves' if neg else 'damps moves'}"
+               + (f"; {'above' if flip > (dl.get('spot') or 0) else 'below'} ~${flip:,.0f} (the flip, {dl.get('flipPct'):+.1f}%) it turns "
+                  f"{'positive' if neg else 'negative'}" if flip and dl.get("flipPct") is not None else "")
+               + (f"; call wall ${dl['callWall']:,.0f}, put wall ${dl['putWall']:,.0f}" if dl.get("callWall") and dl.get("putWall") else "") + ".")
+        if ch.get("putChgPct") is not None:
+            txt += (f" Put open interest {ch['putChgPct']:+.1f}%, calls {ch['callChgPct']:+.1f}% on the {ch.get('common')} expiries both days hold "
+                    f"(the prior session's trading)" + (" - hedges closed" if ch["putChgPct"] <= -DEALER_OI_BIG else
+                                                        " - hedges added" if ch["putChgPct"] >= DEALER_OI_BIG else "") + ".")
+        txt += " An estimate: it assumes dealers are long the calls customers sell and short the puts they buy."
+        big = neg or abs(ch.get("putChgPct") or 0) >= DEALER_OI_BIG
+        out.append({"id": "flows:dealer", "sym": SPX, "kind": "dealer gamma", "sev": 2 if big else 1, "text": txt})
     aft = fl.get("after")
     if aft:
         out.append({"id": "flows:after", "sym": SPX, "kind": "follow-through", "sev": 2,
@@ -1038,7 +1085,7 @@ def macro_context():
 
 
 def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, macro=None, day_tape=None,
-          names=None, proxy=None, factors=None, prior_rows=None):
+          names=None, proxy=None, factors=None, prior_rows=None, options_market=None):
     """hist {sym: rows}; tape: TRAPP2-1's latest; member_tapes: [the equity books' latest]; prior_days {date: members}
     for the streak attribution. z206: names {sym: label} / proxy {sym: ETF} when the macro book is out; factors = the
     factors.json document; prior_rows = history.json rows (the session before). -> the latest.json document (with a
@@ -1093,6 +1140,10 @@ def build(hist, tape, member_tapes, universe, sectors, base, prior_days=None, ma
     flows = None
     try:                                                 # z206: who was forced to trade
         flows = day_flows(factors, prices, spx, cards, ins, read, prior_rows)
+        dv = dealer_view(options_market, spx["date"])                  # z209: dealer gamma beside the price signature
+        if dv:
+            flows = flows if flows is not None else {"date": spx["date"], "label": None, "source": None}
+            flows["dealer"] = dv
         notes = sorted(notes + flow_notes(flows, spx), key=note_key)
     except Exception as e:                               # noqa: BLE001 - the read must not fail on the flows
         log(f"flows: {type(e).__name__}: {e}")
@@ -1238,8 +1289,9 @@ def main():
             log(f"backfilled {d}: {len(past['_members'])} members")
     # z202: a day read from the history (a weekend / after-hours run, once the history holds the close) still gets its
     # official opens - the gap and the move from the open - from TRAPP2-1's day tape (the 11-20 final lost them)
+    opt_mk = fetch_json(OPTIONS_MARKET_URL)              # z209: dealer gamma (TRAPP2-OPTIONS); None if unreachable
     doc = build(hist, tape, member_tapes, universe, sectors, base, prior, macro_context(), macro_day(ds[-1]),
-                names=names, proxy=proxy, factors=fac, prior_rows=old.get("rows"))
+                names=names, proxy=proxy, factors=fac, prior_rows=old.get("rows"), options_market=opt_mk)
     if not doc:
         log("no read")
         return 0

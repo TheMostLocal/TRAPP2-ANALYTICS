@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-26T18:19:00Z",
+ "asOf": "2026-11-26T18:19:29Z",
  "session": "regular",
  "summary": {
   "ok": 16,
@@ -27,7 +27,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-26T18:07:37Z",
-   "ageMinutes": 11,
+   "ageMinutes": 12,
    "status": "ok"
   },
   {
@@ -38,7 +38,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-26T00:30:38Z",
-   "ageMinutes": 1068,
+   "ageMinutes": 1069,
    "status": "stale"
   },
   {
@@ -91,7 +91,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-26T18:07:41Z",
-   "ageMinutes": 11,
+   "ageMinutes": 12,
    "status": "ok"
   },
   {
@@ -102,7 +102,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-26T00:51:48Z",
-   "ageMinutes": 1047,
+   "ageMinutes": 1048,
    "status": "stale"
   },
   {
@@ -113,7 +113,7 @@
    "rule": "intraday",
    "maxMinutes": 35,
    "updated": "2026-11-26T02:08:43Z",
-   "ageMinutes": 970,
+   "ageMinutes": 971,
    "status": "stale",
    "note": "TRAPP2-4's session loop isn't running while 3 other books are live - Actions \u2192 TRAPP2-4 \u2192 Intraday Quotes + 15-min Tape \u2192 Run workflow; weekday 0807 UTC starts come from the Supabase heartbeat (is this repo in valuatio-intraday? re-run supabase/heartbeat.sql)"
   },
@@ -208,7 +208,7 @@
    "rule": "session",
    "maxMinutes": 50,
    "updated": "2026-11-26T18:05:46Z",
-   "ageMinutes": 13,
+   "ageMinutes": 14,
    "status": "ok"
   },
   {
@@ -252,7 +252,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T14:31:53Z",
-   "ageMinutes": 227,
+   "ageMinutes": 228,
    "status": "ok"
   },
   {
@@ -274,7 +274,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T14:32:31Z",
-   "ageMinutes": 226,
+   "ageMinutes": 227,
    "status": "ok"
   },
   {
@@ -285,7 +285,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T14:32:34Z",
-   "ageMinutes": 226,
+   "ageMinutes": 227,
    "status": "ok"
   },
   {
@@ -296,7 +296,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T14:50:36Z",
-   "ageMinutes": 208,
+   "ageMinutes": 209,
    "status": "ok"
   },
   {
@@ -318,7 +318,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T12:12:49Z",
-   "ageMinutes": 366,
+   "ageMinutes": 367,
    "status": "ok"
   },
   {

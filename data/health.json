@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-26T10:19:00Z",
+ "asOf": "2026-11-26T10:49:00Z",
  "session": "extended",
  "summary": {
   "ok": 14,
@@ -26,7 +26,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T10:07:37Z",
-   "ageMinutes": 11,
+   "ageMinutes": 41,
    "status": "ok"
   },
   {
@@ -37,7 +37,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T00:30:38Z",
-   "ageMinutes": 588,
+   "ageMinutes": 618,
    "status": "stale"
   },
   {
@@ -68,7 +68,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T10:07:29Z",
-   "ageMinutes": 12,
+   "ageMinutes": 42,
    "status": "ok"
   },
   {
@@ -79,7 +79,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T00:06:00Z",
-   "ageMinutes": 613,
+   "ageMinutes": 643,
    "status": "stale"
   },
   {
@@ -90,7 +90,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T10:07:34Z",
-   "ageMinutes": 11,
+   "ageMinutes": 41,
    "status": "ok"
   },
   {
@@ -101,7 +101,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T00:51:48Z",
-   "ageMinutes": 567,
+   "ageMinutes": 597,
    "status": "stale"
   },
   {
@@ -112,7 +112,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T02:08:43Z",
-   "ageMinutes": 490,
+   "ageMinutes": 520,
    "status": "stale",
    "note": "TRAPP2-4's session loop isn't running while 3 other books are live - Actions \u2192 TRAPP2-4 \u2192 Intraday Quotes + 15-min Tape \u2192 Run workflow; weekday 0807 UTC starts come from the Supabase heartbeat (is this repo in valuatio-intraday? re-run supabase/heartbeat.sql)"
   },
@@ -124,7 +124,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T00:07:08Z",
-   "ageMinutes": 612,
+   "ageMinutes": 642,
    "status": "stale"
   },
   {
@@ -185,7 +185,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-25T20:35:14Z",
-   "ageMinutes": 824,
+   "ageMinutes": 854,
    "status": "notDue"
   },
   {
@@ -196,7 +196,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-25T22:00:00Z",
-   "ageMinutes": 739,
+   "ageMinutes": 769,
    "status": "notDue"
   },
   {
@@ -207,7 +207,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-25T21:32:15Z",
-   "ageMinutes": 767,
+   "ageMinutes": 797,
    "status": "notDue"
   },
   {
@@ -218,7 +218,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T02:03:21Z",
-   "ageMinutes": 496,
+   "ageMinutes": 526,
    "status": "ok"
   },
   {
@@ -229,7 +229,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T02:03:21Z",
-   "ageMinutes": 496,
+   "ageMinutes": 526,
    "status": "ok"
   },
   {
@@ -240,7 +240,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-23T11:58:15Z",
-   "ageMinutes": 4221,
+   "ageMinutes": 4251,
    "status": "ok"
   },
   {
@@ -251,7 +251,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T09:20:57Z",
-   "ageMinutes": 58,
+   "ageMinutes": 88,
    "status": "ok"
   },
   {
@@ -262,7 +262,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T09:21:18Z",
-   "ageMinutes": 58,
+   "ageMinutes": 88,
    "status": "ok"
   },
   {
@@ -273,7 +273,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T09:21:36Z",
-   "ageMinutes": 57,
+   "ageMinutes": 87,
    "status": "ok"
   },
   {
@@ -284,7 +284,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T09:21:38Z",
-   "ageMinutes": 57,
+   "ageMinutes": 87,
    "status": "ok"
   },
   {
@@ -295,7 +295,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-26T09:39:40Z",
-   "ageMinutes": 39,
+   "ageMinutes": 69,
    "status": "ok"
   },
   {
@@ -306,7 +306,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T22:11:26Z",
-   "ageMinutes": 728,
+   "ageMinutes": 758,
    "status": "ok"
   },
   {
@@ -317,7 +317,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T23:18:33Z",
-   "ageMinutes": 660,
+   "ageMinutes": 690,
    "status": "ok"
   },
   {
@@ -328,7 +328,7 @@
    "rule": "daily",
    "maxMinutes": 1800,
    "updated": "2026-11-25T23:19:04Z",
-   "ageMinutes": 660,
+   "ageMinutes": 690,
    "status": "ok"
   },
   {
@@ -369,7 +369,7 @@
    "rule": "intraday",
    "maxMinutes": 50,
    "updated": "2026-11-26T10:07:37Z",
-   "ageMinutes": 11,
+   "ageMinutes": 41,
    "status": "stale",
    "perBook": {
     "TRAPP2": 332,

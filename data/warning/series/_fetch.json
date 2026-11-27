@@ -1,8 +1,8 @@
 {
- "asOf": "2026-11-27T22:45:12Z",
+ "asOf": "2026-11-27T23:42:35Z",
  "series": {
   "ABCOMP": {
-   "changed": true,
+   "changed": false,
    "first": "2001-01-03",
    "last": "2026-11-25",
    "n": 1352,
@@ -26,7 +26,7 @@
    "source": "fredgraph-csv"
   },
   "BAMLH0A0HYM2": {
-   "changed": true,
+   "changed": false,
    "first": "2023-11-28",
    "last": "2026-11-26",
    "n": 786,
@@ -42,7 +42,7 @@
    "source": "fredgraph-csv"
   },
   "BUSLOANS": {
-   "changed": true,
+   "changed": false,
    "first": "1947-01-01",
    "last": "2026-10-01",
    "n": 958,
@@ -130,7 +130,7 @@
    "source": "fredgraph-csv"
   },
   "DGS10": {
-   "changed": true,
+   "changed": false,
    "first": "1962-01-02",
    "last": "2026-11-25",
    "n": 16210,
@@ -226,7 +226,7 @@
    "source": "fredgraph-csv"
   },
   "DTB3": {
-   "changed": true,
+   "changed": false,
    "first": "1954-01-04",
    "last": "2026-11-25",
    "n": 18216,
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-27T22:45:02Z",
+   "at": "2026-11-27T23:42:28Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },
@@ -447,7 +447,7 @@
    "source": "fredgraph-csv"
   },
   "T10Y3M": {
-   "changed": true,
+   "changed": false,
    "first": "1982-01-04",
    "last": "2026-11-27",
    "n": 11228,
@@ -487,7 +487,7 @@
    "source": "fredgraph-csv"
   },
   "TOTLL": {
-   "changed": true,
+   "changed": false,
    "first": "1973-01-03",
    "last": "2026-11-18",
    "n": 2812,
@@ -519,7 +519,7 @@
    "source": "fredgraph-csv"
   },
   "VIXCLS": {
-   "changed": true,
+   "changed": false,
    "first": "1990-01-02",
    "last": "2026-11-26",
    "n": 9326,

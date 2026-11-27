@@ -188,8 +188,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -230,8 +230,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -272,8 +272,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -314,7 +314,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -440,50 +440,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "CT=F",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-25",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 74.03,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -524,9 +482,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -566,7 +524,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -650,8 +608,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -685,15 +643,15 @@
    "target": 207.235,
    "stop": 132.25,
    "volConfirmed": true,
-   "volRatio": 1.77,
+   "volRatio": 1.78,
    "track": {
     "successRate": 46.6,
     "ci95": [
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -776,8 +734,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -818,7 +776,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -860,7 +818,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -885,6 +843,1476 @@
    }
   },
   {
+   "ticker": "AMTM",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-24",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 24.86,
+   "target": 28.587273,
+   "stop": 18.12,
+   "volConfirmed": true,
+   "volRatio": 2.79,
+   "track": {
+    "successRate": 28.9,
+    "ci95": [
+     27.4,
+     30.4
+    ],
+    "n": 3331,
+    "edgeVsBaselinePct": 0.0,
+    "edgeAbnPct": -0.27,
+    "edgeAbnCI95": [
+     -0.78,
+     0.25
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 21.7,
+    "n": 387,
+    "edgeVsBaselinePct": 0.15,
+    "edgeAbnPct": -0.45,
+    "edgeAbnCI95": [
+     -1.91,
+     1.02
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "AMX",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 23.93,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "ASIC",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 25.53,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.6,
+     47.7
+    ],
+    "n": 31559,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "BHVN",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 10.78,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 28.9,
+    "ci95": [
+     27.4,
+     30.4
+    ],
+    "n": 3331,
+    "edgeVsBaselinePct": 0.0,
+    "edgeAbnPct": -0.27,
+    "edgeAbnCI95": [
+     -0.78,
+     0.25
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 21.7,
+    "n": 387,
+    "edgeVsBaselinePct": 0.15,
+    "edgeAbnPct": -0.45,
+    "edgeAbnCI95": [
+     -1.91,
+     1.02
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "BWMX",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 17.48,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 37.5,
+    "ci95": [
+     36.7,
+     38.2
+    ],
+    "n": 15974,
+    "edgeVsBaselinePct": -0.02,
+    "edgeAbnPct": -0.04,
+    "edgeAbnCI95": [
+     -0.28,
+     0.21
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 37.6,
+    "n": 2239,
+    "edgeVsBaselinePct": -1.49,
+    "edgeAbnPct": -0.42,
+    "edgeAbnCI95": [
+     -1.02,
+     0.18
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "CAVA",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 48.84,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "CNM",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 40.35,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "DIN",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 36.5,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.6,
+     47.7
+    ],
+    "n": 31559,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "DXC",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 13.33,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "FIGS",
+   "template": "high_tight_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 20.07,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 48.2,
+    "ci95": [
+     46.2,
+     50.2
+    ],
+    "n": 2316,
+    "edgeVsBaselinePct": 2.91,
+    "edgeAbnPct": 1.35,
+    "edgeAbnCI95": [
+     0.2,
+     2.5
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 1.35
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 52.1,
+    "n": 259,
+    "edgeVsBaselinePct": 6.08,
+    "edgeAbnPct": 4.95,
+    "edgeAbnCI95": [
+     1.14,
+     8.76
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 4.95
+   }
+  },
+  {
+   "ticker": "GPK",
+   "template": "cup_handle",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 10.16,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 15.2,
+    "ci95": [
+     12.3,
+     18.5
+    ],
+    "n": 528,
+    "edgeVsBaselinePct": -0.62,
+    "edgeAbnPct": -0.17,
+    "edgeAbnCI95": [
+     -1.07,
+     0.73
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 10.9,
+    "n": 55,
+    "edgeVsBaselinePct": -1.97,
+    "edgeAbnPct": -1.7,
+    "edgeAbnCI95": [
+     -4.63,
+     1.24
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "GPK",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 10.16,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "GPK",
+   "template": "asc_triangle",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 10.16,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.4,
+    "ci95": [
+     28.8,
+     31.9
+    ],
+    "n": 3446,
+    "edgeVsBaselinePct": 0.25,
+    "edgeAbnPct": 0.28,
+    "edgeAbnCI95": [
+     -0.08,
+     0.64
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 22.5,
+    "n": 284,
+    "edgeVsBaselinePct": -0.1,
+    "edgeAbnPct": -0.91,
+    "edgeAbnCI95": [
+     -2.29,
+     0.47
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "HLN",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 8.57,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "HNI",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-10-22",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 50.41,
+   "target": 54.86,
+   "stop": 45.06,
+   "volConfirmed": false,
+   "volRatio": 0.78,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "HTGC",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 14.97,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "INVH",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 25.86,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "J",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 160.24,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 37.5,
+    "ci95": [
+     36.7,
+     38.2
+    ],
+    "n": 15974,
+    "edgeVsBaselinePct": -0.02,
+    "edgeAbnPct": -0.04,
+    "edgeAbnCI95": [
+     -0.28,
+     0.21
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 37.6,
+    "n": 2239,
+    "edgeVsBaselinePct": -1.49,
+    "edgeAbnPct": -0.42,
+    "edgeAbnCI95": [
+     -1.02,
+     0.18
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "MKC-V",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 44.97,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "MTN",
+   "template": "double_top",
+   "direction": "bearish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 161.08,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 37.5,
+    "ci95": [
+     36.7,
+     38.2
+    ],
+    "n": 15974,
+    "edgeVsBaselinePct": -0.02,
+    "edgeAbnPct": -0.04,
+    "edgeAbnCI95": [
+     -0.28,
+     0.21
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 37.6,
+    "n": 2239,
+    "edgeVsBaselinePct": -1.49,
+    "edgeAbnPct": -0.42,
+    "edgeAbnCI95": [
+     -1.02,
+     0.18
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "NPK",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-18",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 161.0,
+   "target": 166.68,
+   "stop": 136.88,
+   "volConfirmed": true,
+   "volRatio": 2.01,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "NPK",
+   "template": "breakout_52w",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 161.0,
+   "target": 193.2,
+   "stop": 144.9,
+   "volConfirmed": true,
+   "volRatio": 2.01,
+   "track": {
+    "successRate": 25.9,
+    "ci95": [
+     25.1,
+     26.7
+    ],
+    "n": 11480,
+    "edgeVsBaselinePct": 0.2,
+    "edgeAbnPct": 0.46,
+    "edgeAbnCI95": [
+     0.1,
+     0.82
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.46
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.4,
+    "n": 893,
+    "edgeVsBaselinePct": 0.67,
+    "edgeAbnPct": 1.19,
+    "edgeAbnCI95": [
+     -0.07,
+     2.45
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "NPK",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 161.0,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.6,
+     47.7
+    ],
+    "n": 31559,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "NRGV",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 2.58,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "PRGO",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 15.7,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "QXO",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 10.14,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "RCL",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 314.11,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.6,
+     47.7
+    ],
+    "n": 31559,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "RELX",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 38.41,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "RXO",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-12",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 29.3,
+   "target": 30.71,
+   "stop": 27.49,
+   "volConfirmed": true,
+   "volRatio": 1.48,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.31
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SG",
+   "template": "high_tight_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 11.49,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 48.2,
+    "ci95": [
+     46.2,
+     50.2
+    ],
+    "n": 2316,
+    "edgeVsBaselinePct": 2.91,
+    "edgeAbnPct": 1.35,
+    "edgeAbnCI95": [
+     0.2,
+     2.5
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 1.35
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 52.1,
+    "n": 259,
+    "edgeVsBaselinePct": 6.08,
+    "edgeAbnPct": 4.95,
+    "edgeAbnCI95": [
+     1.14,
+     8.76
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 4.95
+   }
+  },
+  {
+   "ticker": "SJT",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 4.2,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "TEX",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-24",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 59.01,
+   "target": 66.14,
+   "stop": 49.68,
+   "volConfirmed": true,
+   "volRatio": 1.59,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "TTC",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 105.92,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.6,
+     47.7
+    ],
+    "n": 31559,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "USFD",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-10-15",
+   "confirmDate": "2026-11-25",
+   "status": "confirmed",
+   "entry": 111.66,
+   "target": 128.5,
+   "stop": 92.01,
+   "volConfirmed": false,
+   "volRatio": 0.7,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "WFG",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 62.62,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
    "ticker": "SOXX",
    "template": "bear_flag",
    "direction": "bearish",
@@ -902,9 +2330,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -944,8 +2372,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -986,7 +2414,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1028,7 +2456,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1070,7 +2498,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -1112,8 +2540,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1154,7 +2582,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1196,9 +2624,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -1238,7 +2666,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1280,8 +2708,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1322,7 +2750,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1364,7 +2792,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -1406,9 +2834,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -1448,7 +2876,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -1490,9 +2918,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -1532,7 +2960,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -1574,7 +3002,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -1616,8 +3044,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1658,8 +3086,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1700,8 +3128,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1742,8 +3170,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1784,8 +3212,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1826,8 +3254,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -1868,7 +3296,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -1952,7 +3380,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -1994,7 +3422,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2036,7 +3464,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -2061,48 +3489,6 @@
    }
   },
   {
-   "ticker": "AMTM",
-   "template": "hs_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-24",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 18.12,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 28.9,
-    "ci95": [
-     27.4,
-     30.4
-    ],
-    "n": 3331,
-    "edgeVsBaselinePct": 0.0,
-    "edgeAbnPct": -0.27,
-    "edgeAbnCI95": [
-     -0.78,
-     0.25
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 21.7,
-    "n": 387,
-    "edgeVsBaselinePct": 0.15,
-    "edgeAbnPct": -0.45,
-    "edgeAbnCI95": [
-     -1.91,
-     1.02
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "BAX",
    "template": "flat_base",
    "direction": "bullish",
@@ -2120,7 +3506,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -2162,7 +3548,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -2246,7 +3632,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2288,8 +3674,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -2330,9 +3716,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -2372,9 +3758,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -2414,7 +3800,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2456,7 +3842,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -2498,9 +3884,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -2540,8 +3926,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -2582,7 +3968,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -2624,7 +4010,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2666,9 +4052,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -2708,7 +4094,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2750,7 +4136,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -2769,48 +4155,6 @@
     "edgeAbnCI95": [
      -1.02,
      0.18
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "TEX",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-24",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 49.68,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -2876,7 +4220,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -2960,8 +4304,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3002,7 +4346,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -3044,7 +4388,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -3086,8 +4430,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3128,8 +4472,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3170,8 +4514,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3212,9 +4556,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -3254,8 +4598,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3296,8 +4640,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3338,8 +4682,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3380,7 +4724,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -3422,7 +4766,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -3464,8 +4808,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3506,8 +4850,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3548,9 +4892,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -3590,8 +4934,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3623,7 +4967,7 @@
    "status": "open",
    "entry": null,
    "target": null,
-   "stop": 4.604,
+   "stop": 4.6,
    "volConfirmed": null,
    "volRatio": null,
    "track": {
@@ -3632,7 +4976,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -3674,8 +5018,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3716,7 +5060,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -3758,8 +5102,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3842,7 +5186,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -3884,7 +5228,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -3926,8 +5270,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -3968,7 +5312,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -4010,7 +5354,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4052,7 +5396,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -4094,7 +5438,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4136,8 +5480,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4262,7 +5606,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4304,8 +5648,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4346,7 +5690,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4388,8 +5732,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4430,8 +5774,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4472,7 +5816,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -4514,8 +5858,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4556,9 +5900,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -4598,7 +5942,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -4640,7 +5984,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4682,8 +6026,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -4724,7 +6068,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -4766,9 +6110,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -4850,7 +6194,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -4892,7 +6236,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -4934,7 +6278,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -4976,7 +6320,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5018,9 +6362,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5060,9 +6404,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5102,7 +6446,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5144,7 +6488,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5186,9 +6530,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5228,9 +6572,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5270,7 +6614,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -5312,7 +6656,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5354,7 +6698,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -5396,7 +6740,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -5438,7 +6782,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -5480,7 +6824,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5522,7 +6866,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5564,9 +6908,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5606,7 +6950,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5648,9 +6992,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5690,9 +7034,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5732,9 +7076,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -5774,7 +7118,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5816,7 +7160,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5858,7 +7202,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -5900,7 +7244,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -5942,7 +7286,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -5984,7 +7328,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6026,7 +7370,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6068,7 +7412,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6110,7 +7454,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -6152,7 +7496,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -6194,7 +7538,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6236,9 +7580,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -6278,7 +7622,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -6320,9 +7664,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -6362,9 +7706,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -6404,7 +7748,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6446,9 +7790,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -6488,7 +7832,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6530,9 +7874,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -6572,7 +7916,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6614,7 +7958,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -6656,7 +8000,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -6698,7 +8042,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6740,7 +8084,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -6782,7 +8126,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6824,7 +8168,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6866,7 +8210,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -6908,7 +8252,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6950,7 +8294,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -6992,7 +8336,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7034,7 +8378,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -7076,7 +8420,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7118,7 +8462,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -7160,7 +8504,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -7202,9 +8546,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7244,7 +8588,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7286,7 +8630,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -7328,7 +8672,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -7370,9 +8714,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7412,9 +8756,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7454,9 +8798,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7496,7 +8840,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -7580,9 +8924,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7622,7 +8966,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7664,7 +9008,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7706,7 +9050,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7748,7 +9092,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7790,7 +9134,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -7832,9 +9176,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -7874,7 +9218,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7916,7 +9260,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -7958,7 +9302,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -8000,7 +9344,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -8084,7 +9428,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8126,7 +9470,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8168,7 +9512,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -8210,7 +9554,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8252,7 +9596,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8294,7 +9638,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -8336,7 +9680,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -8378,9 +9722,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -8420,7 +9764,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -8462,7 +9806,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8504,7 +9848,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -8546,9 +9890,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -8588,9 +9932,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -8630,7 +9974,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -8672,7 +10016,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8714,7 +10058,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -8756,7 +10100,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -8798,7 +10142,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -8840,7 +10184,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -8882,9 +10226,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -8924,7 +10268,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -8966,9 +10310,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9008,7 +10352,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9050,7 +10394,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -9092,9 +10436,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9134,7 +10478,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9176,7 +10520,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9218,7 +10562,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9260,7 +10604,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9302,9 +10646,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9344,7 +10688,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -9386,7 +10730,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9428,7 +10772,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9512,9 +10856,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9554,7 +10898,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -9596,7 +10940,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9638,7 +10982,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9680,9 +11024,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9722,9 +11066,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9764,7 +11108,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -9806,7 +11150,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9848,7 +11192,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -9890,9 +11234,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -9932,7 +11276,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -9974,7 +11318,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -10016,7 +11360,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10058,7 +11402,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10100,7 +11444,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10142,7 +11486,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10184,7 +11528,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10226,7 +11570,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -10268,7 +11612,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10310,9 +11654,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -10352,7 +11696,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10394,7 +11738,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10436,7 +11780,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10478,7 +11822,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10520,7 +11864,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -10562,7 +11906,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -10604,7 +11948,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10646,7 +11990,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10688,7 +12032,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10730,7 +12074,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10772,7 +12116,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10814,7 +12158,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -10856,7 +12200,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -10898,9 +12242,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -10940,7 +12284,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -10982,9 +12326,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -11024,7 +12368,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11066,7 +12410,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11108,7 +12452,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11150,7 +12494,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11192,7 +12536,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11234,7 +12578,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11276,7 +12620,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -11318,7 +12662,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -11360,7 +12704,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11402,7 +12746,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11444,7 +12788,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11486,7 +12830,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -11528,8 +12872,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -11570,7 +12914,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11612,7 +12956,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -11654,7 +12998,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11696,7 +13040,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11738,7 +13082,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11780,7 +13124,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11822,7 +13166,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -11864,7 +13208,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11906,7 +13250,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -11948,7 +13292,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -11990,7 +13334,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12032,7 +13376,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12074,7 +13418,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12116,7 +13460,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12158,7 +13502,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12200,7 +13544,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -12242,7 +13586,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12284,7 +13628,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -12326,7 +13670,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12368,7 +13712,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12410,7 +13754,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12452,7 +13796,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -12494,7 +13838,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12536,7 +13880,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12578,7 +13922,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12620,7 +13964,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12662,7 +14006,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12704,7 +14048,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12746,7 +14090,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12788,7 +14132,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12830,7 +14174,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12872,7 +14216,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -12914,7 +14258,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -12956,7 +14300,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -12998,7 +14342,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13040,7 +14384,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13082,7 +14426,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13124,7 +14468,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13166,9 +14510,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -13208,7 +14552,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13250,7 +14594,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -13292,7 +14636,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -13334,7 +14678,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13376,7 +14720,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -13418,7 +14762,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -13460,7 +14804,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13502,7 +14846,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -13544,7 +14888,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13586,7 +14930,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13628,7 +14972,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13670,7 +15014,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -13712,7 +15056,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -13754,7 +15098,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -13796,7 +15140,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -13838,7 +15182,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13880,7 +15224,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13922,7 +15266,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -13964,7 +15308,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -14006,7 +15350,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -14048,7 +15392,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14090,7 +15434,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14132,7 +15476,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14174,7 +15518,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14216,7 +15560,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -14246,7 +15590,7 @@
    "direction": "bearish",
    "identDate": "2026-11-18",
    "confirmDate": null,
-   "status": "invalidated",
+   "status": "open",
    "entry": null,
    "target": null,
    "stop": 81.83,
@@ -14258,9 +15602,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -14300,9 +15644,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -14342,7 +15686,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14384,8 +15728,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -14426,7 +15770,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14468,7 +15812,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14510,7 +15854,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -14552,7 +15896,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -14594,7 +15938,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14636,7 +15980,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14678,7 +16022,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -14762,7 +16106,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14804,7 +16148,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -14846,7 +16190,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14871,48 +16215,6 @@
    }
   },
   {
-   "ticker": "NPK",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-11-18",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 136.88,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.7
-    ],
-    "n": 24939,
-    "edgeVsBaselinePct": -0.34,
-    "edgeAbnPct": 0.07,
-    "edgeAbnCI95": [
-     -0.18,
-     0.31
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.3,
-    "n": 1812,
-    "edgeVsBaselinePct": -0.12,
-    "edgeAbnPct": 0.18,
-    "edgeAbnCI95": [
-     -0.49,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "PARR",
    "template": "double_top",
    "direction": "bearish",
@@ -14930,7 +16232,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -14972,7 +16274,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15014,7 +16316,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -15056,7 +16358,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15098,7 +16400,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -15140,7 +16442,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -15182,7 +16484,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -15224,7 +16526,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15308,7 +16610,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15350,7 +16652,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15392,7 +16694,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -15434,7 +16736,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15476,9 +16778,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -15518,9 +16820,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -15560,7 +16862,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -15602,7 +16904,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -15644,7 +16946,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15686,7 +16988,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15728,7 +17030,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15770,7 +17072,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15812,7 +17114,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15896,7 +17198,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -15938,9 +17240,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -15980,7 +17282,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -16022,9 +17324,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -16064,7 +17366,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -16106,7 +17408,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16148,7 +17450,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16190,7 +17492,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16232,7 +17534,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16274,7 +17576,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16316,7 +17618,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16358,7 +17660,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16400,7 +17702,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16442,7 +17744,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16484,7 +17786,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16526,7 +17828,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16568,7 +17870,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16610,7 +17912,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -16652,7 +17954,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16694,7 +17996,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16736,7 +18038,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16778,9 +18080,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -16820,7 +18122,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -16862,7 +18164,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -16904,7 +18206,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -16946,9 +18248,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -16988,7 +18290,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -17030,7 +18332,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -17072,7 +18374,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -17114,9 +18416,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17156,7 +18458,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -17198,9 +18500,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17240,8 +18542,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -17282,7 +18584,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17324,7 +18626,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -17366,7 +18668,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -17408,7 +18710,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -17450,7 +18752,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -17492,7 +18794,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17534,7 +18836,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -17576,7 +18878,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -17618,9 +18920,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17660,9 +18962,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17702,7 +19004,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -17744,9 +19046,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17786,7 +19088,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -17828,9 +19130,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -17870,7 +19172,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17912,7 +19214,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -17996,7 +19298,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18038,7 +19340,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -18080,7 +19382,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -18122,7 +19424,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18164,8 +19466,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -18206,7 +19508,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -18248,9 +19550,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -18290,7 +19592,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -18332,9 +19634,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -18374,7 +19676,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -18416,7 +19718,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -18458,7 +19760,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18500,7 +19802,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -18542,7 +19844,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -18626,7 +19928,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18668,7 +19970,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18710,8 +20012,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -18752,7 +20054,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -18794,8 +20096,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -18836,7 +20138,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18878,7 +20180,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -18920,7 +20222,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -19004,7 +20306,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -19046,9 +20348,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -19088,7 +20390,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -19130,7 +20432,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -19172,9 +20474,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -19214,7 +20516,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19298,8 +20600,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -19340,9 +20642,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -19382,8 +20684,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -19424,8 +20726,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -19466,7 +20768,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -19508,7 +20810,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -19550,7 +20852,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -19592,7 +20894,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19634,7 +20936,7 @@
      23.9,
      26.6
     ],
-    "n": 3863,
+    "n": 3864,
     "edgeVsBaselinePct": 0.38,
     "edgeAbnPct": 0.05,
     "edgeAbnCI95": [
@@ -19676,8 +20978,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -19718,7 +21020,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -19760,8 +21062,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -19802,7 +21104,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -19844,7 +21146,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19886,9 +21188,9 @@
      11.8,
      13.3
     ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "n": 6948,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
@@ -19928,7 +21230,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -19970,7 +21272,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20012,7 +21314,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -20054,7 +21356,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -20096,7 +21398,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20138,7 +21440,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -20180,7 +21482,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -20222,7 +21524,7 @@
      36.7,
      38.2
     ],
-    "n": 15970,
+    "n": 15974,
     "edgeVsBaselinePct": -0.02,
     "edgeAbnPct": -0.04,
     "edgeAbnCI95": [
@@ -20247,48 +21549,6 @@
    }
   },
   {
-   "ticker": "RXO",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-11-12",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 27.49,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.7
-    ],
-    "n": 24939,
-    "edgeVsBaselinePct": -0.34,
-    "edgeAbnPct": 0.07,
-    "edgeAbnCI95": [
-     -0.18,
-     0.31
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.3,
-    "n": 1812,
-    "edgeVsBaselinePct": -0.12,
-    "edgeAbnPct": 0.18,
-    "edgeAbnCI95": [
-     -0.49,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "QCOM",
    "template": "double_bottom",
    "direction": "bullish",
@@ -20306,8 +21566,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20373,48 +21633,6 @@
    }
   },
   {
-   "ticker": "^TWII",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 39701.6406,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "ADI",
    "template": "double_bottom",
    "direction": "bullish",
@@ -20432,8 +21650,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20474,8 +21692,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20516,7 +21734,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -20558,7 +21776,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20600,8 +21818,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20642,8 +21860,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20684,8 +21902,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20726,7 +21944,7 @@
      20.1,
      22.7
     ],
-    "n": 3815,
+    "n": 3816,
     "edgeVsBaselinePct": -0.23,
     "edgeAbnPct": -0.15,
     "edgeAbnCI95": [
@@ -20768,7 +21986,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20810,8 +22028,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20852,8 +22070,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -20894,7 +22112,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20978,8 +22196,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21146,8 +22364,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21188,8 +22406,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21230,8 +22448,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21398,7 +22616,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -21440,8 +22658,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21482,8 +22700,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21524,8 +22742,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21566,8 +22784,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21608,8 +22826,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21650,8 +22868,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21692,8 +22910,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21734,8 +22952,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21776,8 +22994,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21860,8 +23078,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21902,7 +23120,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -21944,8 +23162,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -21986,8 +23204,8 @@
      45.8,
      47.3
     ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
@@ -22028,7 +23246,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -22047,720 +23265,6 @@
     "edgeAbnCI95": [
      -0.63,
      0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "AAMI",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-09-21",
-   "confirmDate": "2026-11-10",
-   "status": "failure",
-   "entry": 97.57,
-   "target": 107.14,
-   "stop": 87.48,
-   "volConfirmed": false,
-   "volRatio": 0.82,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.7
-    ],
-    "n": 24939,
-    "edgeVsBaselinePct": -0.34,
-    "edgeAbnPct": 0.07,
-    "edgeAbnCI95": [
-     -0.18,
-     0.31
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.3,
-    "n": 1812,
-    "edgeVsBaselinePct": -0.12,
-    "edgeAbnPct": 0.18,
-    "edgeAbnCI95": [
-     -0.49,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ALTG",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-11-05",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 4.97,
-   "target": 3.745,
-   "stop": 7.79,
-   "volConfirmed": true,
-   "volRatio": 2.6,
-   "track": {
-    "successRate": 37.5,
-    "ci95": [
-     36.7,
-     38.2
-    ],
-    "n": 15970,
-    "edgeVsBaselinePct": -0.02,
-    "edgeAbnPct": -0.04,
-    "edgeAbnCI95": [
-     -0.28,
-     0.21
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 37.6,
-    "n": 2239,
-    "edgeVsBaselinePct": -1.49,
-    "edgeAbnPct": -0.42,
-    "edgeAbnCI95": [
-     -1.02,
-     0.18
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "AMBP",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 4.73,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "AMG",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 401.32,
-   "target": 451.36,
-   "stop": 342.82,
-   "volConfirmed": true,
-   "volRatio": 2.53,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ARDT",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 17.93,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ASPN",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 5.72,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "AXTA",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 37.38,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BF-A",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 31.74,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BHVN",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 15.11,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BUD",
-   "template": "cup_handle",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 79.52,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 15.2,
-    "ci95": [
-     12.3,
-     18.5
-    ],
-    "n": 528,
-    "edgeVsBaselinePct": -0.62,
-    "edgeAbnPct": -0.17,
-    "edgeAbnCI95": [
-     -1.07,
-     0.73
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 10.9,
-    "n": 55,
-    "edgeVsBaselinePct": -1.97,
-    "edgeAbnPct": -1.7,
-    "edgeAbnCI95": [
-     -4.63,
-     1.24
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BUD",
-   "template": "bull_flag",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 79.52,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.7,
-    "ci95": [
-     29.1,
-     32.3
-    ],
-    "n": 3041,
-    "edgeVsBaselinePct": 2.78,
-    "edgeAbnPct": 0.94,
-    "edgeAbnCI95": [
-     0.05,
-     1.83
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.94
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 26.2,
-    "n": 286,
-    "edgeVsBaselinePct": -0.39,
-    "edgeAbnPct": -0.07,
-    "edgeAbnCI95": [
-     -2.3,
-     2.17
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BUD",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 79.52,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.4,
-    "ci95": [
-     28.8,
-     31.9
-    ],
-    "n": 3446,
-    "edgeVsBaselinePct": 0.25,
-    "edgeAbnPct": 0.28,
-    "edgeAbnCI95": [
-     -0.08,
-     0.64
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 22.5,
-    "n": 284,
-    "edgeVsBaselinePct": -0.1,
-    "edgeAbnPct": -0.91,
-    "edgeAbnCI95": [
-     -2.29,
-     0.47
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "CAE",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-22",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 27.73,
-   "target": 32.205,
-   "stop": 23.15,
-   "volConfirmed": false,
-   "volRatio": 0.58,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "CBL",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 52.54,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "COLD",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 16.14,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "COTY",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 4.33,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "CTRI",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 22.56,
-   "target": 25.1,
-   "stop": 18.65,
-   "volConfirmed": false,
-   "volRatio": 0.96,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -22784,7 +23288,7 @@
      50.4,
      51.7
     ],
-    "n": 24939,
+    "n": 24941,
     "edgeVsBaselinePct": -0.34,
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
@@ -22868,1351 +23372,7 @@
      46.6,
      47.7
     ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "EQH",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 55.53,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "EVTC",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 33.11,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "FHI",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 65.53,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "GFR",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 7.68,
-   "target": 8.465,
-   "stop": 5.48,
-   "volConfirmed": true,
-   "volRatio": 2.17,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "GRDN",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 49.85,
-   "target": 57.98,
-   "stop": 37.06,
-   "volConfirmed": true,
-   "volRatio": 2.07,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "GRDN",
-   "template": "breakout_52w",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 49.85,
-   "target": 59.82,
-   "stop": 44.865,
-   "volConfirmed": true,
-   "volRatio": 2.07,
-   "track": {
-    "successRate": 25.9,
-    "ci95": [
-     25.1,
-     26.7
-    ],
-    "n": 11480,
-    "edgeVsBaselinePct": 0.2,
-    "edgeAbnPct": 0.46,
-    "edgeAbnCI95": [
-     0.1,
-     0.82
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.46
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 26.4,
-    "n": 893,
-    "edgeVsBaselinePct": 0.67,
-    "edgeAbnPct": 1.19,
-    "edgeAbnCI95": [
-     -0.07,
-     2.45
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "GRMN",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 288.66,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "LU",
-   "template": "bear_flag",
-   "direction": "bearish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 7.21,
-   "target": 2.36,
-   "stop": 9.34,
-   "volConfirmed": true,
-   "volRatio": 4.54,
-   "track": {
-    "successRate": 12.5,
-    "ci95": [
-     11.8,
-     13.3
-    ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
-    "edgeAbnCI95": [
-     -1.15,
-     0.22
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 12.4,
-    "n": 1269,
-    "edgeVsBaselinePct": -4.61,
-    "edgeAbnPct": -2.3,
-    "edgeAbnCI95": [
-     -3.81,
-     -0.79
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "NATL",
-   "template": "vcp",
-   "direction": "bullish",
-   "identDate": "2026-10-21",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 48.2,
-   "target": 53.76,
-   "stop": 45.03,
-   "volConfirmed": false,
-   "volRatio": 0.9,
-   "track": {
-    "successRate": 21.3,
-    "ci95": [
-     19.5,
-     23.3
-    ],
-    "n": 1815,
-    "edgeVsBaselinePct": -0.73,
-    "edgeAbnPct": -0.19,
-    "edgeAbnCI95": [
-     -0.66,
-     0.27
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 17.9,
-    "n": 123,
-    "edgeVsBaselinePct": -1.39,
-    "edgeAbnPct": -0.83,
-    "edgeAbnCI95": [
-     -1.85,
-     0.2
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "NATL",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-10-21",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 48.2,
-   "target": 53.92,
-   "stop": 45.03,
-   "volConfirmed": false,
-   "volRatio": 0.9,
-   "track": {
-    "successRate": 30.4,
-    "ci95": [
-     28.8,
-     31.9
-    ],
-    "n": 3446,
-    "edgeVsBaselinePct": 0.25,
-    "edgeAbnPct": 0.28,
-    "edgeAbnCI95": [
-     -0.08,
-     0.64
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 22.5,
-    "n": 284,
-    "edgeVsBaselinePct": -0.1,
-    "edgeAbnPct": -0.91,
-    "edgeAbnCI95": [
-     -2.29,
-     0.47
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "NATL",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 48.2,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "NYT",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-15",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 72.58,
-   "target": 82.105,
-   "stop": 61.89,
-   "volConfirmed": false,
-   "volRatio": 0.55,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "PRGO",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 16.83,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "RGR",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 52.01,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "RM",
-   "template": "hs_top",
-   "direction": "bearish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 43.5,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 21.4,
-    "ci95": [
-     20.1,
-     22.7
-    ],
-    "n": 3815,
-    "edgeVsBaselinePct": -0.23,
-    "edgeAbnPct": -0.15,
-    "edgeAbnCI95": [
-     -0.65,
-     0.35
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 19.5,
-    "n": 555,
-    "edgeVsBaselinePct": -3.48,
-    "edgeAbnPct": -1.32,
-    "edgeAbnCI95": [
-     -2.55,
-     -0.08
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SKM",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 29.42,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SLDP",
-   "template": "bear_flag",
-   "direction": "bearish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "success",
-   "entry": 1.89,
-   "target": 1.33,
-   "stop": 2.25,
-   "volConfirmed": true,
-   "volRatio": 1.47,
-   "track": {
-    "successRate": 12.5,
-    "ci95": [
-     11.8,
-     13.3
-    ],
-    "n": 6944,
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
-    "edgeAbnCI95": [
-     -1.15,
-     0.22
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 12.4,
-    "n": 1269,
-    "edgeVsBaselinePct": -4.61,
-    "edgeAbnPct": -2.3,
-    "edgeAbnCI95": [
-     -3.81,
-     -0.79
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SLDP",
-   "template": "desc_triangle",
-   "direction": "bearish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "success",
-   "entry": 1.89,
-   "target": 1.33,
-   "stop": 2.25,
-   "volConfirmed": true,
-   "volRatio": 1.47,
-   "track": {
-    "successRate": 25.2,
-    "ci95": [
-     23.9,
-     26.6
-    ],
-    "n": 3863,
-    "edgeVsBaselinePct": 0.38,
-    "edgeAbnPct": 0.05,
-    "edgeAbnCI95": [
-     -0.3,
-     0.4
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 23.9,
-    "n": 589,
-    "edgeVsBaselinePct": -2.08,
-    "edgeAbnPct": -1.12,
-    "edgeAbnCI95": [
-     -1.99,
-     -0.25
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SMC",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 26.65,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SMWB",
-   "template": "double_top",
-   "direction": "bearish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 9.29,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 37.5,
-    "ci95": [
-     36.7,
-     38.2
-    ],
-    "n": 15970,
-    "edgeVsBaselinePct": -0.02,
-    "edgeAbnPct": -0.04,
-    "edgeAbnCI95": [
-     -0.28,
-     0.21
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 37.6,
-    "n": 2239,
-    "edgeVsBaselinePct": -1.49,
-    "edgeAbnPct": -0.42,
-    "edgeAbnCI95": [
-     -1.02,
-     0.18
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "SOLV",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 90.08,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "TFX",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 155.3,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "TNL",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-10-20",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 80.35,
-   "target": 94.96,
-   "stop": 61.72,
-   "volConfirmed": false,
-   "volRatio": 1.11,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17008,
-    "edgeVsBaselinePct": 0.19,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "TPC",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 97.43,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "TREX",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 54.45,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "UFI",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 6.43,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "VIRT",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 57.75,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "WMK",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 74.28,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.4,
-    "ci95": [
-     28.8,
-     31.9
-    ],
-    "n": 3446,
-    "edgeVsBaselinePct": 0.25,
-    "edgeAbnPct": 0.28,
-    "edgeAbnCI95": [
-     -0.08,
-     0.64
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 22.5,
-    "n": 284,
-    "edgeVsBaselinePct": -0.1,
-    "edgeAbnPct": -0.91,
-    "edgeAbnCI95": [
-     -2.29,
-     0.47
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "WWW",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 21.69,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ZETA",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-11-09",
-   "confirmDate": "2026-11-10",
-   "status": "confirmed",
-   "entry": 35.07,
-   "target": 38.75,
-   "stop": 29.47,
-   "volConfirmed": true,
-   "volRatio": 1.92,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.7
-    ],
-    "n": 24939,
-    "edgeVsBaselinePct": -0.34,
-    "edgeAbnPct": 0.07,
-    "edgeAbnCI95": [
-     -0.18,
-     0.31
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.3,
-    "n": 1812,
-    "edgeVsBaselinePct": -0.12,
-    "edgeAbnPct": 0.18,
-    "edgeAbnCI95": [
-     -0.49,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ZIP",
-   "template": "breakout_52w",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": "2026-11-10",
-   "status": "failure",
-   "entry": 6.59,
-   "target": 7.908,
-   "stop": 5.931,
-   "volConfirmed": true,
-   "volRatio": 8.64,
-   "track": {
-    "successRate": 25.9,
-    "ci95": [
-     25.1,
-     26.7
-    ],
-    "n": 11480,
-    "edgeVsBaselinePct": 0.2,
-    "edgeAbnPct": 0.46,
-    "edgeAbnCI95": [
-     0.1,
-     0.82
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.46
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 26.4,
-    "n": 893,
-    "edgeVsBaselinePct": 0.67,
-    "edgeAbnPct": 1.19,
-    "edgeAbnCI95": [
-     -0.07,
-     2.45
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ZIP",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-10",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 6.59,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31556,
+    "n": 31559,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [

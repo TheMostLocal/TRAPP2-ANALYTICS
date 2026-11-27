@@ -2,10 +2,10 @@
  "asOf": "2026-11-25",
  "engine": "patterns-v4",
  "liveStart": "2026-10-07",
- "baselineFwd20Pct": 1.05,
+ "baselineFwd20Pct": 1.049,
  "baselineByTrendRegime": {
   "mixed": 0.885,
-  "up": 0.857,
+  "up": 0.856,
   "down": 1.954
  },
  "regimeNow": {
@@ -29,11 +29,11 @@
    "backtest": {
     "n": 31789,
     "byStatus": {
-     "success": 14864,
-     "failure": 16692,
-     "open": 233
+     "success": 14865,
+     "failure": 16694,
+     "open": 230
     },
-    "judged": 31556,
+    "judged": 31559,
     "successRate": 47.1,
     "excludedDataBreaks": 80,
     "successCI95": [
@@ -61,9 +61,9 @@
     ]
    },
    "live": {
-    "n": 329,
+    "n": 334,
     "byStatus": {
-     "open": 329
+     "open": 334
     },
     "judged": 0,
     "successRate": null,
@@ -73,13 +73,13 @@
      null
     ],
     "avgReturnPct": null,
-    "avgFwd20Pct": -3.11,
-    "edgeVsBaselinePct": -4.16,
+    "avgFwd20Pct": -3.5,
+    "edgeVsBaselinePct": -4.55,
     "edgeAbnPct": -4.79,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.65,
+    "edgeAbnRawPct": -0.99,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -87,18 +87,18 @@
      "up": {
       "n": 26207,
       "byStatus": {
-       "success": 12323,
-       "failure": 13651,
-       "open": 233
+       "success": 12324,
+       "failure": 13653,
+       "open": 230
       },
-      "judged": 25974,
+      "judged": 25977,
       "successRate": 47.4,
       "excludedDataBreaks": 71,
       "successCI95": [
        46.8,
-       48.1
+       48.0
       ],
-      "avgReturnPct": 3.3,
+      "avgReturnPct": 3.29,
       "avgFwd20Pct": 1.17,
       "edgeVsBaselinePct": 0.31,
       "edgeAbnPct": 0.35,
@@ -192,11 +192,11 @@
      "calm": {
       "n": 23416,
       "byStatus": {
-       "success": 10846,
-       "failure": 12337,
-       "open": 233
+       "success": 10847,
+       "failure": 12339,
+       "open": 230
       },
-      "judged": 23183,
+      "judged": 23186,
       "successRate": 46.8,
       "excludedDataBreaks": 49,
       "successCI95": [
@@ -220,7 +220,7 @@
       "extremeCalls": 106,
       "successCI95Cl": [
        45.3,
-       48.3
+       48.2
       ],
       "usable": true
      },
@@ -263,11 +263,11 @@
      "up/calm": {
       "n": 21756,
       "byStatus": {
-       "success": 10080,
-       "failure": 11443,
-       "open": 233
+       "success": 10081,
+       "failure": 11445,
+       "open": 230
       },
-      "judged": 21523,
+      "judged": 21526,
       "successRate": 46.8,
       "excludedDataBreaks": 48,
       "successCI95": [
@@ -477,13 +477,13 @@
     "n": 5227,
     "byStatus": {
      "expired": 955,
-     "timeout": 2177,
+     "timeout": 2178,
      "success": 817,
      "failure": 821,
-     "confirmed": 17,
+     "confirmed": 16,
      "invalidated": 440
     },
-    "judged": 3815,
+    "judged": 3816,
     "successRate": 21.4,
     "excludedDataBreaks": 10,
     "successCI95": [
@@ -519,31 +519,32 @@
    "live": {
     "n": 101,
     "byStatus": {
-     "confirmed": 60,
+     "confirmed": 59,
      "success": 7,
      "open": 33,
-     "invalidated": 1
+     "invalidated": 1,
+     "failure": 1
     },
-    "judged": 7,
-    "successRate": 100.0,
+    "judged": 8,
+    "successRate": 87.5,
     "successCI95": [
-     64.6,
-     100.0
-    ],
-    "avgReturnPct": 23.51,
-    "avgFwd20Pct": 3.19,
-    "confirmRate": 98.5,
-    "identificationSuccessRate": 87.5,
-    "identCI95": [
      52.9,
      97.8
     ],
-    "edgeVsBaselinePct": 4.24,
+    "avgReturnPct": 18.0,
+    "avgFwd20Pct": 0.84,
+    "confirmRate": 98.5,
+    "identificationSuccessRate": 77.8,
+    "identCI95": [
+     45.3,
+     93.7
+    ],
+    "edgeVsBaselinePct": 1.89,
     "edgeAbnPct": 12.89,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 0.16,
+    "edgeAbnRawPct": -2.39,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -552,13 +553,13 @@
       "n": 3555,
       "byStatus": {
        "expired": 700,
-       "timeout": 1501,
+       "timeout": 1502,
        "success": 526,
        "failure": 514,
-       "confirmed": 17,
+       "confirmed": 16,
        "invalidated": 297
       },
-      "judged": 2541,
+      "judged": 2542,
       "successRate": 20.7,
       "excludedDataBreaks": 6,
       "successCI95": [
@@ -685,14 +686,14 @@
       "n": 2708,
       "byStatus": {
        "expired": 555,
-       "timeout": 1159,
+       "timeout": 1160,
        "success": 427,
        "failure": 377,
-       "confirmed": 17,
+       "confirmed": 16,
        "invalidated": 173
       },
-      "judged": 1963,
-      "successRate": 21.8,
+      "judged": 1964,
+      "successRate": 21.7,
       "excludedDataBreaks": 6,
       "successCI95": [
        20.0,
@@ -720,7 +721,7 @@
       "edgeAbnRawPct": -0.13,
       "extremeCalls": 22,
       "successCI95Cl": [
-       18.3,
+       18.2,
        25.2
       ],
       "usable": true
@@ -774,13 +775,13 @@
       "n": 2564,
       "byStatus": {
        "expired": 528,
-       "timeout": 1103,
+       "timeout": 1104,
        "success": 402,
        "failure": 352,
-       "confirmed": 17,
+       "confirmed": 16,
        "invalidated": 162
       },
-      "judged": 1857,
+      "judged": 1858,
       "successRate": 21.6,
       "excludedDataBreaks": 6,
       "successCI95": [
@@ -1075,12 +1076,12 @@
     "unconfirmed": {
      "n": 2389,
      "byStatus": {
-      "timeout": 1321,
+      "timeout": 1322,
       "success": 495,
       "failure": 562,
-      "confirmed": 11
+      "confirmed": 10
      },
-     "judged": 2378,
+     "judged": 2379,
      "successRate": 20.8,
      "excludedDataBreaks": 4,
      "successCI95": [
@@ -1109,7 +1110,7 @@
      "edgeAbnRawPct": -0.37,
      "extremeCalls": 44,
      "successCI95Cl": [
-      17.4,
+      17.3,
       24.3
      ],
      "usable": true
@@ -1165,10 +1166,10 @@
     ]
    },
    "live": {
-    "n": 39,
+    "n": 40,
     "byStatus": {
      "open": 18,
-     "confirmed": 12,
+     "confirmed": 13,
      "failure": 2,
      "success": 2,
      "invalidated": 5
@@ -1181,7 +1182,7 @@
     ],
     "avgReturnPct": 0.33,
     "avgFwd20Pct": -3.79,
-    "confirmRate": 76.2,
+    "confirmRate": 77.3,
     "identificationSuccessRate": 22.2,
     "identCI95": [
      6.3,
@@ -1772,15 +1773,15 @@
    "backtest": {
     "n": 27203,
     "byStatus": {
-     "timeout": 5338,
+     "timeout": 5342,
      "failure": 4647,
      "success": 5985,
-     "expired": 4115,
+     "expired": 4117,
      "invalidated": 7038,
-     "confirmed": 76,
-     "open": 4
+     "confirmed": 72,
+     "open": 2
     },
-    "judged": 15970,
+    "judged": 15974,
     "successRate": 37.5,
     "excludedDataBreaks": 27,
     "successCI95": [
@@ -1814,10 +1815,10 @@
     ]
    },
    "live": {
-    "n": 279,
+    "n": 282,
     "byStatus": {
      "success": 36,
-     "open": 107,
+     "open": 110,
      "invalidated": 14,
      "confirmed": 114,
      "failure": 8
@@ -1842,7 +1843,7 @@
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 8.8,
+    "edgeAbnRawPct": 8.81,
     "extremeCalls": 1
    },
    "byRegime": {
@@ -1850,25 +1851,25 @@
      "up": {
       "n": 18157,
       "byStatus": {
-       "timeout": 3535,
+       "timeout": 3539,
        "failure": 2909,
        "success": 3963,
-       "expired": 3000,
+       "expired": 3002,
        "invalidated": 4670,
-       "confirmed": 76,
-       "open": 4
+       "confirmed": 72,
+       "open": 2
       },
-      "judged": 10407,
+      "judged": 10411,
       "successRate": 38.1,
       "excludedDataBreaks": 20,
       "successCI95": [
-       37.2,
+       37.1,
        39.0
       ],
       "avgReturnPct": -1.62,
       "avgFwd20Pct": -0.5,
       "confirmRate": 57.7,
-      "identificationSuccessRate": 27.3,
+      "identificationSuccessRate": 27.2,
       "identCI95": [
        26.5,
        28.0
@@ -1983,16 +1984,16 @@
      "calm": {
       "n": 14170,
       "byStatus": {
-       "timeout": 2865,
+       "timeout": 2869,
        "failure": 2213,
        "success": 3281,
-       "expired": 2463,
+       "expired": 2465,
        "invalidated": 3269,
-       "confirmed": 75,
-       "open": 4
+       "confirmed": 71,
+       "open": 2
       },
-      "judged": 8359,
-      "successRate": 39.3,
+      "judged": 8363,
+      "successRate": 39.2,
       "excludedDataBreaks": 15,
       "successCI95": [
        38.2,
@@ -2074,20 +2075,20 @@
      "up/calm": {
       "n": 12995,
       "byStatus": {
-       "timeout": 2621,
+       "timeout": 2625,
        "failure": 2037,
        "success": 2987,
-       "expired": 2268,
+       "expired": 2270,
        "invalidated": 3003,
-       "confirmed": 75,
-       "open": 4
+       "confirmed": 71,
+       "open": 2
       },
-      "judged": 7645,
+      "judged": 7649,
       "successRate": 39.1,
       "excludedDataBreaks": 14,
       "successCI95": [
        38.0,
-       40.2
+       40.1
       ],
       "avgReturnPct": -1.15,
       "avgFwd20Pct": -0.14,
@@ -2112,7 +2113,7 @@
       "extremeCalls": 73,
       "successCI95Cl": [
        35.3,
-       42.8
+       42.7
       ],
       "usable": true
      },
@@ -2338,12 +2339,12 @@
     "confirmed": {
      "n": 6687,
      "byStatus": {
-      "timeout": 2336,
+      "timeout": 2337,
       "success": 2705,
       "failure": 1620,
-      "confirmed": 26
+      "confirmed": 25
      },
-     "judged": 6661,
+     "judged": 6662,
      "successRate": 40.6,
      "excludedDataBreaks": 5,
      "successCI95": [
@@ -2373,24 +2374,24 @@
      "extremeCalls": 90,
      "successCI95Cl": [
       36.3,
-      44.9
+      44.8
      ],
      "usable": true
     },
     "unconfirmed": {
      "n": 9027,
      "byStatus": {
-      "timeout": 2875,
+      "timeout": 2878,
       "failure": 2929,
       "success": 3175,
-      "confirmed": 48
+      "confirmed": 45
      },
-     "judged": 8979,
-     "successRate": 35.4,
+     "judged": 8982,
+     "successRate": 35.3,
      "excludedDataBreaks": 6,
      "successCI95": [
       34.4,
-      36.4
+      36.3
      ],
      "avgReturnPct": -2.68,
      "avgFwd20Pct": -1.44,
@@ -2414,8 +2415,8 @@
      "edgeAbnRawPct": -0.19,
      "extremeCalls": 104,
      "successCI95Cl": [
-      32.0,
-      38.8
+      31.9,
+      38.7
      ],
      "usable": true
     }
@@ -2429,15 +2430,15 @@
    "backtest": {
     "n": 30352,
     "byStatus": {
-     "success": 7923,
+     "success": 7924,
      "failure": 4067,
      "timeout": 5018,
      "expired": 4941,
      "invalidated": 8381,
-     "confirmed": 18,
+     "confirmed": 17,
      "open": 4
     },
-    "judged": 17008,
+    "judged": 17009,
     "successRate": 46.6,
     "excludedDataBreaks": 57,
     "successCI95": [
@@ -2445,22 +2446,22 @@
      47.3
     ],
     "avgReturnPct": 1.62,
-    "avgFwd20Pct": 1.24,
+    "avgFwd20Pct": 1.23,
     "confirmRate": 56.1,
     "identificationSuccessRate": 31.3,
     "identCI95": [
      30.7,
      31.9
     ],
-    "edgeVsBaselinePct": 0.19,
+    "edgeVsBaselinePct": 0.18,
     "edgeAbnPct": 0.17,
     "edgeAbnCI95": [
      -0.08,
      0.42
     ],
-    "edgeAbnT": 1.35,
+    "edgeAbnT": 1.34,
     "months": 244,
-    "nEff": 8295,
+    "nEff": 8286,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": 0.52,
@@ -2471,35 +2472,35 @@
     ]
    },
    "live": {
-    "n": 407,
+    "n": 415,
     "byStatus": {
      "invalidated": 123,
-     "open": 150,
+     "open": 156,
      "confirmed": 94,
      "failure": 21,
-     "success": 19
+     "success": 21
     },
-    "judged": 40,
-    "successRate": 47.5,
+    "judged": 42,
+    "successRate": 50.0,
     "excludedDataBreaks": 1,
     "successCI95": [
-     32.9,
-     62.5
+     35.5,
+     64.5
     ],
-    "avgReturnPct": -6.84,
-    "avgFwd20Pct": -3.93,
-    "confirmRate": 52.1,
-    "identificationSuccessRate": 11.7,
+    "avgReturnPct": -6.27,
+    "avgFwd20Pct": -3.77,
+    "confirmRate": 52.5,
+    "identificationSuccessRate": 12.7,
     "identCI95": [
-     7.6,
-     17.5
+     8.5,
+     18.7
     ],
-    "edgeVsBaselinePct": -4.98,
-    "edgeAbnPct": -4.34,
+    "edgeVsBaselinePct": -4.82,
+    "edgeAbnPct": -4.33,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.05,
+    "edgeAbnRawPct": 0.13,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -2507,15 +2508,15 @@
      "up": {
       "n": 20366,
       "byStatus": {
-       "success": 5443,
+       "success": 5444,
        "failure": 2693,
        "timeout": 3249,
        "expired": 3461,
        "invalidated": 5498,
-       "confirmed": 18,
+       "confirmed": 17,
        "open": 4
       },
-      "judged": 11385,
+      "judged": 11386,
       "successRate": 47.8,
       "excludedDataBreaks": 44,
       "successCI95": [
@@ -2523,22 +2524,22 @@
        48.7
       ],
       "avgReturnPct": 1.64,
-      "avgFwd20Pct": 1.39,
+      "avgFwd20Pct": 1.38,
       "confirmRate": 56.0,
       "identificationSuccessRate": 31.8,
       "identCI95": [
        31.1,
        32.5
       ],
-      "edgeVsBaselinePct": 0.53,
+      "edgeVsBaselinePct": 0.52,
       "edgeAbnPct": 0.34,
       "edgeAbnCI95": [
        0.06,
        0.61
       ],
-      "edgeAbnT": 2.42,
+      "edgeAbnT": 2.41,
       "months": 195,
-      "nEff": 6865,
+      "nEff": 6849,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.76,
@@ -2641,15 +2642,15 @@
      "calm": {
       "n": 18762,
       "byStatus": {
-       "success": 4692,
+       "success": 4693,
        "failure": 2651,
        "timeout": 3013,
        "expired": 3131,
        "invalidated": 5253,
-       "confirmed": 18,
+       "confirmed": 17,
        "open": 4
       },
-      "judged": 10356,
+      "judged": 10357,
       "successRate": 45.3,
       "excludedDataBreaks": 32,
       "successCI95": [
@@ -2670,9 +2671,9 @@
        -0.01,
        0.57
       ],
-      "edgeAbnT": 1.88,
+      "edgeAbnT": 1.87,
       "months": 205,
-      "nEff": 5719,
+      "nEff": 5706,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.57,
@@ -2731,22 +2732,22 @@
      "up/calm": {
       "n": 16725,
       "byStatus": {
-       "success": 4228,
+       "success": 4229,
        "failure": 2326,
        "timeout": 2689,
        "expired": 2848,
        "invalidated": 4612,
-       "confirmed": 18,
+       "confirmed": 17,
        "open": 4
       },
-      "judged": 9243,
+      "judged": 9244,
       "successRate": 45.7,
       "excludedDataBreaks": 31,
       "successCI95": [
        44.7,
        46.8
       ],
-      "avgReturnPct": 0.89,
+      "avgReturnPct": 0.9,
       "avgFwd20Pct": 0.77,
       "confirmRate": 55.4,
       "identificationSuccessRate": 30.2,
@@ -2762,7 +2763,7 @@
       ],
       "edgeAbnT": 1.82,
       "months": 177,
-      "nEff": 5136,
+      "nEff": 5123,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.62,
@@ -3007,22 +3008,22 @@
       52.5
      ],
      "avgReturnPct": 1.79,
-     "avgFwd20Pct": 1.75,
+     "avgFwd20Pct": 1.74,
      "confirmRate": 100.0,
      "identificationSuccessRate": 70.4,
      "identCI95": [
       69.0,
       71.7
      ],
-     "edgeVsBaselinePct": 0.7,
-     "edgeAbnPct": 0.36,
+     "edgeVsBaselinePct": 0.69,
+     "edgeAbnPct": 0.35,
      "edgeAbnCI95": [
       -0.06,
       0.77
      ],
      "edgeAbnT": 1.68,
      "months": 241,
-     "nEff": 3698,
+     "nEff": 3693,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.93,
@@ -3036,12 +3037,12 @@
     "unconfirmed": {
      "n": 10557,
      "byStatus": {
-      "success": 4606,
+      "success": 4607,
       "timeout": 3281,
       "failure": 2658,
-      "confirmed": 12
+      "confirmed": 11
      },
-     "judged": 10545,
+     "judged": 10546,
      "successRate": 43.7,
      "excludedDataBreaks": 11,
      "successCI95": [
@@ -3841,9 +3842,9 @@
     ]
    },
    "live": {
-    "n": 15,
+    "n": 16,
     "byStatus": {
-     "open": 1,
+     "open": 2,
      "failure": 3,
      "confirmed": 5,
      "invalidated": 5,
@@ -3864,7 +3865,7 @@
      43.5
     ],
     "edgeVsBaselinePct": -0.14,
-    "edgeAbnPct": -10.98,
+    "edgeAbnPct": -11.01,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
@@ -4554,9 +4555,9 @@
     ]
    },
    "live": {
-    "n": 16,
+    "n": 19,
     "byStatus": {
-     "open": 4,
+     "open": 7,
      "failure": 4,
      "confirmed": 4,
      "invalidated": 4
@@ -5163,35 +5164,35 @@
     "byStatus": {
      "failure": 3406,
      "invalidated": 1921,
-     "timeout": 2668,
+     "timeout": 2672,
      "success": 870,
      "expired": 120,
-     "confirmed": 37
+     "confirmed": 33
     },
-    "judged": 6944,
+    "judged": 6948,
     "successRate": 12.5,
     "excludedDataBreaks": 99,
     "successCI95": [
      11.8,
      13.3
     ],
-    "avgReturnPct": -4.93,
-    "avgFwd20Pct": -2.52,
+    "avgReturnPct": -4.91,
+    "avgFwd20Pct": -2.51,
     "confirmRate": 77.4,
     "identificationSuccessRate": 13.8,
     "identCI95": [
      12.9,
      14.6
     ],
-    "edgeVsBaselinePct": -1.47,
-    "edgeAbnPct": -0.47,
+    "edgeVsBaselinePct": -1.46,
+    "edgeAbnPct": -0.46,
     "edgeAbnCI95": [
      -1.15,
      0.22
     ],
-    "edgeAbnT": -1.35,
+    "edgeAbnT": -1.34,
     "months": 242,
-    "nEff": 2514,
+    "nEff": 2513,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": -1.25,
@@ -5204,33 +5205,33 @@
    "live": {
     "n": 157,
     "byStatus": {
-     "confirmed": 100,
-     "open": 24,
+     "confirmed": 101,
+     "open": 25,
      "failure": 13,
-     "success": 11,
-     "invalidated": 9
+     "success": 10,
+     "invalidated": 8
     },
-    "judged": 24,
-    "successRate": 45.8,
+    "judged": 23,
+    "successRate": 43.5,
     "excludedDataBreaks": 1,
     "successCI95": [
-     27.9,
-     64.9
+     25.6,
+     63.2
     ],
-    "avgReturnPct": 3.3,
-    "avgFwd20Pct": 13.86,
-    "confirmRate": 93.2,
-    "identificationSuccessRate": 33.3,
+    "avgReturnPct": 1.47,
+    "avgFwd20Pct": 13.25,
+    "confirmRate": 93.9,
+    "identificationSuccessRate": 32.3,
     "identCI95": [
-     19.8,
-     50.4
+     18.6,
+     49.9
     ],
-    "edgeVsBaselinePct": 14.91,
+    "edgeVsBaselinePct": 14.3,
     "edgeAbnPct": 19.09,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 12.77,
+    "edgeAbnRawPct": 11.91,
     "extremeCalls": 5
    },
    "byRegime": {
@@ -5240,42 +5241,42 @@
       "byStatus": {
        "failure": 1519,
        "invalidated": 727,
-       "timeout": 1499,
+       "timeout": 1503,
        "success": 452,
        "expired": 70,
-       "confirmed": 37
+       "confirmed": 33
       },
-      "judged": 3470,
+      "judged": 3474,
       "successRate": 13.0,
       "excludedDataBreaks": 63,
       "successCI95": [
        11.9,
        14.2
       ],
-      "avgReturnPct": -2.13,
-      "avgFwd20Pct": -1.04,
+      "avgReturnPct": -2.09,
+      "avgFwd20Pct": -1.03,
       "confirmRate": 81.5,
       "identificationSuccessRate": 16.3,
       "identCI95": [
        15.0,
        17.8
       ],
-      "edgeVsBaselinePct": -0.18,
-      "edgeAbnPct": 0.39,
+      "edgeVsBaselinePct": -0.17,
+      "edgeAbnPct": 0.4,
       "edgeAbnCI95": [
        -0.35,
-       1.14
+       1.15
       ],
       "edgeAbnT": 1.04,
       "months": 188,
-      "nEff": 2241,
+      "nEff": 2239,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.31,
       "extremeCalls": 126,
       "successCI95Cl": [
        10.6,
-       15.5
+       15.4
       ],
       "usable": true
      },
@@ -5374,18 +5375,18 @@
        "failure": 1186,
        "invalidated": 544,
        "success": 387,
-       "timeout": 1162,
+       "timeout": 1166,
        "expired": 58,
-       "confirmed": 37
+       "confirmed": 33
       },
-      "judged": 2735,
+      "judged": 2739,
       "successRate": 14.1,
       "excludedDataBreaks": 56,
       "successCI95": [
        12.9,
        15.5
       ],
-      "avgReturnPct": -1.72,
+      "avgReturnPct": -1.67,
       "avgFwd20Pct": -0.68,
       "confirmRate": 82.2,
       "identificationSuccessRate": 17.8,
@@ -5401,14 +5402,14 @@
       ],
       "edgeAbnT": 0.25,
       "months": 190,
-      "nEff": 1834,
+      "nEff": 1831,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": -0.54,
       "extremeCalls": 96,
       "successCI95Cl": [
        11.6,
-       16.7
+       16.6
       ],
       "usable": true
      },
@@ -5463,18 +5464,18 @@
        "failure": 1083,
        "invalidated": 495,
        "success": 361,
-       "timeout": 1097,
+       "timeout": 1101,
        "expired": 53,
-       "confirmed": 37
+       "confirmed": 33
       },
-      "judged": 2541,
+      "judged": 2545,
       "successRate": 14.2,
       "excludedDataBreaks": 52,
       "successCI95": [
        12.9,
        15.6
       ],
-      "avgReturnPct": -1.3,
+      "avgReturnPct": -1.25,
       "avgFwd20Pct": -0.53,
       "confirmRate": 82.5,
       "identificationSuccessRate": 18.1,
@@ -5485,19 +5486,19 @@
       "edgeVsBaselinePct": 0.33,
       "edgeAbnPct": 0.35,
       "edgeAbnCI95": [
-       -0.54,
+       -0.53,
        1.24
       ],
-      "edgeAbnT": 0.78,
+      "edgeAbnT": 0.79,
       "months": 161,
-      "nEff": 1672,
+      "nEff": 1670,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
-      "edgeAbnRawPct": -0.33,
+      "edgeAbnRawPct": -0.32,
       "extremeCalls": 92,
       "successCI95Cl": [
        11.5,
-       16.9
+       16.8
       ],
       "usable": true
      },
@@ -5725,12 +5726,12 @@
      "n": 2064,
      "byStatus": {
       "failure": 923,
-      "timeout": 821,
+      "timeout": 822,
       "success": 309,
-      "confirmed": 11
+      "confirmed": 10
      },
-     "judged": 2053,
-     "successRate": 15.1,
+     "judged": 2054,
+     "successRate": 15.0,
      "excludedDataBreaks": 15,
      "successCI95": [
       13.6,
@@ -5767,34 +5768,34 @@
      "n": 4692,
      "byStatus": {
       "failure": 2362,
-      "timeout": 1777,
+      "timeout": 1780,
       "success": 527,
-      "confirmed": 26
+      "confirmed": 23
      },
-     "judged": 4666,
+     "judged": 4669,
      "successRate": 11.3,
      "excludedDataBreaks": 43,
      "successCI95": [
       10.4,
       12.2
      ],
-     "avgReturnPct": -4.44,
-     "avgFwd20Pct": -2.42,
+     "avgReturnPct": -4.41,
+     "avgFwd20Pct": -2.41,
      "confirmRate": 100.0,
      "identificationSuccessRate": 18.2,
      "identCI95": [
       16.9,
       19.7
      ],
-     "edgeVsBaselinePct": -1.37,
-     "edgeAbnPct": -0.2,
+     "edgeVsBaselinePct": -1.36,
+     "edgeAbnPct": -0.19,
      "edgeAbnCI95": [
       -0.95,
       0.56
      ],
      "edgeAbnT": -0.51,
      "months": 236,
-     "nEff": 2023,
+     "nEff": 2022,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": -1.01,
@@ -5856,9 +5857,9 @@
     ]
    },
    "live": {
-    "n": 39,
+    "n": 40,
     "byStatus": {
-     "open": 7,
+     "open": 8,
      "confirmed": 14,
      "failure": 7,
      "invalidated": 10,
@@ -6463,12 +6464,12 @@
     "byStatus": {
      "failure": 1557,
      "invalidated": 947,
-     "timeout": 1331,
+     "timeout": 1332,
      "expired": 170,
      "success": 975,
-     "confirmed": 16
+     "confirmed": 15
     },
-    "judged": 3863,
+    "judged": 3864,
     "successRate": 25.2,
     "excludedDataBreaks": 6,
     "successCI95": [
@@ -6505,10 +6506,10 @@
     "n": 87,
     "byStatus": {
      "confirmed": 53,
-     "open": 19,
+     "open": 18,
      "success": 8,
      "failure": 4,
-     "invalidated": 3
+     "invalidated": 4
     },
     "judged": 12,
     "successRate": 66.7,
@@ -6517,19 +6518,19 @@
      86.2
     ],
     "avgReturnPct": 7.85,
-    "avgFwd20Pct": 3.61,
-    "confirmRate": 95.6,
-    "identificationSuccessRate": 53.3,
+    "avgFwd20Pct": 3.7,
+    "confirmRate": 94.2,
+    "identificationSuccessRate": 50.0,
     "identCI95": [
-     30.1,
-     75.2
+     28.0,
+     72.0
     ],
-    "edgeVsBaselinePct": 4.66,
+    "edgeVsBaselinePct": 4.75,
     "edgeAbnPct": 22.28,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": 2.32,
+    "edgeAbnRawPct": 2.11,
     "extremeCalls": 1
    },
    "byRegime": {
@@ -6539,17 +6540,17 @@
       "byStatus": {
        "failure": 942,
        "invalidated": 628,
-       "timeout": 898,
+       "timeout": 899,
        "expired": 137,
        "success": 633,
-       "confirmed": 16
+       "confirmed": 15
       },
-      "judged": 2473,
+      "judged": 2474,
       "successRate": 25.6,
       "excludedDataBreaks": 5,
       "successCI95": [
        23.9,
-       27.4
+       27.3
       ],
       "avgReturnPct": -0.69,
       "avgFwd20Pct": -0.12,
@@ -6573,7 +6574,7 @@
       "edgeAbnRawPct": 0.0,
       "extremeCalls": 30,
       "successCI95Cl": [
-       21.3,
+       21.2,
        29.9
       ],
       "usable": true
@@ -6671,12 +6672,12 @@
       "byStatus": {
        "failure": 744,
        "invalidated": 467,
-       "timeout": 747,
+       "timeout": 748,
        "expired": 125,
        "success": 526,
-       "confirmed": 16
+       "confirmed": 15
       },
-      "judged": 2017,
+      "judged": 2018,
       "successRate": 26.1,
       "excludedDataBreaks": 4,
       "successCI95": [
@@ -6706,7 +6707,7 @@
       "extremeCalls": 23,
       "successCI95Cl": [
        22.4,
-       29.8
+       29.7
       ],
       "usable": true
      },
@@ -6760,13 +6761,13 @@
       "byStatus": {
        "failure": 687,
        "invalidated": 437,
-       "timeout": 706,
+       "timeout": 707,
        "expired": 119,
        "success": 491,
-       "confirmed": 16
+       "confirmed": 15
       },
-      "judged": 1884,
-      "successRate": 26.1,
+      "judged": 1885,
+      "successRate": 26.0,
       "excludedDataBreaks": 4,
       "successCI95": [
        24.1,
@@ -7017,17 +7018,17 @@
     "confirmed": {
      "n": 1576,
      "byStatus": {
-      "timeout": 582,
+      "timeout": 583,
       "failure": 544,
       "success": 442,
-      "confirmed": 8
+      "confirmed": 7
      },
-     "judged": 1568,
+     "judged": 1569,
      "successRate": 28.2,
      "excludedDataBreaks": 1,
      "successCI95": [
       26.0,
-      30.5
+      30.4
      ],
      "avgReturnPct": -1.17,
      "avgFwd20Pct": -0.4,
@@ -7147,10 +7148,10 @@
     ]
    },
    "live": {
-    "n": 108,
+    "n": 109,
     "byStatus": {
      "failure": 38,
-     "confirmed": 66,
+     "confirmed": 67,
      "success": 4
     },
     "judged": 42,
@@ -7161,19 +7162,19 @@
      22.1
     ],
     "avgReturnPct": -8.32,
-    "avgFwd20Pct": -3.82,
+    "avgFwd20Pct": -3.64,
     "confirmRate": 100.0,
     "identificationSuccessRate": 9.5,
     "identCI95": [
      3.8,
      22.1
     ],
-    "edgeVsBaselinePct": -4.87,
+    "edgeVsBaselinePct": -4.69,
     "edgeAbnPct": -4.24,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -0.07,
+    "edgeAbnRawPct": 0.2,
     "extremeCalls": 0
    },
    "byRegime": {
@@ -7730,14 +7731,14 @@
    "backtest": {
     "n": 40378,
     "byStatus": {
-     "timeout": 4688,
+     "timeout": 4689,
      "invalidated": 13904,
-     "success": 12727,
+     "success": 12728,
      "expired": 1489,
      "failure": 7524,
-     "confirmed": 46
+     "confirmed": 44
     },
-    "judged": 24939,
+    "judged": 24941,
     "successRate": 51.0,
     "excludedDataBreaks": 8,
     "successCI95": [
@@ -7760,7 +7761,7 @@
     ],
     "edgeAbnT": 0.54,
     "months": 231,
-    "nEff": 5491,
+    "nEff": 5492,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
     "edgeAbnRawPct": 0.09,
@@ -7771,35 +7772,35 @@
     ]
    },
    "live": {
-    "n": 311,
+    "n": 314,
     "byStatus": {
      "invalidated": 95,
      "failure": 42,
      "open": 42,
-     "confirmed": 85,
-     "success": 47
+     "confirmed": 87,
+     "success": 48
     },
-    "judged": 89,
-    "successRate": 52.8,
+    "judged": 90,
+    "successRate": 53.3,
     "excludedDataBreaks": 1,
     "successCI95": [
-     42.5,
-     62.8
+     43.1,
+     63.3
     ],
-    "avgReturnPct": -2.63,
-    "avgFwd20Pct": -5.16,
-    "confirmRate": 64.7,
-    "identificationSuccessRate": 25.5,
+    "avgReturnPct": -2.49,
+    "avgFwd20Pct": -4.91,
+    "confirmRate": 65.1,
+    "identificationSuccessRate": 25.9,
     "identCI95": [
-     19.8,
-     32.3
+     20.2,
+     32.7
     ],
-    "edgeVsBaselinePct": -6.21,
+    "edgeVsBaselinePct": -5.96,
     "edgeAbnPct": 4.53,
     "months": 1,
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0,
-    "edgeAbnRawPct": -1.39,
+    "edgeAbnRawPct": -1.08,
     "extremeCalls": 2
    },
    "byRegime": {
@@ -7807,14 +7808,14 @@
      "up": {
       "n": 35041,
       "byStatus": {
-       "timeout": 4024,
+       "timeout": 4025,
        "invalidated": 11993,
-       "success": 11180,
+       "success": 11181,
        "expired": 1312,
        "failure": 6486,
-       "confirmed": 46
+       "confirmed": 44
       },
-      "judged": 21690,
+      "judged": 21692,
       "successRate": 51.5,
       "excludedDataBreaks": 7,
       "successCI95": [
@@ -7835,9 +7836,9 @@
        -0.1,
        0.42
       ],
-      "edgeAbnT": 1.21,
+      "edgeAbnT": 1.22,
       "months": 189,
-      "nEff": 4853,
+      "nEff": 4854,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.18,
@@ -7939,14 +7940,14 @@
      "calm": {
       "n": 29463,
       "byStatus": {
-       "timeout": 3198,
+       "timeout": 3199,
        "invalidated": 10876,
-       "success": 8552,
+       "success": 8553,
        "expired": 1156,
        "failure": 5635,
-       "confirmed": 46
+       "confirmed": 44
       },
-      "judged": 17385,
+      "judged": 17387,
       "successRate": 49.2,
       "excludedDataBreaks": 6,
       "successCI95": [
@@ -7967,9 +7968,9 @@
        -0.04,
        0.41
       ],
-      "edgeAbnT": 1.64,
+      "edgeAbnT": 1.65,
       "months": 192,
-      "nEff": 6533,
+      "nEff": 6536,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.2,
@@ -8028,14 +8029,14 @@
      "up/calm": {
       "n": 27849,
       "byStatus": {
-       "timeout": 3000,
+       "timeout": 3001,
        "invalidated": 10199,
-       "success": 8165,
+       "success": 8166,
        "expired": 1099,
        "failure": 5340,
-       "confirmed": 46
+       "confirmed": 44
       },
-      "judged": 16505,
+      "judged": 16507,
       "successRate": 49.5,
       "excludedDataBreaks": 6,
       "successCI95": [
@@ -8056,9 +8057,9 @@
        -0.04,
        0.43
       ],
-      "edgeAbnT": 1.65,
+      "edgeAbnT": 1.66,
       "months": 171,
-      "nEff": 6066,
+      "nEff": 6068,
       "edgeVerdict": "unproven",
       "trustEdgePct": 0.0,
       "edgeAbnRawPct": 0.21,
@@ -8288,12 +8289,12 @@
     "confirmed": {
      "n": 7794,
      "byStatus": {
-      "timeout": 1308,
+      "timeout": 1309,
       "success": 4407,
       "failure": 2065,
-      "confirmed": 14
+      "confirmed": 13
      },
-     "judged": 7780,
+     "judged": 7781,
      "successRate": 56.6,
      "excludedDataBreaks": 4,
      "successCI95": [
@@ -8316,7 +8317,7 @@
      ],
      "edgeAbnT": 0.74,
      "months": 229,
-     "nEff": 3898,
+     "nEff": 3899,
      "edgeVerdict": "unproven",
      "trustEdgePct": 0.0,
      "edgeAbnRawPct": 0.16,
@@ -8330,12 +8331,12 @@
     "unconfirmed": {
      "n": 16980,
      "byStatus": {
-      "success": 8213,
+      "success": 8214,
       "timeout": 3331,
       "failure": 5404,
-      "confirmed": 32
+      "confirmed": 31
      },
-     "judged": 16948,
+     "judged": 16949,
      "successRate": 48.5,
      "excludedDataBreaks": 4,
      "successCI95": [
@@ -8420,11 +8421,11 @@
     ]
    },
    "live": {
-    "n": 14,
+    "n": 16,
     "byStatus": {
      "invalidated": 8,
-     "confirmed": 5,
-     "open": 1
+     "open": 3,
+     "confirmed": 5
     },
     "judged": 0,
     "successRate": null,

@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-28T04:49:00Z",
+ "asOf": "2026-11-28T05:19:01Z",
  "session": "closed",
  "summary": {
   "ok": 11,
@@ -25,7 +25,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T00:50:40Z",
-   "ageMinutes": 238,
+   "ageMinutes": 268,
    "status": "notDue"
   },
   {
@@ -36,7 +36,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T00:50:41Z",
-   "ageMinutes": 238,
+   "ageMinutes": 268,
    "status": "notDue"
   },
   {
@@ -67,7 +67,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T01:16:43Z",
-   "ageMinutes": 212,
+   "ageMinutes": 242,
    "status": "notDue"
   },
   {
@@ -78,7 +78,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T00:05:07Z",
-   "ageMinutes": 284,
+   "ageMinutes": 314,
    "status": "notDue"
   },
   {
@@ -89,7 +89,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T01:28:41Z",
-   "ageMinutes": 200,
+   "ageMinutes": 230,
    "status": "notDue"
   },
   {
@@ -100,7 +100,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T00:10:13Z",
-   "ageMinutes": 279,
+   "ageMinutes": 309,
    "status": "notDue"
   },
   {
@@ -111,7 +111,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T01:26:05Z",
-   "ageMinutes": 203,
+   "ageMinutes": 233,
    "status": "notDue"
   },
   {
@@ -122,7 +122,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T00:08:45Z",
-   "ageMinutes": 280,
+   "ageMinutes": 310,
    "status": "notDue"
   },
   {
@@ -151,7 +151,7 @@
    "path": "data/regime_certainty.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -161,7 +161,7 @@
    "path": "data/macro/quad.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -171,7 +171,7 @@
    "path": "data/fed/monitor.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -183,7 +183,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-27T17:35:14Z",
-   "ageMinutes": 674,
+   "ageMinutes": 704,
    "status": "notDue"
   },
   {
@@ -194,7 +194,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-27T22:00:00Z",
-   "ageMinutes": 409,
+   "ageMinutes": 439,
    "status": "notDue"
   },
   {
@@ -205,7 +205,7 @@
    "rule": "session",
    "maxMinutes": null,
    "updated": "2026-11-27T21:30:13Z",
-   "ageMinutes": 439,
+   "ageMinutes": 469,
    "status": "notDue"
   },
   {
@@ -214,9 +214,9 @@
    "path": "data/earnings/season.json",
    "feedsBot": false,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-28T02:03:16Z",
-   "ageMinutes": 166,
+   "ageMinutes": 196,
    "status": "ok"
   },
   {
@@ -225,9 +225,9 @@
    "path": "data/earnings/calendar.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-28T02:03:16Z",
-   "ageMinutes": 166,
+   "ageMinutes": 196,
    "status": "ok"
   },
   {
@@ -238,7 +238,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-26T11:53:08Z",
-   "ageMinutes": 2456,
+   "ageMinutes": 2486,
    "status": "ok"
   },
   {
@@ -247,9 +247,9 @@
    "path": "data/research_grades.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-27T14:32:03Z",
-   "ageMinutes": 857,
+   "ageMinutes": 887,
    "status": "ok"
   },
   {
@@ -260,7 +260,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-27T14:32:14Z",
-   "ageMinutes": 857,
+   "ageMinutes": 887,
    "status": "ok"
   },
   {
@@ -271,7 +271,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-27T14:32:24Z",
-   "ageMinutes": 857,
+   "ageMinutes": 887,
    "status": "ok"
   },
   {
@@ -282,7 +282,7 @@
    "rule": "weekly",
    "maxMinutes": 7200,
    "updated": "2026-11-27T14:32:26Z",
-   "ageMinutes": 857,
+   "ageMinutes": 887,
    "status": "ok"
   },
   {
@@ -291,9 +291,9 @@
    "path": "data/news/latest.json",
    "feedsBot": false,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-27T14:45:42Z",
-   "ageMinutes": 843,
+   "ageMinutes": 873,
    "status": "ok"
   },
   {
@@ -302,9 +302,9 @@
    "path": "data/credit_index.json",
    "feedsBot": false,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-27T21:47:22Z",
-   "ageMinutes": 422,
+   "ageMinutes": 452,
    "status": "ok"
   },
   {
@@ -313,9 +313,9 @@
    "path": "data/sec/index.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-27T23:17:12Z",
-   "ageMinutes": 332,
+   "ageMinutes": 362,
    "status": "ok"
   },
   {
@@ -324,9 +324,9 @@
    "path": "data/short/index.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "updated": "2026-11-27T23:17:40Z",
-   "ageMinutes": 331,
+   "ageMinutes": 361,
    "status": "ok"
   },
   {
@@ -335,7 +335,7 @@
    "path": "data/extras/vol.json",
    "feedsBot": true,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -345,7 +345,7 @@
    "path": "data/extras/treasury.json",
    "feedsBot": false,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -355,7 +355,7 @@
    "path": "data/extras/checks.json",
    "feedsBot": false,
    "rule": "daily",
-   "maxMinutes": 1800,
+   "maxMinutes": 4680,
    "status": "missing",
    "note": "HTTP Error 404: Not Found"
   },
@@ -367,7 +367,7 @@
    "rule": "intraday",
    "maxMinutes": null,
    "updated": "2026-11-28T01:28:41Z",
-   "ageMinutes": 200,
+   "ageMinutes": 230,
    "status": "notDue",
    "perBook": {
     "TRAPP2": 0,

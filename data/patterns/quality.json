@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-25",
+ "asOf": "2026-11-27",
  "rule": "bad print = a one-day jump beyond x2.5 back within 25% of the prior close inside 3 bars (dropped); break = any other one-day jump beyond x2.5 (kept; calls spanning it are left out of the statistics)",
  "tickers": {
   "VELO": {

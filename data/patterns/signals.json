@@ -1,7 +1,1351 @@
 {
- "asOf": "2026-11-25",
+ "asOf": "2026-11-27",
  "window": 10,
  "signals": [
+  {
+   "ticker": "META",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 539.03,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "TSLA",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 343.69,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "V",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 401.87,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "PANW",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 366.76,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.5,
+     47.7
+    ],
+    "n": 31561,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "KMI",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 29.96,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "MA",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 625.59,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SNAP",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 4.34,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "MTCH",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 38.5,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "DXCM",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 77.94,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.32
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "APD",
+   "template": "bull_flag",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": "2026-11-27",
+   "status": "confirmed",
+   "entry": 319.09,
+   "target": 364.41,
+   "stop": 297.09,
+   "volConfirmed": false,
+   "volRatio": 0.5,
+   "track": {
+    "successRate": 30.7,
+    "ci95": [
+     29.1,
+     32.3
+    ],
+    "n": 3041,
+    "edgeVsBaselinePct": 2.78,
+    "edgeAbnPct": 0.94,
+    "edgeAbnCI95": [
+     0.05,
+     1.83
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.94
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 26.2,
+    "n": 286,
+    "edgeVsBaselinePct": -0.39,
+    "edgeAbnPct": -0.07,
+    "edgeAbnCI95": [
+     -2.3,
+     2.17
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "APD",
+   "template": "asc_triangle",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": "2026-11-27",
+   "status": "confirmed",
+   "entry": 319.09,
+   "target": 364.41,
+   "stop": 297.09,
+   "volConfirmed": false,
+   "volRatio": 0.5,
+   "track": {
+    "successRate": 30.4,
+    "ci95": [
+     28.8,
+     31.9
+    ],
+    "n": 3446,
+    "edgeVsBaselinePct": 0.25,
+    "edgeAbnPct": 0.28,
+    "edgeAbnCI95": [
+     -0.08,
+     0.64
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 22.5,
+    "n": 284,
+    "edgeVsBaselinePct": -0.1,
+    "edgeAbnPct": -0.91,
+    "edgeAbnCI95": [
+     -2.29,
+     0.47
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "USB",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 56.05,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SHOP",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 123.72,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "XLY",
+   "template": "asc_triangle",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 112.46,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 30.4,
+    "ci95": [
+     28.8,
+     31.9
+    ],
+    "n": 3446,
+    "edgeVsBaselinePct": 0.25,
+    "edgeAbnPct": 0.28,
+    "edgeAbnCI95": [
+     -0.08,
+     0.64
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 22.5,
+    "n": 284,
+    "edgeVsBaselinePct": -0.1,
+    "edgeAbnPct": -0.91,
+    "edgeAbnCI95": [
+     -2.29,
+     0.47
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "XLC",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 99.9,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "CT=F",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 74.03,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "GILD",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 177.0,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.5,
+     47.7
+    ],
+    "n": 31561,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SWKS",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 73.91,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "VMC",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 240.83,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 28.9,
+    "ci95": [
+     27.4,
+     30.4
+    ],
+    "n": 3331,
+    "edgeVsBaselinePct": 0.0,
+    "edgeAbnPct": -0.27,
+    "edgeAbnCI95": [
+     -0.78,
+     0.25
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 21.7,
+    "n": 387,
+    "edgeVsBaselinePct": 0.15,
+    "edgeAbnPct": -0.45,
+    "edgeAbnCI95": [
+     -1.91,
+     1.02
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "VMC",
+   "template": "cup_handle",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 270.87,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 15.2,
+    "ci95": [
+     12.3,
+     18.5
+    ],
+    "n": 528,
+    "edgeVsBaselinePct": -0.62,
+    "edgeAbnPct": -0.17,
+    "edgeAbnCI95": [
+     -1.07,
+     0.73
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 10.9,
+    "n": 55,
+    "edgeVsBaselinePct": -1.97,
+    "edgeAbnPct": -1.7,
+    "edgeAbnCI95": [
+     -4.63,
+     1.24
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "Z",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 27.13,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "WPP",
+   "template": "flat_base",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 25.37,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 51.0,
+    "ci95": [
+     50.4,
+     51.7
+    ],
+    "n": 24941,
+    "edgeVsBaselinePct": -0.34,
+    "edgeAbnPct": 0.07,
+    "edgeAbnCI95": [
+     -0.18,
+     0.32
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 50.3,
+    "n": 1812,
+    "edgeVsBaselinePct": -0.12,
+    "edgeAbnPct": 0.18,
+    "edgeAbnCI95": [
+     -0.49,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "BB",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 7.77,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "FNV",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 223.21,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "FOUR",
+   "template": "hs_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-25",
+   "confirmDate": "2026-11-27",
+   "status": "confirmed",
+   "entry": 46.06,
+   "target": 55.229812,
+   "stop": 35.58,
+   "volConfirmed": false,
+   "volRatio": 0.6,
+   "track": {
+    "successRate": 28.9,
+    "ci95": [
+     27.4,
+     30.4
+    ],
+    "n": 3331,
+    "edgeVsBaselinePct": 0.0,
+    "edgeAbnPct": -0.27,
+    "edgeAbnCI95": [
+     -0.78,
+     0.25
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 21.7,
+    "n": 387,
+    "edgeVsBaselinePct": 0.15,
+    "edgeAbnPct": -0.45,
+    "edgeAbnCI95": [
+     -1.91,
+     1.02
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "GOLD",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 35.2,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "JD",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 24.9,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "LUNR",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 8.62,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "NU",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 11.27,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "RGLD",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 222.03,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "SIRI",
+   "template": "minervini",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": 33.01,
+   "target": null,
+   "stop": null,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 47.1,
+    "ci95": [
+     46.5,
+     47.7
+    ],
+    "n": 31561,
+    "edgeVsBaselinePct": -0.05,
+    "edgeAbnPct": 0.25,
+    "edgeAbnCI95": [
+     0.04,
+     0.46
+    ],
+    "edgeVerdict": "earned",
+    "trustEdgePct": 0.25
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 46.3,
+    "n": 3079,
+    "edgeVsBaselinePct": -0.42,
+    "edgeAbnPct": 0.11,
+    "edgeAbnCI95": [
+     -0.63,
+     0.85
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
+  {
+   "ticker": "CIG-C",
+   "template": "double_bottom",
+   "direction": "bullish",
+   "identDate": "2026-11-27",
+   "confirmDate": null,
+   "status": "open",
+   "entry": null,
+   "target": null,
+   "stop": 2.7,
+   "volConfirmed": null,
+   "volRatio": null,
+   "track": {
+    "successRate": 46.6,
+    "ci95": [
+     45.8,
+     47.3
+    ],
+    "n": 17009,
+    "edgeVsBaselinePct": 0.18,
+    "edgeAbnPct": 0.17,
+    "edgeAbnCI95": [
+     -0.08,
+     0.42
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   },
+   "trackNow": {
+    "regime": "mixed",
+    "successRate": 47.2,
+    "n": 1854,
+    "edgeVsBaselinePct": 0.42,
+    "edgeAbnPct": 0.2,
+    "edgeAbnCI95": [
+     -0.75,
+     1.15
+    ],
+    "edgeVerdict": "unproven",
+    "trustEdgePct": 0.0
+   }
+  },
   {
    "ticker": "RKT",
    "template": "hs_bottom",
@@ -319,7 +1663,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -333,90 +1677,6 @@
     "edgeAbnCI95": [
      -0.49,
      0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "APD",
-   "template": "bull_flag",
-   "direction": "bullish",
-   "identDate": "2026-11-25",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 297.09,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.7,
-    "ci95": [
-     29.1,
-     32.3
-    ],
-    "n": 3041,
-    "edgeVsBaselinePct": 2.78,
-    "edgeAbnPct": 0.94,
-    "edgeAbnCI95": [
-     0.05,
-     1.83
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.94
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 26.2,
-    "n": 286,
-    "edgeVsBaselinePct": -0.39,
-    "edgeAbnPct": -0.07,
-    "edgeAbnCI95": [
-     -2.3,
-     2.17
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "APD",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-11-25",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 297.09,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.4,
-    "ci95": [
-     28.8,
-     31.9
-    ],
-    "n": 3446,
-    "edgeVsBaselinePct": 0.25,
-    "edgeAbnPct": 0.28,
-    "edgeAbnCI95": [
-     -0.08,
-     0.64
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 22.5,
-    "n": 284,
-    "edgeVsBaselinePct": -0.1,
-    "edgeAbnPct": -0.91,
-    "edgeAbnCI95": [
-     -2.29,
-     0.47
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -529,7 +1789,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -675,48 +1935,6 @@
    }
   },
   {
-   "ticker": "FOUR",
-   "template": "hs_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-25",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 35.58,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 28.9,
-    "ci95": [
-     27.4,
-     30.4
-    ],
-    "n": 3331,
-    "edgeVsBaselinePct": 0.0,
-    "edgeAbnPct": -0.27,
-    "edgeAbnCI95": [
-     -0.78,
-     0.25
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 21.7,
-    "n": 387,
-    "edgeVsBaselinePct": 0.15,
-    "edgeAbnPct": -0.45,
-    "edgeAbnCI95": [
-     -1.91,
-     1.02
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "SPRY",
    "template": "double_bottom",
    "direction": "bullish",
@@ -773,10 +1991,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -823,7 +2041,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -907,7 +2125,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -941,10 +2159,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1151,10 +2369,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1453,7 +2671,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -1705,7 +2923,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -1781,10 +2999,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1873,7 +3091,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -1949,10 +3167,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -1999,7 +3217,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -2041,7 +3259,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -2201,10 +3419,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2411,10 +3629,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2453,10 +3671,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2503,7 +3721,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -2579,10 +3797,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2663,10 +3881,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2747,10 +3965,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -2797,7 +4015,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -2965,7 +4183,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -3007,7 +4225,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -3385,7 +4603,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -3419,10 +4637,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -3511,7 +4729,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -3629,10 +4847,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -3797,10 +5015,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -4007,10 +5225,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -4091,10 +5309,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -4225,7 +5443,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -4351,7 +5569,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5057,10 +6275,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -5233,7 +6451,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5359,7 +6577,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5443,7 +6661,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5611,7 +6829,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5695,7 +6913,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -5989,7 +7207,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -6073,7 +7291,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -7064,7 +8282,7 @@
    "direction": "bearish",
    "identDate": "2026-11-20",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 177.14,
@@ -7148,7 +8366,7 @@
    "direction": "bearish",
    "identDate": "2026-11-20",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 318.87,
@@ -9635,10 +10853,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -9685,7 +10903,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -9769,7 +10987,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -11315,10 +12533,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -11903,10 +13121,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -12953,10 +14171,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -13289,10 +14507,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -14591,10 +15809,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15011,10 +16229,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15137,10 +16355,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -15590,7 +16808,7 @@
    "direction": "bearish",
    "identDate": "2026-11-18",
    "confirmDate": null,
-   "status": "open",
+   "status": "invalidated",
    "entry": null,
    "target": null,
    "stop": 81.83,
@@ -15859,7 +17077,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -15901,7 +17119,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -16271,10 +17489,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16523,10 +17741,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -16699,7 +17917,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -16943,10 +18161,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17447,10 +18665,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17489,10 +18707,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17531,10 +18749,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17573,10 +18791,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17615,10 +18833,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17657,10 +18875,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17699,10 +18917,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17783,10 +19001,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17825,10 +19043,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -17951,10 +19169,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18127,7 +19345,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -18581,10 +19799,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -18631,7 +19849,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -18791,10 +20009,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19169,10 +20387,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19295,10 +20513,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19421,10 +20639,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19757,10 +20975,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19849,7 +21067,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -19925,10 +21143,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -19967,10 +21185,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20135,10 +21353,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20227,7 +21445,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -20395,7 +21613,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -20513,10 +21731,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -20773,7 +21991,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -20815,7 +22033,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -20891,10 +22109,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -21025,7 +22243,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -21143,10 +22361,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -21269,10 +22487,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -21361,7 +22579,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -21395,10 +22613,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -21549,300 +22767,6 @@
    }
   },
   {
-   "ticker": "QCOM",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 147.61,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17009,
-    "edgeVsBaselinePct": 0.18,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "AIG",
-   "template": "asc_triangle",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 77.75,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 30.4,
-    "ci95": [
-     28.8,
-     31.9
-    ],
-    "n": 3446,
-    "edgeVsBaselinePct": 0.25,
-    "edgeAbnPct": 0.28,
-    "edgeAbnCI95": [
-     -0.08,
-     0.64
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 22.5,
-    "n": 284,
-    "edgeVsBaselinePct": -0.1,
-    "edgeAbnPct": -0.91,
-    "edgeAbnCI95": [
-     -2.29,
-     0.47
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ADI",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 353.37,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17009,
-    "edgeVsBaselinePct": 0.18,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ON",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "invalidated",
-   "entry": null,
-   "target": null,
-   "stop": 63.01,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17009,
-    "edgeVsBaselinePct": 0.18,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "BIO",
-   "template": "flat_base",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "open",
-   "entry": null,
-   "target": null,
-   "stop": 352.69,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 51.0,
-    "ci95": [
-     50.4,
-     51.7
-    ],
-    "n": 24941,
-    "edgeVsBaselinePct": -0.34,
-    "edgeAbnPct": 0.07,
-    "edgeAbnCI95": [
-     -0.18,
-     0.31
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 50.3,
-    "n": 1812,
-    "edgeVsBaselinePct": -0.12,
-    "edgeAbnPct": 0.18,
-    "edgeAbnCI95": [
-     -0.49,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "ATI",
-   "template": "minervini",
-   "direction": "bullish",
-   "identDate": "2026-11-11",
-   "confirmDate": null,
-   "status": "open",
-   "entry": 187.53,
-   "target": null,
-   "stop": null,
-   "volConfirmed": null,
-   "volRatio": null,
-   "track": {
-    "successRate": 47.1,
-    "ci95": [
-     46.6,
-     47.7
-    ],
-    "n": 31559,
-    "edgeVsBaselinePct": -0.05,
-    "edgeAbnPct": 0.25,
-    "edgeAbnCI95": [
-     0.04,
-     0.46
-    ],
-    "edgeVerdict": "earned",
-    "trustEdgePct": 0.25
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 46.3,
-    "n": 3079,
-    "edgeVsBaselinePct": -0.42,
-    "edgeAbnPct": 0.11,
-    "edgeAbnCI95": [
-     -0.63,
-     0.85
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
-   "ticker": "COHN",
-   "template": "double_bottom",
-   "direction": "bullish",
-   "identDate": "2026-11-04",
-   "confirmDate": "2026-11-11",
-   "status": "failure",
-   "entry": 11.0,
-   "target": 12.285,
-   "stop": 9.11,
-   "volConfirmed": false,
-   "volRatio": 0.76,
-   "track": {
-    "successRate": 46.6,
-    "ci95": [
-     45.8,
-     47.3
-    ],
-    "n": 17009,
-    "edgeVsBaselinePct": 0.18,
-    "edgeAbnPct": 0.17,
-    "edgeAbnCI95": [
-     -0.08,
-     0.42
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   },
-   "trackNow": {
-    "regime": "mixed",
-    "successRate": 47.2,
-    "n": 1854,
-    "edgeVsBaselinePct": 0.42,
-    "edgeAbnPct": 0.2,
-    "edgeAbnCI95": [
-     -0.75,
-     1.15
-    ],
-    "edgeVerdict": "unproven",
-    "trustEdgePct": 0.0
-   }
-  },
-  {
    "ticker": "ANGX",
    "template": "double_bottom",
    "direction": "bullish",
@@ -21983,10 +22907,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -22109,10 +23033,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -22613,10 +23537,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -23125,7 +24049,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -23243,10 +24167,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [
@@ -23293,7 +24217,7 @@
     "edgeAbnPct": 0.07,
     "edgeAbnCI95": [
      -0.18,
-     0.31
+     0.32
     ],
     "edgeVerdict": "unproven",
     "trustEdgePct": 0.0
@@ -23369,10 +24293,10 @@
    "track": {
     "successRate": 47.1,
     "ci95": [
-     46.6,
+     46.5,
      47.7
     ],
-    "n": 31559,
+    "n": 31561,
     "edgeVsBaselinePct": -0.05,
     "edgeAbnPct": 0.25,
     "edgeAbnCI95": [

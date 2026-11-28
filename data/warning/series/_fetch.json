@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-27T23:42:35Z",
+ "asOf": "2026-11-28T04:58:16Z",
  "series": {
   "ABCOMP": {
    "changed": false,
@@ -258,7 +258,7 @@
    "source": "fredgraph-csv"
   },
   "GSPC": {
-   "at": "2026-11-27T23:42:28Z",
+   "at": "2026-11-28T04:58:11Z",
    "error": "RuntimeError: HTTPError: HTTP Error 429: Too Many Requests",
    "ok": false
   },
@@ -319,10 +319,10 @@
    "source": "fredgraph-csv"
   },
   "NASDAQCOM": {
-   "changed": false,
+   "changed": true,
    "first": "1971-02-05",
-   "last": "2026-11-25",
-   "n": 14071,
+   "last": "2026-11-27",
+   "n": 14072,
    "ok": true,
    "source": "fredgraph-csv"
   },
